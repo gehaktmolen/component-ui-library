@@ -1,0 +1,204 @@
+.contained {
+  background-color: #ff0080;
+}
+
+.text {
+  background-color: #11ff00;
+}
+
+.root {
+  color: #fff;
+  min-width: 64px;
+  padding: 6px 16px;
+  border-radius: 2px;
+  transition: background-color, box-shadow, border-color, color;
+  transition-duration: 200ms; //short
+
+  &Derp {
+    background-color: #11ff00;
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: rgba(255, 0, 128, 0.8); // primaryChannel
+
+    @media (hover: none) {
+      background-color: transparent;
+    }
+
+    &.variantText:not(.colorInherit) {
+      background-color: rgba(255, 255, 128, 0.8); // mainChannel
+    }
+
+    &.variantOutlined:not(.colorInherit) {
+      border: 1px solid rgba(255, 50, 50, 0.8);
+      background-color: rgba(255, 255, 128, 0.8); // mainChannel
+    }
+
+    &.variantContained {
+      box-shadow: #1a1a1a; // 4
+      background-color: rgba(255, 255, 128, 0.8); // inheritContainedHoverBg
+
+      @media (hover: none) {
+        box-shadow: #1a1a1a; // 2
+        background-color: #242424; // grey 300
+      }
+
+      &:not(.colorInherit) {
+        background-color: rgba(30, 30, 30, 0.8); // dark
+
+        @media (hover: none) {
+          background-color: #242424; // main
+        }
+      }
+    }
+  }
+
+  &:active {
+    &.variantContained {
+      box-shadow: #1a1a1a; // 8
+
+    }
+  }
+
+  &.focusVisible {
+    box-shadow: #1a1a1a; // 6
+  }
+
+  &.disabled {
+    color: #242424; // disabled
+    &.variantOutlined {
+      border: 1px solid #811b1b; // disabledBackground
+    }
+
+    &.variantContained {
+      color: #2d2d2d; // disabled
+      box-shadow: #1a1a1a; // 0
+      background-color: #242424; // disabledBackground
+    }
+  }
+
+  &.variantText {
+    padding: 6px 8px;
+
+    &:not(.colorInherit) {
+      color: #535bf2; // main
+    }
+  }
+
+  &.variantOutlined {
+    padding: 5px 15px;
+    border: 1px solid currentColor;
+
+    &:not(.colorInherit) {
+      color: #535bf2; // main
+      border: 1px solid rgba(255, 0, 30, 0.5); // mainChannel
+    }
+  }
+
+  &.variantContained {
+    color: white; // text primary
+    background-color: #535bf2; // inheritContainedBg
+    box-shadow: #242424; // 2
+
+    &:not(.colorInherit) {
+      color: #535bf2; // contrastText
+      background-color: #53baf2; // main
+    }
+  }
+
+  &.colorInherit {
+    color: inherit;
+    border-color: currentColor;
+  }
+
+  &.sizeSmall {
+    &.variantText {
+      padding: 4px 5px;
+      font-size: 13rem;
+    }
+
+    &.variantOutlined {
+      padding: 3px 9px;
+      font-size: 13rem;
+    }
+
+    &.variantContained {
+      padding: 4px 10px;
+      font-size: 13rem;
+    }
+  }
+
+  &.sizeLarge {
+    &.variantText {
+      padding: 8px 11px;
+      font-size: 15rem;
+    }
+
+    &.variantOutlined {
+      padding: 7px 21px;
+      font-size: 15rem;
+    }
+
+    &.variantContained {
+      padding: 8px 22px;
+      font-size: 15rem;
+    }
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+
+  &.disableElevation {
+    box-shadow: none;
+
+    &:hover,
+    &:active,
+    &.focusVisible,
+    &.disabled{
+      box-shadow: none;
+    }
+  }
+}
+
+.startIcon, .endIcon {
+  display: inherit;
+
+  &.iconSizeSmall {
+    & > *:nth-of-type(1) {
+      font-size: 18px;
+    }
+  }
+
+  &.iconSizeMedium {
+    & > *:nth-of-type(1) {
+      font-size: 20px;
+    }
+  }
+
+  &.iconSizeLarge {
+    & > *:nth-of-type(1) {
+      font-size: 22px;
+    }
+  }
+}
+
+.startIcon {
+  margin-right: 8px;
+  margin-left: -4px;
+
+  &.iconSizeSmall {
+    margin-left: -2px;
+  }
+}
+
+.endIcon {
+  margin-right: -4px;
+  margin-left: 8px;
+
+  &.iconSizeSmall {
+    margin-right: -2px;
+  }
+}
+
