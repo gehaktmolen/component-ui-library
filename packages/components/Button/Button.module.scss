@@ -1,26 +1,9 @@
-.contained {
-  background-color: #ff0080;
-}
-
-.text {
-  background-color: #11ff01;
-}
-
 .root {
-  color: #fff;
-  min-width: 64px;
-  padding: 6px 16px;
-  border-radius: 2px;
-  transition: background-color, box-shadow, border-color, color;
-  transition-duration: 200ms; //short
-
-  &Derp {
-    background-color: #11ff00;
-  }
+  @apply text-white px-4 py-2 rounded-md min-w-[64px] transition-colors duration-200;
 
   &:hover {
     text-decoration: none;
-    background-color: rgba(255, 0, 128, 0.8); // primaryChannel
+    background-color: rgba(255, 100, 128, 0.8); // primaryChannel
 
     @media (hover: none) {
       background-color: transparent;
@@ -83,27 +66,6 @@
 
     &:not(.colorInherit) {
       color: #535bf2; // main
-    }
-  }
-
-  &.variantOutlined {
-    padding: 5px 15px;
-    border: 1px solid currentColor;
-
-    &:not(.colorInherit) {
-      color: #535bf2; // main
-      border: 1px solid rgba(255, 0, 30, 0.5); // mainChannel
-    }
-  }
-
-  &.variantContained {
-    color: white; // text primary
-    background-color: #535bf2; // inheritContainedBg
-    box-shadow: #242424; // 2
-
-    &:not(.colorInherit) {
-      color: #535bf2; // contrastText
-      background-color: #53baf2; // main
     }
   }
 
@@ -200,5 +162,39 @@
   &.iconSizeSmall {
     margin-right: -2px;
   }
+}
+
+.contained {
+  @apply text-white bg-purple-200 shadow-md;
+
+  &:not(.colorInherit) {
+    @apply text-amber-300 bg-purple-500; // contrast text and main bg.
+  }
+}
+
+.text {
+  @apply px-5 py-2; // 6px 8px
+
+  &:not(.colorInherit) {
+    @apply text-purple-500;
+  }
+}
+
+.outlined {
+  @apply px-5 py-2 border-s-current; // 5px 15px
+
+  &:not(.colorInherit) {
+    @apply text-purple-500 border-purple-500;
+  }
+}
+
+.disabled {
+  &:not(.colorInherit) {
+    @apply text-gray-700 bg-gray-900;
+  }
+}
+
+.focus {
+  @apply bg-emerald-500;
 }
 

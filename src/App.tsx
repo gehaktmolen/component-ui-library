@@ -11,20 +11,26 @@ function App() {
 
     return (
         <>
-            <div>
-                <Button variant="text" active={true}>Button</Button>
+            <div className="container mx-auto px-4">
+                <Button variant="text" active={true}>Text</Button>
+                <p>&nbsp;</p>
+                <Button variant="outlined">Outlined</Button>
+                <p>&nbsp;</p>
+                <Button variant="contained">Contained</Button>
+                <p>&nbsp;</p>
+                <Button variant="contained" disabled>Disabled</Button>
                 <p>&nbsp;</p>
                 <Button
                     variant="contained"
                     href="#"
                     slotProps={{
                         root: (state: ButtonOwnerState) => ({
-                            className: `hover:text-cyan-500 transition-colors ${
-                                state.variant === 'contained' ? 'ring-cyan-500' : 'ring-cyan-100'
+                            className: `px-8 text-emerald-500 hover:text-cyan-100 ${
+                                state.active ? 'bg-cyan-500' : 'bg-cyan-100'
                             }`,
                         }),
                     }}
-                >Link</Button>
+                >Custom</Button>
                 <a href="https://vitejs.dev" target="_blank">
                     <img src={viteLogo} className="logo" alt="Vite logo"/>
                 </a>

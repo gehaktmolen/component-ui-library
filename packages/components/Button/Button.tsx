@@ -19,14 +19,12 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
         variant
     } = ownerState;
 
-    console.log('VARIAnt', variant, styles[variant]);
-
     const slots = {
         root: [
             styles.root,
             styles[variant],
-            disabled && 'disabled',
-            focusVisible && 'focusVisible',
+            disabled && styles.disabled,
+            focusVisible && styles.focus,
             active && 'active',
         ],
     };
