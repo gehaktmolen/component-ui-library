@@ -8,18 +8,17 @@ import { DistributiveOmit, OverridableTypeMap } from '../../types';
  * @template TypeMap The interface the defines the props and a default root element of the component.
  */
 export type PolymorphicComponent<TypeMap extends OverridableTypeMap> = {
-  <RootComponent extends React.ElementType = TypeMap['defaultComponent']>(
-    props: PolymorphicProps<TypeMap, RootComponent>,
-  ): JSX.Element | null;
-  propTypes?: any;
-  displayName?: string | undefined;
+    <RootComponent extends React.ElementType = TypeMap['defaultComponent']>(
+        props: PolymorphicProps<TypeMap, RootComponent>
+    ): JSX.Element | null;
+    propTypes?: any;
+    displayName?: string | undefined;
 };
 
 /**
  * Own props of the component augmented with props of the root component.
  */
 export type PolymorphicProps<
-  TypeMap extends OverridableTypeMap,
-  RootComponent extends React.ElementType,
-> = TypeMap['props'] &
-  DistributiveOmit<React.ComponentPropsWithRef<RootComponent>, keyof TypeMap['props']>;
+    TypeMap extends OverridableTypeMap,
+    RootComponent extends React.ElementType
+> = TypeMap['props'] & DistributiveOmit<React.ComponentPropsWithRef<RootComponent>, keyof TypeMap['props']>;

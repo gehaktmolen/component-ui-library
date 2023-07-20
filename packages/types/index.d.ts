@@ -23,12 +23,11 @@ export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
  * additional {AdditionalProps}
  */
 export type PropInjector<InjectedProps, AdditionalProps = NonNullable<unknown>> = <
-    C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, InjectedProps>>,
+    C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, InjectedProps>>
 >(
-    component: C,
+    component: C
 ) => React.JSXElementConstructor<
-    DistributiveOmit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
-    AdditionalProps
+    DistributiveOmit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> & AdditionalProps
 >;
 
 /**
@@ -67,9 +66,7 @@ type GenerateStringUnion<T> = Extract<
 >;
 
 // https://stackoverflow.com/questions/53807517/how-to-test-if-two-types-are-exactly-the-same
-export type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) extends <
-        G,
-    >() => G extends U ? 1 : 2
+export type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) extends <G>() => G extends U ? 1 : 2
     ? Y
     : N;
 
@@ -101,7 +98,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
              * Either a string to use a HTML element or a component.
              */
             component: C;
-        } & OverrideProps<M, C>,
+        } & OverrideProps<M, C>
     ): JSX.Element | null;
     (props: DefaultComponentProps<M>): JSX.Element | null;
     propTypes?: any;

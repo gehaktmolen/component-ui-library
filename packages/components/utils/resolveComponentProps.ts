@@ -3,19 +3,13 @@
  * Otherwise, just returns `componentProps`.
  */
 export default function resolveComponentProps<TProps, TOwnerState, TSlotState>(
-  componentProps:
-    | TProps
-    | ((ownerState: TOwnerState, slotState?: TSlotState) => TProps)
-    | undefined,
-  ownerState: TOwnerState,
-  slotState?: TSlotState,
+    componentProps: TProps | ((ownerState: TOwnerState, slotState?: TSlotState) => TProps) | undefined,
+    ownerState: TOwnerState,
+    slotState?: TSlotState
 ): TProps | undefined {
-  if (typeof componentProps === 'function') {
-    return (componentProps as (ownerState: TOwnerState, slotState?: TSlotState) => TProps)(
-      ownerState,
-      slotState,
-    );
-  }
+    if (typeof componentProps === 'function') {
+        return (componentProps as (ownerState: TOwnerState, slotState?: TSlotState) => TProps)(ownerState, slotState);
+    }
 
-  return componentProps;
+    return componentProps;
 }

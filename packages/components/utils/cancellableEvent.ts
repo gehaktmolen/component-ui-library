@@ -1,5 +1,5 @@
 type CancellableEvent = {
-  defaultPrevented?: boolean;
+    defaultPrevented?: boolean;
 };
 
 export default CancellableEvent;

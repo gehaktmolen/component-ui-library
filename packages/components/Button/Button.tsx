@@ -10,17 +10,7 @@ import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps } from '../u
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
-    console.log('ownerState', ownerState);
-    const {
-        active,
-        disabled,
-        focusVisible,
-        variant,
-        color,
-        size,
-        disableElevation,
-        fullWidth,
-    } = ownerState;
+    const { active, disabled, focusVisible, variant, color, size, flat, fullWidth } = ownerState;
 
     const slots = {
         root: [
@@ -28,30 +18,27 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
             variant && styles[variant],
             color && styles[color],
             size && styles[size],
-            disableElevation && styles['disable-elevation'],
+            flat && styles['flat'],
             fullWidth && styles['full-width'],
             disabled && styles.disabled,
             focusVisible && styles.focus,
-            active && 'active',
-        ],
+            active && 'active'
+        ]
     };
 
     return composeClasses(slots, useClassNamesOverride(getButtonUtilityClass));
 };
 /**
- * The foundation for building custom-styled buttons.
- *
- * Demos:
- *
- * - [Button](https:///)
+ * The Button component replaces the standard html button with a multitude of options.
+ * A staple for any application. It is used for everything from navigation to form submission;
+ * and can be styled in a multitude of ways.
  *
  * API:
- *
  * - [Button API](https://#button)
  */
 export const Button = React.forwardRef(function Button<RootComponentType extends React.ElementType>(
     props: ButtonProps<RootComponentType>,
-    forwardedRef: React.ForwardedRef<Element>,
+    forwardedRef: React.ForwardedRef<Element>
 ) {
     const {
         action,
@@ -61,7 +48,7 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         onFocusVisible,
         variant,
         color,
-        disableElevation,
+        flat,
         fullWidth,
         slotProps = {},
         slots = {},
@@ -70,9 +57,9 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
 
     const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
-    const {active, focusVisible, setFocusVisible, getRootProps} = useButton({
+    const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
         ...props,
-        focusableWhenDisabled,
+        focusableWhenDisabled
     });
 
     React.useImperativeHandle(
@@ -81,9 +68,9 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
             focusVisible: () => {
                 setFocusVisible(true);
                 buttonRef.current!.focus();
-            },
+            }
         }),
-        [setFocusVisible],
+        [setFocusVisible]
     );
 
     const ownerState: ButtonOwnerState = {
@@ -93,8 +80,8 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         focusVisible,
         variant,
         color,
-        disableElevation,
-        fullWidth,
+        flat,
+        fullWidth
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -107,10 +94,10 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         externalForwardedProps: other,
         externalSlotProps: slotProps.root,
         additionalProps: {
-            ref: forwardedRef,
+            ref: forwardedRef
         },
         ownerState,
-        className: classes.root,
+        className: classes.root
     });
 
     return <Root {...rootProps}>{children}</Root>;
@@ -124,9 +111,9 @@ Button.propTypes = {
         PropTypes.func,
         PropTypes.shape({
             current: PropTypes.shape({
-                focusVisible: PropTypes.func.isRequired,
-            }),
-        }),
+                focusVisible: PropTypes.func.isRequired
+            })
+        })
     ]),
     /**
      * @ignore
@@ -146,17 +133,14 @@ Button.propTypes = {
      * The variant to use.
      * @default 'text'
      */
-    variant: PropTypes.oneOfType([
-        PropTypes.oneOf(['contained', 'outlined', 'text']),
-        PropTypes.string,
-    ]),
+    variant: PropTypes.oneOfType([PropTypes.oneOf(['contained', 'outlined', 'text']), PropTypes.string]),
     /**
      * The color of the component.
      * @default 'primary'
      */
     color: PropTypes.oneOfType([
         PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning']),
-        PropTypes.string,
+        PropTypes.string
     ]),
     /**
      * Element placed before the children.
@@ -167,10 +151,7 @@ Button.propTypes = {
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size: PropTypes.oneOfType([
-        PropTypes.oneOf(['small', 'medium', 'large']),
-        PropTypes.string,
-    ]),
+    size: PropTypes.oneOfType([PropTypes.oneOf(['small', 'medium', 'large']), PropTypes.string]),
     /**
      * If `true`, the button will take up the full width of its container.
      * @default false
@@ -181,10 +162,10 @@ Button.propTypes = {
      */
     endIcon: PropTypes.node,
     /**
-     * If `true`, no elevation is used.
+     * Removes the button box shadow.
      * @default false
      */
-    disableElevation: PropTypes.bool,
+    flat: PropTypes.bool,
     /**
      * @ignore
      */
@@ -198,7 +179,7 @@ Button.propTypes = {
      * @default {}
      */
     slotProps: PropTypes.shape({
-        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**
      * The components used for each slot inside the Button.
@@ -206,10 +187,10 @@ Button.propTypes = {
      * @default {}
      */
     slots: PropTypes.shape({
-        root: PropTypes.elementType,
+        root: PropTypes.elementType
     }),
     /**
      * @ignore
      */
-    to: PropTypes.string,
+    to: PropTypes.string
 } as any;

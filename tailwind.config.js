@@ -5,11 +5,7 @@ import colors from 'tailwindcss/colors';
 export default {
     important: '#root',
     // darkMode: 'class',
-    content: [
-        './index.html',
-        './src/**/*.{js,ts,jsx,tsx}',
-        './packages/**/*.{jsx,tsx}',
-    ],
+    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './packages/**/*.{jsx,tsx}'],
     theme: {
         colors: {
             transparent: 'transparent',
@@ -21,12 +17,9 @@ export default {
             purple: colors.purple,
             amber: colors.amber,
             gray: colors.gray,
-            emerald: colors.emerald,
+            emerald: colors.emerald
         },
-        extend: {
-
-        },
+        extend: {}
     },
-    plugins: [],
-}
-
+    plugins: []
+};

@@ -1,207 +1,210 @@
 .root {
-  @apply text-white px-4 py-2 rounded-md min-w-[64px] transition-colors duration-200;
+    @apply text-white px-4 py-2 rounded-md min-w-[64px] transition-colors duration-200;
 
-  &:hover {
-    @apply no-underline bg-primary-500; // primaryChannel
-
-    @media (hover: none) {
-      @apply bg-transparent;
-    }
-
-    &.variantText:not(.colorInherit) {
-      background-color: rgba(255, 255, 128, 0.8); // mainChannel
-    }
-
-    &.variantOutlined:not(.colorInherit) {
-      border: 1px solid rgba(255, 50, 50, 0.8);
-      background-color: rgba(255, 255, 128, 0.8); // mainChannel
-    }
-
-    &.variantContained {
-      box-shadow: #1a1a1a; // 4
-      background-color: rgba(255, 255, 128, 0.8); // inheritContainedHoverBg
-
-      @media (hover: none) {
-        box-shadow: #1a1a1a; // 2
-        background-color: #242424; // grey 300
-      }
-
-      &:not(.colorInherit) {
-        background-color: rgba(30, 30, 30, 0.8); // dark
+    &:hover {
+        @apply no-underline bg-primary-500; // primaryChannel
 
         @media (hover: none) {
-          background-color: #242424; // main
+            @apply bg-transparent;
         }
-      }
+
+        &.variantText:not(.colorInherit) {
+            background-color: rgba(255, 255, 128, 0.8); // mainChannel
+        }
+
+        &.variantOutlined:not(.colorInherit) {
+            border: 1px solid rgba(255, 50, 50, 0.8);
+            background-color: rgba(255, 255, 128, 0.8); // mainChannel
+        }
+
+        &.variantContained {
+            box-shadow: #1a1a1a; // 4
+            background-color: rgba(255, 255, 128, 0.8); // inheritContainedHoverBg
+
+            @media (hover: none) {
+                box-shadow: #1a1a1a; // 2
+                background-color: #242424; // grey 300
+            }
+
+            &:not(.colorInherit) {
+                background-color: rgba(30, 30, 30, 0.8); // dark
+
+                @media (hover: none) {
+                    background-color: #242424; // main
+                }
+            }
+        }
     }
-  }
 
-  &:active {
-    &.variantContained {
-      @apply drop-shadow-xl; // 8
-    }
-  }
-
-  &.focusVisible {
-    @apply drop-shadow-lg; // 6
-  }
-
-  &.disabled {
-    @apply text-gray-900;
-
-    &.variantOutlined {
-      border: 1px solid #811b1b; // disabledBackground
+    &:active {
+        &.variantContained {
+            @apply drop-shadow-xl; // 8
+        }
     }
 
-    &.variantContained {
-      color: #2d2d2d; // disabled
-      box-shadow: #1a1a1a; // 0
-      background-color: #242424; // disabledBackground
+    &.focusVisible {
+        @apply drop-shadow-lg; // 6
     }
-  }
 
-  &.variantText {
-    padding: 6px 8px;
+    &.disabled {
+        @apply text-gray-900;
 
-    &:not(.colorInherit) {
-      color: #535bf2; // main
+        &.variantOutlined {
+            border: 1px solid #811b1b; // disabledBackground
+        }
+
+        &.variantContained {
+            color: #2d2d2d; // disabled
+            box-shadow: #1a1a1a; // 0
+            background-color: #242424; // disabledBackground
+        }
     }
-  }
 
-  &.colorInherit {
-    color: inherit;
-    border-color: currentColor;
-  }
-
-  &.sizeSmall {
     &.variantText {
-      padding: 4px 5px;
-      font-size: 13rem;
+        padding: 6px 8px;
+
+        &:not(.colorInherit) {
+            color: #535bf2; // main
+        }
     }
 
-    &.variantOutlined {
-      padding: 3px 9px;
-      font-size: 13rem;
+    &.colorInherit {
+        color: inherit;
+        border-color: currentColor;
     }
 
-    &.variantContained {
-      padding: 4px 10px;
-      font-size: 13rem;
-    }
-  }
+    &.sizeSmall {
+        &.variantText {
+            padding: 4px 5px;
+            font-size: 13rem;
+        }
 
-  &.sizeLarge {
-    &.variantText {
-      @apply py-2 px-3 text-base;
+        &.variantOutlined {
+            padding: 3px 9px;
+            font-size: 13rem;
+        }
+
+        &.variantContained {
+            padding: 4px 10px;
+            font-size: 13rem;
+        }
     }
 
-    &.variantOutlined {
-      @apply py-[7px] px-[23px] text-base;
-    }
+    &.sizeLarge {
+        &.variantText {
+            @apply py-2 px-3 text-base;
+        }
 
-    &.variantContained {
-      @apply px-2 py-6 text-base; // 8px 24px
+        &.variantOutlined {
+            @apply py-[7px] px-[23px] text-base;
+        }
+
+        &.variantContained {
+            @apply px-2 py-6 text-base; // 8px 24px
+        }
     }
-  }
 }
 
-.start-icon, .end-icon {
-  @apply [display:inherit];
+.start-icon,
+.end-icon {
+    @apply [display:inherit];
 
-  &.iconSizeSmall {
-    & > *:nth-of-type(1) {
-      @apply text-lg; // 18px
+    &.iconSizeSmall {
+        & > *:nth-of-type(1) {
+            @apply text-lg; // 18px
+        }
     }
-  }
 
-  &.iconSizeMedium {
-    & > *:nth-of-type(1) {
-      @apply text-xl; // 20px
+    &.iconSizeMedium {
+        & > *:nth-of-type(1) {
+            @apply text-xl; // 20px
+        }
     }
-  }
 
-  &.iconSizeLarge {
-    & > *:nth-of-type(1) {
-      @apply text-2xl; // 24px
+    &.iconSizeLarge {
+        & > *:nth-of-type(1) {
+            @apply text-2xl; // 24px
+        }
     }
-  }
 }
 
 .start-icon {
-  @apply mr-2 ml-[-4px]; // 8px -4px
+    @apply mr-2 ml-[-4px]; // 8px -4px
 
-  &.iconSizeSmall {
-    @apply ml-[-2px];
-  }
+    &.iconSizeSmall {
+        @apply ml-[-2px];
+    }
 }
 
 .end-icon {
-  @apply mr-[-4px] ml-2; // -4px 8px
+    @apply mr-[-4px] ml-2; // -4px 8px
 
-  &.iconSizeSmall {
-    @apply mr-[-2px];
-  }
+    &.iconSizeSmall {
+        @apply mr-[-2px];
+    }
 }
 
 .contained {
-  @apply text-white bg-purple-200 shadow-md;
+    @apply text-white bg-purple-200 shadow-md;
 
-  &:not(.colorInherit) {
-    @apply text-amber-300 bg-purple-500; // contrast text and main bg.
-  }
+    &:not(.colorInherit) {
+        @apply text-amber-300 bg-purple-500; // contrast text and main bg.
+    }
 }
 
 .text {
-  @apply px-5 py-2; // 6px 8px
+    @apply px-5 py-2; // 6px 8px
 
-  &:not(.colorInherit) {
-    @apply dark:text-amber-500 text-purple-500;
-  }
+    &:not(.colorInherit) {
+        @apply dark:text-amber-500 text-purple-500;
+    }
 }
 
 .primary {
-  @apply bg-primary-500;
+    @apply bg-primary-500;
 }
 
 .secondary {
-  @apply bg-secondary-500;
+    @apply bg-secondary-500;
 }
 
-.small {}
-.medium {}
+.small {
+}
+.medium {
+}
 .large {
-  @apply px-2 py-6 text-base; // 8px 24px
+    @apply px-2 py-6 text-base; // 8px 24px
 }
 
 .outlined {
-  @apply px-5 py-2 border-s-current; // 5px 15px
+    @apply px-5 py-2 border-s-current; // 5px 15px
 
-  &:not(.colorInherit) {
-    @apply text-purple-500 border-purple-500;
-  }
+    &:not(.colorInherit) {
+        @apply text-purple-500 border-purple-500;
+    }
 }
 
 .disabled {
-  &:not(.colorInherit) {
-    @apply text-gray-700 bg-gray-900;
-  }
+    &:not(.colorInherit) {
+        @apply text-gray-700 bg-gray-900;
+    }
 }
 
 .focus {
-  @apply bg-emerald-500;
+    @apply bg-emerald-500;
 }
 
-.full-width {
-  @apply w-full;
+.flat {
+    @apply w-full;
 }
 
 .disable-elevation {
-  @apply drop-shadow-none;
-
-  &:hover,
-  &:active,
-  &.focus,
-  &.disabled{
     @apply drop-shadow-none;
-  }
+
+    &:hover,
+    &:active,
+    &.focus,
+    &.disabled {
+        @apply drop-shadow-none;
+    }
 }

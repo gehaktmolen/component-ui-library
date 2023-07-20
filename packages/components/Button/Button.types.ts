@@ -3,21 +3,17 @@ import { Simplify, OverridableStringUnion } from '../../types';
 import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
 import { SlotComponentProps, PolymorphicProps } from '../utils';
 
-export interface ButtonPropsVariantOverrides {
-}
+export interface ButtonPropsVariantOverrides {}
 
 export interface ButtonActions {
     focusVisible(): void;
 }
 
-export interface ButtonRootSlotPropsOverrides {
-}
+export interface ButtonRootSlotPropsOverrides {}
 
-export interface ButtonPropsColorOverrides {
-}
+export interface ButtonPropsColorOverrides {}
 
-export interface ButtonPropsSizeOverrides {
-}
+export interface ButtonPropsSizeOverrides {}
 
 export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
     /**
@@ -43,10 +39,7 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
      * The variant to use.
      * @default 'text'
      */
-    variant?: OverridableStringUnion<
-        'text' | 'outlined' | 'contained',
-        ButtonPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<'text' | 'outlined' | 'contained', ButtonPropsVariantOverrides>;
     /**
      * The size of the component.
      * `small` is equivalent to the dense button styling.
@@ -62,10 +55,10 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
      */
     endIcon?: React.ReactNode;
     /**
-     * If `true`, no elevation is used.
+     * Removes the button box shadow.
      * @default false
      */
-    disableElevation?: boolean;
+    flat?: boolean;
     /**
      * If `true`, the button will take up the full width of its container.
      * @default false
@@ -89,13 +82,12 @@ export interface ButtonSlots {
     root?: React.ElementType;
 }
 
-export type ButtonProps<
-    RootComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
-> = PolymorphicProps<ButtonTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType>;
+export type ButtonProps<RootComponentType extends React.ElementType = ButtonTypeMap['defaultComponent']> =
+    PolymorphicProps<ButtonTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType>;
 
 export interface ButtonTypeMap<
     AdditionalProps = NonNullable<unknown>,
-    RootComponentType extends React.ElementType = 'button',
+    RootComponentType extends React.ElementType = 'button'
 > {
     props: ButtonOwnProps & AdditionalProps;
     defaultComponent: RootComponentType;
@@ -103,15 +95,15 @@ export interface ButtonTypeMap<
 
 export type ButtonOwnerState = Simplify<
     ButtonOwnProps & {
-    active: boolean;
-    focusVisible: boolean;
-}
+        active: boolean;
+        focusVisible: boolean;
+    }
 >;
 
 export type ButtonRootSlotProps = Simplify<
     UseButtonRootSlotProps & {
-    ownerState: ButtonOwnerState;
-    className?: string;
-    children?: React.ReactNode;
-}
+        ownerState: ButtonOwnerState;
+        className?: string;
+        children?: React.ReactNode;
+    }
 >;

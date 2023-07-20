@@ -8,22 +8,18 @@ import isHostComponent from './isHostComponent';
  * Falls back to `OwnerState | undefined` when the exact type can't be determined in development time.
  */
 type OwnerStateWhenApplicable<
-  ElementType extends React.ElementType,
-  OwnerState,
+    ElementType extends React.ElementType,
+    OwnerState
 > = ElementType extends React.ComponentType<any>
-  ? OwnerState
-  : ElementType extends keyof JSX.IntrinsicElements
-  ? undefined
-  : OwnerState | undefined;
+    ? OwnerState
+    : ElementType extends keyof JSX.IntrinsicElements
+    ? undefined
+    : OwnerState | undefined;
 
-export type AppendOwnerStateReturnType<
-  ElementType extends React.ElementType,
-  OtherProps,
-  OwnerState,
-> = Simplify<
-  OtherProps & {
-    ownerState: OwnerStateWhenApplicable<ElementType, OwnerState>;
-  }
+export type AppendOwnerStateReturnType<ElementType extends React.ElementType, OtherProps, OwnerState> = Simplify<
+    OtherProps & {
+        ownerState: OwnerStateWhenApplicable<ElementType, OwnerState>;
+    }
 >;
 
 /**
@@ -34,20 +30,20 @@ export type AppendOwnerStateReturnType<
  * @param ownerState
  */
 export default function appendOwnerState<
-  ElementType extends React.ElementType,
-  OtherProps extends Record<string, any>,
-  OwnerState,
+    ElementType extends React.ElementType,
+    OtherProps extends Record<string, any>,
+    OwnerState
 >(
-  elementType: ElementType | undefined,
-  otherProps: OtherProps,
-  ownerState: OwnerState,
+    elementType: ElementType | undefined,
+    otherProps: OtherProps,
+    ownerState: OwnerState
 ): AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState> {
-  if (elementType === undefined || isHostComponent(elementType)) {
-    return otherProps as AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState>;
-  }
+    if (elementType === undefined || isHostComponent(elementType)) {
+        return otherProps as AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState>;
+    }
 
-  return {
-    ...otherProps,
-    ownerState: { ...otherProps.ownerState, ...ownerState },
-  } as AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState>;
+    return {
+        ...otherProps,
+        ownerState: { ...otherProps.ownerState, ...ownerState }
+    } as AppendOwnerStateReturnType<ElementType, OtherProps, OwnerState>;
 }
