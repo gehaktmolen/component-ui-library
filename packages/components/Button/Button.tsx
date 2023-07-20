@@ -10,19 +10,28 @@ import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps } from '../u
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
-    const { active, disabled, focusVisible, variant, color, size, flat, fullWidth } = ownerState;
+    const { active, disabled, focusVisible, variant, color, size, flat, block } = ownerState;
 
     const slots = {
         root: [
             styles.root,
             variant && styles[variant],
-            color && styles[color],
-            size && styles[size],
-            flat && styles['flat'],
-            fullWidth && styles['full-width'],
+            (variant && color) && styles[`${variant}__${color}`],
+            (variant && size) && styles[`${variant}__${size}`],
+            color === 'inherit' && styles['color-inherit'],
+            flat && styles.flat,
+            block && styles.block,
             disabled && styles.disabled,
             focusVisible && styles.focus,
-            active && 'active'
+            active && styles.active,
+        ],
+        appendIcon: [
+            styles['append-icon'],
+            size && styles['append-icon__' + size]
+        ],
+        prependIcon: [
+            styles['prepend-icon'],
+            size && styles['append-icon__' + size]
         ]
     };
 
@@ -46,10 +55,9 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         disabled,
         focusableWhenDisabled = false,
         onFocusVisible,
-        variant,
-        color,
-        flat,
-        fullWidth,
+        prependIcon: prependIconProp,
+        appendIcon: appendIconProp,
+        variant = 'solid',
         slotProps = {},
         slots = {},
         ...other
@@ -78,13 +86,21 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         active,
         focusableWhenDisabled,
         focusVisible,
-        variant,
-        color,
-        flat,
-        fullWidth
     };
 
     const classes = useUtilityClasses(ownerState);
+
+    const prependIcon = prependIconProp && (
+        <span className={classes.prependIcon}>
+            {prependIconProp}
+        </span>
+    );
+
+    const appendIcon = appendIconProp && (
+        <span className={classes.appendIcon}>
+            {appendIconProp}
+        </span>
+    );
 
     const defaultElement = other.href || other.to ? 'a' : 'button';
     const Root: React.ElementType = slots.root ?? defaultElement;
@@ -100,7 +116,13 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         className: classes.root
     });
 
-    return <Root {...rootProps}>{children}</Root>;
+    return (
+        <Root {...rootProps}>
+            {prependIcon}
+            {children}
+            {appendIcon}
+        </Root>
+    );
 }) as PolymorphicComponent<ButtonTypeMap>;
 
 Button.propTypes = {
@@ -133,19 +155,23 @@ Button.propTypes = {
      * The variant to use.
      * @default 'text'
      */
-    variant: PropTypes.oneOfType([PropTypes.oneOf(['contained', 'outlined', 'text']), PropTypes.string]),
+    variant: PropTypes.oneOfType([PropTypes.oneOf(['solid', 'outlined', 'plain']), PropTypes.string]),
     /**
      * The color of the component.
      * @default 'primary'
      */
     color: PropTypes.oneOfType([
-        PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning']),
+        PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'danger', 'info', 'warning']),
         PropTypes.string
     ]),
     /**
      * Element placed before the children.
      */
-    startIcon: PropTypes.node,
+    prependIcon: PropTypes.node,
+    /**
+     * Element placed after the children.
+     */
+    appendIcon: PropTypes.node,
     /**
      * The size of the component.
      * `small` is equivalent to the dense button styling.
@@ -156,11 +182,7 @@ Button.propTypes = {
      * If `true`, the button will take up the full width of its container.
      * @default false
      */
-    fullWidth: PropTypes.bool,
-    /**
-     * Element placed after the children.
-     */
-    endIcon: PropTypes.node,
+    block: PropTypes.bool,
     /**
      * Removes the button box shadow.
      * @default false

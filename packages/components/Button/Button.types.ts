@@ -37,9 +37,9 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
     slots?: ButtonSlots;
     /**
      * The variant to use.
-     * @default 'text'
+     * @default 'solid'
      */
-    variant?: OverridableStringUnion<'text' | 'outlined' | 'contained', ButtonPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'plain' | 'outlined' | 'solid', ButtonPropsVariantOverrides>;
     /**
      * The size of the component.
      * `small` is equivalent to the dense button styling.
@@ -49,11 +49,11 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
     /**
      * Element placed before the children.
      */
-    startIcon?: React.ReactNode;
+    prependIcon?: React.ReactNode;
     /**
      * Element placed after the children.
      */
-    endIcon?: React.ReactNode;
+    appendIcon?: React.ReactNode;
     /**
      * Removes the button box shadow.
      * @default false
@@ -63,13 +63,13 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
      * If `true`, the button will take up the full width of its container.
      * @default false
      */
-    fullWidth?: boolean;
+    block?: boolean;
     /**
      * The color of the component.
      * @default 'primary'
      */
     color?: OverridableStringUnion<
-        'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+        'inherit' | 'primary' | 'secondary' | 'success' | 'danger' | 'info' | 'warning',
         ButtonPropsColorOverrides
     >;
 }
