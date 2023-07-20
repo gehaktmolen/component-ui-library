@@ -2,7 +2,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 const config: StorybookConfig = {
     stories: [
         '../packages/**/*.stories.mdx',
-        '../packages/**/*.stories.@(ts|tsx)',
+        '../packages/**/*.stories.@(ts|tsx)'
         // '../stories/**/*.mdx',
         // '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'
     ],
@@ -10,7 +10,11 @@ const config: StorybookConfig = {
         '@storybook/addon-links',
         '@storybook/addon-essentials',
         '@storybook/addon-onboarding',
-        '@storybook/addon-interactions'
+        '@storybook/addon-interactions',
+        {
+            name: '@storybook/addon-styling',
+            options: {}
+        }
     ],
     framework: {
         name: '@storybook/react-vite',
