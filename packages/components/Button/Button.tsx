@@ -9,29 +9,100 @@ import { useButton } from '../useButton';
 import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
+const BUTTON_SOLID = Object.freeze({
+    primary: 'bg-primary-500 dark:bg-primary-100',
+    secondary: 'bg-secondary-500 dark:bg-secondary-100',
+    success: 'bg-success-500 dark:bg-success-100',
+    danger: 'bg-danger-500 dark:bg-danger-100',
+    warning: 'bg-warning-500 dark:bg-warning-100',
+    info: 'bg-info-500 dark:bg-info-100'
+} as const);
+
+const BUTTON_OUTLINED = Object.freeze({
+    primary: 'bg-primary-500 dark:bg-primary-100 text-primary-500 dark:text-amber-500',
+    secondary: 'bg-secondary-500 dark:bg-secondary-100 text-secondary-500 dark:text-amber-500' ,
+    success: 'bg-success-500 dark:bg-success-100 text-success-500 dark:text-amber-500',
+    danger: 'bg-danger-500 dark:bg-danger-100 text-danger-500 dark:text-amber-500',
+    warning: 'bg-warning-500 dark:bg-warning-100 text-warning-500 dark:text-amber-500',
+    info: 'bg-info-500 dark:bg-info-100 text-info-500 dark:text-amber-500'
+} as const);
+
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
-    const { active, disabled, focusVisible, variant, color, size, flat, block } = ownerState;
+    const {active, disabled, focusVisible, variant, color, size, flat, block} = ownerState;
+
+    let classes = 'px-[16px] py-[6px] min-w-[64px] rounded-md transition hover:no-underline';
+
+    if (color === 'inherit') {
+        classes += ' [text:inherit] border-current';
+    } else if (disabled) {
+        classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
+    }
+
+    switch (variant) {
+        case 'solid':
+            classes += ' shadow-md hover:drop-shadow-xl active:drop-shadow-2xl';
+
+            if (color && color !== 'inherit' && !disabled) {
+                classes += ` ${BUTTON_SOLID[color]}`;
+            }
+
+            if (size === 'small') {
+                classes += ' py-[4px] px-[10px] text-sm';
+            } else if (size === 'large') {
+                classes += ' py-[8px] px-[20px] text-lg';
+            }
+
+            break;
+        case 'outlined':
+            classes += ' py-[5px] px-[15px] border border-current hover:bg-opacity-10'
+
+            if (color && color !== 'inherit' && !disabled) {
+                classes += ` ${BUTTON_OUTLINED[color]} bg-opacity-0 dark:bg-opacity-0`;
+            }
+
+            if (size === 'small') {
+                classes += ' py-[3px] px-[9px] text-sm';
+            } else if (size === 'large') {
+                classes += ' py-[7px] px-[21px] text-lg';
+            }
+
+            break;
+        case 'plain':
+            classes += ' bg-transparent';
+
+            if (color && color !== 'inherit' && !disabled) {
+                classes += ` ${BUTTON_SOLID[color]}`;
+            }
+
+            if (size === 'small') {
+                classes += ' py-[4px] px-[5px] text-sm';
+            } else if (size === 'large') {
+                classes += ' py-[8px] px-[11px] text-lg';
+            }
+
+            break;
+    }
 
     const slots = {
         root: [
             styles.root,
-            variant && styles[variant],
-            (variant && color) && styles[`${variant}__${color}`],
-            (variant && size) && styles[`${variant}__${size}`],
-            color === 'inherit' && styles['color-inherit'],
-            flat && styles.flat,
-            block && styles.block,
-            disabled && styles.disabled,
-            focusVisible && styles.focus,
-            active && styles.active,
+            classes,
+            flat && 'drop-shadow-none hover:drop-shadow-none active:drop-shadow-none',
+            block && 'w-full',
+            disabled && 'drop-shadow-none',
+            focusVisible && 'bg-emerald-500 drop-shadow-none',
+            active && 'bg-amber-500',
         ],
         appendIcon: [
-            styles['append-icon'],
-            size && styles['append-icon__' + size]
+            '[display:inherit] ml-2',
+            (size && size === 'small') && 'mr[-2px]',
+            (size && size === 'large') && 'mr-[-4px]',
         ],
         prependIcon: [
-            styles['prepend-icon'],
-            size && styles['append-icon__' + size]
+            '[display:inherit] mr-2',
+            (!size || size === 'medium') && 'text-xl',
+            (size && size === 'small') && 'ml-[-2px] text-lg',
+            (size && size === 'large') && 'ml-[-4px] text-2xl',
         ]
     };
 
@@ -65,7 +136,7 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
 
     const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
-    const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
+    const {active, focusVisible, setFocusVisible, getRootProps} = useButton({
         ...props,
         focusableWhenDisabled
     });

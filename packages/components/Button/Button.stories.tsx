@@ -46,14 +46,10 @@ export const Primary: Story = {
 
 export const Custom: Story = {
     render: (args) => (
-        <div className="px-5 bg-amber-500 dark:bg-primary-500">
-            <Button slotProps={{
-                root: (state: ButtonOwnerState) => ({
-                    className: `px-8 text-amber-500 dark:text-white hover:text-cyan-100 ${
-                        state.active ? 'bg-cyan-500' : 'bg-cyan-100'
-                    }`
-                })
-            }} {...args}>{args.label}</Button>
-        </div>
+        <Button slotProps={{
+            root: (state: ButtonOwnerState) => ({
+                className: ` drop-shadow-2xl text-white bg-gradient-to-r from-indigo-500 via-purple-500 ${state.focusVisible ? 'to-pink-500' : 'to-amber-500'} border border-2 ${state.active ? 'border-purple-500' : 'border-amber-500'}`
+            })
+        }} {...args}>{args.label}</Button>
     )
 };

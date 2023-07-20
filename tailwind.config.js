@@ -20,6 +20,7 @@ export default {
             white: colors.white,
             purple: colors.purple,
             amber: colors.amber,
+            indigo: colors.indigo,
             gray: colors.gray,
             emerald: colors.emerald
         },
