@@ -9,7 +9,7 @@ import {
   UseButtonRootSlotProps,
 } from './useButton.types';
 import extractEventHandlers from '../utils/extractEventHandlers';
-import { EventHandlers } from '../utils/types';
+import { EventHandlers } from '../utils';
 import CancellableEvent from '../utils/cancellableEvent';
 /**
  *

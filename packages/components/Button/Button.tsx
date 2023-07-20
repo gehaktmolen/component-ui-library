@@ -2,27 +2,34 @@ import styles from './Button.module.scss';
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent.ts';
 import composeClasses from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
 import { useButton } from '../useButton';
-import { WithOptionalOwnerState } from '../utils/types';
-import { useSlotProps } from '../utils';
+import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
+    console.log('ownerState', ownerState);
     const {
         active,
         disabled,
         focusVisible,
-        variant
+        variant,
+        color,
+        size,
+        disableElevation,
+        fullWidth,
     } = ownerState;
 
     const slots = {
         root: [
             styles.root,
-            styles[variant],
+            variant && styles[variant],
+            color && styles[color],
+            size && styles[size],
+            disableElevation && styles['disable-elevation'],
+            fullWidth && styles['full-width'],
             disabled && styles.disabled,
             focusVisible && styles.focus,
             active && 'active',
@@ -52,7 +59,10 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         disabled,
         focusableWhenDisabled = false,
         onFocusVisible,
-        variant = 'contained',
+        variant,
+        color,
+        disableElevation,
+        fullWidth,
         slotProps = {},
         slots = {},
         ...other
@@ -82,6 +92,9 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         focusableWhenDisabled,
         focusVisible,
         variant,
+        color,
+        disableElevation,
+        fullWidth,
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -130,10 +143,48 @@ Button.propTypes = {
      */
     focusableWhenDisabled: PropTypes.bool,
     /**
-     * Defines the general style of the button.
-     * @default contained
+     * The variant to use.
+     * @default 'text'
      */
-    variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+    variant: PropTypes.oneOfType([
+        PropTypes.oneOf(['contained', 'outlined', 'text']),
+        PropTypes.string,
+    ]),
+    /**
+     * The color of the component.
+     * @default 'primary'
+     */
+    color: PropTypes.oneOfType([
+        PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning']),
+        PropTypes.string,
+    ]),
+    /**
+     * Element placed before the children.
+     */
+    startIcon: PropTypes.node,
+    /**
+     * The size of the component.
+     * `small` is equivalent to the dense button styling.
+     * @default 'medium'
+     */
+    size: PropTypes.oneOfType([
+        PropTypes.oneOf(['small', 'medium', 'large']),
+        PropTypes.string,
+    ]),
+    /**
+     * If `true`, the button will take up the full width of its container.
+     * @default false
+     */
+    fullWidth: PropTypes.bool,
+    /**
+     * Element placed after the children.
+     */
+    endIcon: PropTypes.node,
+    /**
+     * If `true`, no elevation is used.
+     * @default false
+     */
+    disableElevation: PropTypes.bool,
     /**
      * @ignore
      */

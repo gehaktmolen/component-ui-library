@@ -2,11 +2,10 @@
   @apply text-white px-4 py-2 rounded-md min-w-[64px] transition-colors duration-200;
 
   &:hover {
-    text-decoration: none;
-    background-color: rgba(255, 100, 128, 0.8); // primaryChannel
+    @apply no-underline bg-primary-500; // primaryChannel
 
     @media (hover: none) {
-      background-color: transparent;
+      @apply bg-transparent;
     }
 
     &.variantText:not(.colorInherit) {
@@ -39,17 +38,17 @@
 
   &:active {
     &.variantContained {
-      box-shadow: #1a1a1a; // 8
-
+      @apply drop-shadow-xl; // 8
     }
   }
 
   &.focusVisible {
-    box-shadow: #1a1a1a; // 6
+    @apply drop-shadow-lg; // 6
   }
 
   &.disabled {
-    color: #242424; // disabled
+    @apply text-gray-900;
+
     &.variantOutlined {
       border: 1px solid #811b1b; // disabledBackground
     }
@@ -93,74 +92,54 @@
 
   &.sizeLarge {
     &.variantText {
-      padding: 8px 11px;
-      font-size: 15rem;
+      @apply py-2 px-3 text-base;
     }
 
     &.variantOutlined {
-      padding: 7px 21px;
-      font-size: 15rem;
+      @apply py-[7px] px-[23px] text-base;
     }
 
     &.variantContained {
-      padding: 8px 22px;
-      font-size: 15rem;
-    }
-  }
-
-  &.fullWidth {
-    width: 100%;
-  }
-
-  &.disableElevation {
-    box-shadow: none;
-
-    &:hover,
-    &:active,
-    &.focusVisible,
-    &.disabled{
-      box-shadow: none;
+      @apply px-2 py-6 text-base; // 8px 24px
     }
   }
 }
 
-.startIcon, .endIcon {
-  display: inherit;
+.start-icon, .end-icon {
+  @apply [display:inherit];
 
   &.iconSizeSmall {
     & > *:nth-of-type(1) {
-      font-size: 18px;
+      @apply text-lg; // 18px
     }
   }
 
   &.iconSizeMedium {
     & > *:nth-of-type(1) {
-      font-size: 20px;
+      @apply text-xl; // 20px
     }
   }
 
   &.iconSizeLarge {
     & > *:nth-of-type(1) {
-      font-size: 22px;
+      @apply text-2xl; // 24px
     }
   }
 }
 
-.startIcon {
-  margin-right: 8px;
-  margin-left: -4px;
+.start-icon {
+  @apply mr-2 ml-[-4px]; // 8px -4px
 
   &.iconSizeSmall {
-    margin-left: -2px;
+    @apply ml-[-2px];
   }
 }
 
-.endIcon {
-  margin-right: -4px;
-  margin-left: 8px;
+.end-icon {
+  @apply mr-[-4px] ml-2; // -4px 8px
 
   &.iconSizeSmall {
-    margin-right: -2px;
+    @apply mr-[-2px];
   }
 }
 
@@ -176,8 +155,22 @@
   @apply px-5 py-2; // 6px 8px
 
   &:not(.colorInherit) {
-    @apply text-purple-500;
+    @apply dark:text-amber-500 text-purple-500;
   }
+}
+
+.primary {
+  @apply bg-primary-500;
+}
+
+.secondary {
+  @apply bg-secondary-500;
+}
+
+.small {}
+.medium {}
+.large {
+  @apply px-2 py-6 text-base; // 8px 24px
 }
 
 .outlined {
@@ -198,3 +191,17 @@
   @apply bg-emerald-500;
 }
 
+.full-width {
+  @apply w-full;
+}
+
+.disable-elevation {
+  @apply drop-shadow-none;
+
+  &:hover,
+  &:active,
+  &.focus,
+  &.disabled{
+    @apply drop-shadow-none;
+  }
+}

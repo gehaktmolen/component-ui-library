@@ -14,6 +14,8 @@ export interface ButtonClasses {
 
 export type ButtonClassKey = keyof ButtonClasses;
 
+// Todo: We use module css now, so we don't need to generate utility classes like this.
+
 export function getButtonUtilityClass(slot: string): string {
   return generateUtilityClass('', slot, '');
 }
