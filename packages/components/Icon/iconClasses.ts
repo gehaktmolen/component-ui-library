@@ -20,9 +20,4 @@ export function getIconUtilityClass(slot: string): string {
     return generateUtilityClass('', slot, '');
 }
 
-export const iconClasses: IconClasses = generateUtilityClasses('Icon', [
-    'root',
-    'active',
-    'disabled',
-    'focusVisible'
-]);
+export const iconClasses: IconClasses = generateUtilityClasses('Icon', ['root', 'active', 'disabled', 'focusVisible']);

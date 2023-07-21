@@ -27,7 +27,7 @@ export interface IconOwnProps extends Omit<UseIconParameters, 'ref'> {
     /**
      * The icon name based on Font Awesome Solid icons.
      */
-    icon: IconName,
+    icon: IconName;
     /**
      * The Font Awesome Solid size of the component.
      * @default 'medium'
@@ -53,15 +53,16 @@ export interface IconSlots {
 
 export interface IconTypeMap<
     AdditionalProps = NonNullable<unknown>,
-    RootComponentType extends React.ElementType = 'span',
+    RootComponentType extends React.ElementType = 'span'
 > {
     props: IconOwnProps & AdditionalProps;
     defaultComponent: RootComponentType;
 }
 
-export type IconProps<
-    RootComponentType extends React.ElementType = IconTypeMap['defaultComponent'],
-> = PolymorphicProps<IconTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType>;
+export type IconProps<RootComponentType extends React.ElementType = IconTypeMap['defaultComponent']> = PolymorphicProps<
+    IconTypeMap<NonNullable<unknown>, RootComponentType>,
+    RootComponentType
+>;
 
 export type IconOwnerState = IconOwnProps;
 
@@ -70,4 +71,3 @@ export type IconRootSlotProps = {
     className?: string;
     ref: React.Ref<any>;
 };
-

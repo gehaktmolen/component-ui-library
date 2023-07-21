@@ -4,12 +4,7 @@ import { PolymorphicComponent } from '../utils';
 import composeClasses from '../composeClasses';
 import useIcon from '../useIcon';
 import { getIconUtilityClass } from './iconClasses';
-import {
-    IconProps,
-    IconOwnerState,
-    IconTypeMap,
-    IconRootSlotProps,
-} from './Icon.types';
+import { IconProps, IconOwnerState, IconTypeMap, IconRootSlotProps } from './Icon.types';
 import { WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -35,14 +30,12 @@ const useUtilityClasses = (ownerState: IconOwnerState) => {
 
     if (color === 'inherit') {
         classes += ' [text:inherit]';
-    } else if (color ) {
+    } else if (color) {
         classes += ` ${ICON_COLOR[color]}`;
     }
 
     const slots = {
-        root: [
-            classes
-        ],
+        root: [classes]
     };
 
     return composeClasses(slots, useClassNamesOverride(getIconUtilityClass));
@@ -55,21 +48,16 @@ const useUtilityClasses = (ownerState: IconOwnerState) => {
  */
 export const Icon = React.forwardRef(function Icon<RootComponentType extends React.ElementType>(
     props: IconProps<RootComponentType>,
-    forwardedRef: React.ForwardedRef<Element>,
+    forwardedRef: React.ForwardedRef<Element>
 ) {
-    const {
-        slotProps = {},
-        slots = {},
-        icon,
-        ...other
-    } = props;
+    const { slotProps = {}, slots = {}, icon, ...other } = props;
 
-    const {getRootProps} = useIcon({
-        ...props,
+    const { getRootProps } = useIcon({
+        ...props
     });
 
     const ownerState: IconOwnerState = {
-        ...props,
+        ...props
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -83,10 +71,10 @@ export const Icon = React.forwardRef(function Icon<RootComponentType extends Rea
         externalForwardedProps: other,
         externalSlotProps: slotProps.root,
         additionalProps: {
-            ref: forwardedRef,
+            ref: forwardedRef
         },
         ownerState,
-        className: classes.root,
+        className: classes.root
     });
 
     return <FontAwesomeIcon icon={iconDefinition} fixedWidth {...rootProps} />;
@@ -112,7 +100,7 @@ Icon.propTypes = {
      */
     slotProps: PropTypes.shape({
         badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**
      * The components used for each slot inside the Badge.
@@ -121,6 +109,6 @@ Icon.propTypes = {
      */
     slots: PropTypes.shape({
         badge: PropTypes.elementType,
-        root: PropTypes.elementType,
-    }),
+        root: PropTypes.elementType
+    })
 } as any;

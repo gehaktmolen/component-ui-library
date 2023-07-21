@@ -20,7 +20,7 @@ const BUTTON_SOLID = Object.freeze({
 
 const BUTTON_OUTLINED = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100 text-primary-500 dark:text-amber-500',
-    secondary: 'bg-secondary-500 dark:bg-secondary-100 text-secondary-500 dark:text-amber-500' ,
+    secondary: 'bg-secondary-500 dark:bg-secondary-100 text-secondary-500 dark:text-amber-500',
     success: 'bg-success-500 dark:bg-success-100 text-success-500 dark:text-amber-500',
     danger: 'bg-danger-500 dark:bg-danger-100 text-danger-500 dark:text-amber-500',
     warning: 'bg-warning-500 dark:bg-warning-100 text-warning-500 dark:text-amber-500',
@@ -28,7 +28,7 @@ const BUTTON_OUTLINED = Object.freeze({
 } as const);
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
-    const {active, disabled, focusVisible, variant, color, size, flat, block} = ownerState;
+    const { active, disabled, focusVisible, variant, color, size, flat, block } = ownerState;
 
     let classes = 'px-[16px] py-[6px] min-w-[64px] rounded-md transition hover:no-underline';
 
@@ -54,7 +54,7 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
 
             break;
         case 'outlined':
-            classes += ' py-[5px] px-[15px] border border-current hover:bg-opacity-10'
+            classes += ' py-[5px] px-[15px] border border-current hover:bg-opacity-10';
 
             if (color && color !== 'inherit' && !disabled) {
                 classes += ` ${BUTTON_OUTLINED[color]} bg-opacity-0 dark:bg-opacity-0`;
@@ -91,17 +91,17 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
             block && 'w-full',
             disabled && 'drop-shadow-none',
             focusVisible && 'bg-emerald-500 drop-shadow-none',
-            active && 'bg-amber-500',
+            active && 'bg-amber-500'
         ],
         startDecorator: [
             '[display:inherit] mr-2',
-            (size && size === 'small') && 'ml[-2px] text-lg',
-            (size && size === 'large') && 'ml-[-4px] text-2xl',
+            size && size === 'small' && 'ml[-2px] text-lg',
+            size && size === 'large' && 'ml-[-4px] text-2xl'
         ],
         endDecorator: [
             '[display:inherit] ml-2',
-            (size && size === 'small') && 'mr-[-2px] text-lg',
-            (size && size === 'large') && 'mr-[-4px] text-2xl',
+            size && size === 'small' && 'mr-[-2px] text-lg',
+            size && size === 'large' && 'mr-[-4px] text-2xl'
         ]
     };
 
@@ -127,7 +127,8 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         onFocusVisible,
         startDecorator: startDecoratorProp,
         endDecorator: endDecoratorProp,
-        variant = 'solid',
+        variant = 'plain',
+        color = 'primary',
         slotProps = {},
         slots = {},
         ...other
@@ -135,7 +136,7 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
 
     const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
-    const {active, focusVisible, setFocusVisible, getRootProps} = useButton({
+    const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
         ...props,
         focusableWhenDisabled
     });
@@ -156,21 +157,15 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         active,
         focusableWhenDisabled,
         focusVisible,
+        variant,
+        color
     };
 
     const classes = useUtilityClasses(ownerState);
 
-    const startDecorator = startDecoratorProp && (
-        <span className={classes.startDecorator}>
-            {startDecoratorProp}
-        </span>
-    );
+    const startDecorator = startDecoratorProp && <span className={classes.startDecorator}>{startDecoratorProp}</span>;
 
-    const endDecorator = endDecoratorProp && (
-        <span className={classes.endDecorator}>
-            {endDecoratorProp}
-        </span>
-    );
+    const endDecorator = endDecoratorProp && <span className={classes.endDecorator}>{endDecoratorProp}</span>;
 
     const defaultElement = other.href || other.to ? 'a' : 'button';
     const Root: React.ElementType = slots.root ?? defaultElement;
@@ -223,7 +218,7 @@ Button.propTypes = {
     focusableWhenDisabled: PropTypes.bool,
     /**
      * The variant to use.
-     * @default 'text'
+     * @default 'plain'
      */
     variant: PropTypes.oneOfType([PropTypes.oneOf(['solid', 'outlined', 'plain']), PropTypes.string]),
     /**

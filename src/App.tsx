@@ -11,11 +11,17 @@ function App() {
                     Text
                 </Button>
                 <p>&nbsp;</p>
-                <Button variant="outlined" color="danger" size="medium" startDecorator={<Icon icon="heart"/>} endDecorator={<Icon icon="heart" color="secondary" />}>
+                <Button
+                    variant="outlined"
+                    color="danger"
+                    size="medium"
+                    startDecorator={<Icon icon="heart" />}
+                    endDecorator={<Icon icon="heart" color="secondary" />}
+                >
                     Outlined
                 </Button>
                 <p>&nbsp;</p>
-                <Button variant="solid" color="secondary" size="large" startDecorator={<Icon icon="heart"/>}>
+                <Button variant="solid" color="secondary" size="large" startDecorator={<Icon icon="heart" />}>
                     Solid
                 </Button>
                 <p>&nbsp;</p>
