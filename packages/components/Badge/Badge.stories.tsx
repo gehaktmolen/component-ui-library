@@ -21,7 +21,7 @@ const meta = {
         },
         variant: 'standard',
         invisible: false,
-        badgeContent: 4,
+        badgeContent: 100,
         color: 'primary'
     }
 } satisfies Meta<typeof Badge>;

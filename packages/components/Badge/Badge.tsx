@@ -22,7 +22,7 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
     const { invisible, color, variant, anchorOrigin, overlap } = ownerState;
 
     let classes =
-        'flex flex-row flex-wrap justify-center content-center items-center absolute box-border z-1 rounded-full transition-transform';
+        'flex flex-row flex-wrap justify-center content-center items-center absolute box-border z-1 rounded-[20px] transition-transform';
 
     if (color) {
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions,@typescript-eslint/ban-ts-comment
@@ -34,7 +34,7 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
     if (variant === 'dot') {
         classes += ' h-2 w-2';
     } else {
-        classes += ' text-xs leading-none h-5 w-5';
+        classes += ' text-[10px] leading-none h-[20px] min-w-[20px] px-1.5';
     }
 
     if (invisible) {
