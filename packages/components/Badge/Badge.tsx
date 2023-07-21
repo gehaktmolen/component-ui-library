@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils';
 import composeClasses from '../composeClasses';
-import useBadge from '../useBadge';
+import { useBadge } from '../useBadge';
 import { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap, BadgeRootSlotProps, BadgeBadgeSlotProps } from './Badge.types';
 import { WithOptionalOwnerState, useSlotProps } from '../utils';

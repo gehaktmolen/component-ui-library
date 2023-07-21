@@ -8,7 +8,7 @@ import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
  *
  * - [useBadge API](https://#use-badge)
  */
-export default function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
+export function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
     const {
         badgeContent: badgeContentProp,
         invisible: invisibleProp = false,

@@ -46,13 +46,10 @@ export const Primary: Story = {
 export const StartDecorator: Story = {
     args: {
         variant: 'solid',
-        color: 'primary'
+        color: 'primary',
+        startDecorator: <Icon icon="heart" color="secondary" />
     },
-    render: (args) => (
-        <Button {...args} startDecorator={<Icon icon="heart" color="secondary" />}>
-            {args.label}
-        </Button>
-    )
+    render: (args) => <Button {...args}>{args.label}</Button>
 };
 
 export const Custom: Story = {

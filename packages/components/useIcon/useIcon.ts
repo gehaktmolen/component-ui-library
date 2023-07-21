@@ -10,7 +10,7 @@ import extractEventHandlers from '../utils/extractEventHandlers.ts';
  *
  * - [useIcon API](https://#use-icon)
  */
-export default function useIcon(parameters: UseIconParameters = {}): UseIconReturnValue {
+export function useIcon(parameters: UseIconParameters = {}): UseIconReturnValue {
     const { rootRef: externalRef } = parameters;
     const iconRef = React.useRef<HTMLSpanElement | HTMLElement>();
     const handleRef = useForkRef(externalRef, iconRef);

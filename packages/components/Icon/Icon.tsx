@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils';
 import composeClasses from '../composeClasses';
-import useIcon from '../useIcon';
+import { useIcon } from '../useIcon';
 import { getIconUtilityClass } from './iconClasses';
 import { IconProps, IconOwnerState, IconTypeMap, IconRootSlotProps } from './Icon.types';
 import { WithOptionalOwnerState, useSlotProps } from '../utils';
@@ -20,22 +20,15 @@ const ICON_COLOR = Object.freeze({
     success: 'text-success-500 dark:text-success-100',
     danger: 'text-danger-500 dark:text-danger-100',
     warning: 'text-warning-500 dark:text-warning-100',
-    info: 'text-info-500 dark:text-info-100'
+    info: 'text-info-500 dark:text-info-100',
+    inherit: 'text-inherit'
 } as const);
 
 const useUtilityClasses = (ownerState: IconOwnerState) => {
     const { color } = ownerState;
 
-    let classes = '';
-
-    if (color === 'inherit') {
-        classes += ' [text:inherit]';
-    } else if (color) {
-        classes += ` ${ICON_COLOR[color]}`;
-    }
-
     const slots = {
-        root: [classes]
+        root: [color && ICON_COLOR[color]]
     };
 
     return composeClasses(slots, useClassNamesOverride(getIconUtilityClass));

@@ -1,2 +1,2 @@
-export { default } from './useIcon.ts';
+export { useIcon } from './useIcon.ts';
 export * from './useIcon.types';
