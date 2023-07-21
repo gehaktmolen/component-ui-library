@@ -10,6 +10,8 @@ import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, IconLookup, IconDefinition, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
+
+// Todo: AAAAAAAH There goes our bundle size! :'( Come up with a better solution.
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
 library.add(fas);
