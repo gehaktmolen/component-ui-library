@@ -1,3 +1,4 @@
+import theme from './theme';
 import type { Preview } from '@storybook/react';
 
 import { withThemeByClassName } from '@storybook/addon-styling';
@@ -6,11 +7,21 @@ import '../src/tailwind.scss';
 
 const preview: Preview = {
     parameters: {
+        layout: 'centered',
         actions: { argTypesRegex: '^on[A-Z].*' },
+        docs: {
+            theme
+        },
         controls: {
+            hideNoControlsWarning: true,
             matchers: {
                 color: /(background|color)$/i,
                 date: /Date$/
+            }
+        },
+        options: {
+            storySort: {
+                order: ['Docs', ['Intro']]
             }
         }
     },

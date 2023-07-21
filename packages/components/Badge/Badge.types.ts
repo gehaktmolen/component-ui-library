@@ -36,7 +36,7 @@ export interface BadgeOwnProps {
      * @default 'default'
      */
     color?: OverridableStringUnion<
-        'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning',
+        'primary' | 'secondary' | 'default' | 'danger' | 'info' | 'success' | 'warning',
         BadgePropsColorOverrides
     >;
     /**

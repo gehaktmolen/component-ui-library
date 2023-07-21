@@ -25,9 +25,6 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
         'flex flex-row flex-wrap justify-center content-center items-center absolute box-border z-1 rounded-[20px] transition-transform';
 
     if (color) {
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions,@typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         classes += ` ${BADGE_COLOR[color]}`;
     }
 
