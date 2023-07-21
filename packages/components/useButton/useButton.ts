@@ -4,11 +4,8 @@ import { UseButtonParameters, UseButtonReturnValue, UseButtonRootSlotProps } fro
 import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils';
 import CancellableEvent from '../utils/cancellableEvent';
+
 /**
- *
- * Demos:
- *
- * - [Button](https://#hook)
  *
  * API:
  *
@@ -49,7 +46,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
     const createHandleBlur = (otherHandlers: EventHandlers) => (event: React.FocusEvent) => {
         handleBlurVisible(event);
 
-        if (isFocusVisibleRef.current === false) {
+        if (!isFocusVisibleRef.current) {
             setFocusVisible(false);
         }
 
@@ -63,7 +60,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
         }
 
         handleFocusVisible(event);
-        if (isFocusVisibleRef.current === true) {
+        if (isFocusVisibleRef.current) {
             setFocusVisible(true);
             otherHandlers.onFocusVisible?.(event);
         }
@@ -118,7 +115,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
             setActive(true);
         }
 
-        // Keyboard accessibility for non interactive elements
+        // Keyboard accessibility for non-interactive elements
         if (event.target === event.currentTarget && !isNativeButton() && event.key === 'Enter' && !disabled) {
             otherHandlers.onClick?.(event);
             event.preventDefault();
@@ -135,7 +132,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
 
         otherHandlers.onKeyUp?.(event);
 
-        // Keyboard accessibility for non interactive elements
+        // Keyboard accessibility for non-interactive elements
         if (
             event.target === event.currentTarget &&
             !isNativeButton() &&
@@ -181,7 +178,7 @@ export function useButton(parameters: UseButtonParameters = {}): UseButtonReturn
         }
     }
 
-    const getRootProps = <TOther extends EventHandlers = {}>(
+    const getRootProps = <TOther extends EventHandlers = NonNullable<unknown>>(
         otherHandlers: TOther = {} as TOther
     ): UseButtonRootSlotProps<TOther> => {
         const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseButtonParameters>;

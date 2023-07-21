@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from './Button';
 import { ButtonOwnerState } from "./Button.types.ts";
+import { Icon } from "../Icon";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -41,6 +42,16 @@ export const Primary: Story = {
     },
     render: (args) => (
         <Button {...args}>{args.label}</Button>
+    )
+};
+
+export const StartDecorator: Story = {
+    args: {
+        variant: 'solid',
+        color: 'primary',
+    },
+    render: (args) => (
+        <Button {...args} startDecorator={<Icon icon="heart" color="secondary" />}>{args.label}</Button>
     )
 };
 

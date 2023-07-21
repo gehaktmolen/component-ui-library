@@ -42,18 +42,17 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
     variant?: OverridableStringUnion<'plain' | 'outlined' | 'solid', ButtonPropsVariantOverrides>;
     /**
      * The size of the component.
-     * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
     size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
     /**
      * Element placed before the children.
      */
-    prependIcon?: React.ReactNode;
+    startDecorator?: React.ReactNode;
     /**
      * Element placed after the children.
      */
-    appendIcon?: React.ReactNode;
+    endDecorator?: React.ReactNode;
     /**
      * Removes the button box shadow.
      * @default false

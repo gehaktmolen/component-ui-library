@@ -1,6 +1,7 @@
 import './tailwind.scss';
 import './App.css';
 import { Button, ButtonOwnerState } from '../packages/components/Button';
+import { Icon } from '../packages/components/Icon';
 
 function App() {
     return (
@@ -10,15 +11,15 @@ function App() {
                     Text
                 </Button>
                 <p>&nbsp;</p>
-                <Button variant="outlined" color="danger" size="medium">
+                <Button variant="outlined" color="danger" size="medium" startDecorator={<Icon icon="heart"/>} endDecorator={<Icon icon="heart" color="secondary" />}>
                     Outlined
                 </Button>
                 <p>&nbsp;</p>
-                <Button variant="solid" color="secondary" size="large" prependIcon={<i>Icon</i>}>
+                <Button variant="solid" color="secondary" size="large" startDecorator={<Icon icon="heart"/>}>
                     Solid
                 </Button>
                 <p>&nbsp;</p>
-                <Button variant="solid" color="primary">
+                <Button variant="solid" color="primary" endDecorator={<Icon icon="heart" color="secondary" />}>
                     Primary
                 </Button>
                 <p>&nbsp;</p>

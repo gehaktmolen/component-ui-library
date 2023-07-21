@@ -93,16 +93,15 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
             focusVisible && 'bg-emerald-500 drop-shadow-none',
             active && 'bg-amber-500',
         ],
-        appendIcon: [
-            '[display:inherit] ml-2',
-            (size && size === 'small') && 'mr[-2px]',
-            (size && size === 'large') && 'mr-[-4px]',
-        ],
-        prependIcon: [
+        startDecorator: [
             '[display:inherit] mr-2',
-            (!size || size === 'medium') && 'text-xl',
-            (size && size === 'small') && 'ml-[-2px] text-lg',
+            (size && size === 'small') && 'ml[-2px] text-lg',
             (size && size === 'large') && 'ml-[-4px] text-2xl',
+        ],
+        endDecorator: [
+            '[display:inherit] ml-2',
+            (size && size === 'small') && 'mr-[-2px] text-lg',
+            (size && size === 'large') && 'mr-[-4px] text-2xl',
         ]
     };
 
@@ -126,8 +125,8 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         disabled,
         focusableWhenDisabled = false,
         onFocusVisible,
-        prependIcon: prependIconProp,
-        appendIcon: appendIconProp,
+        startDecorator: startDecoratorProp,
+        endDecorator: endDecoratorProp,
         variant = 'solid',
         slotProps = {},
         slots = {},
@@ -161,15 +160,15 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
 
     const classes = useUtilityClasses(ownerState);
 
-    const prependIcon = prependIconProp && (
-        <span className={classes.prependIcon}>
-            {prependIconProp}
+    const startDecorator = startDecoratorProp && (
+        <span className={classes.startDecorator}>
+            {startDecoratorProp}
         </span>
     );
 
-    const appendIcon = appendIconProp && (
-        <span className={classes.appendIcon}>
-            {appendIconProp}
+    const endDecorator = endDecoratorProp && (
+        <span className={classes.endDecorator}>
+            {endDecoratorProp}
         </span>
     );
 
@@ -189,9 +188,9 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
 
     return (
         <Root {...rootProps}>
-            {prependIcon}
+            {startDecorator}
             {children}
-            {appendIcon}
+            {endDecorator}
         </Root>
     );
 }) as PolymorphicComponent<ButtonTypeMap>;
@@ -238,14 +237,13 @@ Button.propTypes = {
     /**
      * Element placed before the children.
      */
-    prependIcon: PropTypes.node,
+    startDecorator: PropTypes.node,
     /**
      * Element placed after the children.
      */
-    appendIcon: PropTypes.node,
+    endDecorator: PropTypes.node,
     /**
      * The size of the component.
-     * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
     size: PropTypes.oneOfType([PropTypes.oneOf(['small', 'medium', 'large']), PropTypes.string]),
