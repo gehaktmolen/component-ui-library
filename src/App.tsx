@@ -7,25 +7,25 @@ function App() {
     return (
         <>
             <div className="container mx-auto px-4">
-                <Button variant="plain" size="small">
+                <Button variant="plain" size="sm">
                     Text
                 </Button>
                 <p>&nbsp;</p>
                 <Button
                     variant="outlined"
                     color="danger"
-                    size="medium"
+                    size="md"
                     startDecorator={<Icon icon="heart" />}
-                    endDecorator={<Icon icon="heart" color="secondary" />}
+                    endDecorator={<Icon icon="heart" color="primary" />}
                 >
                     Outlined
                 </Button>
                 <p>&nbsp;</p>
-                <Button variant="solid" color="secondary" size="large" startDecorator={<Icon icon="heart" />}>
+                <Button variant="solid" color="warning" size="lg" startDecorator={<Icon icon="heart" />}>
                     Solid
                 </Button>
                 <p>&nbsp;</p>
-                <Button variant="solid" color="primary" endDecorator={<Icon icon="heart" color="secondary" />}>
+                <Button variant="solid" color="primary" endDecorator={<Icon icon="heart" color="info" />}>
                     Primary
                 </Button>
                 <p>&nbsp;</p>

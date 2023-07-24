@@ -9,6 +9,7 @@ export interface InputRootSlotPropsOverrides {}
 export interface InputInputSlotPropsOverrides {}
 export interface InputPropsColorOverrides {}
 export interface InputPropsVariantOverrides {}
+export interface InputPropsSizeOverrides {}
 
 export interface SingleLineInputProps {
     /**
@@ -131,6 +132,11 @@ export type InputOwnProps = (SingleLineInputProps | MultiLineInputProps) &
          * @default {}
          */
         slots?: InputSlots;
+        /**
+         * The size of the component.
+         * @default 'md'
+         */
+        size?: OverridableStringUnion<'sm' | 'md' | 'lg', InputPropsSizeOverrides>;
         /**
          * Leading adornment for this input.
          */

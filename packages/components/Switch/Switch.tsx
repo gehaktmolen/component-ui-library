@@ -17,12 +17,11 @@ import { getSwitchUtilityClass } from './switchClasses';
 
 const SWITCH_COLOR = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100',
-    secondary: 'bg-secondary-500 dark:bg-secondary-100',
-    success: 'bg-success-500 dark:bg-success-100',
+    neutral: 'bg-inherit',
     danger: 'bg-danger-500 dark:bg-danger-100',
-    warning: 'bg-warning-500 dark:bg-warning-100',
     info: 'bg-info-500 dark:bg-info-100',
-    inherit: 'bg-inherit'
+    success: 'bg-success-500 dark:bg-success-100',
+    warning: 'bg-warning-500 dark:bg-warning-100'
 } as const);
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
@@ -63,6 +62,7 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
 ) {
     const {
         checked: checkedProp,
+        color = 'neutral',
         defaultChecked,
         disabled: disabledProp,
         onBlur,
@@ -73,7 +73,6 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
         required,
         slotProps = {},
         slots = {},
-        color = 'primary',
         ...other
     } = props;
 
@@ -149,17 +148,17 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
 
 Switch.propTypes = {
     /**
-     * The color of the component.
-     * @default 'primary'
-     */
-    color: PropTypes.oneOfType([
-        PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'danger', 'info', 'warning']),
-        PropTypes.string
-    ]),
-    /**
      * If `true`, the component is checked.
      */
     checked: PropTypes.bool,
+    /**
+     * The color of the component.
+     * @default 'neutral'
+     */
+    color: PropTypes.oneOfType([
+        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+        PropTypes.string
+    ]),
     /**
      * The default checked state. Use when the component is not controlled.
      */

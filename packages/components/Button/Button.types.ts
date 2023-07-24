@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Simplify, OverridableStringUnion } from '../../types';
 import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
-import { SlotComponentProps, PolymorphicProps } from '../utils';
+import { SlotComponentProps, PolymorphicProps, VariantProp, ColorPaletteProp } from '../utils';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -20,8 +20,27 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
      * A ref for imperative actions. It currently only supports `focusVisible()` action.
      */
     action?: React.Ref<ButtonActions>;
+    /**
+     * If `true`, the button will take up the full width of its container.
+     * @default false
+     */
+    block?: boolean;
     children?: React.ReactNode;
     className?: string;
+    /**
+     * The color of the component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
+    /**
+     * Element placed after the children.
+     */
+    endDecorator?: React.ReactNode;
+    /**
+     * Removes the button box shadow.
+     * @default false
+     */
+    flat?: boolean;
     /**
      * The props used for each slot inside the Button.
      * @default {}
@@ -37,40 +56,18 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
     slots?: ButtonSlots;
     /**
      * The variant to use.
-     * @default 'solid'
+     * @default 'outlined'
      */
-    variant?: OverridableStringUnion<'plain' | 'outlined' | 'solid', ButtonPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
     /**
      * The size of the component.
-     * @default 'medium'
+     * @default 'md'
      */
-    size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', ButtonPropsSizeOverrides>;
     /**
      * Element placed before the children.
      */
     startDecorator?: React.ReactNode;
-    /**
-     * Element placed after the children.
-     */
-    endDecorator?: React.ReactNode;
-    /**
-     * Removes the button box shadow.
-     * @default false
-     */
-    flat?: boolean;
-    /**
-     * If `true`, the button will take up the full width of its container.
-     * @default false
-     */
-    block?: boolean;
-    /**
-     * The color of the component.
-     * @default 'primary'
-     */
-    color?: OverridableStringUnion<
-        'inherit' | 'primary' | 'secondary' | 'success' | 'danger' | 'info' | 'warning',
-        ButtonPropsColorOverrides
-    >;
 }
 
 export interface ButtonSlots {

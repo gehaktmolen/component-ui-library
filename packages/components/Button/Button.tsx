@@ -6,25 +6,23 @@ import composeClasses from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
 import { useButton } from '../useButton';
-import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps } from '../utils';
+import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps, useColorInversion } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const BUTTON_SOLID = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100',
-    secondary: 'bg-secondary-500 dark:bg-secondary-100',
-    success: 'bg-success-500 dark:bg-success-100',
     danger: 'bg-danger-500 dark:bg-danger-100',
-    warning: 'bg-warning-500 dark:bg-warning-100',
-    info: 'bg-info-500 dark:bg-info-100'
+    info: 'bg-info-500 dark:bg-info-100',
+    success: 'bg-success-500 dark:bg-success-100',
+    warning: 'bg-warning-500 dark:bg-warning-100'
 } as const);
 
 const BUTTON_OUTLINED = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100 text-primary-500 dark:text-amber-500',
-    secondary: 'bg-secondary-500 dark:bg-secondary-100 text-secondary-500 dark:text-amber-500',
-    success: 'bg-success-500 dark:bg-success-100 text-success-500 dark:text-amber-500',
     danger: 'bg-danger-500 dark:bg-danger-100 text-danger-500 dark:text-amber-500',
-    warning: 'bg-warning-500 dark:bg-warning-100 text-warning-500 dark:text-amber-500',
-    info: 'bg-info-500 dark:bg-info-100 text-info-500 dark:text-amber-500'
+    info: 'bg-info-500 dark:bg-info-100 text-info-500 dark:text-amber-500',
+    success: 'bg-success-500 dark:bg-success-100 text-success-500 dark:text-amber-500',
+    warning: 'bg-warning-500 dark:bg-warning-100 text-warning-500 dark:text-amber-500'
 } as const);
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
@@ -32,7 +30,7 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
 
     let classes = 'px-[16px] py-[6px] min-w-[64px] rounded-md transition hover:no-underline';
 
-    if (color === 'inherit') {
+    if (color === 'neutral') {
         classes += ' [text:inherit] border-current';
     } else if (disabled) {
         classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
@@ -42,13 +40,13 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
         case 'solid':
             classes += ' shadow-md hover:drop-shadow-xl active:drop-shadow-2xl';
 
-            if (color && color !== 'inherit' && !disabled) {
+            if (color && color !== 'neutral' && !disabled) {
                 classes += ` ${BUTTON_SOLID[color]}`;
             }
 
-            if (size === 'small') {
+            if (size === 'sm') {
                 classes += ' py-[4px] px-[10px] text-sm';
-            } else if (size === 'large') {
+            } else if (size === 'lg') {
                 classes += ' py-[8px] px-[20px] text-lg';
             }
 
@@ -56,13 +54,13 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
         case 'outlined':
             classes += ' py-[5px] px-[15px] border border-current hover:bg-opacity-10';
 
-            if (color && color !== 'inherit' && !disabled) {
+            if (color && color !== 'neutral' && !disabled) {
                 classes += ` ${BUTTON_OUTLINED[color]} bg-opacity-0 dark:bg-opacity-0`;
             }
 
-            if (size === 'small') {
+            if (size === 'sm') {
                 classes += ' py-[3px] px-[9px] text-sm';
-            } else if (size === 'large') {
+            } else if (size === 'lg') {
                 classes += ' py-[7px] px-[21px] text-lg';
             }
 
@@ -70,13 +68,13 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
         case 'plain':
             classes += ' bg-transparent';
 
-            if (color && color !== 'inherit' && !disabled) {
+            if (color && color !== 'neutral' && !disabled) {
                 classes += ` ${BUTTON_SOLID[color]}`;
             }
 
-            if (size === 'small') {
+            if (size === 'sm') {
                 classes += ' py-[4px] px-[5px] text-sm';
-            } else if (size === 'large') {
+            } else if (size === 'lg') {
                 classes += ' py-[8px] px-[11px] text-lg';
             }
 
@@ -95,13 +93,13 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
         ],
         startDecorator: [
             '[display:inherit] mr-2',
-            size && size === 'small' && 'ml[-2px] text-lg',
-            size && size === 'large' && 'ml-[-4px] text-2xl'
+            size && size === 'sm' && 'ml[-2px] text-lg',
+            size && size === 'lg' && 'ml-[-4px] text-2xl'
         ],
         endDecorator: [
             '[display:inherit] ml-2',
-            size && size === 'small' && 'mr-[-2px] text-lg',
-            size && size === 'large' && 'mr-[-4px] text-2xl'
+            size && size === 'sm' && 'mr-[-2px] text-lg',
+            size && size === 'lg' && 'mr-[-4px] text-2xl'
         ]
     };
 
@@ -122,15 +120,16 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
     const {
         action,
         children,
+        color: colorProp = 'neutral',
         disabled,
         focusableWhenDisabled = false,
         onFocusVisible,
         startDecorator: startDecoratorProp,
         endDecorator: endDecoratorProp,
-        variant = 'plain',
-        color = 'primary',
         slotProps = {},
         slots = {},
+        size: sizeProp = 'md',
+        variant = 'outlined',
         ...other
     } = props;
 
@@ -152,13 +151,18 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         [setFocusVisible]
     );
 
+    const size = props.size ?? sizeProp;
+    const { getColor } = useColorInversion(variant);
+    const color = getColor(props.color, colorProp);
+
     const ownerState: ButtonOwnerState = {
         ...props,
         active,
+        color,
         focusableWhenDisabled,
         focusVisible,
-        variant,
-        color
+        size,
+        variant
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -203,55 +207,41 @@ Button.propTypes = {
         })
     ]),
     /**
+     * If `true`, the button will take up the full width of its container.
+     * @default false
+     */
+    block: PropTypes.bool,
+    /**
      * @ignore
      */
     children: PropTypes.node,
+    /**
+     * The color of the component.
+     * @default 'neutral'
+     */
+    color: PropTypes.oneOfType([
+        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+        PropTypes.string
+    ]),
     /**
      * If `true`, the component is disabled.
      * @default false
      */
     disabled: PropTypes.bool,
     /**
-     * If `true`, allows a disabled button to receive focus.
-     * @default false
-     */
-    focusableWhenDisabled: PropTypes.bool,
-    /**
-     * The variant to use.
-     * @default 'plain'
-     */
-    variant: PropTypes.oneOfType([PropTypes.oneOf(['solid', 'outlined', 'plain']), PropTypes.string]),
-    /**
-     * The color of the component.
-     * @default 'primary'
-     */
-    color: PropTypes.oneOfType([
-        PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'danger', 'info', 'warning']),
-        PropTypes.string
-    ]),
-    /**
-     * Element placed before the children.
-     */
-    startDecorator: PropTypes.node,
-    /**
      * Element placed after the children.
      */
     endDecorator: PropTypes.node,
-    /**
-     * The size of the component.
-     * @default 'medium'
-     */
-    size: PropTypes.oneOfType([PropTypes.oneOf(['small', 'medium', 'large']), PropTypes.string]),
-    /**
-     * If `true`, the button will take up the full width of its container.
-     * @default false
-     */
-    block: PropTypes.bool,
     /**
      * Removes the button box shadow.
      * @default false
      */
     flat: PropTypes.bool,
+    /**
+     * If `true`, allows a disabled button to receive focus.
+     * @default false
+     */
+    focusableWhenDisabled: PropTypes.bool,
     /**
      * @ignore
      */
@@ -278,5 +268,22 @@ Button.propTypes = {
     /**
      * @ignore
      */
-    to: PropTypes.string
+    to: PropTypes.string,
+    /**
+     * Element placed before the children.
+     */
+    startDecorator: PropTypes.node,
+    /**
+     * The size of the component.
+     * @default 'md'
+     */
+    size: PropTypes.oneOfType([PropTypes.oneOf(['sm', 'md', 'lg']), PropTypes.string]),
+    /**
+     * The variant to use.
+     * @default 'outlined'
+     */
+    variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+        PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+        PropTypes.string
+    ])
 } as any;

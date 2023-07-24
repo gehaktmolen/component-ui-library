@@ -76,13 +76,17 @@ export interface UseInputReturnValue {
      * @param externalProps props for the input slot
      * @returns props that should be spread on the input slot
      */
-    getInputProps: <TOther extends Record<string, any> = NonNullable<unknown>>(externalProps?: TOther) => UseInputInputSlotProps<TOther>;
+    getInputProps: <TOther extends Record<string, any> = NonNullable<unknown>>(
+        externalProps?: TOther
+    ) => UseInputInputSlotProps<TOther>;
     /**
      * Resolver for the root slot's props.
      * @param externalProps props for the root slot
      * @returns props that should be spread on the root slot
      */
-    getRootProps: <TOther extends Record<string, any> = NonNullable<unknown>>(externalProps?: TOther) => UseInputRootSlotProps<TOther>;
+    getRootProps: <TOther extends Record<string, any> = NonNullable<unknown>>(
+        externalProps?: TOther
+    ) => UseInputRootSlotProps<TOther>;
     inputRef: React.RefCallback<HTMLInputElement> | null;
     /**
      * If `true`, the `input` will indicate that it's required.

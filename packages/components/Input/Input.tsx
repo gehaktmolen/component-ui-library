@@ -228,7 +228,7 @@ Input.propTypes = {
      * The color of the component.
      * @default 'neutral'
      */
-    color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    color: PropTypes.oneOfType([
         PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
         PropTypes.string
     ]),
@@ -322,6 +322,11 @@ Input.propTypes = {
      * Number of rows to display when multiline option is set to true.
      */
     rows: PropTypes.number,
+    /**
+     * The size of the component.
+     * @default 'md'
+     */
+    size: PropTypes.oneOfType([PropTypes.oneOf(['sm', 'md', 'lg']), PropTypes.string]),
     /**
      * The props used for each slot inside the Input.
      * @default {}

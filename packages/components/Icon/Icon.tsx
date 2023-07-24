@@ -19,12 +19,11 @@ library.add(faHeart);
 
 const ICON_COLOR = Object.freeze({
     primary: 'text-primary-500 dark:text-primary-100',
-    secondary: 'text-secondary-500 dark:text-secondary-100',
-    success: 'text-success-500 dark:text-success-100',
+    neutral: 'text-inherit',
     danger: 'text-danger-500 dark:text-danger-100',
-    warning: 'text-warning-500 dark:text-warning-100',
     info: 'text-info-500 dark:text-info-100',
-    inherit: 'text-inherit'
+    success: 'text-success-500 dark:text-success-100',
+    warning: 'text-warning-500 dark:text-warning-100'
 } as const);
 
 const useUtilityClasses = (ownerState: IconOwnerState) => {
@@ -79,17 +78,17 @@ export const Icon = React.forwardRef(function Icon<RootComponentType extends Rea
 Icon.propTypes = {
     /**
      * The color of the component.
-     * @default 'primary'
+     * @default 'neutral'
      */
     color: PropTypes.oneOfType([
-        PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'danger', 'info', 'warning']),
+        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
         PropTypes.string
     ]),
     /**
      * The size of the component.
-     * @default 'medium'
+     * @default 'md'
      */
-    size: PropTypes.oneOfType([PropTypes.oneOf(['small', 'medium', 'large']), PropTypes.string]),
+    size: PropTypes.oneOfType([PropTypes.oneOf(['sm', 'md', 'lg']), PropTypes.string]),
     /**
      * The props used for each slot inside the Badge.
      * @default {}

@@ -47,7 +47,7 @@ export const StartDecorator: Story = {
     args: {
         variant: 'solid',
         color: 'primary',
-        startDecorator: <Icon icon="heart" color="secondary" />
+        startDecorator: <Icon icon="heart" color="danger" />
     },
     render: (args) => <Button {...args}>{args.label}</Button>
 };

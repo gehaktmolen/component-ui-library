@@ -10,12 +10,11 @@ import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const BADGE_COLOR = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100 text-white',
-    secondary: 'bg-secondary-500 dark:bg-secondary-100 text-white',
-    success: 'bg-success-500 dark:bg-success-100 text-white',
+    neutral: 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100',
     danger: 'bg-danger-500 dark:bg-danger-100 text-white',
-    warning: 'bg-warning-500 dark:bg-warning-100 text-white',
     info: 'bg-info-500 dark:bg-info-100 text-white',
-    default: 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100'
+    success: 'bg-success-500 dark:bg-success-100 text-white',
+    warning: 'bg-warning-500 dark:bg-warning-100 text-white'
 } as const);
 
 const useUtilityClasses = (ownerState: BadgeOwnerState) => {
@@ -162,29 +161,6 @@ export const Badge = React.forwardRef(function Badge<RootComponentType extends R
 
 Badge.propTypes = {
     /**
-     * The content rendered within the badge.
-     */
-    badgeContent: PropTypes.node,
-    /**
-     * The badge will be added relative to this node.
-     */
-    children: PropTypes.node,
-    /**
-     * If `true`, the badge is invisible.
-     * @default false
-     */
-    invisible: PropTypes.bool,
-    /**
-     * Max count to show.
-     * @default 99
-     */
-    max: PropTypes.number,
-    /**
-     * Controls whether the badge is hidden when `badgeContent` is zero.
-     * @default false
-     */
-    showZero: PropTypes.bool,
-    /**
      * The anchor of the badge.
      * @default {
      *   vertical: 'top',
@@ -196,23 +172,41 @@ Badge.propTypes = {
         vertical: PropTypes.oneOf(['bottom', 'top']).isRequired
     }),
     /**
-     * The variant to use.
-     * @default 'standard'
+     * The content rendered within the badge.
      */
-    variant: PropTypes.oneOfType([PropTypes.oneOf(['dot', 'standard']), PropTypes.string]),
+    badgeContent: PropTypes.node,
+    /**
+     * The badge will be added relative to this node.
+     */
+    children: PropTypes.node,
     /**
      * The color of the component.
-     * @default 'default'
+     * @default 'neutral'
      */
     color: PropTypes.oneOfType([
-        PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
         PropTypes.string
     ]),
+    /**
+     * If `true`, the badge is invisible.
+     * @default false
+     */
+    invisible: PropTypes.bool,
+    /**
+     * Max count to show.
+     * @default 99
+     */
+    max: PropTypes.number,
     /**
      * Wrapped shape the badge should overlap.
      * @default 'rectangular'
      */
     overlap: PropTypes.oneOf(['circular', 'rectangular']),
+    /**
+     * Controls whether the badge is hidden when `badgeContent` is zero.
+     * @default false
+     */
+    showZero: PropTypes.bool,
     /**
      * The props used for each slot inside the Badge.
      * @default {}
@@ -229,5 +223,10 @@ Badge.propTypes = {
     slots: PropTypes.shape({
         badge: PropTypes.elementType,
         root: PropTypes.elementType
-    })
+    }),
+    /**
+     * The variant to use.
+     * @default 'standard'
+     */
+    variant: PropTypes.oneOfType([PropTypes.oneOf(['dot', 'standard']), PropTypes.string])
 } as any;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps, OverridableTypeMap, OverridableComponent, Simplify } from '../../types';
-import { SlotComponentProps } from '../utils';
+import { SlotComponentProps, ColorPaletteProp } from '../utils';
 import { OverridableStringUnion } from '../../types';
 
 export interface BadgePropsVariantOverrides {}
@@ -32,24 +32,6 @@ export interface BadgeOwnProps {
      */
     anchorOrigin?: BadgeOrigin;
     /**
-     * The color of the component.
-     * @default 'default'
-     */
-    color?: OverridableStringUnion<
-        'primary' | 'secondary' | 'default' | 'danger' | 'info' | 'success' | 'warning',
-        BadgePropsColorOverrides
-    >;
-    /**
-     * The variant to use.
-     * @default 'standard'
-     */
-    variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
-    /**
-     * Wrapped shape the badge should overlap.
-     * @default 'rectangular'
-     */
-    overlap?: 'rectangular' | 'circular';
-    /**
      * The content rendered within the badge.
      */
     badgeContent?: React.ReactNode;
@@ -57,6 +39,11 @@ export interface BadgeOwnProps {
      * The badge will be added relative to this node.
      */
     children?: React.ReactNode;
+    /**
+     * The color of the component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, BadgePropsColorOverrides>;
     /**
      * If `true`, the badge is invisible.
      * @default false
@@ -67,6 +54,16 @@ export interface BadgeOwnProps {
      * @default 99
      */
     max?: number;
+    /**
+     * Wrapped shape the badge should overlap.
+     * @default 'rectangular'
+     */
+    overlap?: 'rectangular' | 'circular';
+    /**
+     * Controls whether the badge is hidden when `badgeContent` is zero.
+     * @default false
+     */
+    showZero?: boolean;
     /**
      * The props used for each slot inside the Badge.
      * @default {}
@@ -82,10 +79,10 @@ export interface BadgeOwnProps {
      */
     slots?: BadgeSlots;
     /**
-     * Controls whether the badge is hidden when `badgeContent` is zero.
-     * @default false
+     * The variant to use.
+     * @default 'standard'
      */
-    showZero?: boolean;
+    variant?: OverridableStringUnion<'standard' | 'dot', BadgePropsVariantOverrides>;
 }
 
 export interface BadgeSlots {

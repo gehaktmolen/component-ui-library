@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '../../types';
 import { UseIconParameters } from '../useIcon';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps, ColorPaletteProp } from '../utils';
 import { SizeProp, IconName } from '@fortawesome/fontawesome-svg-core';
 
 export interface IconRootSlotPropsOverrides {}
@@ -11,6 +11,15 @@ export interface IconPropsColorOverrides {}
 export interface IconPropsSizeOverrides {}
 
 export interface IconOwnProps extends Omit<UseIconParameters, 'ref'> {
+    /**
+     * The color of the component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, IconPropsColorOverrides>;
+    /**
+     * The icon name based on Font Awesome Solid icons.
+     */
+    icon: IconName;
     /**
      * The components used for each slot inside the Icon.
      * Either a string to use an HTML element or a component.
@@ -25,22 +34,10 @@ export interface IconOwnProps extends Omit<UseIconParameters, 'ref'> {
         root?: SlotComponentProps<'span', IconRootSlotPropsOverrides, IconOwnerState>;
     };
     /**
-     * The icon name based on Font Awesome Solid icons.
-     */
-    icon: IconName;
-    /**
      * The Font Awesome Solid size of the component.
-     * @default 'medium'
+     * @default 'sm'
      */
-    size?: SizeProp;
-    /**
-     * The color of the component.
-     * @default 'primary'
-     */
-    color?: OverridableStringUnion<
-        'inherit' | 'primary' | 'secondary' | 'success' | 'danger' | 'info' | 'warning',
-        IconPropsColorOverrides
-    >;
+    size?: OverridableStringUnion<SizeProp, IconPropsSizeOverrides>;
 }
 
 export interface IconSlots {

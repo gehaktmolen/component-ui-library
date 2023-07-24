@@ -1,6 +1,6 @@
 import React from 'react';
 import { Simplify, OverridableStringUnion } from '../../types';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps, ColorPaletteProp } from '../utils';
 import { UseSwitchInputSlotProps, UseSwitchParameters } from '../useSwitch';
 
 export interface SwitchRootSlotPropsOverrides {}
@@ -14,6 +14,11 @@ export interface SwitchOwnProps extends UseSwitchParameters {
      * Class name applied to the root element.
      */
     className?: string;
+    /**
+     * The color of the component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
     /**
      * The components used for each slot inside the Switch.
      * Either a string to use a HTML element or a component.
@@ -30,14 +35,6 @@ export interface SwitchOwnProps extends UseSwitchParameters {
         input?: SlotComponentProps<'input', SwitchInputSlotPropsOverrides, SwitchOwnerState>;
         track?: SlotComponentProps<'span', SwitchTrackSlotPropsOverrides, SwitchOwnerState>;
     };
-    /**
-     * The color of the component.
-     * @default 'primary'
-     */
-    color?: OverridableStringUnion<
-        'inherit' | 'primary' | 'secondary' | 'success' | 'danger' | 'info' | 'warning',
-        SwitchPropsColorOverrides
-    >;
 }
 
 export interface SwitchSlots {
