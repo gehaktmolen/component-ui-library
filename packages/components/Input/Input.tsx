@@ -12,8 +12,6 @@ import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 const useUtilityClasses = (ownerState: InputOwnerState) => {
     const { disabled, error, focused, formControlContext, block, multiline, startAdornment, endAdornment } = ownerState;
 
-    console.log('ownerState', ownerState);
-
     const slots = {
         root: [
             'root',

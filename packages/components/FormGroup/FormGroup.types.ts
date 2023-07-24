@@ -3,7 +3,6 @@ import { OverrideProps, OverridableTypeMap, OverridableComponent, Simplify } fro
 import { SlotComponentProps } from '../utils';
 
 export interface FormGroupRootSlotPropsOverrides {}
-export interface FormGroupBadgeSlotPropsOverrides {}
 
 export type FormGroupOwnerState = Simplify<
     FormGroupOwnProps & {
@@ -17,12 +16,16 @@ export interface FormGroupOwnProps {
      */
     children?: React.ReactNode;
     /**
+     * Display group of elements in a compact row.
+     * @default false
+     */
+    row?: boolean;
+    /**
      * The props used for each slot inside the FormGroup.
      * @default {}
      */
     slotProps?: {
         root?: SlotComponentProps<'span', FormGroupRootSlotPropsOverrides, FormGroupOwnerState>;
-        badge?: SlotComponentProps<'span', FormGroupBadgeSlotPropsOverrides, FormGroupOwnerState>;
     };
     /**
      * The components used for each slot inside the FormGroup.

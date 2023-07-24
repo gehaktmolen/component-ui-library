@@ -5,23 +5,46 @@ import {
     FormControlLabelProps,
     FormControlLabelTypeMap,
     FormControlLabelRootSlotProps,
-    FormControlLabelOwnerState
+    FormControlLabelOwnerState,
+    FormControlLabelStackSlotProps,
+    FormControlLabelAsteriskSlotProps,
+    FormControlLabelLabelSlotProps
 } from './FormControlLabel.types';
 import composeClasses from '../composeClasses';
 import { getFormControlLabelUtilityClass } from './formControlLabelClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
-    const { disabled } = ownerState;
+    const { disabled, labelPlacement, error } = ownerState;
+
+    console.log('ownerstate', ownerState);
 
     const slots = {
-        root: [`relative`, disabled && 'disabled']
+        root: [
+            'inline-flex items-center align-middle ml-2 mr-3',
+            disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+            labelPlacement === 'start' && 'flex-row-reverse ml-3 mr-2',
+            labelPlacement === 'top' && 'flex-column-reverse ml-3',
+            labelPlacement === 'bottom' && 'flex-column-reverse ml-3'
+        ],
+        stack: ['items-center'],
+        asterisk: [error && 'text-danger-500 dark:text-danger-400'],
+        label: [disabled && 'opacity-40']
     };
 
     return composeClasses(slots, useClassNamesOverride(getFormControlLabelUtilityClass));
 }
 
 /**
+ * You can provide a label to the Switch thanks to the FormControlLabel component.
+ *
+ * ```jsx
+ * <FormGroup>
+ *   <FormControlLabel control={<Switch defaultChecked />} label="Label" />
+ *   <FormControlLabel required control={<Switch />} label="Required" />
+ *   <FormControlLabel disabled control={<Switch />} label="Disabled" />
+ * </FormGroup>
+ * ```
  *
  * API:
  *
@@ -31,11 +54,33 @@ export const FormControlLabel = React.forwardRef(function FormControlLabel<RootC
     props: FormControlLabelProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
-    const { children, disabled, slotProps = {}, slots = {}, ...other } = props;
+    const {
+        children,
+        control,
+        disabled: disabledProp = false,
+        error = false,
+        label,
+        labelPlacement = 'end',
+        required: requiredProp = false,
+        slotProps = {},
+        slots = {},
+        ...other
+    } = props;
+
+    const disabled = disabledProp ?? control.props.disabled;
+    const required = requiredProp ?? control.props.required;
 
     const ownerState: FormControlLabelOwnerState = {
         disabled,
+        error,
+        labelPlacement,
+        required,
         ...props
+    };
+
+    const controlProps = {
+        disabled,
+        required
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -52,14 +97,83 @@ export const FormControlLabel = React.forwardRef(function FormControlLabel<RootC
         className: classes.root
     });
 
-    return <Root {...rootProps}>{children}</Root>;
+    const Stack: React.ElementType = slots.stack === null ? () => null : slots.stack ?? 'div';
+    const stackProps: WithOptionalOwnerState<FormControlLabelStackSlotProps> = useSlotProps({
+        elementType: Stack,
+        externalSlotProps: slotProps.stack,
+        ownerState,
+        className: classes.stack
+    });
+
+    const Asterisk: React.ElementType = slots.asterisk === null ? () => null : slots.asterisk ?? 'span';
+    const asteriskProps: WithOptionalOwnerState<FormControlLabelAsteriskSlotProps> = useSlotProps({
+        elementType: Asterisk,
+        externalSlotProps: slotProps.asterisk,
+        ownerState,
+        className: classes.asterisk
+    });
+
+    const Label: React.ElementType = slots.label === null ? () => null : slots.label ?? 'span';
+    const labelProps: WithOptionalOwnerState<FormControlLabelLabelSlotProps> = useSlotProps({
+        elementType: Label,
+        externalSlotProps: slotProps.label,
+        ownerState,
+        className: classes.label
+    });
+
+    return (
+        <Root {...rootProps}>
+            {React.cloneElement(control, controlProps)}
+            {required ? (
+                <Stack direction="row" {...stackProps}>
+                    <Label {...labelProps}>{label}</Label>
+                    <Asterisk aria-hidden {...asteriskProps}>
+                        &thinsp;{'*'}
+                    </Asterisk>
+                </Stack>
+            ) : (
+                <Label {...labelProps}>{label}</Label>
+            )}
+        </Root>
+    );
 }) as PolymorphicComponent<FormControlLabelTypeMap>;
 
 FormControlLabel.propTypes = {
     /**
+     * If `true`, the component appears selected.
+     */
+    checked: PropTypes.bool,
+    /**
      * The badge will be added relative to this node.
      */
     children: PropTypes.node,
+    /**
+     * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
+     */
+    control: PropTypes.element.isRequired,
+    /**
+     * If `true`, the control is disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * If `true`, the label is displayed in an error state.
+     * @default false
+     */
+    error: PropTypes.bool,
+    /**
+     * A text or an element to be used in an enclosing label element.
+     */
+    label: PropTypes.node,
+    /**
+     * The position of the label.
+     * @default 'end'
+     */
+    labelPlacement: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
+    /**
+     * If `true`, the label will indicate that the `input` is required.
+     * @default false
+     */
+    required: PropTypes.bool,
     /**
      * The props used for each slot inside the FormControlLabel.
      * @default {}

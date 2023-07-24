@@ -17,7 +17,7 @@ import { getSwitchUtilityClass } from './switchClasses';
 
 const SWITCH_COLOR = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100',
-    neutral: 'bg-inherit',
+    neutral: 'bg-white opacity-20',
     danger: 'bg-danger-500 dark:bg-danger-100',
     info: 'bg-info-500 dark:bg-info-100',
     success: 'bg-success-500 dark:bg-success-100',
@@ -38,7 +38,7 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
                 focusVisible ? `${checked ? 'bg-white' : 'bg-slate-500'} shadow-outline-switch` : 'bg-white'
             } relative transition-all`
         ],
-        input: ['cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0'],
+        input: ['cursor-[inherit] absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0'],
         track: [
             `absolute block w-full h-full rounded-2xl ${
                 checked ? (color ? SWITCH_COLOR[color] : '') : 'bg-slate-400 dark:bg-slate-600'

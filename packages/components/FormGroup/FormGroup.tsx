@@ -7,10 +7,10 @@ import { getFormGroupUtilityClass } from './formGroupClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(ownerState: FormGroupOwnerState) {
-    const { disabled } = ownerState;
+    const { row } = ownerState;
 
     const slots = {
-        root: [`relative`, disabled && 'disabled']
+        root: [`flex flex-wrap ${row ? 'flex-row' : 'flex-col'}`]
     };
 
     return composeClasses(slots, useClassNamesOverride(getFormGroupUtilityClass));
@@ -26,16 +26,16 @@ export const FormGroup = React.forwardRef(function FormGroup<RootComponentType e
     props: FormGroupProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
-    const { children, disabled, slotProps = {}, slots = {}, ...other } = props;
+    const { children, row, slotProps = {}, slots = {}, ...other } = props;
 
     const ownerState: FormGroupOwnerState = {
-        disabled,
+        row,
         ...props
     };
 
     const classes = useUtilityClasses(ownerState);
 
-    const Root = slots.root ?? 'span';
+    const Root = slots.root ?? 'div';
     const rootProps: WithOptionalOwnerState<FormGroupRootSlotProps> = useSlotProps({
         elementType: Root,
         externalSlotProps: slotProps.root,
@@ -55,6 +55,11 @@ FormGroup.propTypes = {
      * The badge will be added relative to this node.
      */
     children: PropTypes.node,
+    /**
+     * Display group of elements in a compact row.
+     * @default false
+     */
+    row: PropTypes.bool,
     /**
      * The props used for each slot inside the FormGroup.
      * @default {}
