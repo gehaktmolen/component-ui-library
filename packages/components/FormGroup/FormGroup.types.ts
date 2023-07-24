@@ -11,7 +11,6 @@ export type FormGroupOwnerState = Simplify<
     }
 >;
 
-
 export interface FormGroupOwnProps {
     /**
      * The component will be added relative to this node.
@@ -59,12 +58,10 @@ export interface ExtendFormGroupTypeMap<M extends OverridableTypeMap> {
 
 export type ExtendBadge<M extends OverridableTypeMap> = OverridableComponent<ExtendFormGroupTypeMap<M>>;
 
-export type FormGroupProps<RootComponentType extends React.ElementType = FormGroupTypeMap['defaultComponent']> = OverrideProps<
-    FormGroupTypeMap<NonNullable<unknown>, RootComponentType>,
-    RootComponentType
-> & {
-    component?: RootComponentType;
-};
+export type FormGroupProps<RootComponentType extends React.ElementType = FormGroupTypeMap['defaultComponent']> =
+    OverrideProps<FormGroupTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType> & {
+        component?: RootComponentType;
+    };
 
 export type FormGroupRootSlotProps = {
     children?: React.ReactNode;

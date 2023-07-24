@@ -1,7 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import { FormHelperTextProps, FormHelperTextTypeMap, FormHelperTextRootSlotProps, FormHelperTextOwnerState } from './FormHelperText.types';
+import {
+    FormHelperTextProps,
+    FormHelperTextTypeMap,
+    FormHelperTextRootSlotProps,
+    FormHelperTextOwnerState
+} from './FormHelperText.types';
 import composeClasses from '../composeClasses';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses.ts';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -10,10 +15,7 @@ function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
     const { disabled } = ownerState;
 
     const slots = {
-        root: [
-            `relative`,
-            disabled && 'disabled',
-        ]
+        root: [`relative`, disabled && 'disabled']
     };
 
     return composeClasses(slots, useClassNamesOverride(getFormHelperTextUtilityClass));
@@ -29,17 +31,11 @@ export const FormHelperText = React.forwardRef(function FormHelperText<RootCompo
     props: FormHelperTextProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
-    const {
-        children,
-        disabled,
-        slotProps = {},
-        slots = {},
-        ...other
-    } = props;
+    const { children, disabled, slotProps = {}, slots = {}, ...other } = props;
 
     const ownerState: FormHelperTextOwnerState = {
         disabled,
-        ...props,
+        ...props
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -56,11 +52,7 @@ export const FormHelperText = React.forwardRef(function FormHelperText<RootCompo
         className: classes.root
     });
 
-    return (
-        <Root {...rootProps}>
-            {children}
-        </Root>
-    );
+    return <Root {...rootProps}>{children}</Root>;
 }) as PolymorphicComponent<FormHelperTextTypeMap>;
 
 FormHelperText.propTypes = {
@@ -83,5 +75,5 @@ FormHelperText.propTypes = {
      */
     slots: PropTypes.shape({
         root: PropTypes.elementType
-    }),
+    })
 } as any;

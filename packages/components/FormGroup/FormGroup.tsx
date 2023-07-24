@@ -10,10 +10,7 @@ function useUtilityClasses(ownerState: FormGroupOwnerState) {
     const { disabled } = ownerState;
 
     const slots = {
-        root: [
-            `relative`,
-            disabled && 'disabled',
-        ]
+        root: [`relative`, disabled && 'disabled']
     };
 
     return composeClasses(slots, useClassNamesOverride(getFormGroupUtilityClass));
@@ -29,17 +26,11 @@ export const FormGroup = React.forwardRef(function FormGroup<RootComponentType e
     props: FormGroupProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
-    const {
-        children,
-        disabled,
-        slotProps = {},
-        slots = {},
-        ...other
-    } = props;
+    const { children, disabled, slotProps = {}, slots = {}, ...other } = props;
 
     const ownerState: FormGroupOwnerState = {
         disabled,
-        ...props,
+        ...props
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -56,11 +47,7 @@ export const FormGroup = React.forwardRef(function FormGroup<RootComponentType e
         className: classes.root
     });
 
-    return (
-        <Root {...rootProps}>
-            {children}
-        </Root>
-    );
+    return <Root {...rootProps}>{children}</Root>;
 }) as PolymorphicComponent<FormGroupTypeMap>;
 
 FormGroup.propTypes = {
@@ -83,5 +70,5 @@ FormGroup.propTypes = {
      */
     slots: PropTypes.shape({
         root: PropTypes.elementType
-    }),
+    })
 } as any;

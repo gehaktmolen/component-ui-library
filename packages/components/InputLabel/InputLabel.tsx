@@ -1,34 +1,34 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import { FormLabelProps, FormLabelTypeMap, FormLabelRootSlotProps, FormLabelOwnerState } from './FormLabel.types';
+import { InputLabelProps, InputLabelTypeMap, InputLabelRootSlotProps, InputLabelOwnerState } from './InputLabel.types';
 import composeClasses from '../composeClasses';
-import { getFormLabelUtilityClass } from './formLabelClasses.ts';
+import { getInputLabelUtilityClass } from './inputLabelClasses.ts';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
-function useUtilityClasses(ownerState: FormLabelOwnerState) {
+function useUtilityClasses(ownerState: InputLabelOwnerState) {
     const { disabled } = ownerState;
 
     const slots = {
         root: [`relative`, disabled && 'disabled']
     };
 
-    return composeClasses(slots, useClassNamesOverride(getFormLabelUtilityClass));
+    return composeClasses(slots, useClassNamesOverride(getInputLabelUtilityClass));
 }
 
 /**
  *
  * API:
  *
- * - [FormLabel API](https:///#form-label)
+ * - [InputLabel API](https:///#form-label)
  */
-export const FormLabel = React.forwardRef(function FormLabel<RootComponentType extends React.ElementType>(
-    props: FormLabelProps<RootComponentType>,
+export const InputLabel = React.forwardRef(function InputLabel<RootComponentType extends React.ElementType>(
+    props: InputLabelProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
     const { children, disabled, slotProps = {}, slots = {}, ...other } = props;
 
-    const ownerState: FormLabelOwnerState = {
+    const ownerState: InputLabelOwnerState = {
         disabled,
         ...props
     };
@@ -36,7 +36,7 @@ export const FormLabel = React.forwardRef(function FormLabel<RootComponentType e
     const classes = useUtilityClasses(ownerState);
 
     const Root = slots.root ?? 'span';
-    const rootProps: WithOptionalOwnerState<FormLabelRootSlotProps> = useSlotProps({
+    const rootProps: WithOptionalOwnerState<InputLabelRootSlotProps> = useSlotProps({
         elementType: Root,
         externalSlotProps: slotProps.root,
         externalForwardedProps: other,
@@ -48,15 +48,15 @@ export const FormLabel = React.forwardRef(function FormLabel<RootComponentType e
     });
 
     return <Root {...rootProps}>{children}</Root>;
-}) as PolymorphicComponent<FormLabelTypeMap>;
+}) as PolymorphicComponent<InputLabelTypeMap>;
 
-FormLabel.propTypes = {
+InputLabel.propTypes = {
     /**
      * The badge will be added relative to this node.
      */
     children: PropTypes.node,
     /**
-     * The props used for each slot inside the FormLabel.
+     * The props used for each slot inside the InputLabel.
      * @default {}
      */
     slotProps: PropTypes.shape({
@@ -64,7 +64,7 @@ FormLabel.propTypes = {
         root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**
-     * The components used for each slot inside the FormLabel.
+     * The components used for each slot inside the InputLabel.
      * Either a string to use an HTML element or a component.
      * @default {}
      */

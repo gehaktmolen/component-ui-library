@@ -25,13 +25,9 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
     args: {},
     render: (args) => (
-        <FormControl
-            defaultValue=""
-            required
-            {...args}
-        >
+        <FormControl defaultValue="" required {...args}>
             <Label>Name</Label>
-            <Input placeholder="Write your name here"/>
+            <Input placeholder="Write your name here" />
             <HelperText />
         </FormControl>
     )

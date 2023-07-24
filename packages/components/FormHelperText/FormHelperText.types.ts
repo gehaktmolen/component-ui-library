@@ -11,7 +11,6 @@ export type FormHelperTextOwnerState = Simplify<
     }
 >;
 
-
 export interface FormHelperTextOwnProps {
     /**
      * The component will be added relative to this node.
@@ -59,10 +58,9 @@ export interface ExtendFormHelperTextTypeMap<M extends OverridableTypeMap> {
 
 export type ExtendBadge<M extends OverridableTypeMap> = OverridableComponent<ExtendFormHelperTextTypeMap<M>>;
 
-export type FormHelperTextProps<RootComponentType extends React.ElementType = FormHelperTextTypeMap['defaultComponent']> = OverrideProps<
-    FormHelperTextTypeMap<NonNullable<unknown>, RootComponentType>,
-    RootComponentType
-> & {
+export type FormHelperTextProps<
+    RootComponentType extends React.ElementType = FormHelperTextTypeMap['defaultComponent']
+> = OverrideProps<FormHelperTextTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType> & {
     component?: RootComponentType;
 };
 

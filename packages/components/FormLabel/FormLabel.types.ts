@@ -11,7 +11,6 @@ export type FormLabelOwnerState = Simplify<
     }
 >;
 
-
 export interface FormLabelOwnProps {
     /**
      * The component will be added relative to this node.
@@ -59,12 +58,10 @@ export interface ExtendFormLabelTypeMap<M extends OverridableTypeMap> {
 
 export type ExtendBadge<M extends OverridableTypeMap> = OverridableComponent<ExtendFormLabelTypeMap<M>>;
 
-export type FormLabelProps<RootComponentType extends React.ElementType = FormLabelTypeMap['defaultComponent']> = OverrideProps<
-    FormLabelTypeMap<NonNullable<unknown>, RootComponentType>,
-    RootComponentType
-> & {
-    component?: RootComponentType;
-};
+export type FormLabelProps<RootComponentType extends React.ElementType = FormLabelTypeMap['defaultComponent']> =
+    OverrideProps<FormLabelTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType> & {
+        component?: RootComponentType;
+    };
 
 export type FormLabelRootSlotProps = {
     children?: React.ReactNode;
