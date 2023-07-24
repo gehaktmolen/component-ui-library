@@ -10,8 +10,8 @@ export default {
         colors: {
             transparent: 'transparent',
             current: 'currentColor',
+            disabled: colors.gray,
             primary: colors.emerald,
-            secondary: colors.fuchsia,
             success: colors.emerald,
             danger: colors.red,
             warning: colors.amber,

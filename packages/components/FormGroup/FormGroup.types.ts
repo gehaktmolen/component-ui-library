@@ -7,6 +7,7 @@ export interface FormGroupRootSlotPropsOverrides {}
 export type FormGroupOwnerState = Simplify<
     FormGroupOwnProps & {
         disabled?: boolean;
+        error?: boolean;
     }
 >;
 

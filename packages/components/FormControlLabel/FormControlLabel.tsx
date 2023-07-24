@@ -17,8 +17,6 @@ import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
     const { disabled, labelPlacement, error } = ownerState;
 
-    console.log('ownerstate', ownerState);
-
     const slots = {
         root: [
             'inline-flex items-center align-middle ml-2 mr-3',

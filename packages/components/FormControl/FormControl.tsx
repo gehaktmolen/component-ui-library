@@ -44,6 +44,7 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  * This context is used by the following components:
  *
  * *   FormLabel
+ * *   FormControlLabel
  * *   FormHelperText
  * *   Input
  * *   InputLabel

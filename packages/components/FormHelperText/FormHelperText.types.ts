@@ -3,11 +3,13 @@ import { OverrideProps, OverridableTypeMap, OverridableComponent, Simplify } fro
 import { SlotComponentProps } from '../utils';
 
 export interface FormHelperTextRootSlotPropsOverrides {}
-export interface FormHelperTextBadgeSlotPropsOverrides {}
 
 export type FormHelperTextOwnerState = Simplify<
     FormHelperTextOwnProps & {
         disabled?: boolean;
+        error?: boolean;
+        focused?: boolean;
+        required?: boolean;
     }
 >;
 
@@ -21,8 +23,7 @@ export interface FormHelperTextOwnProps {
      * @default {}
      */
     slotProps?: {
-        root?: SlotComponentProps<'span', FormHelperTextRootSlotPropsOverrides, FormHelperTextOwnerState>;
-        badge?: SlotComponentProps<'span', FormHelperTextBadgeSlotPropsOverrides, FormHelperTextOwnerState>;
+        root?: SlotComponentProps<'p', FormHelperTextRootSlotPropsOverrides, FormHelperTextOwnerState>;
     };
     /**
      * The components used for each slot inside the FormHelperText.

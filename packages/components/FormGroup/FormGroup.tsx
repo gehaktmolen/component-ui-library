@@ -7,10 +7,14 @@ import { getFormGroupUtilityClass } from './formGroupClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(ownerState: FormGroupOwnerState) {
-    const { row } = ownerState;
+    const { row, error } = ownerState;
 
     const slots = {
-        root: [`flex flex-wrap ${row ? 'flex-row' : 'flex-col'}`]
+        root: [
+            `flex flex-wrap ${row ? 'flex-row' : 'flex-col'}`,
+            // Todo: Need to pass on error to slots
+            error && 'error'
+        ]
     };
 
     return composeClasses(slots, useClassNamesOverride(getFormGroupUtilityClass));
@@ -27,9 +31,10 @@ export const FormGroup = React.forwardRef(function FormGroup<RootComponentType e
     props: FormGroupProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
-    const { children, row, slotProps = {}, slots = {}, ...other } = props;
+    const { children, error, row, slotProps = {}, slots = {}, ...other } = props;
 
     const ownerState: FormGroupOwnerState = {
+        error,
         row,
         ...props
     };
