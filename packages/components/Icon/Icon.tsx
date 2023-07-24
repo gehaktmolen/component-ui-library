@@ -12,9 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, IconLookup, IconDefinition, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 // Todo: AAAAAAAH There goes our bundle size! :'( Come up with a better solution.
-import { fas } from '@fortawesome/free-solid-svg-icons';
+// Todo: Update: Will only import icons used by our component library, but check if we need to extend this.
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-library.add(fas);
+library.add(faHeart);
 
 const ICON_COLOR = Object.freeze({
     primary: 'text-primary-500 dark:text-primary-100',
