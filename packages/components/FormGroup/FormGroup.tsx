@@ -17,6 +17,7 @@ function useUtilityClasses(ownerState: FormGroupOwnerState) {
 }
 
 /**
+ * FormGroup is a helpful wrapper used to group selection controls components that provides an easier API.
  *
  * API:
  *

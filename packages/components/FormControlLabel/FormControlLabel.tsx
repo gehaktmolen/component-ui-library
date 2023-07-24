@@ -24,8 +24,8 @@ function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
             'inline-flex items-center align-middle ml-2 mr-3',
             disabled ? 'cursor-not-allowed' : 'cursor-pointer',
             labelPlacement === 'start' && 'flex-row-reverse ml-3 mr-2',
-            labelPlacement === 'top' && 'flex-column-reverse ml-3',
-            labelPlacement === 'bottom' && 'flex-column-reverse ml-3'
+            labelPlacement === 'top' && 'flex-col-reverse ml-3',
+            labelPlacement === 'bottom' && 'flex-col ml-3'
         ],
         stack: ['items-center'],
         asterisk: [error && 'text-danger-500 dark:text-danger-400'],
