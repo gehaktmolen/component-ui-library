@@ -26,7 +26,11 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
             Boolean(startAdornment) && 'adornedStart',
             Boolean(endAdornment) && 'adornedEnd'
         ],
-        input: ['input', disabled && 'disabled', multiline && 'multiline']
+        input: [
+            'w-80 text-sm font-normal leading-normal text-slate-900 dark:text-slate-300 bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 px-3 py-2 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900 hover:border-slate-400 hover:dark:border-slate-700 focus:outline-0 focus:shadow-outline-purple',
+            disabled && 'disabled',
+            multiline && 'multiline'
+        ]
     };
 
     return composeClasses(slots, useClassNamesOverride(getInputUtilityClass));
@@ -53,7 +57,7 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         defaultValue,
         disabled,
         endAdornment,
-        error: errorProp = false,
+        error,
         block = false,
         id,
         multiline = false,
@@ -79,8 +83,6 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         maxRows,
         ...other
     } = props;
-
-    const error = props.error ?? errorProp;
 
     const {
         getRootProps,

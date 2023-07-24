@@ -21,11 +21,11 @@ function hasValue(value: unknown) {
 }
 
 function useUtilityClasses(ownerState: FormControlOwnerState) {
-    const { disabled, error, filled, focused, required } = ownerState;
+    const { disabled, error, filled, focused, orientation, required } = ownerState;
 
     const slots = {
         root: [
-            'root',
+            `relative flex ${orientation === 'vertical' ? 'flex-col' : 'flex-row'}`,
             disabled && 'disabled',
             focused && 'focused',
             error && 'error',
@@ -72,12 +72,15 @@ export const FormControl = React.forwardRef(function FormControl<RootComponentTy
     const {
         defaultValue,
         children,
+        color = 'neutral',
         disabled = false,
         error = false,
         onChange,
+        orientation = 'vertical',
         required = false,
         slotProps = {},
         slots = {},
+        size: sizeProp = 'md',
         value: incomingValue,
         ...other
     } = props;
@@ -93,16 +96,20 @@ export const FormControl = React.forwardRef(function FormControl<RootComponentTy
 
     const [focusedState, setFocused] = React.useState(false);
     const focused = focusedState && !disabled;
+    const size = props.size ?? sizeProp;
 
     React.useEffect(() => setFocused((isFocused) => (disabled ? false : isFocused)), [disabled]);
 
     const ownerState: FormControlOwnerState = {
         ...props,
+        color,
         disabled,
         error,
         filled,
         focused,
-        required
+        orientation,
+        required,
+        size
     };
 
     const childContext: FormControlState = React.useMemo(() => {
@@ -162,6 +169,14 @@ FormControl.propTypes = {
      */
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     /**
+     * The color of the component.
+     * @default 'neutral'
+     */
+    color: PropTypes.oneOfType([
+        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+        PropTypes.string
+    ]),
+    /**
      * @ignore
      */
     defaultValue: PropTypes.any,
@@ -179,6 +194,11 @@ FormControl.propTypes = {
      * Callback fired when the form element's value is modified.
      */
     onChange: PropTypes.func,
+    /**
+     * The content direction flow.
+     * @default 'vertical'
+     */
+    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
     /**
      * If `true`, the label will indicate that the `input` is required.
      * @default false
@@ -199,6 +219,11 @@ FormControl.propTypes = {
     slots: PropTypes.shape({
         root: PropTypes.elementType
     }),
+    /**
+     * The size of the component.
+     * @default 'md'
+     */
+    size: PropTypes.oneOfType([PropTypes.oneOf(['sm', 'md', 'lg']), PropTypes.string]),
     /**
      * The value of the form element.
      */

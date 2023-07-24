@@ -25,17 +25,13 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
     args: {},
     render: (args) => (
-        <FormControl defaultValue="" required {...args}>
+        <FormControl
+            defaultValue=""
+            required
+            {...args}
+        >
             <Label>Name</Label>
-            <Input
-                placeholder="Write your name here"
-                slotProps={{
-                    input: {
-                        className:
-                            'w-80 text-sm font-normal leading-normal text-slate-900 dark:text-slate-300 bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 px-3 py-2 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900 hover:border-slate-400 hover:dark:border-slate-700 focus:outline-0 focus:shadow-outline-purple'
-                    }
-                }}
-            />
+            <Input placeholder="Write your name here"/>
             <HelperText />
         </FormControl>
     )
@@ -65,7 +61,7 @@ const Label = React.forwardRef<HTMLParagraphElement, { className?: string; child
                 className={clsx(
                     'text-sm mb-1',
                     classNameProp,
-                    error || showRequiredError ? 'invalid text-red-500' : ''
+                    error || showRequiredError ? 'invalid text-danger-500' : ''
                 )}
             >
                 {children}

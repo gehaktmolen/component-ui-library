@@ -49,7 +49,7 @@ export const Circular: Story = {
     },
     render: (args) => (
         <Badge {...args}>
-            <Icon icon="heart" size="2xl" color="primary" />
+            <Icon icon="heart" size="2xl" color="danger" />
         </Badge>
     )
 };

@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { Simplify } from '../../types';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { Simplify, OverridableStringUnion } from '../../types';
+import { PolymorphicProps, SlotComponentProps, ColorPaletteProp } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 export interface FormControlRootSlotPropsOverrides {}
+export interface FormControlPropsSizeOverrides {}
+export interface FormControlPropsColorOverrides {}
 
 export interface FormControlOwnProps {
     /**
@@ -15,6 +17,11 @@ export interface FormControlOwnProps {
      * Class name applied to the root element.
      */
     className?: string;
+    /**
+     * The color of the component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, FormControlPropsColorOverrides>;
     defaultValue?: unknown;
     /**
      * If `true`, the label, input and helper text should be displayed in a disabled state.
@@ -30,6 +37,11 @@ export interface FormControlOwnProps {
      * Callback fired when the form element's value is modified.
      */
     onChange?: React.ChangeEventHandler<NativeFormControlElement>;
+    /**
+     * The content direction flow.
+     * @default 'vertical'
+     */
+    orientation?: 'vertical' | 'horizontal';
     /**
      * If `true`, the label will indicate that the `input` is required.
      * @default false
@@ -48,6 +60,11 @@ export interface FormControlOwnProps {
      * @default {}
      */
     slots?: FormControlSlots;
+    /**
+     * The size of the component.
+     * @default 'md'
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', FormControlPropsSizeOverrides>;
     /**
      * The value of the form element.
      */
