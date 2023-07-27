@@ -2,12 +2,7 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '../../utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import extractEventHandlers from '../utils/extractEventHandlers';
-import {
-    UseInputInputSlotProps,
-    UseInputParameters,
-    UseInputRootSlotProps,
-    UseInputReturnValue
-} from './useInput.types';
+import { UseInputSlotProps, UseInputParameters, UseInputRootSlotProps, UseInputReturnValue } from './useInput.types';
 /**
  *
  * API:
@@ -174,7 +169,7 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
 
     const getInputProps = <TOther extends Record<string, any> = NonNullable<unknown>>(
         externalProps: TOther = {} as TOther
-    ): UseInputInputSlotProps<TOther> => {
+    ): UseInputSlotProps<TOther> => {
         const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
             onBlur,
             onChange,

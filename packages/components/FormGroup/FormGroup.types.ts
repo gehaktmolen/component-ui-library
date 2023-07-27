@@ -60,7 +60,7 @@ export interface ExtendFormGroupTypeMap<M extends OverridableTypeMap> {
     defaultComponent: M['defaultComponent'];
 }
 
-export type ExtendBadge<M extends OverridableTypeMap> = OverridableComponent<ExtendFormGroupTypeMap<M>>;
+export type ExtendFormGroup<M extends OverridableTypeMap> = OverridableComponent<ExtendFormGroupTypeMap<M>>;
 
 export type FormGroupProps<RootComponentType extends React.ElementType = FormGroupTypeMap['defaultComponent']> =
     OverrideProps<FormGroupTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType> & {

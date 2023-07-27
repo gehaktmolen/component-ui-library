@@ -4,8 +4,6 @@ import generateUtilityClasses from '../generateUtilityClasses';
 export interface FormGroupClasses {
     /** Class applied to the root element. */
     root: string;
-    /** State class applied to the root element if `row={true}`. */
-    row: string;
     /** State class applied to the root element if `error={true}`. */
     error: string;
 }
@@ -16,6 +14,6 @@ export function getFormGroupUtilityClass(slot: string): string {
     return generateUtilityClass('', slot);
 }
 
-const formGroupClasses: FormGroupClasses = generateUtilityClasses('FormGroup', ['root', 'row', 'error']);
+const formGroupClasses: FormGroupClasses = generateUtilityClasses('FormGroup', ['root', 'error']);
 
 export default formGroupClasses;

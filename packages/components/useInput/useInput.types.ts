@@ -39,7 +39,7 @@ export type UseInputRootSlotProps<TOther = NonNullable<unknown>> = Omit<
 > &
     UseInputRootSlotOwnProps;
 
-export interface UseInputInputSlotOwnProps {
+export interface UseInputSlotOwnProps {
     'aria-invalid': React.AriaAttributes['aria-invalid'];
     defaultValue: string | number | readonly string[] | undefined;
     ref: React.RefCallback<HTMLInputElement> | null;
@@ -51,8 +51,8 @@ export interface UseInputInputSlotOwnProps {
     disabled: boolean;
 }
 
-export type UseInputInputSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseInputInputSlotOwnProps> &
-    UseInputInputSlotOwnProps;
+export type UseInputSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseInputSlotOwnProps> &
+    UseInputSlotOwnProps;
 
 export interface UseInputReturnValue {
     /**
@@ -78,7 +78,7 @@ export interface UseInputReturnValue {
      */
     getInputProps: <TOther extends Record<string, any> = NonNullable<unknown>>(
         externalProps?: TOther
-    ) => UseInputInputSlotProps<TOther>;
+    ) => UseInputSlotProps<TOther>;
     /**
      * Resolver for the root slot's props.
      * @param externalProps props for the root slot

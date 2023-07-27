@@ -6,7 +6,7 @@ import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { ColorPaletteProp, VariantProp } from '../utils';
 
 export interface InputRootSlotPropsOverrides {}
-export interface InputInputSlotPropsOverrides {}
+export interface InputSlotPropsOverrides {}
 export interface InputPropsColorOverrides {}
 export interface InputPropsVariantOverrides {}
 export interface InputPropsSizeOverrides {}
@@ -124,7 +124,7 @@ export type InputOwnProps = (SingleLineInputProps | MultiLineInputProps) &
          */
         slotProps?: {
             root?: SlotComponentProps<'div', InputRootSlotPropsOverrides, InputOwnerState>;
-            input?: SlotComponentProps<'input', InputInputSlotPropsOverrides, InputOwnerState>;
+            input?: SlotComponentProps<'input', InputSlotPropsOverrides, InputOwnerState>;
         };
         /**
          * The components used for each slot inside the InputBase.
@@ -198,7 +198,7 @@ export type InputRootSlotProps = Simplify<
     }
 >;
 
-export type InputInputSlotProps = Simplify<
+export type InputSlotProps = Simplify<
     Omit<UseInputRootSlotProps, 'onClick'> & {
         'aria-describedby': React.AriaAttributes['aria-describedby'];
         'aria-label': React.AriaAttributes['aria-label'];

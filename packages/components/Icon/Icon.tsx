@@ -94,7 +94,6 @@ Icon.propTypes = {
      * @default {}
      */
     slotProps: PropTypes.shape({
-        badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
         root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**
@@ -103,7 +102,6 @@ Icon.propTypes = {
      * @default {}
      */
     slots: PropTypes.shape({
-        badge: PropTypes.elementType,
         root: PropTypes.elementType
     })
 } as any;

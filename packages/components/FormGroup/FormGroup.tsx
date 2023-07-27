@@ -10,11 +10,7 @@ function useUtilityClasses(ownerState: FormGroupOwnerState) {
     const { row, error } = ownerState;
 
     const slots = {
-        root: [
-            `flex flex-wrap ${row ? 'flex-row' : 'flex-col'}`,
-            // Todo: Need to pass on error to slots
-            error && 'error'
-        ]
+        root: [`flex flex-wrap ${row ? 'flex-row' : 'flex-col'}`, error && 'error']
     };
 
     return composeClasses(slots, useClassNamesOverride(getFormGroupUtilityClass));
@@ -71,7 +67,6 @@ FormGroup.propTypes = {
      * @default {}
      */
     slotProps: PropTypes.shape({
-        badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
         root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**

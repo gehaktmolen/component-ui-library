@@ -65,7 +65,6 @@ InputAdornment.propTypes = {
      * @default {}
      */
     slotProps: PropTypes.shape({
-        badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
         root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**

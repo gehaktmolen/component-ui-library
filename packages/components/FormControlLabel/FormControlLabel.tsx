@@ -15,26 +15,30 @@ import { getFormControlLabelUtilityClass } from './formControlLabelClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
-    const { disabled, labelPlacement, error } = ownerState;
+    const { disabled, filled, focused, labelPlacement, error, required } = ownerState;
 
     const slots = {
         root: [
             'inline-flex items-center align-middle ml-2 mr-3',
+            disabled && 'disabled',
             disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+            filled && 'filled',
+            focused && 'focused',
             labelPlacement === 'start' && 'flex-row-reverse ml-3 mr-2',
             labelPlacement === 'top' && 'flex-col-reverse ml-3',
-            labelPlacement === 'bottom' && 'flex-col ml-3'
+            labelPlacement === 'bottom' && 'flex-col ml-3',
+            required && 'required'
         ],
         stack: ['items-center'],
-        asterisk: [error && 'text-danger-500 dark:text-danger-400'],
-        label: [disabled && 'opacity-40']
+        asterisk: [error && 'error', error && 'text-danger-500 dark:text-danger-400'],
+        label: [disabled && 'disabled', disabled && 'opacity-40']
     };
 
     return composeClasses(slots, useClassNamesOverride(getFormControlLabelUtilityClass));
 }
 
 /**
- * You can provide a label to the Switch thanks to the FormControlLabel component.
+ * Drop-in replacement of the Radio, Switch and Checkbox component. Use this component if you want to display an extra label.
  *
  * ```jsx
  * <FormGroup>
@@ -177,8 +181,10 @@ FormControlLabel.propTypes = {
      * @default {}
      */
     slotProps: PropTypes.shape({
-        badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        stack: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        asterisk: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        label: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**
      * The components used for each slot inside the FormControlLabel.
@@ -186,6 +192,9 @@ FormControlLabel.propTypes = {
      * @default {}
      */
     slots: PropTypes.shape({
-        root: PropTypes.elementType
+        root: PropTypes.elementType,
+        stack: PropTypes.elementType,
+        asterisk: PropTypes.elementType,
+        label: PropTypes.elementType
     })
 } as any;

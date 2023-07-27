@@ -16,10 +16,14 @@ function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
 
     const slots = {
         root: [
-            `text-left mt-1 mb-0 mx-0`,
+            'flex flex-row flex-wrap content-center items-center mt-1 mb-0 mx-0 text-xs',
+            disabled && 'disabled',
             disabled && 'text-disabled dark:text-disabled-400',
+            error && 'error',
             error && 'text-danger-500 dark:text-danger-400',
+            focused && 'focused',
             focused && 'text-primary-500 dark:text-primary-400',
+            required && 'required',
             required && 'text-danger-500 dark:text-danger-400'
         ]
     };
@@ -99,7 +103,6 @@ FormHelperText.propTypes = {
      * @default {}
      */
     slotProps: PropTypes.shape({
-        badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
         root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**

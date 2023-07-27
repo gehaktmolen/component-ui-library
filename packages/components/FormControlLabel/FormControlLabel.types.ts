@@ -11,6 +11,8 @@ export type FormControlLabelOwnerState = Simplify<
     FormControlLabelOwnProps & {
         disabled?: boolean;
         error?: boolean;
+        filled?: boolean;
+        focused?: boolean;
     }
 >;
 
@@ -106,7 +108,9 @@ export interface ExtendFormControlLabelTypeMap<M extends OverridableTypeMap> {
     defaultComponent: M['defaultComponent'];
 }
 
-export type ExtendBadge<M extends OverridableTypeMap> = OverridableComponent<ExtendFormControlLabelTypeMap<M>>;
+export type ExtendFormControlLabel<M extends OverridableTypeMap> = OverridableComponent<
+    ExtendFormControlLabelTypeMap<M>
+>;
 
 export type FormControlLabelProps<
     RootComponentType extends React.ElementType = FormControlLabelTypeMap['defaultComponent']

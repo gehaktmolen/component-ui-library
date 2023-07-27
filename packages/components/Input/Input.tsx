@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils';
 import isHostComponent from '../utils/isHostComponent';
 import { getInputUtilityClass } from './inputClasses';
-import { InputInputSlotProps, InputOwnerState, InputProps, InputRootSlotProps, InputTypeMap } from './Input.types';
+import { InputSlotProps, InputOwnerState, InputProps, InputRootSlotProps, InputTypeMap } from './Input.types';
 import { useInput } from '../useInput';
 import { EventHandlers, useSlotProps, useColorInversion, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
@@ -18,7 +18,7 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
             disabled && 'disabled',
             error && 'error',
             focused && 'focused',
-            Boolean(formControlContext) && 'formControl',
+            Boolean(formControlContext) && 'controlled',
             block && 'block',
             multiline && 'multiline',
             Boolean(startAdornment) && 'adornedStart',
@@ -150,7 +150,7 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         className: [classes.root, className]
     });
     const InputComponent = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
-    const inputProps: WithOptionalOwnerState<InputInputSlotProps> = useSlotProps({
+    const inputProps: WithOptionalOwnerState<InputSlotProps> = useSlotProps({
         elementType: InputComponent,
         getSlotProps: (otherHandlers: EventHandlers) => {
             return getInputProps({

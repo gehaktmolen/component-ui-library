@@ -57,7 +57,7 @@ export interface ExtendFormHelperTextTypeMap<M extends OverridableTypeMap> {
     defaultComponent: M['defaultComponent'];
 }
 
-export type ExtendBadge<M extends OverridableTypeMap> = OverridableComponent<ExtendFormHelperTextTypeMap<M>>;
+export type ExtendFormHelperText<M extends OverridableTypeMap> = OverridableComponent<ExtendFormHelperTextTypeMap<M>>;
 
 export type FormHelperTextProps<
     RootComponentType extends React.ElementType = FormHelperTextTypeMap['defaultComponent']
