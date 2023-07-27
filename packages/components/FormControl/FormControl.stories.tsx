@@ -1,10 +1,7 @@
 // import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import {
-    FormControl
-    // useFormControlContext
-} from './';
+import { FormControl, useFormControlContext } from './';
 import { FormLabel } from '../FormLabel';
 import { FormHelperText } from '../FormHelperText';
 import { Input } from '../Input';
@@ -33,10 +30,27 @@ export const Primary: Story = {
         <FormControl defaultValue="" required {...args}>
             <FormLabel>Name</FormLabel>
             <Input placeholder="Write your name here" />
-            <FormHelperText />
+            <FormHelperText>This is a helper text.</FormHelperText>
+            <ControlStateDisplay />
         </FormControl>
     )
 };
+
+function ControlStateDisplay() {
+    const formControlContext = useFormControlContext();
+    if (formControlContext === undefined) {
+        return null;
+    }
+
+    const { filled, focused } = formControlContext;
+
+    return (
+        <p>
+            {filled ? 'filled' : 'empty'}&nbsp;|&nbsp;
+            {focused ? 'focused' : 'not focused'}
+        </p>
+    );
+}
 
 // const Label = React.forwardRef<HTMLParagraphElement, { className?: string; children?: React.ReactNode }>(
 //     ({ className: classNameProp, children }, ref) => {

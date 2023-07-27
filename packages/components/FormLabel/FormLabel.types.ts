@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Simplify } from '../../types';
 import { FormControlState } from '../FormControl';
-import { UseFormLabelParameters, UseFormLabelRootSlotProps } from '../useFormLabel';
+import { UseFormLabelParameters, UseFormLabelRootSlotProps } from '../useLabel';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface FormLabelRootSlotPropsOverrides {}

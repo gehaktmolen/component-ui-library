@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useControlled as useControlled } from '../../utils';
-import { PolymorphicComponent } from '../utils';
+import { unstable_useControlled as useControlled, unstable_useId as useId } from '../../utils';
 import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClass } from './formControlClasses';
 import {
@@ -9,10 +8,10 @@ import {
     NativeFormControlElement,
     FormControlTypeMap,
     FormControlOwnerState,
-    FormControlState,
-    FormControlRootSlotProps
+    FormControlRootSlotProps,
+    FormControlState
 } from './FormControl.types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
 import composeClasses from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
@@ -47,13 +46,12 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  * *   FormControlLabel
  * *   FormHelperText
  * *   Input
- * *   InputLabel
  *
  * You can find one composition example below.
  *
  * ```jsx
  * <FormControl>
- *   <InputLabel htmlFor="my-input">Email address</InputLabel>
+ *   <FormLabel htmlFor="my-input">Email address</InputLabel>
  *   <Input id="my-input" aria-describedby="my-helper-text" />
  *   <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
  * </FormControl>
@@ -73,11 +71,11 @@ export const FormControl = React.forwardRef(function FormControl<RootComponentTy
     const {
         defaultValue,
         children,
-        color = 'neutral',
+        color: colorProp = 'neutral',
         disabled = false,
         error = false,
         onChange,
-        orientation = 'vertical',
+        orientation: orientationProp = 'vertical',
         required = false,
         slotProps = {},
         slots = {},
@@ -94,15 +92,19 @@ export const FormControl = React.forwardRef(function FormControl<RootComponentTy
     });
 
     const filled = hasValue(value);
-
     const [focusedState, setFocused] = React.useState(false);
     const focused = focusedState && !disabled;
     const size = props.size ?? sizeProp;
+    const color = props.color ?? colorProp;
+    const orientation = props.orientation ?? orientationProp;
+    const id = useId();
+    const [helperText, setHelperText] = React.useState<HTMLElement | null>(null);
 
     React.useEffect(() => setFocused((isFocused) => (disabled ? false : isFocused)), [disabled]);
 
     const ownerState: FormControlOwnerState = {
         ...props,
+        id,
         color,
         disabled,
         error,
@@ -113,12 +115,39 @@ export const FormControl = React.forwardRef(function FormControl<RootComponentTy
         size
     };
 
+    const classes = useUtilityClasses(ownerState);
+
+    let registerEffect: undefined | (() => () => void);
+    if (process.env.NODE_ENV !== 'production') {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const registeredInput = React.useRef(false);
+        registerEffect = () => {
+            if (registeredInput.current) {
+                console.error(
+                    [
+                        'Azrn: A FormControl can contain only one control component (Autocomplete | Input | Textarea | Select | RadioGroup)',
+                        'You should not mix those components inside a single FormControl instance'
+                    ].join('\n')
+                );
+            }
+
+            registeredInput.current = true;
+            return () => {
+                registeredInput.current = false;
+            };
+        };
+    }
+
     const childContext: FormControlState = React.useMemo(() => {
         return {
+            'aria-describedby': `${id || ''}-helper-text`,
             disabled,
+            color,
             error,
             filled,
             focused,
+            htmlFor: id,
+            labelId: `${id || ''}-label`,
             onBlur: () => {
                 setFocused(false);
             },
@@ -130,11 +159,28 @@ export const FormControl = React.forwardRef(function FormControl<RootComponentTy
                 setFocused(true);
             },
             required,
+            registerEffect: registerEffect!,
+            setHelperText,
+            size,
             value: value ?? ''
         };
-    }, [disabled, error, filled, focused, onChange, required, setValue, value]);
+    }, [
+        disabled,
+        color,
+        error,
+        filled,
+        focused,
+        helperText,
+        id,
+        onChange,
+        registerEffect,
+        required,
+        size,
+        setValue,
+        value
+    ]);
 
-    const classes = useUtilityClasses(ownerState);
+    console.log('CONTEXT', childContext);
 
     const renderChildren = () => {
         if (typeof children === 'function') {
@@ -170,10 +216,13 @@ FormControl.propTypes = {
      */
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     /**
-     * The color of the component.
-     * @default 'neutral'
+     * @ignore
      */
-    color: PropTypes.oneOfType([
+    className: PropTypes.string,
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     */
+    color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
         PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
         PropTypes.string
     ]),
@@ -182,12 +231,12 @@ FormControl.propTypes = {
      */
     defaultValue: PropTypes.any,
     /**
-     * If `true`, the label, input and helper text should be displayed in a disabled state.
+     * If `true`, the children are in disabled state.
      * @default false
      */
     disabled: PropTypes.bool,
     /**
-     * If `true`, the label is displayed in an error state.
+     * If `true`, the children will indicate an error.
      * @default false
      */
     error: PropTypes.bool,
@@ -195,6 +244,10 @@ FormControl.propTypes = {
      * Callback fired when the form element's value is modified.
      */
     onChange: PropTypes.func,
+    /**
+     * @ignore
+     */
+    id: PropTypes.string,
     /**
      * The content direction flow.
      * @default 'vertical'

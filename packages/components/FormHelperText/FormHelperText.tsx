@@ -10,6 +10,7 @@ import {
 import composeClasses from '../composeClasses';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses.ts';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { FormControlState, useFormControlContext } from '../FormControl';
 
 function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
     const { disabled, error, focused, required } = ownerState;
@@ -24,7 +25,7 @@ function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
             focused && 'focused',
             focused && 'text-primary-500 dark:text-primary-400',
             required && 'required',
-            required && 'text-danger-500 dark:text-danger-400'
+            required && 'text-amber-500 dark:text-amber-400'
         ]
     };
 
@@ -57,7 +58,22 @@ export const FormHelperText = React.forwardRef(function FormHelperText<RootCompo
     props: FormHelperTextProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
-    const { children, disabled, error, focused, required, slotProps = {}, slots = {}, ...other } = props;
+    const formControlContext: FormControlState | undefined = useFormControlContext();
+    const {
+        children,
+        disabled: disabledProp = false,
+        error: errorProp = false,
+        focused: focusedProp = false,
+        required: requiredProp = false,
+        slotProps = {},
+        slots = {},
+        ...other
+    } = props;
+
+    const disabled = formControlContext?.disabled ?? disabledProp;
+    const error = formControlContext?.error ?? errorProp;
+    const focused = formControlContext?.focused ?? focusedProp;
+    const required = formControlContext?.required ?? requiredProp;
 
     const ownerState: FormHelperTextOwnerState = {
         disabled,
@@ -75,7 +91,8 @@ export const FormHelperText = React.forwardRef(function FormHelperText<RootCompo
         externalSlotProps: slotProps.root,
         externalForwardedProps: other,
         additionalProps: {
-            ref: forwardedRef
+            ref: forwardedRef,
+            id: formControlContext?.['aria-describedby']
         },
         ownerState,
         className: classes.root

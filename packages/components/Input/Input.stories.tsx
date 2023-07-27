@@ -23,14 +23,3 @@ export const Primary: Story = {
     args: {},
     render: (args) => <Input aria-label="Demo input" placeholder="Type something…" {...args} />
 };
-
-// export const Circular: Story = {
-//     args: {
-//         overlap: 'circular'
-//     },
-//     render: (args) => (
-//         <Badge {...args}>
-//             <Icon icon="heart" size="2xl" color="secondary" />
-//         </Badge>
-//     )
-// };

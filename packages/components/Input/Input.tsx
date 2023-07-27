@@ -160,6 +160,8 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         },
         externalSlotProps: slotProps.input,
         additionalProps: {
+            id: formControlContext?.htmlFor,
+            'aria-describedby': formControlContext?.['aria-describedby'] ?? ariaDescribedby,
             rows: multiline ? rows : undefined,
             ...(multiline &&
                 !isHostComponent(InputComponent) && {

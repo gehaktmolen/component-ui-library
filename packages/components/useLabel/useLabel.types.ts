@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormControlState } from '../FormControl';
 
-export interface UseFormLabelParameters {
+export interface UseLabelParameters {
     /**
      * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.
      * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -16,25 +16,22 @@ export interface UseFormLabelParameters {
     required?: boolean;
 }
 
-export interface UseFormLabelRootSlotOwnProps {
+export interface UseLabelRootSlotOwnProps {
     onClick: React.MouseEventHandler | undefined;
 }
 
-export type UseFormLabelRootSlotProps<TOther = NonNullable<unknown>> = Omit<
-    TOther,
-    keyof UseFormLabelRootSlotOwnProps
-> &
-    UseFormLabelRootSlotOwnProps;
+export type UseLabelRootSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseLabelRootSlotOwnProps> &
+    UseLabelRootSlotOwnProps;
 
-export interface UseFormLabelSlotOwnProps {
+export interface UseLabelSlotOwnProps {
     ref: React.RefCallback<HTMLLabelElement> | null;
     required: boolean;
 }
 
-export type UseFormLabelSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseFormLabelSlotOwnProps> &
-    UseFormLabelSlotOwnProps;
+export type UseLabelSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseLabelSlotOwnProps> &
+    UseLabelSlotOwnProps;
 
-export interface UseFormLabelReturnValue {
+export interface UseLabelReturnValue {
     /**
      * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.
      */
@@ -50,7 +47,7 @@ export interface UseFormLabelReturnValue {
      */
     getRootProps: <TOther extends Record<string, any> = NonNullable<unknown>>(
         externalProps?: TOther
-    ) => UseFormLabelRootSlotProps<TOther>;
+    ) => UseLabelRootSlotProps<TOther>;
     rootRef: React.RefCallback<HTMLLabelElement> | null;
     /**
      * If `true`, the `input` will indicate that it's required.

@@ -60,6 +60,18 @@ export function useInput(parameters: UseInputParameters): UseInputReturnValue {
         value = valueProp;
     }
 
+    if (process.env.NODE_ENV !== 'production') {
+        const registerEffect = formControlContext?.registerEffect;
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        React.useEffect(() => {
+            if (registerEffect) {
+                return registerEffect();
+            }
+
+            return undefined;
+        }, [registerEffect]);
+    }
+
     const { current: isControlled } = React.useRef(value != null);
 
     const handleInputRefWarning = React.useCallback((instance: HTMLElement) => {

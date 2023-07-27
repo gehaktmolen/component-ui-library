@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '../../utils';
-import { UseFormLabelParameters, UseFormLabelReturnValue, UseFormLabelRootSlotProps } from './useFormLabel.types';
+import { UseLabelParameters, UseLabelReturnValue, UseLabelRootSlotProps } from './useLabel.types';
 import extractEventHandlers from '../utils/extractEventHandlers.ts';
 import { FormControlState, useFormControlContext } from '../FormControl';
 
@@ -8,9 +8,9 @@ import { FormControlState, useFormControlContext } from '../FormControl';
  *
  * API:
  *
- * - [useFormLabel API](https://#use-form-label)
+ * - [useLabel API](https://#use-form-label)
  */
-export function useFormLabel(parameters: UseFormLabelParameters = {}): UseFormLabelReturnValue {
+export function useLabel(parameters: UseLabelParameters = {}): UseLabelReturnValue {
     const { error: errorProp = false, required: requiredProp = false, rootRef: externalRef } = parameters;
 
     const formControlContext: FormControlState | undefined = useFormControlContext();
@@ -19,8 +19,8 @@ export function useFormLabel(parameters: UseFormLabelParameters = {}): UseFormLa
     let required: boolean;
 
     if (formControlContext) {
-        error = formControlContext.error ?? false;
-        required = formControlContext.required ?? false;
+        error = formControlContext.error ?? errorProp;
+        required = formControlContext.required ?? requiredProp;
 
         if (process.env.NODE_ENV !== 'production') {
             const definedLocalProps = (['error', 'required'] as const).filter((prop) => parameters[prop] !== undefined);
@@ -55,7 +55,7 @@ export function useFormLabel(parameters: UseFormLabelParameters = {}): UseFormLa
 
     const getRootProps = <TOther extends Record<string, any> = NonNullable<unknown>>(
         externalProps: TOther = {} as TOther
-    ): UseFormLabelRootSlotProps<TOther> => {
+    ): UseLabelRootSlotProps<TOther> => {
         // onBlur, onChange and onFocus are forwarded to the input slot.
         const propsEventHandlers = extractEventHandlers(parameters, ['onBlur', 'onChange', 'onFocus']);
         const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };

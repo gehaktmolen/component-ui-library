@@ -18,18 +18,20 @@ export interface FormControlOwnProps {
      */
     className?: string;
     /**
-     * The color of the component.
-     * @default 'neutral'
+     * The color of the component. It supports those theme colors that make sense for this component.
      */
     color?: OverridableStringUnion<ColorPaletteProp, FormControlPropsColorOverrides>;
+    /**
+     * The default value of the form element.
+     */
     defaultValue?: unknown;
     /**
-     * If `true`, the label, input and helper text should be displayed in a disabled state.
+     * If `true`, the children are in disabled state.
      * @default false
      */
     disabled?: boolean;
     /**
-     * If `true`, the label is displayed in an error state.
+     * If `true`, the children will indicate an error.
      * @default false
      */
     error?: boolean;
@@ -43,7 +45,8 @@ export interface FormControlOwnProps {
      */
     orientation?: 'vertical' | 'horizontal';
     /**
-     * If `true`, the label will indicate that the `input` is required.
+     * If `true`, the user must specify a value for the input before the owning form can be submitted.
+     * If `true`, the asterisk appears on the FormLabel.
      * @default false
      */
     required?: boolean;
@@ -90,7 +93,7 @@ export interface FormControlTypeMap<
 export type FormControlProps<RootComponentType extends React.ElementType = FormControlTypeMap['defaultComponent']> =
     PolymorphicProps<FormControlTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType>;
 
-type NonOptionalOwnerState = 'disabled' | 'error' | 'required';
+type NonOptionalOwnerState = 'disabled' | 'error' | 'required' | 'size' | 'color';
 
 export type FormControlOwnerState = Simplify<
     Omit<FormControlOwnProps, NonOptionalOwnerState> &
@@ -101,14 +104,26 @@ export type FormControlOwnerState = Simplify<
 >;
 
 export type FormControlState = {
+    labelId: string;
+    htmlFor: string | undefined;
+    'aria-describedby': string | undefined;
+    setHelperText: (node: null | HTMLElement) => void;
+    registerEffect: () => () => void;
+
     /**
-     * If `true`, the label, input and helper text should be displayed in a disabled state.
+     * The color of the component. It supports those theme colors that make sense for this component.
      */
-    disabled: boolean;
+    color?: OverridableStringUnion<ColorPaletteProp, FormControlPropsColorOverrides>;
     /**
-     * If `true`, the label is displayed in an error state.
+     * If `true`, the children are in disabled state.
+     * @default false
      */
-    error: boolean;
+    disabled?: boolean;
+    /**
+     * If `true`, the children will indicate an error.
+     * @default false
+     */
+    error?: boolean;
     /**
      * If `true`, the form element has some value.
      */
@@ -130,9 +145,16 @@ export type FormControlState = {
      */
     onFocus: () => void;
     /**
-     * If `true`, the label will indicate that the `input` is required.
+     * If `true`, the user must specify a value for the input before the owning form can be submitted.
+     * If `true`, the asterisk appears on the FormLabel.
+     * @default false
      */
-    required: boolean;
+    required?: boolean;
+    /**
+     * The size of the component.
+     * @default 'md'
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', FormControlPropsSizeOverrides>;
     /**
      * The value of the form element.
      */

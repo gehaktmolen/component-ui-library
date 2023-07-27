@@ -11,7 +11,7 @@ import {
 import composeClasses from '../composeClasses';
 import { getFormLabelUtilityClass } from './formLabelClasses.ts';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { useFormLabel } from '../useFormLabel';
+import { useLabel } from '../useLabel';
 
 function useUtilityClasses(ownerState: FormLabelOwnerState) {
     const { error, required } = ownerState;
@@ -45,28 +45,20 @@ export const FormLabel = React.forwardRef(function FormLabel<RootComponentType e
     props: FormLabelProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
-    console.log('FormLabel props', props);
-    const { children, error, slotProps = {}, slots = {}, required, ...other } = props;
+    const { children, error: errorProp, slotProps = {}, slots = {}, required: requiredProp, ...other } = props;
 
-    const {
-        error: errorState,
-        formControlContext,
-        getRootProps,
-        required: requiredState
-    } = useFormLabel({
-        error,
-        required,
+    const { error, formControlContext, getRootProps, required } = useLabel({
+        error: errorProp,
+        required: requiredProp,
         ...props
     });
 
     const ownerState: FormLabelOwnerState = {
         ...props,
-        error: errorState,
-        required: requiredState,
+        error,
+        required,
         formControlContext
     };
-
-    console.log('ownerState props', ownerState);
 
     const classes = useUtilityClasses(ownerState);
 
@@ -77,7 +69,9 @@ export const FormLabel = React.forwardRef(function FormLabel<RootComponentType e
         externalForwardedProps: other,
         externalSlotProps: slotProps.root,
         additionalProps: {
-            ref: forwardedRef
+            ref: forwardedRef,
+            htmlFor: formControlContext?.htmlFor,
+            id: formControlContext?.labelId
         },
         ownerState,
         className: classes.root
@@ -94,7 +88,7 @@ export const FormLabel = React.forwardRef(function FormLabel<RootComponentType e
     return (
         <Root {...rootProps}>
             {children}
-            {requiredState && (
+            {required && (
                 <Asterisk aria-hidden {...asteriskProps}>
                     &thinsp;{'*'}
                 </Asterisk>
