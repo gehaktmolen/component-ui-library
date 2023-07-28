@@ -30,7 +30,7 @@ function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
             required && 'required'
         ],
         stack: ['items-center'],
-        asterisk: [error && 'error', error && 'text-danger-500 dark:text-danger-400'],
+        asterisk: [error && 'error', error && 'text-red-500 dark:text-red-400'],
         label: [disabled && 'disabled', disabled && 'opacity-40']
     };
 

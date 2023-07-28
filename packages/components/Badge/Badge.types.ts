@@ -74,7 +74,7 @@ export interface BadgeOwnProps {
     };
     /**
      * The components used for each slot inside the Badge.
-     * Either a string to use a HTML element or a component.
+     * Either a string to use an HTML element or a component.
      * @default {}
      */
     slots?: BadgeSlots;

@@ -5,122 +5,58 @@ import isHostComponent from '../utils/isHostComponent';
 import { InputSlotProps, InputOwnerState, InputProps, InputRootSlotProps, InputTypeMap } from './Input.types';
 import { useInput } from '../useInput';
 import { EventHandlers, useSlotProps, useColorInversion, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import composeClasses from '../composeClasses';
 import generateUtilityClass from '../generateUtilityClass';
-
-const INPUT_SOLID = Object.freeze({
-    primary: 'bg-primary-500 dark:bg-primary-100',
-    neutral: 'bg-white dark:bg-slate-800',
-    danger: 'bg-danger-500 dark:bg-danger-100',
-    info: 'bg-info-500 dark:bg-info-100',
-    success: 'bg-success-500 dark:bg-success-100',
-    warning: 'bg-warning-500 dark:bg-warning-100'
-} as const);
-
-const INPUT_OUTLINED = Object.freeze({
-    primary: 'bg-primary-500 dark:bg-primary-100 text-primary-500 dark:text-amber-500',
-    neutral: 'bg-white dark:bg-slate-800',
-    danger: 'bg-danger-500 dark:bg-danger-100 text-danger-500 dark:text-amber-500',
-    info: 'bg-info-500 dark:bg-info-100 text-info-500 dark:text-amber-500',
-    success: 'bg-success-500 dark:bg-success-100 text-success-500 dark:text-amber-500',
-    warning: 'bg-warning-500 dark:bg-warning-100 text-warning-500 dark:text-amber-500'
-} as const);
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
     const {
-        color,
+        // color,
         disabled,
         error,
         focused,
         formControlContext,
         block,
         multiline,
-        startAdornment,
-        endAdornment,
+        startAddOn,
+        startDecorator,
+        endAddOn,
+        endDecorator
         // size,
-        variant
+        // variant
     } = ownerState;
-
-    let classes = '';
-
-    if (disabled) {
-        classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
-    }
-
-    if (startAdornment) {
-        classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
-    }
-
-    if (endAdornment) {
-        classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
-    }
-
-    switch (variant) {
-        case 'solid':
-            classes += ' ';
-
-            if (color && !disabled) {
-                classes += ` ${INPUT_SOLID[color]}`;
-            }
-
-            // if (size === 'sm') {
-            //     classes += ' py-[4px] px-[10px] text-sm';
-            // } else if (size === 'lg') {
-            //     classes += ' py-[8px] px-[20px] text-lg';
-            // }
-
-            break;
-        case 'outlined':
-            classes += ' py-[5px] px-[15px] border border-current hover:bg-opacity-10';
-
-            if (color && !disabled) {
-                classes += ` ${INPUT_OUTLINED[color]} bg-opacity-0 dark:bg-opacity-0`;
-            }
-
-            // if (size === 'sm') {
-            //     classes += ' py-[3px] px-[9px] text-sm';
-            // } else if (size === 'lg') {
-            //     classes += ' py-[7px] px-[21px] text-lg';
-            // }
-
-            break;
-        case 'plain':
-            classes += ' bg-transparent';
-
-            if (color && !disabled) {
-                classes += ` ${INPUT_SOLID[color]}`;
-            }
-
-            // if (size === 'sm') {
-            //     classes += ' py-[4px] px-[5px] text-sm';
-            // } else if (size === 'lg') {
-            //     classes += ' py-[8px] px-[11px] text-lg';
-            // }
-
-            break;
-    }
 
     const slots = {
         root: [
-            'ps-2 pe-2 min-w-0 min-h-[2.5rem] relative flex rounded',
-            'before:m-[1px] before:shadow-inner before:content-[""] before:block before:absolute before:pointer-events-none before:rounded before:inset-0',
-            classes,
-            disabled && 'disabled',
-            error && 'error',
-            focused && 'focused',
-            Boolean(formControlContext) && 'controlled',
+            'mt-2',
             block && 'w-full',
-            multiline && 'multiline',
-            Boolean(startAdornment) && 'adornedStart',
-            Boolean(endAdornment) && 'adornedEnd'
+            disabled && 'disabled',
+            error && '',
+            focused && '',
+            Boolean(formControlContext) && '',
+            multiline && '',
+            (Boolean(startDecorator) || Boolean(endDecorator)) && 'relative rounded-md shadow-sm',
+            (Boolean(startAddOn) || Boolean(endAddOn)) && 'flex rounded-md shadow-sm'
         ],
         input: [
-            'p-0 min-w-0 flex-1 text-inherit placeholder-[inherit] bg-transparent outline-0',
-            disabled && 'disabled',
-            multiline && 'multiline',
-            focused && 'focused'
-        ]
+            'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
+            !error && !disabled && 'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-primary-600',
+            error && 'text-danger-900 ring-danger-300 placeholder:text-danger-300 focus:ring-danger-500',
+            disabled &&
+                'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
+            Boolean(startDecorator) && 'pl-10',
+            Boolean(endDecorator) && 'pr-10',
+            Boolean(startAddOn) && 'min-w-0 flex-1 rounded-none rounded-r-md',
+            Boolean(endAddOn) && 'min-w-0 flex-1 rounded-none rounded-l-md'
+        ],
+        startAddOn: [
+            'inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 bg-gray-200 sm:text-sm'
+        ],
+        startDecorator: ['pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'],
+        endAddOn: [
+            'inline-flex items-center rounded-r-md border border-l-0 border-gray-300 px-3 text-gray-500 bg-gray-200 sm:text-sm'
+        ],
+        endDecorator: ['pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3']
     };
 
     return composeClasses(
@@ -149,7 +85,8 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         color: colorProp = 'neutral',
         defaultValue,
         disabled,
-        endAdornment,
+        endDecorator: endDecoratorProp,
+        endAddOn: endAddOnProp,
         error,
         block = false,
         id,
@@ -165,9 +102,10 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         readOnly,
         required,
         size: sizeProp = 'md',
-        startAdornment,
+        startAddOn: startAddOnProp,
+        startDecorator: startDecoratorProp,
         value,
-        variant = 'outlined',
+        variant = 'solid',
         type: typeProp,
         rows,
         slotProps = {},
@@ -257,6 +195,7 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         additionalProps: {
             id: formControlContext?.htmlFor,
             'aria-describedby': formControlContext?.['aria-describedby'] ?? ariaDescribedby,
+            'aria-invalid': errorState,
             rows: multiline ? rows : undefined,
             ...(multiline &&
                 !isHostComponent(InputComponent) && {
@@ -267,6 +206,11 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         ownerState,
         className: classes.input
     });
+
+    const startAddOn = startAddOnProp && <div className={classes.startAddOn}>{startAddOnProp}</div>;
+    const startDecorator = startDecoratorProp && <div className={classes.startDecorator}>{startDecoratorProp}</div>;
+    const endAddOn = endAddOnProp && <div className={classes.endAddOn}>{endAddOnProp}</div>;
+    const endDecorator = endDecoratorProp && <div className={classes.endDecorator}>{endDecoratorProp}</div>;
 
     if (process.env.NODE_ENV !== 'production') {
         if (multiline) {
@@ -282,9 +226,11 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
 
     return (
         <Root {...rootProps}>
-            {startAdornment}
+            {startAddOn}
+            {startDecorator}
             <InputComponent {...inputProps} />
-            {endAdornment}
+            {endDecorator}
+            {endAddOn}
         </Root>
     );
 }) as PolymorphicComponent<InputTypeMap>;
@@ -325,10 +271,7 @@ Input.propTypes = {
      * The color of the component.
      * @default 'neutral'
      */
-    color: PropTypes.oneOfType([
-        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-        PropTypes.string
-    ]),
+    color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary']), PropTypes.string]),
     /**
      * The default value. Use when the component is not controlled.
      */
@@ -339,11 +282,15 @@ Input.propTypes = {
      */
     disabled: PropTypes.bool,
     /**
+     * Trailing add on for this input.
+     */
+    endAddOn: PropTypes.node,
+    /**
      * Trailing adornment for this input.
      */
-    endAdornment: PropTypes.node,
+    endDecorator: PropTypes.node,
     /**
-     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input.
      * The prop defaults to the value (`false`) inherited from the parent FormControl component.
      */
     error: PropTypes.bool,
@@ -443,9 +390,13 @@ Input.propTypes = {
         textarea: PropTypes.elementType
     }),
     /**
+     * Leading add on for this input.
+     */
+    startAddOn: PropTypes.node,
+    /**
      * Leading adornment for this input.
      */
-    startAdornment: PropTypes.node,
+    startDecorator: PropTypes.node,
     /**
      * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
      * @default 'text'
@@ -480,10 +431,10 @@ Input.propTypes = {
     value: PropTypes.any,
     /**
      * The variant to use.
-     * @default 'outlined'
+     * @default 'solid'
      */
     variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-        PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+        PropTypes.oneOf(['soft', 'solid']),
         PropTypes.string
     ])
 } as any;

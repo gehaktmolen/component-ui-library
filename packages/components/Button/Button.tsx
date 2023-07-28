@@ -9,98 +9,47 @@ import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps, useColorInv
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import generateUtilityClass from '../generateUtilityClass';
 
-const BUTTON_SOLID = Object.freeze({
-    primary: 'bg-primary-500 dark:bg-primary-100',
-    danger: 'bg-danger-500 dark:bg-danger-100',
-    info: 'bg-info-500 dark:bg-info-100',
-    success: 'bg-success-500 dark:bg-success-100',
-    warning: 'bg-warning-500 dark:bg-warning-100'
-} as const);
-
-const BUTTON_OUTLINED = Object.freeze({
-    primary: 'bg-primary-500 dark:bg-primary-100 text-primary-500 dark:text-amber-500',
-    danger: 'bg-danger-500 dark:bg-danger-100 text-danger-500 dark:text-amber-500',
-    info: 'bg-info-500 dark:bg-info-100 text-info-500 dark:text-amber-500',
-    success: 'bg-success-500 dark:bg-success-100 text-success-500 dark:text-amber-500',
-    warning: 'bg-warning-500 dark:bg-warning-100 text-warning-500 dark:text-amber-500'
-} as const);
-
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
-    const { active, disabled, focusVisible, variant, color, size, flat, block } = ownerState;
-
-    let classes = 'px-[16px] py-[6px] min-w-[64px] rounded-md transition hover:no-underline';
-
-    if (color === 'neutral') {
-        classes += ' [text:inherit] border-current';
-    } else if (disabled) {
-        classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
-    }
-
-    switch (variant) {
-        case 'solid':
-            classes += ' shadow-md hover:drop-shadow-xl active:drop-shadow-2xl';
-
-            if (color && color !== 'neutral' && !disabled) {
-                classes += ` ${BUTTON_SOLID[color]}`;
-            }
-
-            if (size === 'sm') {
-                classes += ' py-[4px] px-[10px] text-sm';
-            } else if (size === 'lg') {
-                classes += ' py-[8px] px-[20px] text-lg';
-            }
-
-            break;
-        case 'outlined':
-            classes += ' py-[5px] px-[15px] border border-current hover:bg-opacity-10';
-
-            if (color && color !== 'neutral' && !disabled) {
-                classes += ` ${BUTTON_OUTLINED[color]} bg-opacity-0 dark:bg-opacity-0`;
-            }
-
-            if (size === 'sm') {
-                classes += ' py-[3px] px-[9px] text-sm';
-            } else if (size === 'lg') {
-                classes += ' py-[7px] px-[21px] text-lg';
-            }
-
-            break;
-        case 'plain':
-            classes += ' bg-transparent';
-
-            if (color && color !== 'neutral' && !disabled) {
-                classes += ` ${BUTTON_SOLID[color]}`;
-            }
-
-            if (size === 'sm') {
-                classes += ' py-[4px] px-[5px] text-sm';
-            } else if (size === 'lg') {
-                classes += ' py-[8px] px-[11px] text-lg';
-            }
-
-            break;
-    }
-
+    const { active, disabled, endDecorator, focusVisible, variant, color, startDecorator, size, flat, block } =
+        ownerState;
+    console.log('ownerState', ownerState);
     const slots = {
         root: [
             styles.root,
-            classes,
+            size === 'sm' && 'px-2 py-1 text-xs',
+            size === 'md' && 'px-2.5 py-1.5 text-sm',
+            size === 'lg' && 'px-3.5 py-2.5 text-sm',
+            variant === 'solid' &&
+                'rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+            variant === 'solid' &&
+                color === 'primary' &&
+                'shadow-sm bg-primary-600 dark:bg-primary-500 text-white hover:bg-primary-500 dark:hover:bg-primary-400 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-500',
+            variant === 'solid' &&
+                color === 'neutral' &&
+                'shadow-sm bg-white dark:bg-white/10 text-gray-900 dark:text-white ring-gray-300 hover:bg-gray-50 dark:hover:bg-white/20 focus-visible:outline-gray-600 dark:focus-visible:outline-gray-500',
+            variant === 'solid' &&
+                color === 'danger' &&
+                'shadow-sm bg-danger-600 dark:bg-danger-500 text-white hover:bg-danger-500 dark:hover:bg-danger-400 focus-visible:outline-danger-600 dark:focus-visible:outline-danger-500',
+            variant === 'soft' && 'rounded-md font-semibold shadow-sm',
+            variant === 'soft' &&
+                color === 'primary' &&
+                'bg-primary-50 dark:bg-white/10 text-primary-600 dark:text-primary-500 hover:bg-primary-100 dark:hover:bg-white/20',
+            variant === 'soft' &&
+                color === 'neutral' &&
+                'bg-gray-500 dark:bg-gray/10 text-gray-900 dark:text-gray-500 hover:bg-gray-400 dark:hover:bg-gray/20',
+            variant === 'soft' &&
+                color === 'danger' &&
+                'bg-danger-50 dark:bg-white/10 text-danger-600 dark:text-danger-500 hover:bg-danger-100 dark:hover:bg-white/20',
             flat && 'drop-shadow-none hover:drop-shadow-none active:drop-shadow-none',
             block && 'w-full',
             disabled && 'drop-shadow-none',
-            focusVisible && 'bg-emerald-500 drop-shadow-none',
-            active && 'bg-amber-500'
+            focusVisible && '',
+            active && '',
+            (Boolean(startDecorator) || Boolean(endDecorator)) && 'inline-flex items-center',
+            (Boolean(startDecorator) || Boolean(endDecorator)) && size === 'lg' ? 'gap-x-2' : 'gap-x-1.5'
         ],
-        startDecorator: [
-            '[display:inherit] mr-2',
-            size && size === 'sm' && 'ml[-2px] text-lg',
-            size && size === 'lg' && 'ml-[-4px] text-2xl'
-        ],
-        endDecorator: [
-            '[display:inherit] ml-2',
-            size && size === 'sm' && 'mr-[-2px] text-lg',
-            size && size === 'lg' && 'mr-[-4px] text-2xl'
-        ]
+        startDecorator: ['flex items-center -ml-0.5 h-5 w-5'],
+        endDecorator: ['flex items-center -mr-0.5 h-5 w-5']
     };
 
     return composeClasses(
@@ -123,7 +72,7 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
     const {
         action,
         children,
-        color: colorProp = 'neutral',
+        color: colorProp = 'primary',
         disabled,
         focusableWhenDisabled = false,
         onFocusVisible,
@@ -132,7 +81,7 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         slotProps = {},
         slots = {},
         size: sizeProp = 'md',
-        variant = 'outlined',
+        variant = 'solid',
         ...other
     } = props;
 
@@ -162,8 +111,10 @@ export const Button = React.forwardRef(function Button<RootComponentType extends
         ...props,
         active,
         color,
+        endDecoratorProp,
         focusableWhenDisabled,
         focusVisible,
+        startDecoratorProp,
         size,
         variant
     };
@@ -220,12 +171,9 @@ Button.propTypes = {
     children: PropTypes.node,
     /**
      * The color of the component.
-     * @default 'neutral'
+     * @default 'primary'
      */
-    color: PropTypes.oneOfType([
-        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-        PropTypes.string
-    ]),
+    color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary', 'danger']), PropTypes.string]),
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -283,10 +231,10 @@ Button.propTypes = {
     size: PropTypes.oneOfType([PropTypes.oneOf(['sm', 'md', 'lg']), PropTypes.string]),
     /**
      * The variant to use.
-     * @default 'outlined'
+     * @default 'solid'
      */
     variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-        PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+        PropTypes.oneOf(['soft', 'solid']),
         PropTypes.string
     ])
 } as any;

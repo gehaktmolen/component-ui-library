@@ -29,7 +29,7 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
     className?: string;
     /**
      * The color of the component.
-     * @default 'neutral'
+     * @default 'primary'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
     /**
@@ -56,7 +56,7 @@ export interface ButtonOwnProps extends Omit<UseButtonParameters, 'rootRef'> {
     slots?: ButtonSlots;
     /**
      * The variant to use.
-     * @default 'outlined'
+     * @default 'solid'
      */
     variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
     /**

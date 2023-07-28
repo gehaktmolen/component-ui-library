@@ -15,7 +15,7 @@ export interface IconOwnProps extends Omit<UseIconParameters, 'ref'> {
      * The color of the component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<ColorPaletteProp, IconPropsColorOverrides>;
+    color?: string | OverridableStringUnion<ColorPaletteProp, IconPropsColorOverrides>;
     /**
      * The icon name based on Font Awesome Solid icons.
      */

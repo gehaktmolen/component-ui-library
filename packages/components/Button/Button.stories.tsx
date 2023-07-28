@@ -43,23 +43,74 @@ export const Primary: Story = {
     render: (args) => <Button {...args}>{args.label}</Button>
 };
 
+export const Variants: Story = {
+    render: (args) => (
+        <div className="py-2 flex flex-col items-center flex-wrap gap-2">
+            <Button variant="solid">{args.label}</Button>
+            <Button variant="soft">{args.label}</Button>
+        </div>
+    )
+};
+
+export const Sizes: Story = {
+    render: (args) => (
+        <div className="py-2 flex flex-col items-center flex-wrap gap-2">
+            <Button size="sm">{args.label}</Button>
+            <Button size="md">{args.label}</Button>
+            <Button size="lg">{args.label}</Button>
+        </div>
+    )
+};
+
+export const Colors: Story = {
+    render: (args) => (
+        <div className="py-2 flex flex-col items-center flex-wrap gap-2">
+            <Button color="primary">{args.label}</Button>
+            <Button color="neutral">{args.label}</Button>
+            <Button color="danger">{args.label}</Button>
+        </div>
+    )
+};
+
 export const StartDecorator: Story = {
     args: {
         variant: 'solid',
-        color: 'primary',
-        startDecorator: <Icon icon="heart" color="danger" />
+        color: 'neutral',
+        startDecorator: <Icon icon="heart" color="primary" />
+    },
+    render: (args) => <Button {...args}>{args.label}</Button>
+};
+
+export const EndDecorator: Story = {
+    args: {
+        variant: 'solid',
+        color: 'neutral',
+        endDecorator: <Icon icon="heart" color="danger" />
+    },
+    render: (args) => <Button {...args}>{args.label}</Button>
+};
+
+export const StartAndEndDecorator: Story = {
+    args: {
+        variant: 'solid',
+        color: 'neutral',
+        startDecorator: <Icon icon="heart" color="#ff8080" />,
+        endDecorator: <Icon icon="heart" color="primary" />
     },
     render: (args) => <Button {...args}>{args.label}</Button>
 };
 
 export const Custom: Story = {
+    args: {
+        variant: 'soft'
+    },
     render: (args) => (
         <Button
             slotProps={{
                 root: (state: ButtonOwnerState) => ({
-                    className: ` drop-shadow-2xl text-white bg-gradient-to-r from-indigo-500 via-purple-500 ${
-                        state.focusVisible ? 'to-pink-500' : 'to-amber-500'
-                    } border border-2 ${state.active ? 'border-purple-500' : 'border-amber-500'}`
+                    className: `text-white bg-gradient-to-r from-primary-500 via-neutral-500 ${
+                        state.focusVisible ? 'to-primary-500' : 'to-neutral-500'
+                    } border border-2 ${state.active ? 'border-primary-500' : 'border-neutral-500'}`
                 })
             }}
             {...args}

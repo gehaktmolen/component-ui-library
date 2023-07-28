@@ -1,5 +1,5 @@
-// const colors = require('tailwindcss/colors')
-import colors from 'tailwindcss/colors';
+// const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -10,22 +10,17 @@ export default {
         colors: {
             transparent: 'transparent',
             current: 'currentColor',
-            disabled: colors.gray,
             primary: colors.fuchsia,
-            success: colors.emerald,
             danger: colors.red,
-            warning: colors.amber,
-            info: colors.blue,
-            black: colors.black,
             white: colors.white,
-            purple: colors.purple,
-            amber: colors.amber,
-            indigo: colors.indigo,
             gray: colors.gray,
-            emerald: colors.emerald,
             slate: colors.slate
         },
-        extend: {}
+        extend: {
+            // fontFamily: {
+            //     sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+            // },
+        }
     },
-    plugins: []
+    plugins: [require('@tailwindcss/forms')]
 };

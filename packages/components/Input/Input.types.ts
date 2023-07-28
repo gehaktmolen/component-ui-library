@@ -91,9 +91,13 @@ export type InputOwnProps = (SingleLineInputProps | MultiLineInputProps) &
          */
         color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
         /**
+         * Trailing add on for this input.
+         */
+        endAddOn?: React.ReactNode;
+        /**
          * Trailing adornment for this input.
          */
-        endAdornment?: React.ReactNode;
+        endDecorator?: React.ReactNode;
         /**
          * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Azrn-error` class on the root element.
          * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -138,16 +142,20 @@ export type InputOwnProps = (SingleLineInputProps | MultiLineInputProps) &
          */
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', InputPropsSizeOverrides>;
         /**
+         * Leading add on for this input.
+         */
+        startAddOn?: React.ReactNode;
+        /**
          * Leading adornment for this input.
          */
-        startAdornment?: React.ReactNode;
+        startDecorator?: React.ReactNode;
         /**
          * The value of the `input` element, required for a controlled component.
          */
         value?: unknown;
         /**
          * The variant to use.
-         * @default 'outlined'
+         * @default 'solid'
          */
         variant?: OverridableStringUnion<VariantProp, InputPropsVariantOverrides>;
     };

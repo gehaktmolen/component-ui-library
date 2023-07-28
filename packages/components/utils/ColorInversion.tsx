@@ -3,11 +3,11 @@ import { OverridableStringUnion } from '../../types';
 
 export interface VariantPropOverrides {}
 
-export type DefaultVariantProp = 'plain' | 'outlined' | 'soft' | 'solid';
+export type DefaultVariantProp = 'soft' | 'solid';
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
+export type DefaultColorPalette = 'primary' | 'neutral' | 'danger';
 
 export type ColorPaletteProp = OverridableStringUnion<DefaultColorPalette, ColorPalettePropOverrides>;
 
@@ -50,8 +50,8 @@ export interface ColorInversionConfig extends Partial<Record<VariantProp, Array<
 
 export default function ColorInversionProvider({ children, variant }: ColorInversionProviderProps) {
     const colorInversionConfig: ColorInversionConfig = {
-        soft: ['plain', 'outlined', 'soft', 'solid'],
-        solid: ['plain', 'outlined', 'soft', 'solid']
+        soft: ['soft', 'solid'],
+        solid: ['soft', 'solid']
     };
 
     return (

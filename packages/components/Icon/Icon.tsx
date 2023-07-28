@@ -17,20 +17,15 @@ import generateUtilityClass from '../generateUtilityClass';
 
 library.add(faHeart);
 
-const ICON_COLOR = Object.freeze({
-    primary: 'text-primary-500 dark:text-primary-100',
-    neutral: 'text-inherit',
-    danger: 'text-danger-500 dark:text-danger-100',
-    info: 'text-info-500 dark:text-info-100',
-    success: 'text-success-500 dark:text-success-100',
-    warning: 'text-warning-500 dark:text-warning-100'
-} as const);
-
 const useUtilityClasses = (ownerState: IconOwnerState) => {
-    const { color } = ownerState;
+    const { color: ColorProp = 'neutral' } = ownerState;
 
     const slots = {
-        root: [color && ICON_COLOR[color]]
+        root: [
+            ColorProp === 'primary' && 'text-primary-500 dark:text-primary-400',
+            ColorProp === 'danger' && 'text-danger-500 dark:text-danger-400',
+            ColorProp === 'neutral' && 'text-[inherit]'
+        ]
     };
 
     return composeClasses(
@@ -83,12 +78,10 @@ Icon.propTypes = {
      * The color of the component.
      * @default 'neutral'
      */
-    color: PropTypes.oneOfType([
-        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-        PropTypes.string
-    ]),
+    color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary']), PropTypes.string]),
     /**
      * The size of the component.
+     * Todo: This is wrong. Should use FontAwesome sizes.
      * @default 'md'
      */
     size: PropTypes.oneOfType([PropTypes.oneOf(['sm', 'md', 'lg']), PropTypes.string]),

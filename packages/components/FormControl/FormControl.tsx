@@ -223,10 +223,7 @@ FormControl.propTypes = {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
-    color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-        PropTypes.string
-    ]),
+    color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary']), PropTypes.string]),
     /**
      * @ignore
      */

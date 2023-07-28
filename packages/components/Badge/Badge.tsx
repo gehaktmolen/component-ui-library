@@ -11,10 +11,7 @@ import generateUtilityClass from '../generateUtilityClass';
 const BADGE_COLOR = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100 text-white',
     neutral: 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100',
-    danger: 'bg-danger-500 dark:bg-danger-100 text-white',
-    info: 'bg-info-500 dark:bg-info-100 text-white',
-    success: 'bg-success-500 dark:bg-success-100 text-white',
-    warning: 'bg-warning-500 dark:bg-warning-100 text-white'
+    danger: ''
 } as const);
 
 const useUtilityClasses = (ownerState: BadgeOwnerState) => {
@@ -186,10 +183,7 @@ Badge.propTypes = {
      * The color of the component.
      * @default 'neutral'
      */
-    color: PropTypes.oneOfType([
-        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-        PropTypes.string
-    ]),
+    color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary', 'danger']), PropTypes.string]),
     /**
      * If `true`, the badge is invisible.
      * @default false

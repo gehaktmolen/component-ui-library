@@ -17,11 +17,7 @@ import generateUtilityClass from '../generateUtilityClass';
 
 const SWITCH_COLOR = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100',
-    neutral: 'bg-white opacity-20',
-    danger: 'bg-danger-500 dark:bg-danger-100',
-    info: 'bg-info-500 dark:bg-info-100',
-    success: 'bg-success-500 dark:bg-success-100',
-    warning: 'bg-warning-500 dark:bg-warning-100'
+    neutral: 'bg-white opacity-20'
 } as const);
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
@@ -158,10 +154,7 @@ Switch.propTypes = {
      * The color of the component.
      * @default 'neutral'
      */
-    color: PropTypes.oneOfType([
-        PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-        PropTypes.string
-    ]),
+    color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary']), PropTypes.string]),
     /**
      * The default checked state. Use when the component is not controlled.
      */

@@ -36,7 +36,7 @@ export const Rectangular: Story = {
     },
     render: (args) => (
         <Badge {...args}>
-            <Button variant="solid" color="warning">
+            <Button variant="solid" color="neutral">
                 Button
             </Button>
         </Badge>
@@ -49,7 +49,7 @@ export const Circular: Story = {
     },
     render: (args) => (
         <Badge {...args}>
-            <Icon icon="heart" size="2xl" color="danger" />
+            <Icon icon="heart" size="2xl" color="#ff8080" />
         </Badge>
     )
 };

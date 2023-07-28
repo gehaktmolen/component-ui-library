@@ -17,15 +17,12 @@ function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
 
     const slots = {
         root: [
-            'flex flex-row flex-wrap content-center items-center mt-1 mb-0 mx-0 text-xs',
+            'mt-2 text-sm',
+            !error && 'text-gray-500 dark:text-gray-200',
             disabled && 'disabled',
-            disabled && 'text-disabled dark:text-disabled-400',
-            error && 'error',
-            error && 'text-danger-500 dark:text-danger-400',
+            error && 'text-red-600 dark:text-red-500',
             focused && 'focused',
-            focused && 'text-primary-500 dark:text-primary-400',
-            required && 'required',
-            required && 'text-amber-500 dark:text-amber-400'
+            required && 'required'
         ]
     };
 
