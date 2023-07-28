@@ -107,6 +107,21 @@ export const Error: Story = {
     )
 };
 
+export const TextArea: Story = {
+    args: {
+        multiline: true,
+        rows: 5,
+        maxRows: 10,
+        minRows: 5
+    },
+    render: (args) => (
+        <FormControl>
+            <FormLabel>Add your comment</FormLabel>
+            <Input placeholder="Type something..." {...args} />
+        </FormControl>
+    )
+};
+
 export const StartDecorator: Story = {
     render: () => (
         <Input

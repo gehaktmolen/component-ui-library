@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { FormControlLabel } from '../FormControlLabel';
 import { FormGroup } from './';
-import { Switch } from '../Switch';
+import { Switch } from '../Toggle';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {

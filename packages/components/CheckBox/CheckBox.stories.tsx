@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Switch } from './Switch';
+import { CheckBox } from './CheckBox.tsx';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Inputs/Switch',
-    component: Switch,
+    title: 'Inputs/CheckBox',
+    component: CheckBox,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered'
     },
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
     tags: ['autodocs']
-} satisfies Meta<typeof Switch>;
+} satisfies Meta<typeof CheckBox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -22,5 +22,5 @@ export const Primary: Story = {
     args: {
         defaultChecked: true
     },
-    render: (args) => <Switch {...args} />
+    render: (args) => <CheckBox {...args} />
 };

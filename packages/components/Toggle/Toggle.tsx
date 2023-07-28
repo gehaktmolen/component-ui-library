@@ -1,21 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '../composeClasses';
-import { useSwitch } from '../useSwitch';
+import { useToggle } from '../useToggle';
 import {
-    SwitchProps,
-    SwitchOwnerState,
-    SwitchInputSlotProps,
-    SwitchRootSlotProps,
-    SwitchThumbSlotProps,
-    SwitchTrackSlotProps,
-    SwitchTypeMap
-} from './Switch.types';
+    ToggleProps,
+    ToggleOwnerState,
+    ToggleInputSlotProps,
+    ToggleRootSlotProps,
+    ToggleThumbSlotProps,
+    ToggleTrackSlotProps,
+    ToggleTypeMap
+} from './Toggle.types';
 import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import generateUtilityClass from '../generateUtilityClass';
 
-const useUtilityClasses = (ownerState: SwitchOwnerState) => {
+const useUtilityClasses = (ownerState: ToggleOwnerState) => {
     const { checked, disabled, focusVisible, readOnly, color } = ownerState;
 
     const slots = {
@@ -51,14 +51,14 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
 };
 
 /**
- * The foundation for building custom-styled switches.
+ * The foundation for building custom-styled togglees.
  *
  * API:
  *
- * - [Switch API](https://#switch)
+ * - [Toggle API](https://#toggle)
  */
-export const Switch = React.forwardRef(function Switch<RootComponentType extends React.ElementType>(
-    props: SwitchProps<RootComponentType>,
+export const Toggle = React.forwardRef(function Toggle<RootComponentType extends React.ElementType>(
+    props: ToggleProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
     const {
@@ -77,7 +77,7 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
         ...other
     } = props;
 
-    const useSwitchProps = {
+    const useToggleProps = {
         checked: checkedProp,
         defaultChecked,
         disabled: disabledProp,
@@ -88,9 +88,9 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
         readOnly: readOnlyProp
     };
 
-    const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
+    const { getInputProps, checked, disabled, focusVisible, readOnly } = useToggle(useToggleProps);
 
-    const ownerState: SwitchOwnerState = {
+    const ownerState: ToggleOwnerState = {
         ...props,
         checked,
         disabled,
@@ -102,7 +102,7 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
     const classes = useUtilityClasses(ownerState);
 
     const Root: React.ElementType = slots.root ?? 'span';
-    const rootProps: WithOptionalOwnerState<SwitchRootSlotProps> = useSlotProps({
+    const rootProps: WithOptionalOwnerState<ToggleRootSlotProps> = useSlotProps({
         elementType: Root,
         externalSlotProps: slotProps.root,
         externalForwardedProps: other,
@@ -114,7 +114,7 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
     });
 
     const Thumb: React.ElementType = slots.thumb ?? 'span';
-    const thumbProps: WithOptionalOwnerState<SwitchThumbSlotProps> = useSlotProps({
+    const thumbProps: WithOptionalOwnerState<ToggleThumbSlotProps> = useSlotProps({
         elementType: Thumb,
         externalSlotProps: slotProps.thumb,
         ownerState,
@@ -122,7 +122,7 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
     });
 
     const Input: React.ElementType = slots.input ?? 'input';
-    const inputProps: WithOptionalOwnerState<SwitchInputSlotProps> = useSlotProps({
+    const inputProps: WithOptionalOwnerState<ToggleInputSlotProps> = useSlotProps({
         elementType: Input,
         getSlotProps: getInputProps,
         externalSlotProps: slotProps.input,
@@ -131,7 +131,7 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
     });
 
     const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
-    const trackProps: WithOptionalOwnerState<SwitchTrackSlotProps> = useSlotProps({
+    const trackProps: WithOptionalOwnerState<ToggleTrackSlotProps> = useSlotProps({
         elementType: Track,
         externalSlotProps: slotProps.track,
         ownerState,
@@ -145,9 +145,9 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
             <Input {...inputProps} />
         </Root>
     );
-}) as PolymorphicComponent<SwitchTypeMap>;
+}) as PolymorphicComponent<ToggleTypeMap>;
 
-Switch.propTypes = {
+Toggle.propTypes = {
     /**
      * If `true`, the component is checked.
      */
@@ -194,7 +194,7 @@ Switch.propTypes = {
      */
     required: PropTypes.bool,
     /**
-     * The props used for each slot inside the Switch.
+     * The props used for each slot inside the Toggle.
      * @default {}
      */
     slotProps: PropTypes.shape({
@@ -204,7 +204,7 @@ Switch.propTypes = {
         track: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**
-     * The components used for each slot inside the Switch.
+     * The components used for each slot inside the Toggle.
      * Either a string to use a HTML element or a component.
      * @default {}
      */

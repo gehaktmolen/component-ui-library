@@ -4,16 +4,16 @@ import {
     unstable_useForkRef as useForkRef,
     unstable_useIsFocusVisible as useIsFocusVisible
 } from '../../utils';
-import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
+import { UseSwitchParameters, UseSwitchReturnValue } from './useToggle.types';
 
 /**
  * The basic building block for creating custom switches.
  *
  * API:
  *
- * - [useSwitch API](https://#use-switch)
+ * - [useToggle API](https://#use-switch)
  */
-export function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
+export function useToggle(props: UseSwitchParameters): UseSwitchReturnValue {
     const {
         checked: checkedProp,
         defaultChecked,
