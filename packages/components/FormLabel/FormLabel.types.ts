@@ -1,22 +1,24 @@
 import * as React from 'react';
-import { Simplify } from '../../types';
-import { FormControlState } from '../FormControl';
-import { UseLabelParameters, UseLabelRootSlotProps } from '../useLabel';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import { OverrideProps, OverridableTypeMap, OverridableComponent, Simplify } from '../../types';
+import { SlotComponentProps } from '../utils';
 
 export interface FormLabelRootSlotPropsOverrides {}
 export interface FormLabelAsteriskSlotPropsOverrides {}
 
-export type FormLabelOwnProps = Omit<UseLabelParameters, 'error'> & {
+export type FormLabelOwnerState = Simplify<
+    FormLabelOwnProps & {
+        disabled?: boolean;
+        error?: boolean;
+        focused?: boolean;
+        required?: boolean;
+    }
+>;
+
+export interface FormLabelOwnProps {
     /**
-     * Class name applied to the root element.
+     * The component will be added relative to this node.
      */
-    className?: string;
-    /**
-     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Azrn-error` class on the root element.
-     * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-     */
-    error?: boolean;
+    children?: React.ReactNode;
     /**
      * The props used for each slot inside the FormLabel.
      * @default {}
@@ -26,12 +28,12 @@ export type FormLabelOwnProps = Omit<UseLabelParameters, 'error'> & {
         asterisk?: SlotComponentProps<'span', FormLabelAsteriskSlotPropsOverrides, FormLabelOwnerState>;
     };
     /**
-     * The components used for each slot inside the FormLabelBase.
-     * Either a string to use a HTML element or a component.
+     * The components used for each slot inside the FormLabel.
+     * Either a string to use an HTML element or a component.
      * @default {}
      */
     slots?: FormLabelSlots;
-};
+}
 
 export interface FormLabelSlots {
     /**
@@ -54,28 +56,30 @@ export interface FormLabelTypeMap<
     defaultComponent: RootComponentType;
 }
 
+/**
+ * Utility to create component types that inherit props from FormLabel.
+ */
+export interface ExtendFormLabelTypeMap<M extends OverridableTypeMap> {
+    props: M['props'] & FormLabelTypeMap['props'];
+    defaultComponent: M['defaultComponent'];
+}
+
+export type ExtendFormLabel<M extends OverridableTypeMap> = OverridableComponent<ExtendFormLabelTypeMap<M>>;
+
 export type FormLabelProps<RootComponentType extends React.ElementType = FormLabelTypeMap['defaultComponent']> =
-    PolymorphicProps<FormLabelTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType>;
+    OverrideProps<FormLabelTypeMap<NonNullable<unknown>, RootComponentType>, RootComponentType> & {
+        component?: RootComponentType;
+    };
 
-export type FormLabelOwnerState = Simplify<
-    FormLabelOwnProps & {
-        formControlContext: FormControlState | undefined;
-    }
->;
+export type FormLabelRootSlotProps = {
+    children?: React.ReactNode;
+    className?: string;
+    ownerState: FormLabelOwnerState;
+    ref: React.Ref<HTMLSpanElement>;
+};
 
-export type FormLabelRootSlotProps = Simplify<
-    UseLabelRootSlotProps & {
-        ownerState: FormLabelOwnerState;
-        className?: string;
-        children?: React.ReactNode;
-        ref?: React.Ref<HTMLLabelElement>;
-    }
->;
-
-export type FormLabelAsteriskSlotProps = Simplify<
-    Omit<UseLabelRootSlotProps, 'onClick'> & {
-        className?: string;
-        ownerState: FormLabelOwnerState;
-        ref: React.Ref<HTMLSpanElement>;
-    }
->;
+export type FormLabelAsteriskSlotProps = {
+    children?: React.ReactNode;
+    className?: string;
+    ownerState: FormLabelOwnerState;
+};

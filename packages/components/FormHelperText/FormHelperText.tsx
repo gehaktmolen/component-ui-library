@@ -8,9 +8,9 @@ import {
     FormHelperTextOwnerState
 } from './FormHelperText.types';
 import composeClasses from '../composeClasses';
+import generateUtilityClass from '../generateUtilityClass';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { FormControlState, useFormControlContext } from '../FormControl';
-import generateUtilityClass from '../generateUtilityClass';
 
 function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
     const { disabled, error, focused, required } = ownerState;

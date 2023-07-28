@@ -38,7 +38,7 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
         multiline,
         startAdornment,
         endAdornment,
-        size,
+        // size,
         variant
     } = ownerState;
 

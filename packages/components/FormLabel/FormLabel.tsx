@@ -9,18 +9,24 @@ import {
     FormLabelAsteriskSlotProps
 } from './FormLabel.types';
 import composeClasses from '../composeClasses';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { useLabel } from '../useLabel';
 import generateUtilityClass from '../generateUtilityClass';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { FormControlState, useFormControlContext } from '../FormControl';
 
 function useUtilityClasses(ownerState: FormLabelOwnerState) {
-    const { error, required } = ownerState;
+    const { disabled, error, focused, required } = ownerState;
 
     const slots = {
         root: [
             'flex flex-row flex-wrap content-center items-center mb-1 mt-0 mx-0',
+            disabled && 'disabled',
+            disabled && 'text-disabled dark:text-disabled-400',
+            error && 'error',
+            error && 'text-danger-500 dark:text-danger-400',
+            focused && 'focused',
+            focused && 'text-primary-500 dark:text-primary-400',
             required && 'required',
-            error && 'error'
+            required && 'text-amber-500 dark:text-amber-400'
         ],
         asterisk: [error && 'error', error && 'text-danger-500 dark:text-danger-400']
     };
@@ -48,19 +54,29 @@ export const FormLabel = React.forwardRef(function FormLabel<RootComponentType e
     props: FormLabelProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
-    const { children, error: errorProp, slotProps = {}, slots = {}, required: requiredProp, ...other } = props;
+    const formControlContext: FormControlState | undefined = useFormControlContext();
+    const {
+        children,
+        disabled: disabledProp = false,
+        error: errorProp = false,
+        focused: focusedProp = false,
+        required: requiredProp = false,
+        slotProps = {},
+        slots = {},
+        ...other
+    } = props;
 
-    const { error, formControlContext, getRootProps, required } = useLabel({
-        error: errorProp,
-        required: requiredProp,
-        ...props
-    });
+    const disabled = formControlContext?.disabled ?? disabledProp;
+    const error = formControlContext?.error ?? errorProp;
+    const focused = formControlContext?.focused ?? focusedProp;
+    const required = formControlContext?.required ?? requiredProp;
 
     const ownerState: FormLabelOwnerState = {
-        ...props,
+        disabled,
         error,
+        focused,
         required,
-        formControlContext
+        ...props
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -68,9 +84,8 @@ export const FormLabel = React.forwardRef(function FormLabel<RootComponentType e
     const Root = slots.root ?? 'label';
     const rootProps: WithOptionalOwnerState<FormLabelRootSlotProps> = useSlotProps({
         elementType: Root,
-        getSlotProps: getRootProps,
-        externalForwardedProps: other,
         externalSlotProps: slotProps.root,
+        externalForwardedProps: other,
         additionalProps: {
             ref: forwardedRef,
             htmlFor: formControlContext?.htmlFor,
