@@ -45,68 +45,10 @@ function ControlStateDisplay() {
     const { filled, focused } = formControlContext;
 
     return (
-        <p>
+        <p className="mt-4 text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
             {filled ? 'filled' : 'empty'}&nbsp;|&nbsp;
             {focused ? 'focused' : 'not focused'}
         </p>
     );
 }
 
-// const Label = React.forwardRef<HTMLParagraphElement, { className?: string; children?: React.ReactNode }>(
-//     ({ className: classNameProp, children }, ref) => {
-//         const formControlContext = useFormControlContext();
-//         const [dirty, setDirty] = React.useState(false);
-//
-//         React.useEffect(() => {
-//             if (formControlContext?.filled) {
-//                 setDirty(true);
-//             }
-//         }, [formControlContext]);
-//
-//         if (formControlContext === undefined) {
-//             return <p className={clsx('text-sm mb-1', classNameProp)}>{children}</p>;
-//         }
-//
-//         const { error, required, filled } = formControlContext;
-//         const showRequiredError = dirty && required && !filled;
-//
-//         return (
-//             <p
-//                 ref={ref}
-//                 className={clsx(
-//                     'text-sm mb-1',
-//                     classNameProp,
-//                     error || showRequiredError ? 'invalid text-danger-500' : ''
-//                 )}
-//             >
-//                 {children}
-//                 {required ? ' *' : ''}
-//             </p>
-//         );
-//     }
-// );
-
-// const HelperText = React.forwardRef<HTMLParagraphElement, { className?: string }>((props, ref) => {
-//     const { className, ...other } = props;
-//     const formControlContext = useFormControlContext();
-//     const [dirty, setDirty] = React.useState(false);
-//
-//     React.useEffect(() => {
-//         if (formControlContext?.filled) {
-//             setDirty(true);
-//         }
-//     }, [formControlContext]);
-//
-//     if (formControlContext === undefined) {
-//         return null;
-//     }
-//
-//     const { required, filled } = formControlContext;
-//     const showRequiredError = dirty && required && !filled;
-//
-//     return showRequiredError ? (
-//         <p ref={ref} className={clsx('text-sm', className)} {...other}>
-//             This field is required.
-//         </p>
-//     ) : null;
-// });

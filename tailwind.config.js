@@ -13,8 +13,7 @@ export default {
             primary: colors.fuchsia,
             danger: colors.red,
             white: colors.white,
-            gray: colors.gray,
-            slate: colors.slate
+            gray: colors.gray
         },
         extend: {
             // fontFamily: {

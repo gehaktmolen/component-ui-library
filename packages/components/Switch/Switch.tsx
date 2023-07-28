@@ -154,7 +154,7 @@ Switch.propTypes = {
     checked: PropTypes.bool,
     /**
      * The color of the component.
-     * @default 'neutral'
+     * @default 'primary'
      */
     color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary']), PropTypes.string]),
     /**

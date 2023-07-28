@@ -10,7 +10,7 @@ function useUtilityClasses(ownerState: FormGroupOwnerState) {
     const { row, error } = ownerState;
 
     const slots = {
-        root: [`flex flex-wrap ${row ? 'flex-row' : 'flex-col'}`, error && 'error']
+        root: [`flex flex-wrap gap-4 ${row ? 'flex-row' : 'flex-col'}`, error && 'error']
     };
 
     return composeClasses(

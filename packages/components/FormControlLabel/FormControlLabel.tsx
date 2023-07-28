@@ -19,19 +19,25 @@ function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
 
     const slots = {
         root: [
-            'inline-flex items-center align-middle ml-2 mr-3',
-            disabled && 'disabled',
+            'flex flex-grow block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200',
             disabled ? 'cursor-not-allowed' : 'cursor-pointer',
-            filled && 'filled',
-            focused && 'focused',
-            labelPlacement === 'start' && 'flex-row-reverse ml-3 mr-2',
-            labelPlacement === 'top' && 'flex-col-reverse ml-3',
-            labelPlacement === 'bottom' && 'flex-col ml-3',
-            required && 'required'
+            filled && '',
+            focused && '',
+            labelPlacement === 'end' && 'flex-row',
+            labelPlacement === 'start' && 'flex-row-reverse',
+            labelPlacement === 'top' && 'flex-col-reverse',
+            labelPlacement === 'bottom' && 'flex-col',
+            required && ''
         ],
         stack: ['items-center'],
-        asterisk: [error && 'error', error && 'text-red-500 dark:text-red-400'],
-        label: [disabled && 'disabled', disabled && 'opacity-40']
+        asterisk: [error && 'text-danger-500 dark:text-danger-400'],
+        label: [
+            disabled && 'opacity-40',
+            labelPlacement === 'end' && 'ml-2',
+            labelPlacement === 'start' && 'mr-2',
+            labelPlacement === 'top' && 'mb-1 text-center',
+            labelPlacement === 'bottom' && 'mt-1 text-center',
+        ]
     };
 
     return composeClasses(

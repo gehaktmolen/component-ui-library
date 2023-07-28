@@ -19,10 +19,10 @@ function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
         root: [
             'mt-2 text-sm',
             !error && 'text-gray-500 dark:text-gray-200',
-            disabled && 'disabled',
-            error && 'text-red-600 dark:text-red-500',
-            focused && 'focused',
-            required && 'required'
+            disabled && '',
+            error && 'text-danger-500 dark:danger-danger-400',
+            focused && '',
+            required && ''
         ]
     };
 

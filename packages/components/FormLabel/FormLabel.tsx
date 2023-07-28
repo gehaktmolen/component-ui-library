@@ -19,12 +19,12 @@ function useUtilityClasses(ownerState: FormLabelOwnerState) {
     const slots = {
         root: [
             'block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200',
-            disabled && 'disabled',
-            error && 'error',
-            focused && 'focused',
-            required && 'required'
+            disabled && '',
+            error && '',
+            focused && '',
+            required && ''
         ],
-        asterisk: [error && 'error', error && 'text-danger-500 dark:text-danger-400']
+        asterisk: [error && 'text-danger-500 dark:text-danger-400']
     };
 
     return composeClasses(
