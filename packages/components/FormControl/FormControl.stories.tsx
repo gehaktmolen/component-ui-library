@@ -51,4 +51,3 @@ function ControlStateDisplay() {
         </p>
     );
 }
-

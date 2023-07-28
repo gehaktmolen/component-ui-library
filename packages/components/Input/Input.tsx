@@ -428,7 +428,7 @@ Input.propTypes = {
     /**
      * The value of the `input` element, required for a controlled component.
      */
-    value: PropTypes.any,
+    value: PropTypes.any
     /**
      * The variant to use.
      * @default 'solid'

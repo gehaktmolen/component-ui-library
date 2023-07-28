@@ -36,7 +36,7 @@ function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
             labelPlacement === 'end' && 'ml-2',
             labelPlacement === 'start' && 'mr-2',
             labelPlacement === 'top' && 'mb-1 text-center',
-            labelPlacement === 'bottom' && 'mt-1 text-center',
+            labelPlacement === 'bottom' && 'mt-1 text-center'
         ]
     };
 

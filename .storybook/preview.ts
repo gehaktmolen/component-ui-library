@@ -8,7 +8,7 @@ import '../src/tailwind.scss';
 const preview: Preview = {
     parameters: {
         backgrounds: {
-            default: 'light',
+            default: 'light'
         },
         layout: 'centered',
         actions: { argTypesRegex: '^on[A-Z].*' },

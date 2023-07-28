@@ -12,7 +12,6 @@ import generateUtilityClass from '../generateUtilityClass';
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
     const { active, disabled, endDecorator, focusVisible, variant, color, startDecorator, size, flat, block } =
         ownerState;
-    console.log('ownerState', ownerState);
     const slots = {
         root: [
             styles.root,
