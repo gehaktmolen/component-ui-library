@@ -27,34 +27,34 @@ export const Primary: Story = {
     render: (args) => <Input placeholder="Type in here…" {...args} />
 };
 
-export const Variants: Story = {
-    render: () => (
-        <div className="py-2 flex flex-col items-center flex-wrap gap-2">
-            <Input placeholder="Type in here…" variant="solid" />
-            <Input placeholder="Type in here…" variant="soft" />
-        </div>
-    )
-};
+// export const Variants: Story = {
+//     render: () => (
+//         <div className="py-2 flex flex-col items-center flex-wrap gap-2">
+//             <Input placeholder="Type in here…" variant="solid" />
+//             <Input placeholder="Type in here…" variant="soft" />
+//         </div>
+//     )
+// };
 
-export const Sizes: Story = {
-    render: () => (
-        <div className="py-2 flex flex-col items-center flex-wrap gap-2">
-            <Input size="sm" placeholder="Small" />
-            <Input size="md" placeholder="Medium" />
-            <Input size="lg" placeholder="Large" />
-        </div>
-    )
-};
+// export const Sizes: Story = {
+//     render: () => (
+//         <div className="py-2 flex flex-col items-center flex-wrap gap-2">
+//             <Input size="sm" placeholder="Small" />
+//             <Input size="md" placeholder="Medium" />
+//             <Input size="lg" placeholder="Large" />
+//         </div>
+//     )
+// };
 
-export const Colors: Story = {
-    render: () => (
-        <div className="py-2 flex flex-col items-center flex-wrap gap-2">
-            <Input placeholder="Type in here…" color="primary" />
-            <Input placeholder="Type in here…" color="neutral" />
-            <Input placeholder="Type in here…" color="danger" />
-        </div>
-    )
-};
+// export const Colors: Story = {
+//     render: () => (
+//         <div className="py-2 flex flex-col items-center flex-wrap gap-2">
+//             <Input placeholder="Type in here…" color="primary" />
+//             <Input placeholder="Type in here…" color="neutral" />
+//             <Input placeholder="Type in here…" color="danger" />
+//         </div>
+//     )
+// };
 
 export const FormProps: Story = {
     render: () => (

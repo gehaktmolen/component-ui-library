@@ -15,30 +15,32 @@ import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../u
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import generateUtilityClass from '../generateUtilityClass';
 
-const SWITCH_COLOR = Object.freeze({
-    primary: 'bg-primary-500 dark:bg-primary-100',
-    neutral: 'bg-white opacity-20'
-} as const);
-
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
     const { checked, disabled, focusVisible, readOnly, color } = ownerState;
 
     const slots = {
         root: [
-            `relative inline-block w-10 h-6 m-2.5 ${
-                disabled || readOnly ? 'cursor-not-allowed opacity-40' : 'cursor-pointer'
-            }`
+            'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2',
+            'bg-gray-200 dark:bg-gray-500',
+            focusVisible && 'ring-2 ring-offset-2 ring-primary-500 dark:ring-primary-400',
+            (disabled || readOnly) && 'opacity-40',
+            color === 'primary' && checked && 'bg-primary-500 dark:bg-primary-400',
+            color === 'neutral' && checked && 'bg-gray-500 dark:bg-gray-400',
+            color === 'danger' && checked && 'bg-danger-500 dark:bg-danger-400'
         ],
         thumb: [
-            `block w-4 h-4 top-1 ${checked ? 'left-5' : 'left-1'} rounded-2xl ${
-                focusVisible ? `${checked ? 'bg-white' : 'bg-slate-500'} shadow-outline-switch` : 'bg-white'
-            } relative transition-all`
+            'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+            checked ? 'translate-x-5' : 'translate-x-0'
         ],
-        input: ['cursor-[inherit] absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0'],
+        input: [
+            'cursor-[inherit] absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0',
+            disabled || readOnly ? 'cursor-not-allowed' : 'cursor-pointer'
+        ],
         track: [
-            `absolute block w-full h-full rounded-2xl ${
-                checked ? (color ? SWITCH_COLOR[color] : '') : 'bg-slate-400 dark:bg-slate-600'
-            }`
+            'absolute w-full h-full rounded-full transition-colors duration-200 ease-in-out',
+            color === 'primary' && checked && 'bg-primary-500 dark:bg-primary-400',
+            color === 'neutral' && checked && 'bg-gray-500 dark:bg-gray-400',
+            color === 'danger' && checked && 'bg-danger-500 dark:bg-danger-400'
         ]
     };
 
@@ -61,7 +63,7 @@ export const Switch = React.forwardRef(function Switch<RootComponentType extends
 ) {
     const {
         checked: checkedProp,
-        color = 'neutral',
+        color = 'primary',
         defaultChecked,
         disabled: disabledProp,
         onBlur,

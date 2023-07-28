@@ -40,10 +40,10 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
         ],
         input: [
             'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
-            !error && !disabled && 'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-primary-600',
+            !error && !disabled && 'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-primary-500',
             error && 'text-danger-900 ring-danger-300 placeholder:text-danger-300 focus:ring-danger-500',
             disabled &&
-                'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
+                'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
             Boolean(startDecorator) && 'pl-10',
             Boolean(endDecorator) && 'pr-10',
             Boolean(startAddOn) && 'min-w-0 flex-1 rounded-none rounded-r-md',
@@ -82,7 +82,7 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         autoComplete,
         autoFocus,
         className,
-        color: colorProp = 'neutral',
+        color: colorProp = 'primary',
         defaultValue,
         disabled,
         endDecorator: endDecoratorProp,
@@ -269,9 +269,9 @@ Input.propTypes = {
     className: PropTypes.string,
     /**
      * The color of the component.
-     * @default 'neutral'
+     * @default 'primary'
      */
-    color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary']), PropTypes.string]),
+    // color: PropTypes.oneOfType([PropTypes.oneOf(['neutral', 'primary']), PropTypes.string]),
     /**
      * The default value. Use when the component is not controlled.
      */
@@ -370,7 +370,7 @@ Input.propTypes = {
      * The size of the component.
      * @default 'md'
      */
-    size: PropTypes.oneOfType([PropTypes.oneOf(['sm', 'md', 'lg']), PropTypes.string]),
+    // size: PropTypes.oneOfType([PropTypes.oneOf(['sm', 'md', 'lg']), PropTypes.string]),
     /**
      * The props used for each slot inside the Input.
      * @default {}
@@ -433,8 +433,8 @@ Input.propTypes = {
      * The variant to use.
      * @default 'solid'
      */
-    variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-        PropTypes.oneOf(['soft', 'solid']),
-        PropTypes.string
-    ])
+    // variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    //     PropTypes.oneOf(['soft', 'solid']),
+    //     PropTypes.string
+    // ])
 } as any;
