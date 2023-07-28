@@ -9,9 +9,9 @@ import {
     FormLabelAsteriskSlotProps
 } from './FormLabel.types';
 import composeClasses from '../composeClasses';
-import { getFormLabelUtilityClass } from './formLabelClasses.ts';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { useLabel } from '../useLabel';
+import generateUtilityClass from '../generateUtilityClass';
 
 function useUtilityClasses(ownerState: FormLabelOwnerState) {
     const { error, required } = ownerState;
@@ -25,7 +25,10 @@ function useUtilityClasses(ownerState: FormLabelOwnerState) {
         asterisk: [error && 'error', error && 'text-danger-500 dark:text-danger-400']
     };
 
-    return composeClasses(slots, useClassNamesOverride(getFormLabelUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 }
 
 /**

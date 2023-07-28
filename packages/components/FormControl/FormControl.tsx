@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useControlled as useControlled, unstable_useId as useId } from '../../utils';
 import FormControlContext from './FormControlContext';
-import { getFormControlUtilityClass } from './formControlClasses';
 import {
     FormControlProps,
     NativeFormControlElement,
@@ -14,6 +13,7 @@ import {
 import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
 import composeClasses from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import generateUtilityClass from '../generateUtilityClass';
 
 function hasValue(value: unknown) {
     return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
@@ -33,7 +33,10 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
         ]
     };
 
-    return composeClasses(slots, useClassNamesOverride(getFormControlUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 }
 
 /**
@@ -179,8 +182,6 @@ export const FormControl = React.forwardRef(function FormControl<RootComponentTy
         setValue,
         value
     ]);
-
-    console.log('CONTEXT', childContext);
 
     const renderChildren = () => {
         if (typeof children === 'function') {

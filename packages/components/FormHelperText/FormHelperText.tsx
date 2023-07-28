@@ -8,9 +8,9 @@ import {
     FormHelperTextOwnerState
 } from './FormHelperText.types';
 import composeClasses from '../composeClasses';
-import { getFormHelperTextUtilityClass } from './formHelperTextClasses.ts';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { FormControlState, useFormControlContext } from '../FormControl';
+import generateUtilityClass from '../generateUtilityClass';
 
 function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
     const { disabled, error, focused, required } = ownerState;
@@ -29,7 +29,10 @@ function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
         ]
     };
 
-    return composeClasses(slots, useClassNamesOverride(getFormHelperTextUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 }
 
 /**

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { FormGroupProps, FormGroupTypeMap, FormGroupRootSlotProps, FormGroupOwnerState } from './FormGroup.types';
 import composeClasses from '../composeClasses';
-import { getFormGroupUtilityClass } from './formGroupClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import generateUtilityClass from '../generateUtilityClass';
 
 function useUtilityClasses(ownerState: FormGroupOwnerState) {
     const { row, error } = ownerState;
@@ -13,7 +13,10 @@ function useUtilityClasses(ownerState: FormGroupOwnerState) {
         root: [`flex flex-wrap ${row ? 'flex-row' : 'flex-col'}`, error && 'error']
     };
 
-    return composeClasses(slots, useClassNamesOverride(getFormGroupUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 }
 
 /**

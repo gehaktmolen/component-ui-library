@@ -11,7 +11,7 @@ export default {
             transparent: 'transparent',
             current: 'currentColor',
             disabled: colors.gray,
-            primary: colors.emerald,
+            primary: colors.fuchsia,
             success: colors.emerald,
             danger: colors.red,
             warning: colors.amber,

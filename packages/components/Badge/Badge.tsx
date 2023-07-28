@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils';
 import composeClasses from '../composeClasses';
 import { useBadge } from '../useBadge';
-import { getBadgeUtilityClass } from './badgeClasses';
 import { BadgeProps, BadgeOwnerState, BadgeTypeMap, BadgeRootSlotProps, BadgeBadgeSlotProps } from './Badge.types';
 import { WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import generateUtilityClass from '../generateUtilityClass';
 
 const BADGE_COLOR = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100 text-white',
@@ -82,7 +82,10 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
         badge: [classes]
     };
 
-    return composeClasses(slots, useClassNamesOverride(getBadgeUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 };
 /**
  *

@@ -1,5 +1,3 @@
-import ClassNameGenerator from '../ClassNameGenerator';
-
 export type GlobalStateSlot =
     | 'active'
     | 'checked'
@@ -27,13 +25,7 @@ const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
     selected: 'selected'
 };
 
-export default function generateUtilityClass(componentName: string, slot: string, globalStatePrefix = 'azrn'): string {
+export default function generateUtilityClass(slot: string): string {
     const globalStateClass = globalStateClassesMapping[slot as GlobalStateSlot];
-    return globalStateClass
-        ? globalStatePrefix
-            ? `${globalStatePrefix}-${globalStateClass}`
-            : globalStateClass
-        : componentName
-        ? `${ClassNameGenerator.generate(componentName)}-${slot}`
-        : slot;
+    return globalStateClass ? globalStateClass : slot;
 }

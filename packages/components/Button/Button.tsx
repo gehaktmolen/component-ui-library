@@ -3,11 +3,11 @@ import styles from './Button.module.scss';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '../composeClasses';
-import { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
 import { useButton } from '../useButton';
 import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps, useColorInversion } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import generateUtilityClass from '../generateUtilityClass';
 
 const BUTTON_SOLID = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100',
@@ -103,7 +103,10 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
         ]
     };
 
-    return composeClasses(slots, useClassNamesOverride(getButtonUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 };
 /**
  * The Button component replaces the standard html button with a multitude of options.

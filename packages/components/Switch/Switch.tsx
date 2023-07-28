@@ -13,7 +13,7 @@ import {
 } from './Switch.types';
 import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { getSwitchUtilityClass } from './switchClasses';
+import generateUtilityClass from '../generateUtilityClass';
 
 const SWITCH_COLOR = Object.freeze({
     primary: 'bg-primary-500 dark:bg-primary-100',
@@ -46,7 +46,10 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
         ]
     };
 
-    return composeClasses(slots, useClassNamesOverride(getSwitchUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 };
 
 /**

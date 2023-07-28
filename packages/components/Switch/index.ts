@@ -1,5 +1,3 @@
 export { Switch } from './Switch';
-export * from './Switch.types';
 
-export { default as switchClasses } from './switchClasses';
-export * from './switchClasses';
+export * from './Switch.types';

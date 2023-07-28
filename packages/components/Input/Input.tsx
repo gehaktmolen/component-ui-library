@@ -2,36 +2,131 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils';
 import isHostComponent from '../utils/isHostComponent';
-import { getInputUtilityClass } from './inputClasses';
 import { InputSlotProps, InputOwnerState, InputProps, InputRootSlotProps, InputTypeMap } from './Input.types';
 import { useInput } from '../useInput';
 import { EventHandlers, useSlotProps, useColorInversion, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import generateUtilityClass from '../generateUtilityClass';
+
+const INPUT_SOLID = Object.freeze({
+    primary: 'bg-primary-500 dark:bg-primary-100',
+    neutral: 'bg-white dark:bg-slate-800',
+    danger: 'bg-danger-500 dark:bg-danger-100',
+    info: 'bg-info-500 dark:bg-info-100',
+    success: 'bg-success-500 dark:bg-success-100',
+    warning: 'bg-warning-500 dark:bg-warning-100'
+} as const);
+
+const INPUT_OUTLINED = Object.freeze({
+    primary: 'bg-primary-500 dark:bg-primary-100 text-primary-500 dark:text-amber-500',
+    neutral: 'bg-white dark:bg-slate-800',
+    danger: 'bg-danger-500 dark:bg-danger-100 text-danger-500 dark:text-amber-500',
+    info: 'bg-info-500 dark:bg-info-100 text-info-500 dark:text-amber-500',
+    success: 'bg-success-500 dark:bg-success-100 text-success-500 dark:text-amber-500',
+    warning: 'bg-warning-500 dark:bg-warning-100 text-warning-500 dark:text-amber-500'
+} as const);
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
-    const { disabled, error, focused, formControlContext, block, multiline, startAdornment, endAdornment } = ownerState;
+    const {
+        color,
+        disabled,
+        error,
+        focused,
+        formControlContext,
+        block,
+        multiline,
+        startAdornment,
+        endAdornment,
+        size,
+        variant
+    } = ownerState;
+
+    let classes = '';
+
+    if (disabled) {
+        classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
+    }
+
+    if (startAdornment) {
+        classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
+    }
+
+    if (endAdornment) {
+        classes += ' text-gray-50 dark:text-gray-50 bg-gray-400 dark:bg-gray-500';
+    }
+
+    switch (variant) {
+        case 'solid':
+            classes += ' ';
+
+            if (color && !disabled) {
+                classes += ` ${INPUT_SOLID[color]}`;
+            }
+
+            // if (size === 'sm') {
+            //     classes += ' py-[4px] px-[10px] text-sm';
+            // } else if (size === 'lg') {
+            //     classes += ' py-[8px] px-[20px] text-lg';
+            // }
+
+            break;
+        case 'outlined':
+            classes += ' py-[5px] px-[15px] border border-current hover:bg-opacity-10';
+
+            if (color && !disabled) {
+                classes += ` ${INPUT_OUTLINED[color]} bg-opacity-0 dark:bg-opacity-0`;
+            }
+
+            // if (size === 'sm') {
+            //     classes += ' py-[3px] px-[9px] text-sm';
+            // } else if (size === 'lg') {
+            //     classes += ' py-[7px] px-[21px] text-lg';
+            // }
+
+            break;
+        case 'plain':
+            classes += ' bg-transparent';
+
+            if (color && !disabled) {
+                classes += ` ${INPUT_SOLID[color]}`;
+            }
+
+            // if (size === 'sm') {
+            //     classes += ' py-[4px] px-[5px] text-sm';
+            // } else if (size === 'lg') {
+            //     classes += ' py-[8px] px-[11px] text-lg';
+            // }
+
+            break;
+    }
 
     const slots = {
         root: [
-            'root',
+            'ps-2 pe-2 min-w-0 min-h-[2.5rem] relative flex rounded',
+            'before:m-[1px] before:shadow-inner before:content-[""] before:block before:absolute before:pointer-events-none before:rounded before:inset-0',
+            classes,
             disabled && 'disabled',
             error && 'error',
             focused && 'focused',
             Boolean(formControlContext) && 'controlled',
-            block && 'block',
+            block && 'w-full',
             multiline && 'multiline',
             Boolean(startAdornment) && 'adornedStart',
             Boolean(endAdornment) && 'adornedEnd'
         ],
         input: [
-            'w-80 text-sm font-normal leading-normal text-slate-900 dark:text-slate-300 bg-white dark:bg-slate-800 border border-solid border-slate-200 dark:border-slate-700 px-3 py-2 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900 hover:border-slate-400 hover:dark:border-slate-700 focus:outline-0 focus:shadow-outline-purple',
+            'p-0 min-w-0 flex-1 text-inherit placeholder-[inherit] bg-transparent outline-0',
             disabled && 'disabled',
-            multiline && 'multiline'
+            multiline && 'multiline',
+            focused && 'focused'
         ]
     };
 
-    return composeClasses(slots, useClassNamesOverride(getInputUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 };
 
 /**

@@ -11,8 +11,8 @@ import {
     FormControlLabelLabelSlotProps
 } from './FormControlLabel.types';
 import composeClasses from '../composeClasses';
-import { getFormControlLabelUtilityClass } from './formControlLabelClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import generateUtilityClass from '../generateUtilityClass';
 
 function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
     const { disabled, filled, focused, labelPlacement, error, required } = ownerState;
@@ -34,7 +34,10 @@ function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
         label: [disabled && 'disabled', disabled && 'opacity-40']
     };
 
-    return composeClasses(slots, useClassNamesOverride(getFormControlLabelUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 }
 
 /**

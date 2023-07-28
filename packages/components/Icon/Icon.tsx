@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils';
 import composeClasses from '../composeClasses';
 import { useIcon } from '../useIcon';
-import { getIconUtilityClass } from './iconClasses';
 import { IconProps, IconOwnerState, IconTypeMap, IconRootSlotProps } from './Icon.types';
 import { WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -14,6 +13,7 @@ import { library, IconLookup, IconDefinition, findIconDefinition } from '@fortaw
 // Todo: AAAAAAAH There goes our bundle size! :'( Come up with a better solution.
 // Todo: Update: Will only import icons used by our component library, but check if we need to extend this.
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import generateUtilityClass from '../generateUtilityClass';
 
 library.add(faHeart);
 
@@ -33,7 +33,10 @@ const useUtilityClasses = (ownerState: IconOwnerState) => {
         root: [color && ICON_COLOR[color]]
     };
 
-    return composeClasses(slots, useClassNamesOverride(getIconUtilityClass));
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
+    );
 };
 /**
  *

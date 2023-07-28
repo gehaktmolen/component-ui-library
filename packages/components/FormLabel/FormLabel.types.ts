@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Simplify } from '../../types';
 import { FormControlState } from '../FormControl';
-import { UseFormLabelParameters, UseFormLabelRootSlotProps } from '../useLabel';
+import { UseLabelParameters, UseLabelRootSlotProps } from '../useLabel';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface FormLabelRootSlotPropsOverrides {}
 export interface FormLabelAsteriskSlotPropsOverrides {}
 
-export type FormLabelOwnProps = Omit<UseFormLabelParameters, 'error'> & {
+export type FormLabelOwnProps = Omit<UseLabelParameters, 'error'> & {
     /**
      * Class name applied to the root element.
      */
@@ -64,7 +64,7 @@ export type FormLabelOwnerState = Simplify<
 >;
 
 export type FormLabelRootSlotProps = Simplify<
-    UseFormLabelRootSlotProps & {
+    UseLabelRootSlotProps & {
         ownerState: FormLabelOwnerState;
         className?: string;
         children?: React.ReactNode;
@@ -73,7 +73,7 @@ export type FormLabelRootSlotProps = Simplify<
 >;
 
 export type FormLabelAsteriskSlotProps = Simplify<
-    Omit<UseFormLabelRootSlotProps, 'onClick'> & {
+    Omit<UseLabelRootSlotProps, 'onClick'> & {
         className?: string;
         ownerState: FormLabelOwnerState;
         ref: React.Ref<HTMLSpanElement>;
