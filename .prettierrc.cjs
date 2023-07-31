@@ -5,6 +5,5 @@ module.exports = {
     tabWidth: 4,
     trailingComma: 'none',
     useTabs: false,
-    jsxBracketSameLine: true,
     endOfLine: 'lf'
 };
