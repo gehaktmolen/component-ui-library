@@ -24,7 +24,7 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
 
     const slots = {
         root: [
-            `relative flex ${orientation === 'vertical' ? 'flex-col' : 'flex-row'}`,
+            `relative flex flex-1 ${orientation === 'vertical' ? 'flex-col' : 'flex-row'}`,
             disabled && '',
             focused && '',
             error && '',

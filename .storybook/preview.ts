@@ -1,8 +1,7 @@
 import theme from './theme';
 import type { Preview } from '@storybook/react';
-
+import { decorators } from './decorators';
 import { withThemeByClassName } from '@storybook/addon-styling';
-
 import '../src/tailwind.scss';
 
 const preview: Preview = {
@@ -30,6 +29,7 @@ const preview: Preview = {
     },
 
     decorators: [
+        ...decorators,
         // Adds theme switching support.
         // NOTE: requires setting "darkMode" to "class" in your tailwind config.
         withThemeByClassName({

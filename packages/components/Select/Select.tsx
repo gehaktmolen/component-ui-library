@@ -66,7 +66,7 @@ const useUtilityClasses = <OptionValue extends NonNullable<unknown>, Multiple ex
 
     const slots = {
         root: [
-            'relative block max-w-xs w-full cursor-default rounded-md py-1.5 px-3 text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 sm:text-sm sm:leading-6',
+            'relative block max-w-xs w-full h-8 cursor-default rounded-md px-2.5 py-1.5 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2',
             'bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 focus:ring-primary-500',
             'text-ellipsis overflow-hidden whitespace-nowrap',
             disabled &&
@@ -76,10 +76,10 @@ const useUtilityClasses = <OptionValue extends NonNullable<unknown>, Multiple ex
             open && ''
         ],
         listbox: [
-            'relative block max-w-xs w-full z-10 mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm',
+            'relative block max-w-xs w-full mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm',
             'bg-white dark:bg-gray-900 ring-gray-300 dark:ring-gray-600'
         ],
-        popper: ['']
+        popper: ['z-10']
     };
 
     return composeClasses(
@@ -93,7 +93,7 @@ const useUtilityClasses = <OptionValue extends NonNullable<unknown>, Multiple ex
  *
  * API:
  *
- * - [Select API](https://#select)
+ * - [Select API](/docs/inputs-select--docs)
  */
 export const Select = React.forwardRef(function Select<
     OptionValue extends NonNullable<unknown>,

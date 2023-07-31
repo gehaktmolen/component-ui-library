@@ -5,7 +5,6 @@ import { FormControl, useFormControlContext } from './';
 import { FormLabel } from '../FormLabel';
 import { FormHelperText } from '../FormHelperText';
 import { Input } from '../Input';
-// import clsx from 'clsx';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {

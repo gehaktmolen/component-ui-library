@@ -48,7 +48,7 @@ export type UseSlotPropsResult<
 
 /**
  * @ignore - do not document.
- * Builds the props to be passed into the slot of an unstyled component.
+ * Builds the props to be passed into the slot of an un-styled component.
  * It merges the internal props of the component with the ones supplied by the user, allowing to customize the behavior.
  * If the slot component is not a host component, it also merges in the `ownerState`.
  *

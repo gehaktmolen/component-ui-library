@@ -1,5 +1,5 @@
 import * as React from 'react';
-import clsx, { ClassValue } from 'clsx';
+import { twMerge, ClassNameValue } from 'tailwind-merge';
 import { Simplify } from '../../types';
 import { EventHandlers } from './types';
 import extractEventHandlers from './extractEventHandlers';
@@ -34,7 +34,7 @@ export interface MergeSlotPropsParameters<SlotProps, ExternalForwardedProps, Ext
     /**
      * Extra class name(s) to be placed on the slot.
      */
-    className?: ClassValue | ClassValue[];
+    className?: ClassNameValue | ClassNameValue[];
 }
 
 export type MergeSlotPropsResult<SlotProps, ExternalForwardedProps, ExternalSlotProps, AdditionalProps> = {
@@ -73,7 +73,7 @@ export default function mergeSlotProps<
     if (!getSlotProps) {
         // The simpler case - getSlotProps is not defined, so no internal event handlers are defined,
         // so we can simply merge all the props without having to worry about extracting event handlers.
-        const joinedClasses = clsx(
+        const joinedClasses = twMerge(
             externalForwardedProps?.className,
             externalSlotProps?.className,
             className,
@@ -118,7 +118,7 @@ export default function mergeSlotProps<
     // The order of classes is important here.
     // Emotion (that can be used in libraries consuming our UI component library) depends
     // on this order to properly override style. It requires the most important classes to be last.
-    const joinedClasses = clsx(
+    const joinedClasses = twMerge(
         internalSlotProps?.className,
         additionalProps?.className,
         className,

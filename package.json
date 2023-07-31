@@ -16,7 +16,6 @@
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
-        "clsx": "^2.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-transition-group": "^4.4.5"
@@ -50,7 +49,7 @@
         "prop-types": "^15.8.1",
         "sass": "^1.63.6",
         "storybook": "^7.1.1",
-        "storybook-addon-state": "^1.0.3",
+        "tailwind-merge": "^1.14.0",
         "tailwindcss": "^3.3.3",
         "typescript": "^5.0.2",
         "vite": "^4.4.0"
