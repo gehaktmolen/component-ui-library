@@ -7,18 +7,12 @@ const config: StorybookConfig = {
         // '../stories/**/*.mdx',
         // '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'
     ],
+
     addons: [
         '@storybook/addon-links',
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
-        '@storybook/addon-backgrounds',
-        {
-            name: '@storybook/addon-styling',
-            options: {
-                // Check out https://github.com/storybookjs/addon-styling/blob/main/docs/api.md
-                // For more details on this addon's options.
-            }
-        }
+        '@storybook/addon-styling'
     ],
     framework: {
         name: '@storybook/react-vite',

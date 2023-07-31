@@ -1,3 +1,5 @@
+// import useState from 'storybook-addon-state';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Select } from './Select';
@@ -30,3 +32,18 @@ export const Primary: Story = {
         </div>
     )
 };
+
+// export const Controlled = () => {
+//     const [value, setValue] = useState('select-controlled', 10);
+//
+//     return (
+//         <div className="mx-auto max-w-xs w-80">
+//             <Select value={value} onChange={(_, newValue) => setValue(newValue)}>
+//                 <Option value={10}>Documentation</Option>
+//                 <Option value={20}>Components</Option>
+//                 <Option value={30}>Features</Option>
+//             </Select>
+//             <p className="mt-4">Selected value: {value}</p>
+//         </div>
+//     );
+// };
