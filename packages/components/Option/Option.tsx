@@ -12,7 +12,12 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
     const { disabled, highlighted, selected } = ownerState;
 
     const slots = {
-        root: ['root', disabled && 'disabled', highlighted && 'highlighted', selected && 'selected']
+        root: [
+            'relative cursor-default select-none py-2 pl-3 pr-9',
+            disabled && '',
+            highlighted ? 'bg-primary-500 dark:bg-primary-400 text-white' : 'text-gray-900 dark:text-gray-100',
+            selected ? 'font-semibold' : 'font-normal'
+        ]
     };
 
     return composeClasses(

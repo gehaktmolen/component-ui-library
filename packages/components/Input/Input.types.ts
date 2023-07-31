@@ -78,7 +78,7 @@ export type InputOwnProps = (SingleLineInputProps | MultiLineInputProps) &
         autoFocus?: boolean;
         /**
          * If `true`, the button will take up the full width of its container.
-         * @default false
+         * @default true
          */
         block?: boolean;
         /**

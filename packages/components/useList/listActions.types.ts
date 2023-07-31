@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export const ListActionTypes = {
     blur: 'list:blur',
     focus: 'list:focus',

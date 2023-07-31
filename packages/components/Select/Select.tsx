@@ -65,9 +65,21 @@ const useUtilityClasses = <OptionValue extends NonNullable<unknown>, Multiple ex
     const { active, disabled, open, focusVisible } = ownerState;
 
     const slots = {
-        root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', active && 'active', open && 'expanded'],
-        listbox: ['listbox', disabled && 'disabled'],
-        popper: ['popper']
+        root: [
+            'relative block max-w-xs w-full cursor-default rounded-md py-1.5 px-3 text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 sm:text-sm sm:leading-6',
+            'bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 focus:ring-primary-500',
+            'text-ellipsis overflow-hidden whitespace-nowrap',
+            disabled &&
+                'disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
+            focusVisible && '',
+            active && '',
+            open && ''
+        ],
+        listbox: [
+            'relative block max-w-xs w-full z-10 mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm',
+            'bg-white dark:bg-gray-900 ring-gray-300 dark:ring-gray-600'
+        ],
+        popper: ['']
     };
 
     return composeClasses(

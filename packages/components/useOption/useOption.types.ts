@@ -26,6 +26,7 @@ export interface UseOptionReturnValue {
     rootRef: React.RefCallback<Element> | null;
 }
 
-export type UseOptionRootSlotProps<Other extends EventHandlers = NonNullable<unknown>> = UseListItemRootSlotProps<Other> & {
-    ref?: React.RefCallback<Element> | null;
-} & Other;
+export type UseOptionRootSlotProps<Other extends EventHandlers = NonNullable<unknown>> =
+    UseListItemRootSlotProps<Other> & {
+        ref?: React.RefCallback<Element> | null;
+    } & Other;

@@ -24,7 +24,11 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
-    render: (args) => <Input placeholder="Type in here…" {...args} />
+    render: (args) => (
+        <div className="mx-auto max-w-xs w-80">
+            <Input placeholder="Type in here…" {...args} />
+        </div>
+    )
 };
 
 // export const Variants: Story = {
@@ -60,6 +64,7 @@ export const FormProps: Story = {
     render: () => (
         <div className="py-2 flex flex-col items-center flex-wrap gap-2">
             <form
+                className="mx-auto max-w-xs w-80"
                 onSubmit={(event) => {
                     event.preventDefault();
                 }}
@@ -90,7 +95,7 @@ export const FormProps: Story = {
 
 export const Disabled: Story = {
     render: () => (
-        <FormControl disabled={true}>
+        <FormControl disabled={true} className="mx-auto max-w-xs w-80">
             <FormLabel>Email</FormLabel>
             <Input type="email" placeholder="you@example.com" />
         </FormControl>
@@ -99,7 +104,7 @@ export const Disabled: Story = {
 
 export const Error: Story = {
     render: () => (
-        <FormControl error={true} required={true}>
+        <FormControl error={true} required={true} className="mx-auto max-w-xs w-80">
             <FormLabel>Email</FormLabel>
             <Input type="email" placeholder="you@example.com" defaultValue="Oh no, error found!" />
             <FormHelperText>Not a valid email address.</FormHelperText>
@@ -115,7 +120,7 @@ export const TextArea: Story = {
         minRows: 5
     },
     render: (args) => (
-        <FormControl>
+        <FormControl className="mx-auto max-w-xs w-80">
             <FormLabel>Add your comment</FormLabel>
             <Input placeholder="Type something..." {...args} />
         </FormControl>
@@ -124,53 +129,63 @@ export const TextArea: Story = {
 
 export const StartDecorator: Story = {
     render: () => (
-        <Input
-            type="email"
-            placeholder="you@example.com"
-            startDecorator={
-                <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-                    <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-                </svg>
-            }
-        />
+        <div className="mx-auto max-w-xs w-80">
+            <Input
+                type="email"
+                placeholder="you@example.com"
+                startDecorator={
+                    <svg
+                        className="h-5 w-5 text-gray-400 dark:text-gray-600"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+                    </svg>
+                }
+            />
+        </div>
     )
 };
 
 export const EndDecorator: Story = {
     render: () => (
-        <Input
-            type="text"
-            placeholder="000-00-0000"
-            endDecorator={
-                <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path
-                        fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z"
-                        clip-rule="evenodd"
-                    />
-                </svg>
-            }
-        />
+        <div className="mx-auto max-w-xs w-80">
+            <Input
+                type="text"
+                placeholder="000-00-0000"
+                endDecorator={
+                    <svg
+                        className="h-5 w-5 text-gray-400 dark:text-gray-600"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                }
+            />
+        </div>
     )
 };
 
 export const StartAddOn: Story = {
-    render: () => <Input type="email" placeholder="you@example.com" startAddOn="http://" />
+    render: () => (
+        <div className="mx-auto max-w-xs w-80">
+            <Input type="email" placeholder="you@example.com" startAddOn="http://" />
+        </div>
+    )
 };
 
 export const EndAddOn: Story = {
     render: () => (
-        <Input
-            type="text"
-            placeholder="You"
-            startDecorator={
-                <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-                    <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-                </svg>
-            }
-            endAddOn="example.com"
-        />
+        <div className="mx-auto max-w-xs w-80">
+            <Input type="text" placeholder="You" endAddOn="example.com" />
+        </div>
     )
 };

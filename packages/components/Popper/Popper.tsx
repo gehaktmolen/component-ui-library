@@ -60,7 +60,7 @@ function isVirtualElement(element: HTMLElement | VirtualElement): element is Vir
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['root']
+        root: ['']
     };
 
     return composeClasses(

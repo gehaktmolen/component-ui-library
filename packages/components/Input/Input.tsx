@@ -15,7 +15,6 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
         error,
         focused,
         formControlContext,
-        block,
         multiline,
         startAddOn,
         startDecorator,
@@ -27,9 +26,7 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
 
     const slots = {
         root: [
-            'mt-2',
-            block && 'w-full',
-            disabled && 'disabled',
+            disabled && '',
             error && '',
             focused && '',
             Boolean(formControlContext) && '',
@@ -38,24 +35,27 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
             (Boolean(startAddOn) || Boolean(endAddOn)) && 'flex rounded-md shadow-sm'
         ],
         input: [
-            'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
-            !error && !disabled && 'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-primary-500',
+            'relative block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
+            'bg-white dark:bg-gray-900',
+            !error &&
+                !disabled &&
+                'text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:ring-primary-500',
             error && 'text-danger-900 ring-danger-300 placeholder:text-danger-300 focus:ring-danger-500',
             disabled &&
-                'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
+                'text-gray-900 ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
             Boolean(startDecorator) && 'pl-10',
             Boolean(endDecorator) && 'pr-10',
             Boolean(startAddOn) && 'min-w-0 flex-1 rounded-none rounded-r-md',
             Boolean(endAddOn) && 'min-w-0 flex-1 rounded-none rounded-l-md'
         ],
         startAddOn: [
-            'inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 bg-gray-200 sm:text-sm'
+            'inline-flex items-center rounded-l-md border border-r-0 px-3 bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-500 border-gray-300 dark:border-gray-600 sm:text-sm'
         ],
-        startDecorator: ['pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'],
+        startDecorator: ['pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 z-10'],
         endAddOn: [
-            'inline-flex items-center rounded-r-md border border-l-0 border-gray-300 px-3 text-gray-500 bg-gray-200 sm:text-sm'
+            'inline-flex items-center rounded-r-md border border-l-0 px-3 bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-500 border-gray-300 dark:border-gray-600 sm:text-sm'
         ],
-        endDecorator: ['pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3']
+        endDecorator: ['pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 z-10']
     };
 
     return composeClasses(
@@ -87,7 +87,7 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
         endDecorator: endDecoratorProp,
         endAddOn: endAddOnProp,
         error,
-        block = false,
+        block = true,
         id,
         multiline = false,
         name,
@@ -259,7 +259,7 @@ Input.propTypes = {
     autoFocus: PropTypes.bool,
     /**
      * If `true`, the button will take up the full width of its container.
-     * @default false
+     * @default true
      */
     block: PropTypes.bool,
     /**
