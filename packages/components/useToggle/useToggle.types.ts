@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface UseSwitchParameters {
+export interface UseToggleParameters {
     /**
      * If `true`, the component is checked.
      */
@@ -34,7 +34,7 @@ export interface UseSwitchParameters {
     required?: boolean;
 }
 
-interface UseSwitchInputSlotOwnProps {
+interface UseToggleInputSlotOwnProps {
     checked?: boolean;
     defaultChecked?: boolean;
     disabled?: boolean;
@@ -47,10 +47,10 @@ interface UseSwitchInputSlotOwnProps {
     type: React.HTMLInputTypeAttribute;
 }
 
-export type UseSwitchInputSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseSwitchInputSlotOwnProps> &
-    UseSwitchInputSlotOwnProps;
+export type UseToggleInputSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseToggleInputSlotOwnProps> &
+    UseToggleInputSlotOwnProps;
 
-export interface UseSwitchReturnValue {
+export interface UseToggleReturnValue {
     /**
      * If `true`, the component will be checked.
      */
@@ -68,7 +68,7 @@ export interface UseSwitchReturnValue {
      * @param externalProps props for the input slot
      * @returns props that should be spread on the input slot
      */
-    getInputProps: (externalProps?: React.HTMLAttributes<HTMLInputElement>) => UseSwitchInputSlotProps;
+    getInputProps: (externalProps?: React.HTMLAttributes<HTMLInputElement>) => UseToggleInputSlotProps;
     /**
      * Ref to the input slot's DOM node.
      */

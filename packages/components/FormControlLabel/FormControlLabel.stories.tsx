@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FormControlLabel } from './';
-import { Switch } from '../Toggle';
+import { Toggle } from '../Toggle';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
     args: {
         labelPlacement: 'end',
-        control: <Switch />,
+        control: <Toggle />,
         disabled: false,
         error: false,
         required: false,

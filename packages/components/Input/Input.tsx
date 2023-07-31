@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent } from '../utils';
-import isHostComponent from '../utils/isHostComponent';
+import { PolymorphicComponent, isHostComponent } from '../utils';
 import { InputSlotProps, InputOwnerState, InputProps, InputRootSlotProps, InputTypeMap } from './Input.types';
 import { useInput } from '../useInput';
 import { EventHandlers, useSlotProps, useColorInversion, WithOptionalOwnerState } from '../utils';

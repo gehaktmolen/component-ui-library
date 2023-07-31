@@ -33,6 +33,7 @@ const useUtilityClasses = (ownerState: IconOwnerState) => {
         useClassNamesOverride((slot: string) => generateUtilityClass(slot))
     );
 };
+
 /**
  *
  * API:
@@ -43,6 +44,7 @@ export const Icon = React.forwardRef(function Icon<RootComponentType extends Rea
     props: IconProps<RootComponentType>,
     forwardedRef: React.ForwardedRef<Element>
 ) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { slotProps = {}, slots = {}, icon, ...other } = props;
 
     const { getRootProps } = useIcon({

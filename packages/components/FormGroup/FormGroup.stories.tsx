@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { FormControlLabel } from '../FormControlLabel';
 import { FormGroup } from './';
-import { Switch } from '../Toggle';
+import { Toggle } from '../Toggle';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -26,9 +26,9 @@ export const Column: Story = {
     },
     render: (args) => (
         <FormGroup {...args}>
-            <FormControlLabel control={<Switch defaultChecked color="primary" />} label="Switch A" />
-            <FormControlLabel required control={<Switch color="primary" />} label="Switch B" />
-            <FormControlLabel disabled control={<Switch color="primary" />} label="Switch C" />
+            <FormControlLabel control={<Toggle defaultChecked color="primary" />} label="Switch A" />
+            <FormControlLabel required control={<Toggle color="primary" />} label="Switch B" />
+            <FormControlLabel disabled control={<Toggle color="primary" />} label="Switch C" />
         </FormGroup>
     )
 };
@@ -39,9 +39,9 @@ export const Row: Story = {
     },
     render: (args) => (
         <FormGroup {...args}>
-            <FormControlLabel control={<Switch defaultChecked color="primary" />} label="Switch A" />
-            <FormControlLabel required control={<Switch color="primary" />} label="Switch B" />
-            <FormControlLabel disabled control={<Switch color="primary" />} label="Switch C" />
+            <FormControlLabel control={<Toggle defaultChecked color="primary" />} label="Switch A" />
+            <FormControlLabel required control={<Toggle color="primary" />} label="Switch B" />
+            <FormControlLabel disabled control={<Toggle color="primary" />} label="Switch C" />
         </FormGroup>
     )
 };

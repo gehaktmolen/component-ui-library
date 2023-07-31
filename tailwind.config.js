@@ -16,6 +16,7 @@ export default {
             gray: colors.gray
         },
         extend: {
+            // Import font from other project using css variable; https://youtu.be/4K-UDVy6pGM?t=129
             // fontFamily: {
             //     sans: ['Inter var', ...defaultTheme.fontFamily.sans],
             // },

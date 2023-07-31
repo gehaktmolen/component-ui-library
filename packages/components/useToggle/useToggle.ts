@@ -4,7 +4,7 @@ import {
     unstable_useForkRef as useForkRef,
     unstable_useIsFocusVisible as useIsFocusVisible
 } from '../../utils';
-import { UseSwitchParameters, UseSwitchReturnValue } from './useToggle.types';
+import { UseToggleParameters, UseToggleReturnValue } from './useToggle.types';
 
 /**
  * The basic building block for creating custom switches.
@@ -13,7 +13,7 @@ import { UseSwitchParameters, UseSwitchReturnValue } from './useToggle.types';
  *
  * - [useToggle API](https://#use-switch)
  */
-export function useToggle(props: UseSwitchParameters): UseSwitchReturnValue {
+export function useToggle(props: UseToggleParameters): UseToggleReturnValue {
     const {
         checked: checkedProp,
         defaultChecked,
@@ -94,7 +94,7 @@ export function useToggle(props: UseSwitchParameters): UseSwitchReturnValue {
 
     const handleInputRef = useForkRef(focusVisibleRef, inputRef);
 
-    const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
+    const getInputProps: UseToggleReturnValue['getInputProps'] = (otherProps = {}) => ({
         checked: checkedProp,
         defaultChecked,
         disabled,
@@ -108,7 +108,7 @@ export function useToggle(props: UseSwitchParameters): UseSwitchReturnValue {
         onBlur: createHandleBlur(otherProps)
     });
 
-    return <UseSwitchReturnValue>{
+    return <UseToggleReturnValue>{
         checked,
         disabled: Boolean(disabled),
         focusVisible,

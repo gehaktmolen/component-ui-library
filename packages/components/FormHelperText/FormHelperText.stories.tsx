@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { FormControl } from '../FormControl';
 import { FormHelperText } from './FormHelperText';
-import { Switch } from '../Toggle';
+import { Toggle } from '../Toggle';
 import { FormControlLabel } from '../FormControlLabel';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
     render: (args) => (
         <FormControl>
-            <FormControlLabel control={<Switch />} label="I have read and agree to the terms and conditions." />
+            <FormControlLabel control={<Toggle />} label="I have read and agree to the terms and conditions." />
             <FormHelperText {...args}>Read our terms and conditions.</FormHelperText>
         </FormControl>
     )
