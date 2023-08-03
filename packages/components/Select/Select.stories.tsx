@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Select } from './Select';
-import { Option } from '../Option';
+import { twJoin, twMerge } from 'tailwind-merge';
+import { Select, SelectProps } from './index';
+import { useSelect, SelectProvider, UseSelectReturnValue, SelectValue } from '../useSelect';
+import { SelectOption, useOption } from '../useOption';
+import { Option, OptionProps } from '../Option';
 import { OptionGroup } from '../OptionGroup';
 import { FormControl } from '../FormControl';
 import { FormLabel } from '../FormLabel';
@@ -234,14 +238,222 @@ export const MultiSelect: Story = {
     )
 };
 
-export const Hooks: Story = {
-    render: () => <div className="mx-auto max-w-xs w-80">WIP</div>
+export const Hooks = () => {
+    interface CustomSelectProps extends SelectProps<string, false, 'button'> {
+        options: CustomSelectOptionValue[];
+        placeholder?: string;
+    }
+
+    type CustomSelectOptionValue = { label: string; value: string; disabled?: boolean };
+
+    const options: CustomSelectOptionValue[] = [
+        {
+            label: 'Sauron',
+            value: 'danger'
+        },
+        {
+            label: 'Gimli',
+            value: 'primary'
+        }
+    ];
+
+    const CustomOption = <OptionValue extends string>(props: OptionProps<OptionValue>) => {
+        const { children, value, className, disabled = false } = props;
+        const { getRootProps, highlighted } = useOption({
+            value,
+            disabled,
+            label: children
+        });
+
+        return (
+            <li
+                {...getRootProps()}
+                className={twMerge(
+                    className,
+                    'relative cursor-default select-none py-2 pl-3 pr-9',
+                    'text-gray-900 dark:text-gray-100',
+                    value === 'primary' && 'text-primary-500',
+                    value === 'danger' && 'text-danger-500',
+                    highlighted && 'bg-gray-200 dark:bg-gray-800'
+                )}
+            >
+                {children}
+            </li>
+        );
+    };
+
+    const CustomSelect = <OptionValue extends string, Multiple extends boolean>({
+        options,
+        placeholder
+    }: CustomSelectProps) => {
+        const listboxRef = React.useRef<HTMLElement | null>(null);
+        const [listboxVisible, setListboxVisible] = React.useState(false);
+
+        const { getButtonProps, getListboxProps, contextValue, value }: UseSelectReturnValue<OptionValue, Multiple> =
+            useSelect({
+                listboxRef,
+                onOpenChange: setListboxVisible,
+                open: listboxVisible
+            });
+
+        const renderSelectedValue = (value: OptionValue, options: CustomSelectOptionValue[]) => {
+            const selectedOption = options.find((option) => option.value === value);
+            return selectedOption ? `${selectedOption.label} (${value})` : null;
+        };
+
+        React.useEffect(() => {
+            if (listboxVisible) {
+                listboxRef.current?.focus();
+            }
+        }, [listboxVisible]);
+
+        return (
+            <div className="relative">
+                <button
+                    {...getButtonProps()}
+                    className={twMerge(
+                        'block max-w-xs w-full h-8 cursor-default rounded-md px-2.5 py-1.5 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 focus:ring-primary-500 text-ellipsis overflow-hidden whitespace-nowrap',
+                        value === 'primary' && 'bg-primary-500 dark:bg-primary-600 text-gray-100',
+                        value === 'danger' && 'bg-danger-500 dark:bg-danger-600 text-gray-100'
+                    )}
+                >
+                    {renderSelectedValue(value as OptionValue, options) || (
+                        <span className="placeholder">{placeholder ?? ' '}</span>
+                    )}
+                </button>
+                <ul
+                    {...getListboxProps()}
+                    aria-hidden={!listboxVisible}
+                    className={twJoin(
+                        listboxVisible ? '' : 'hidden',
+                        'absolute block max-w-xs w-full mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm bg-white dark:bg-gray-900 ring-gray-300 dark:ring-gray-600'
+                    )}
+                >
+                    <SelectProvider value={contextValue}>
+                        {options.map((option) => {
+                            return (
+                                <CustomOption key={option.value} value={option.value}>
+                                    {option.label}
+                                </CustomOption>
+                            );
+                        })}
+                    </SelectProvider>
+                </ul>
+            </div>
+        );
+    };
+
+    CustomOption.propTypes = {
+        children: PropTypes.node,
+        className: PropTypes.string,
+        disabled: PropTypes.bool,
+        value: PropTypes.string.isRequired
+    };
+
+    CustomSelect.propTypes = {
+        options: PropTypes.arrayOf(
+            PropTypes.shape({
+                disabled: PropTypes.bool,
+                label: PropTypes.string.isRequired,
+                value: PropTypes.string.isRequired
+            })
+        ).isRequired,
+        placeholder: PropTypes.string
+    };
+
+    return (
+        <div className="mx-auto max-w-xs w-80">
+            <CustomSelect placeholder="Select a hero…" options={options} />
+        </div>
+    );
 };
 
-export const SelectedValueAppearance: Story = {
-    render: () => <div className="mx-auto max-w-xs w-80">WIP</div>
+export const SelectedValueAppearance = () => {
+    const renderValue = (option: SelectValue<SelectOption<string>, false>) => {
+        if (option == null) {
+            return <span>Select an option...</span>;
+        }
+
+        return (
+            <span>
+                {option.label} ({option.value})
+            </span>
+        );
+    };
+
+    return (
+        <div className="mx-auto max-w-xs w-80">
+            <Select renderValue={renderValue}>
+                <Option value={10}>Ten</Option>
+                <Option value={20}>Twenty</Option>
+                <Option value={30}>Thirty</Option>
+            </Select>
+        </div>
+    );
 };
 
-export const OptionAppearance: Story = {
-    render: () => <div className="mx-auto max-w-xs w-80">WIP</div>
+const countries = [
+    { code: 'AD', label: 'Andorra', phone: '376' },
+    {
+        code: 'AE',
+        label: 'United Arab Emirates',
+        phone: '971'
+    },
+    { code: 'AF', label: 'Afghanistan', phone: '93' },
+    {
+        code: 'AG',
+        label: 'Antigua and Barbuda',
+        phone: '1-268'
+    },
+    { code: 'AI', label: 'Anguilla', phone: '1-264' },
+    { code: 'AL', label: 'Albania', phone: '355' },
+    { code: 'AM', label: 'Armenia', phone: '374' },
+    { code: 'AO', label: 'Angola', phone: '244' },
+    { code: 'AQ', label: 'Antarctica', phone: '672' },
+    { code: 'AR', label: 'Argentina', phone: '54' },
+    { code: 'AS', label: 'American Samoa', phone: '1-684' }
+];
+
+export const OptionAppearance = () => {
+    const renderValue = (option: SelectValue<SelectOption<string>, false>) => {
+        if (option == null) {
+            return <span>Select an option...</span>;
+        }
+
+        const c = countries.find((c) => c.code === option.value);
+
+        return (
+            <div className="flex flex-row">
+                <img
+                    loading="lazy"
+                    width="20"
+                    src={`https://flagcdn.com/w20/${c!.code.toLowerCase()}.png`}
+                    srcSet={`https://flagcdn.com/w40/${c!.code.toLowerCase()}.png 2x`}
+                    alt={`Flag of ${c!.label}`}
+                    className="mr-2"
+                />
+                <span>{option.label}</span>
+            </div>
+        );
+    };
+
+    return (
+        <div className="mx-auto max-w-xs w-80">
+            <Select renderValue={renderValue}>
+                {countries.map((c) => (
+                    <Option key={c.code} value={c.code} label={c.label} className="flex flex-row">
+                        <img
+                            loading="lazy"
+                            width="20"
+                            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
+                            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+                            alt={`Flag of ${c.label}`}
+                            className="mr-2"
+                        />
+                        {c.label} ({c.code}) +{c.phone}
+                    </Option>
+                ))}
+            </Select>
+        </div>
+    );
 };

@@ -52,7 +52,10 @@ export interface OptionGroupSlots {
     list?: React.ElementType;
 }
 
-export interface OptionGroupTypeMap<AdditionalProps = NonNullable<unknown>, RootComponentType extends React.ElementType = 'li'> {
+export interface OptionGroupTypeMap<
+    AdditionalProps = NonNullable<unknown>,
+    RootComponentType extends React.ElementType = 'li'
+> {
     props: OptionGroupOwnProps & AdditionalProps;
     defaultComponent: RootComponentType;
 }
