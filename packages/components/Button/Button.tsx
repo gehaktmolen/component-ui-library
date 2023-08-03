@@ -1,5 +1,3 @@
-import styles from './Button.module.scss';
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '../composeClasses';
@@ -14,7 +12,6 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
         ownerState;
     const slots = {
         root: [
-            styles.root,
             size === 'sm' && 'px-2 py-1 text-xs',
             size === 'md' && 'px-2.5 py-1.5 text-sm',
             size === 'lg' && 'px-3.5 py-2.5 text-sm',

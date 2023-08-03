@@ -19,7 +19,7 @@ function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
 
     const slots = {
         root: [
-            'flex flex-grow block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200',
+            'flex flex-grow text-sm font-medium leading-6 text-gray-900 dark:text-gray-200',
             disabled ? 'cursor-not-allowed' : 'cursor-pointer',
             filled && '',
             focused && '',

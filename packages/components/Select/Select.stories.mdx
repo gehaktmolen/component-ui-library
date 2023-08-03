@@ -180,7 +180,7 @@ The `useSelect` hook lets you apply the functionality of a select to a fully cus
 
 Hooks do not support [slot props](?path=/docs/docs-intro--docs#the-slotprops-prop), but they do support [customization](?path=docs-customization--docs) props.
 
-Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS/ Tailwind classes you need.
 
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 
@@ -202,13 +202,31 @@ Options don't have to be plain strings. You can include custom elements to be re
 
 <Canvas sourceState="hidden" of={SelectDefaultStories.OptionAppearance} />
 
-# API
+## API
 
-## Select API
+### Import
+
+```jsx
+import { Select } from '../Select';
+```
+
+### Parameters
 
 Props of the native component are also available.
 
 <ArgTypes of={Select} />
+
+### Slots
+
+To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) guide.
+
+| Name      | Element                                  | Description                                        |
+| --------- | ---------------------------------------- | -------------------------------------------------- |
+| `root`    | `<button>`                               | The component that renders the root.               |
+| `listbox` | `<ul>`                                   | The component that renders the list of options.    |
+| `popper`  | [Popper](?path=/docs/utils-popper--docs) | The component that renders and positions the list. |
+
+...
 
 ## Option API
 
@@ -229,6 +247,8 @@ To learn how to customize the slot, check out the [Overriding component structur
 | Name   | Element | Description                          |
 | ------ | ------- | ------------------------------------ |
 | `root` | `<li>`  | The component that renders the root. |
+
+...
 
 ## Option Group API
 
@@ -252,9 +272,9 @@ To learn how to customize the slot, check out the [Overriding component structur
 | `label` | `<span>` | The component that renders the label. |
 | `list`  | `<ul>`   | The component that renders the list.  |
 
-# Hooks
+...
 
-## useOption API
+## useOption API (Hook)
 
 ### Import
 
@@ -266,14 +286,14 @@ import { useOption } from '../useOption';
 
 <ArgTypes of={useSelect} />
 
-#### useSelect API
+## useSelect API (Hook)
 
-##### Import
+### Import
 
 ```jsx
 import { useSelect } from '../useSelect';
 ```
 
-##### Parameters
+### Parameters
 
 <ArgTypes of={useSelect} />

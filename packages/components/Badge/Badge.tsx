@@ -8,36 +8,12 @@ import { WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import generateUtilityClass from '../generateUtilityClass';
 
-const BADGE_COLOR = Object.freeze({
-    primary: 'bg-primary-500 dark:bg-primary-100 text-white',
-    neutral: 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100',
-    danger: ''
-} as const);
-
 const useUtilityClasses = (ownerState: BadgeOwnerState) => {
     const { invisible, color, variant, anchorOrigin, overlap } = ownerState;
 
-    let classes =
-        'flex flex-row flex-wrap justify-center content-center items-center absolute box-border z-1 rounded-[20px] transition-transform';
-
-    if (color) {
-        classes += ` ${BADGE_COLOR[color]}`;
-    }
-
-    if (variant === 'dot') {
-        classes += ' h-2 w-2';
-    } else {
-        classes += ' text-[10px] leading-none h-[20px] min-w-[20px] px-1.5';
-    }
-
-    if (invisible) {
-        classes += ' scale-0';
-    } else {
-        classes += ' scale-100';
-    }
+    let classes = '';
 
     if (anchorOrigin!.vertical === 'top' && anchorOrigin!.horizontal === 'right') {
-        classes += ' origin-top-right';
         classes += ' -translate-y-1/3 translate-x-1/3';
 
         if (overlap === 'rectangular') {
@@ -46,7 +22,6 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
             classes += ' top-1 right-1';
         }
     } else if (anchorOrigin!.vertical === 'bottom' && anchorOrigin!.horizontal === 'right') {
-        classes += ' origin-bottom-right';
         classes += ' translate-y-1/3 translate-x-1/3';
 
         if (overlap === 'rectangular') {
@@ -55,7 +30,6 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
             classes += ' bottom-1 right-1';
         }
     } else if (anchorOrigin!.vertical === 'top' && anchorOrigin!.horizontal === 'left') {
-        classes += ' origin-top-left';
         classes += ' -translate-y-1/3 -translate-x-1/3';
 
         if (overlap === 'rectangular') {
@@ -64,7 +38,6 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
             classes += ' top-1 left-1';
         }
     } else if (anchorOrigin!.vertical === 'bottom' && anchorOrigin!.horizontal === 'left') {
-        classes += ' origin-bottom-left';
         classes += ' translate-y-1/3 -translate-x-1/3';
 
         if (overlap === 'rectangular') {
@@ -76,7 +49,16 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
 
     const slots = {
         root: ['relative inline-flex align-middle shrink-0'],
-        badge: [classes]
+        badge: [
+            'flex flex-row flex-wrap justify-center content-center items-center absolute box-border z-1 rounded-[20px] transition-transform origin-center',
+            'text-gray-100',
+            color === 'primary' && 'bg-primary-600 dark:bg-primary-500',
+            color === 'danger' && 'bg-danger-600 dark:bg-danger-500',
+            color === 'neutral' && 'bg-gray-600 dark:bg-gray-500 text-gray-100',
+            variant === 'dot' ? 'h-2 w-2' : 'text-[10px] leading-none h-[20px] min-w-[20px] px-1.5',
+            invisible ? 'scale-0' : 'scale-100',
+            classes
+        ]
     };
 
     return composeClasses(
@@ -88,7 +70,7 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
  *
  * API:
  *
- * - [Badge API](https:///#badge)
+ * - [Badge API](?path=/docs/data-display-badge--docs#api)
  */
 export const Badge = React.forwardRef(function Badge<RootComponentType extends React.ElementType>(
     props: BadgeProps<RootComponentType>,
@@ -102,7 +84,7 @@ export const Badge = React.forwardRef(function Badge<RootComponentType extends R
         slotProps = {},
         slots = {},
         showZero = false,
-        color = 'default',
+        color = 'neutral',
         variant = 'standard',
         anchorOrigin = {
             vertical: 'top',

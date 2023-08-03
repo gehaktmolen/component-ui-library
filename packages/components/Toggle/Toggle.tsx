@@ -21,12 +21,12 @@ const useUtilityClasses = (ownerState: ToggleOwnerState) => {
     const slots = {
         root: [
             'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2',
-            'bg-gray-200 dark:bg-gray-500',
-            focusVisible && 'ring-2 ring-offset-2 ring-primary-500 dark:ring-primary-400',
+            'bg-gray-300 dark:bg-gray-600',
+            focusVisible && 'ring-2 ring-offset-2 ring-primary-600 dark:ring-primary-500',
             (disabled || readOnly) && 'opacity-40',
-            color === 'primary' && checked && 'bg-primary-500 dark:bg-primary-400',
-            color === 'neutral' && checked && 'bg-gray-500 dark:bg-gray-400',
-            color === 'danger' && checked && 'bg-danger-500 dark:bg-danger-400'
+            color === 'primary' && checked && 'bg-primary-600 dark:bg-primary-500',
+            color === 'neutral' && checked && 'bg-gray-600 dark:bg-gray-500',
+            color === 'danger' && checked && 'bg-danger-600 dark:bg-danger-500'
         ],
         thumb: [
             'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
@@ -38,9 +38,9 @@ const useUtilityClasses = (ownerState: ToggleOwnerState) => {
         ],
         track: [
             'absolute w-full h-full rounded-full transition-colors duration-200 ease-in-out',
-            color === 'primary' && checked && 'bg-primary-500 dark:bg-primary-400',
-            color === 'neutral' && checked && 'bg-gray-500 dark:bg-gray-400',
-            color === 'danger' && checked && 'bg-danger-500 dark:bg-danger-400'
+            color === 'primary' && checked && 'bg-primary-600 dark:bg-primary-500',
+            color === 'neutral' && checked && 'bg-gray-600 dark:bg-gray-500',
+            color === 'danger' && checked && 'bg-danger-600 dark:bg-danger-500'
         ]
     };
 
