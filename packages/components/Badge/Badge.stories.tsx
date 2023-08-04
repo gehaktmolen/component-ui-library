@@ -2,10 +2,10 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Badge } from './Badge';
-import { Icon } from '../Icon';
 import { Button } from '../Button';
 import { Toggle } from '../Toggle';
 import { FormControlLabel } from '../FormControlLabel';
+import { HeartIcon } from '@heroicons/react/24/solid';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -50,7 +50,7 @@ export const Circular: Story = {
     },
     render: (args) => (
         <Badge {...args}>
-            <Icon icon="heart" size="2xl" color="#ff8080" />
+            <HeartIcon className="h-12 w-12 text-danger-500" />
         </Badge>
     )
 };

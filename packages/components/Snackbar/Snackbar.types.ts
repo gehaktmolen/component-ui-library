@@ -41,7 +41,10 @@ export interface SnackbarSlots {
     root?: React.ElementType;
 }
 
-export interface SnackbarTypeMap<AdditionalProps = NonNullable<unknown>, RootComponentType extends React.ElementType = 'div'> {
+export interface SnackbarTypeMap<
+    AdditionalProps = NonNullable<unknown>,
+    RootComponentType extends React.ElementType = 'div'
+> {
     props: SnackbarOwnProps & AdditionalProps;
     defaultComponent: RootComponentType;
 }

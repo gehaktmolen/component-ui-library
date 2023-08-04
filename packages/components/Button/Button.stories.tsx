@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from './Button';
 import { ButtonOwnerState } from './Button.types.ts';
-import { Icon } from '../Icon';
+import { HeartIcon } from '@heroicons/react/24/solid';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -76,7 +76,7 @@ export const StartDecorator: Story = {
     args: {
         variant: 'solid',
         color: 'neutral',
-        startDecorator: <Icon icon="heart" color="primary" />
+        startDecorator: <HeartIcon className="text-danger-500" />
     },
     render: (args) => <Button {...args}>{args.label}</Button>
 };
@@ -85,7 +85,7 @@ export const EndDecorator: Story = {
     args: {
         variant: 'solid',
         color: 'neutral',
-        endDecorator: <Icon icon="heart" color="danger" />
+        endDecorator: <HeartIcon className="text-danger-500" />
     },
     render: (args) => <Button {...args}>{args.label}</Button>
 };
@@ -94,8 +94,8 @@ export const StartAndEndDecorator: Story = {
     args: {
         variant: 'solid',
         color: 'neutral',
-        startDecorator: <Icon icon="heart" color="#ff8080" />,
-        endDecorator: <Icon icon="heart" color="primary" />
+        startDecorator: <HeartIcon className="text-[#ff0080]" />,
+        endDecorator: <HeartIcon className="text-danger-500" />
     },
     render: (args) => <Button {...args}>{args.label}</Button>
 };
