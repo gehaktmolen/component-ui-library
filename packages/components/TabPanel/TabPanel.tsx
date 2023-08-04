@@ -11,7 +11,7 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
     const { hidden } = ownerState;
 
     const slots = {
-        root: ['w-full text-sm', hidden && 'hidden']
+        root: ['w-full', hidden && 'hidden']
     };
 
     return composeClasses(

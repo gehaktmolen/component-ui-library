@@ -57,7 +57,7 @@ export function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
         tabIdLookup.current = lookupFunction;
     }, []);
 
-    return {
+    return <UseTabsReturnValue>{
         contextValue: {
             direction,
             getTabId,
