@@ -32,7 +32,7 @@ export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
 // } from './scrollLeft';
 export { default as usePreviousProps } from './usePreviousProps';
 // export { default as visuallyHidden } from './visuallyHidden';
-// export { default as integerPropType } from './integerPropType';
+export { default as integerPropType } from './integerPropType';
 // export { default as internal_resolveProps } from './resolveProps';
 export { default as unstable_composeClasses } from './composeClasses';
 export { default as unstable_generateUtilityClass } from './generateUtilityClass';
