@@ -232,7 +232,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<RootComponentType 
  *
  * API:
  *
- * - [Popper API](https://#popper)
+ * - [Popper API](#api)
  */
 export const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
     props: PopperProps<RootComponentType>,

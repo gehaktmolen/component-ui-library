@@ -1,7 +1,7 @@
 export { default as chainPropTypes } from './chainPropTypes';
 // export { default as deepmerge } from './deepmerge';
 // export { isPlainObject } from './deepmerge';
-// export { default as elementAcceptingRef } from './elementAcceptingRef';
+export { default as elementAcceptingRef } from './elementAcceptingRef';
 // export { default as elementTypeAcceptingRef } from './elementTypeAcceptingRef';
 export { default as exactProp } from './exactProp';
 // export { default as formatErrorMessage } from './formatErrorMessage';
@@ -22,7 +22,7 @@ export { default as unstable_useEnhancedEffect } from './useEnhancedEffect';
 export { default as unstable_useId } from './useId';
 // export { default as unstable_unsupportedProp } from './unsupportedProp';
 export { default as unstable_useControlled } from './useControlled';
-// export { default as unstable_useEventCallback } from './useEventCallback';
+export { default as unstable_useEventCallback } from './useEventCallback';
 export { default as unstable_useForkRef } from './useForkRef';
 export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
 // export { default as unstable_getScrollbarSize } from './getScrollbarSize';
