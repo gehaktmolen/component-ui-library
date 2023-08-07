@@ -19,7 +19,7 @@ export function Radio() {
                                 name="notification-method"
                                 type="radio"
                                 defaultChecked={notificationMethod.id === 'email'}
-                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-600"
                             />
                             <label
                                 htmlFor={notificationMethod.id}

@@ -16,7 +16,8 @@ import generateUtilityClass from '../generateUtilityClass';
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6']
+        root: ['pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6'],
+        content: ['flex w-full flex-col items-center space-y-4 sm:items-end']
     };
 
     return composeClasses(
@@ -99,7 +100,7 @@ export const Snackbar = React.forwardRef(function Snackbar<RootComponentType ext
     return (
         <ClickAwayListener {...clickAwayListenerProps}>
             <Root {...rootProps}>
-                <div className="flex w-full flex-col items-center space-y-4 sm:items-end">{children}</div>
+                <div className={classes.content}>{children}</div>
             </Root>
         </ClickAwayListener>
     );

@@ -4,7 +4,7 @@ import { ComboBox } from './ComboBox.tsx';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Inputs/ComboBox',
+    title: 'Inputs/ComboBox (WIP)',
     component: ComboBox,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
