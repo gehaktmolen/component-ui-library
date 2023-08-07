@@ -220,7 +220,6 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
         ((event: Event | React.SyntheticEvent, value: number | number[], thumbIndex: number) => {
             // Redefine target to allow name and value to be read.
             // This allows seamless integration with the most popular form libraries.
-            // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
             // Clone the event to not override `target` of the original event.
             const nativeEvent = (event as React.SyntheticEvent).nativeEvent || event;
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
