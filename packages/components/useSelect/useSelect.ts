@@ -245,9 +245,9 @@ export function useSelect<OptionValue, Multiple extends boolean = false>(
         rootRef: mergedListRootRef
     } = useList(useListParameters);
 
-    const createHandleButtonClick =
+    const createHandleButtonMouseDown =
         (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent & CancellableEvent) => {
-            otherHandlers?.onClick?.(event);
+            otherHandlers?.onMouseDown?.(event);
             if (!event.defaultPrevented) {
                 const action: ButtonClickAction = {
                     type: SelectActionTypes.buttonClick,
@@ -285,7 +285,7 @@ export function useSelect<OptionValue, Multiple extends boolean = false>(
     const getSelectTriggerProps = <TOther extends EventHandlers>(otherHandlers: TOther = {} as TOther) => {
         return {
             ...otherHandlers,
-            onClick: createHandleButtonClick(otherHandlers),
+            onMouseDown: createHandleButtonMouseDown(otherHandlers),
             ref: mergedListRootRef,
             role: 'combobox' as const,
             'aria-expanded': open,

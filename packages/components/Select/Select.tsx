@@ -70,7 +70,7 @@ const useUtilityClasses = <OptionValue extends NonNullable<unknown>, Multiple ex
             'bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 focus:ring-primary-500',
             'text-ellipsis overflow-hidden whitespace-nowrap',
             disabled &&
-                'disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
+                'disabled:cursor-not-allowed disabled:bg-gray-200 dark:disabled:bg-gray-800 disabled:text-gray-500 dark:disabled:text-gray-600 disabled:ring-gray-200 dark:disabled:ring-gray-800',
             focusVisible && '',
             active && '',
             open && ''

@@ -19,13 +19,13 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
                 'rounded-md font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
             variant === 'solid' &&
                 color === 'primary' &&
-                'shadow-sm bg-primary-600 dark:bg-primary-500 text-white hover:bg-primary-500 dark:hover:bg-primary-400 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-500',
+                'shadow-sm bg-primary-600 dark:bg-primary-500 text-gray-100 hover:bg-primary-500 dark:hover:bg-primary-400 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-500',
             variant === 'solid' &&
                 color === 'neutral' &&
-                'shadow-sm bg-white dark:bg-white/10 text-gray-900 dark:text-white ring-gray-300 hover:bg-gray-50 dark:hover:bg-white/20 focus-visible:outline-gray-600 dark:focus-visible:outline-gray-500',
+                'shadow-sm bg-white dark:bg-white/10 text-gray-900 dark:text-gray-100 ring-gray-300 hover:bg-gray-50 dark:hover:bg-white/20 focus-visible:outline-gray-600 dark:focus-visible:outline-gray-500',
             variant === 'solid' &&
                 color === 'danger' &&
-                'shadow-sm bg-danger-600 dark:bg-danger-500 text-white hover:bg-danger-500 dark:hover:bg-danger-400 focus-visible:outline-danger-600 dark:focus-visible:outline-danger-500',
+                'shadow-sm bg-danger-600 dark:bg-danger-500 text-gray-100 hover:bg-danger-500 dark:hover:bg-danger-400 focus-visible:outline-danger-600 dark:focus-visible:outline-danger-500',
             variant === 'soft' && 'rounded-md font-semibold shadow-sm',
             variant === 'soft' &&
                 color === 'primary' &&
@@ -38,7 +38,8 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
                 'bg-danger-50 dark:bg-white/10 text-danger-600 dark:text-danger-500 hover:bg-danger-100 dark:hover:bg-white/20',
             flat && 'drop-shadow-none hover:drop-shadow-none active:drop-shadow-none',
             block && 'w-full',
-            disabled && 'drop-shadow-none',
+            disabled &&
+                'bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-600 hover:bg-gray-200 dark:hover:bg-gray-800 ring-gray-200 dark:ring-gray-800 drop-shadow-none cursor-not-allowed',
             focusVisible && '',
             active && '',
             (Boolean(startDecorator) || Boolean(endDecorator)) && 'inline-flex items-center',

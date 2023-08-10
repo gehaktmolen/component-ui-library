@@ -15,11 +15,12 @@ The Modal component lets you create dialogs, popovers, lightboxes, and other ele
 Modal is a utility component that renders its children in front of a backdrop. This lets you create an element that your users must interact with before continuing in the parent application.
 
 ### Features
-* Manages modal stacking when more than one is needed
-* Creates a backdrop to disable interaction with the rest of the app
-* Disables page scrolling while open
-* Manages focus correctly between the modal and its parent app
-* Adds the appropriate ARIA roles automatically
+
+-   Manages modal stacking when more than one is needed
+-   Creates a backdrop to disable interaction with the rest of the app
+-   Disables page scrolling while open
+-   Manages focus correctly between the modal and its parent app
+-   Adds the appropriate ARIA roles automatically
 
 The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect. A dialog may be modal or non-modal (modeless).
 
@@ -28,11 +29,12 @@ A modal [blocks interaction with the rest of the application](https://en.wikiped
 ## Component
 
 ### Usage
+
 ```jsx
 import { Modal } from '../Modal';
 
 export default function MyApp() {
-  return <Modal>{/* the modal's content */}</Modal>;
+    return <Modal>{/* the modal's content */}</Modal>;
 }
 ```
 

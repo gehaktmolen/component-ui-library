@@ -1,0 +1,237 @@
+import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
+import { Button } from './Button';
+import * as SelectDefaultStories from './Button.stories';
+
+<Meta title="Inputs/Button" />
+
+# Button
+
+---
+
+Buttons let users take actions and make choices with a single tap.
+
+## Introduction
+
+The Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
+
+<Canvas sourceState="hidden" of={SelectDefaultStories.Basics} />
+
+## Component
+
+### Usage
+
+```jsx
+import { Button } from '../Button';
+
+export default function MyApp() {
+    return <Button>{/* button text */}</Button>;
+}
+```
+
+### Basics
+
+The Button behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+
+The following demo shows how to create and style two basic buttons. Notice that the second button cannot be clicked due to the disabled prop:
+
+<Canvas sourceState="shown" of={SelectDefaultStories.Basics} />
+
+### Anatomy
+
+The Button component is composed of a root `<button>` slot with no interior slots:
+
+```jsx
+<button>
+  <!-- button text goes here -->
+</button>
+```
+
+### Custom structure
+
+Use the `slots.root` prop to override the root slot with a custom element:
+
+```jsx
+<Button slots={{ root: 'div' }} />
+```
+
+The slots prop is available on all non-utility components. See [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) for full details.
+
+If you provide a non-interactive element such as a `<span>`, the Button component will automatically add the necessary accessibility attributes.
+
+Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
+
+<Canvas sourceState="shown" of={SelectDefaultStories.Span} />
+
+If a Button is customized with a non-button element (for instance, `<Button slots={{ root: "span" }} />`), it will not submit the form it's in when clicked. Similarly, `<Button slots={{ root: "span" }} type="reset">` will not reset its parent form.
+
+### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the un-styled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Button<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Button<'span'> slots={{ root: 'span' }} customProp />
+```
+
+## Hooks
+
+```jsx
+import { useButton } from '../useButton';
+```
+
+The `useButton` hook lets you apply the functionality of a button to a fully custom component. It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks do not support [slot props](?path=/docs/docs-intro--docs#the-slotprops-prop), but they do support [customization](#customization) props.
+
+Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS/ Tailwind classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
+
+The following example shows how to build the same buttons as those found in the [Basics](#basics) section above, but with the `useButton` hook:
+
+```tsx
+import * as React from 'react';
+import PropTypes from 'prop-types';
+
+import { Button } from './Button';
+import { useButton } from '../useButton';
+
+const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+    const { children, disabled } = props;
+    const { active, focusVisible, getRootProps } = useButton({
+        ...props,
+        rootRef: ref
+    });
+
+    const classes = {
+        active,
+        disabled,
+        focusVisible
+    };
+
+    return (
+        <Button {...getRootProps()} className={clsx(classes)}>
+            {children}
+        </Button>
+    );
+});
+
+CustomButton.propTypes = {
+    children: PropTypes.node,
+    /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+    disabled: PropTypes.bool
+};
+
+export default function MyButtons() {
+    return (
+        <div className="py-2 flex flex-row items-center flex-wrap gap-2">
+            <CustomButton onClick={() => console.log('click!')}>Button</CustomButton>
+            <CustomButton disabled>Disabled</CustomButton>
+        </div>
+    );
+}
+```
+
+If you use a ref to store a reference to the button, pass it to the `useButton`'s `ref` parameter, as shown in the demo above. It will get merged with a ref used internally in the hook.
+
+Do not add the `ref` parameter to the button element manually, as the correct ref is already a part of the object returned by the `getRootProps` function.
+
+## Customization
+
+The following features can be used with both components and hooks. For the sake of simplicity, demos and code snippets primarily feature components.
+
+### Custom elements
+
+The Button accepts a wide range of custom elements beyond HTML elements. You can even use SVGs, as the following demo illustrates:
+
+```jsx
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { Button } from '../Button';
+
+const ButtonRoot = React.forwardRef(function ButtonRoot(props, ref) {
+    const { children, ...other } = props;
+
+    return (
+        <svg width="150" height="50" {...other} ref={ref}>
+            <polygon points="0,50 0,0 150,0 150,50" className="bg" />
+            <polygon points="0,50 0,0 150,0 150,50" className="borderEffect" />
+            <foreignObject x="0" y="0" width="150" height="50">
+                <div className="content">{children}</div>
+            </foreignObject>
+        </svg>
+    );
+});
+
+ButtonRoot.propTypes = {
+    children: PropTypes.node
+};
+
+const SvgButton = React.forwardRef(function SvgButton(props, ref) {
+    return <Button {...props} slots={{ root: ButtonRoot }} ref={ref} />;
+});
+
+export default function UnstyledButtonCustom() {
+    return <SvgButton>Button</SvgButton>;
+}
+```
+
+### Using with links
+
+The following demo illustrates how to use the Button as a link, whether using the Azrn UI Button itself for the href or React router Link component.
+
+```jsx
+<RouterLink href={'https://mui.com/'}>
+    <Button>Router link</Button>
+</RouterLink>
+```
+
+### Focus on disabled buttons
+
+Similarly to the native HTML `<button>` element, the Button component can't receive focus when it's disabled. This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
+
+The `focusableWhenDisabled` prop lets you change this behavior. When this prop is set, the underlying button does not set the `disabled` prop. Instead, `aria-disabled` is used, which makes the button focusable.
+
+This should be used whenever the disabled button needs to be read by screen readers.
+
+Azrn UI uses this prop internally in [Select](?path=/docs/inputs-select--docs) items, making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
+
+The following demo shows how the `focusableWhenDisabled` prop works—use the `Tab`-key to navigate within this document to see that only the second button accepts the focus:
+
+<Canvas sourceState="shown" of={SelectDefaultStories.DisabledFocus} />
+
+The `focusableWhenDisabled` prop works the same when the root slot is customized, except that the `aria-disabled` attribute is used no regardless of the prop's state. The ability to receive focus is controlled internally by the `tabindex` attribute.
+
+<Canvas sourceState="shown" of={SelectDefaultStories.DisabledFocusCustom} />
+
+## API
+
+### Import
+
+```jsx
+import { Button } from '../Button';
+```
+
+### Parameters
+
+Props of the native component are also available.
+
+<ArgTypes of={Button} />
+
+### Slots
+
+To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) guide.
+
+| Name   | Element                                 | Description                          |
+| ------ | --------------------------------------- | ------------------------------------ |
+| `root` | props.href OR props.to ? `a` : `button` | The component that renders the root. |
+
+...

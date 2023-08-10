@@ -43,6 +43,61 @@ export const Primary: Story = {
     render: (args) => <Button {...args}>{args.label}</Button>
 };
 
+export const Basics: Story = {
+    render: (args) => (
+        <div className="py-2 flex flex-row items-center flex-wrap gap-2">
+            <Button>{args.label}</Button>
+            <Button disabled>{args.label}</Button>
+        </div>
+    )
+};
+
+export const Span: Story = {
+    render: (args) => (
+        <div className="py-2 flex flex-row items-center flex-wrap gap-2">
+            <Button slots={{ root: 'span' }}>{args.label}</Button>
+            <Button slots={{ root: 'span' }} disabled>
+                {args.label}
+            </Button>
+        </div>
+    )
+};
+
+export const DisabledFocus: Story = {
+    render: () => (
+        <div className="py-2 flex flex-row items-center flex-wrap gap-2">
+            <Button disabled>focusableWhenDisabled = false</Button>
+            <Button disabled focusableWhenDisabled>
+                focusableWhenDisabled = true
+            </Button>
+        </div>
+    )
+};
+
+export const DisabledFocusCustom: Story = {
+    render: () => (
+        <div className="py-2 flex flex-row items-center flex-wrap gap-2">
+            <Button slots={{ root: 'span' }} disabled>
+                focusableWhenDisabled = false
+            </Button>
+            <Button slots={{ root: 'span' }} disabled focusableWhenDisabled>
+                focusableWhenDisabled = true
+            </Button>
+        </div>
+    )
+};
+
+export const Hooks: Story = {
+    render: (args) => (
+        <div className="py-2 flex flex-row items-center flex-wrap gap-2">
+            <Button slots={{ root: 'span' }}>{args.label}</Button>
+            <Button slots={{ root: 'span' }} disabled>
+                {args.label}
+            </Button>
+        </div>
+    )
+};
+
 export const Variants: Story = {
     render: (args) => (
         <div className="py-2 flex flex-col items-center flex-wrap gap-2">

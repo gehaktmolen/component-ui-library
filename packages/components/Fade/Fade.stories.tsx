@@ -1,7 +1,4 @@
-import type {
-    Meta,
-    StoryObj
-} from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Fade } from './';
 
@@ -29,5 +26,9 @@ export const Primary: Story = {
             exit: 1_500
         }
     },
-    render: (args) => <Fade {...args}><div className="text-gray-900 dark:text-gray-100">Fade Transition</div></Fade>
+    render: (args) => (
+        <Fade {...args}>
+            <div className="text-gray-900 dark:text-gray-100">Fade Transition</div>
+        </Fade>
+    )
 };

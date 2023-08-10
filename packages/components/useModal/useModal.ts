@@ -59,10 +59,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     const hasTransition = getHasTransition(children);
 
     let ariaHiddenProp = true;
-    if (
-        parameters['aria-hidden'] === 'false' ||
-        (typeof parameters['aria-hidden'] === 'boolean' && !parameters['aria-hidden'])
-    ) {
+    if (parameters['aria-hidden'] === 'false' || parameters['aria-hidden'] === false) {
         ariaHiddenProp = false;
     }
 
@@ -162,7 +159,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
         }
     };
 
-    const getRootProps = <TOther extends EventHandlers = {}>(
+    const getRootProps = <TOther extends EventHandlers = NonNullable<unknown>>(
         otherHandlers: TOther = {} as TOther
     ): UseModalRootSlotProps<TOther> => {
         const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseModalParameters>;
@@ -184,7 +181,7 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
         };
     };
 
-    const getBackdropProps = <TOther extends EventHandlers = {}>(
+    const getBackdropProps = <TOther extends EventHandlers = NonNullable<unknown>>(
         otherHandlers: TOther = {} as TOther
     ): UseModalBackdropSlotProps<TOther> => {
         const externalEventHandlers = otherHandlers;
