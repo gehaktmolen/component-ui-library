@@ -10,7 +10,7 @@ import {
 } from './useList.types';
 import { ListActionTypes, ListAction } from './listActions.types';
 import { ListContextValue } from './ListContext';
-import defaultReducer from './listReducer';
+import { listReducer as defaultReducer } from './listReducer';
 import useListChangeNotifiers from './useListChangeNotifiers';
 import useControllableReducer from '../utils/useControllableReducer';
 import { ControllableReducerAction, StateChangeCallback, StateComparers } from '../utils/useControllableReducer.types';

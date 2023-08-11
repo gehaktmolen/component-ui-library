@@ -1,7 +1,7 @@
 import {
-    unstable_ownerWindow as ownerWindow,
+    unstable_getScrollbarSize as getScrollbarSize,
     unstable_ownerDocument as ownerDocument,
-    unstable_getScrollbarSize as getScrollbarSize
+    unstable_ownerWindow as ownerWindow
 } from '../../utils';
 
 export interface ManagedModalProps {
@@ -160,8 +160,8 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         scrollContainer.style.overflow = 'hidden';
     }
 
-    const restore = () => {
-        restoreStyle.forEach(({ value, el, property }) => {
+    return () => {
+        restoreStyle.forEach(({value, el, property}) => {
             if (value) {
                 el.style.setProperty(property, value);
             } else {
@@ -169,8 +169,6 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
             }
         });
     };
-
-    return restore;
 }
 
 function getHiddenSiblings(container: Element) {
@@ -231,7 +229,7 @@ export class ModalManager {
 
         const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
         if (containerIndex !== -1) {
-            this.containers[containerIndex].modals.push(modal);
+            this.containers[containerIndex]?.modals.push(modal);
             return modalIndex;
         }
 
@@ -249,8 +247,8 @@ export class ModalManager {
         const containerIndex = findIndexOf(this.containers, (item) => item.modals.indexOf(modal) !== -1);
         const containerInfo = this.containers[containerIndex];
 
-        if (!containerInfo.restore) {
-            containerInfo.restore = handleContainer(containerInfo, props);
+        if (!containerInfo?.restore) {
+            containerInfo!.restore = handleContainer(containerInfo as Container, props);
         }
     }
 
@@ -264,11 +262,11 @@ export class ModalManager {
         const containerIndex = findIndexOf(this.containers, (item) => item.modals.indexOf(modal) !== -1);
         const containerInfo = this.containers[containerIndex];
 
-        containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);
+        containerInfo?.modals.splice(containerInfo.modals.indexOf(modal), 1);
         this.modals.splice(modalIndex, 1);
 
         // If that was the last modal in a container, clean up the container.
-        if (containerInfo.modals.length === 0) {
+        if (containerInfo?.modals.length === 0) {
             // The modal might be closed before it had the chance to be mounted in the DOM.
             if (containerInfo.restore) {
                 containerInfo.restore();
@@ -289,11 +287,11 @@ export class ModalManager {
             this.containers.splice(containerIndex, 1);
         } else {
             // Otherwise make sure the next top modal is visible to a screen reader.
-            const nextTop = containerInfo.modals[containerInfo.modals.length - 1];
+            const nextTop = containerInfo?.modals[containerInfo.modals.length - 1];
             // as soon as a modal is adding its modalRef is undefined. it can't set
             // aria-hidden because the dom element doesn't exist either
             // when modal was unmounted before modalRef gets null
-            if (nextTop.modalRef) {
+            if (nextTop?.modalRef) {
                 ariaHidden(nextTop.modalRef, false);
             }
         }

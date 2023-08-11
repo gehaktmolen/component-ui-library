@@ -22,7 +22,7 @@ import defaultOptionStringifier from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
 import { SelectOption } from '../useOption';
-import selectReducer from './selectReducer';
+import { selectReducer } from './selectReducer';
 import combineHooksSlotProps from '../utils/combineHooksSlotProps';
 import CancellableEvent from '../utils/cancellableEvent';
 
@@ -85,7 +85,7 @@ export function useSelect<OptionValue, Multiple extends boolean = false>(
         return undefined;
     }, [valueProp, multiple]);
 
-    const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
+    const { subItems, contextValue: compoundComponentContextValue } = useCompoundParent<
         OptionValue,
         SelectOption<OptionValue>
     >();
@@ -106,8 +106,8 @@ export function useSelect<OptionValue, Multiple extends boolean = false>(
             );
         }
 
-        return subitems;
-    }, [optionsParam, subitems, listboxId]);
+        return subItems;
+    }, [optionsParam, subItems, listboxId]);
 
     const handleListboxRef = useForkRef(listboxRefProp, listboxRef);
 

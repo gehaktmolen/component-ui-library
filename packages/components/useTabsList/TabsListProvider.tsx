@@ -25,7 +25,7 @@ export default function TabsListProvider(props: TabsListProviderProps) {
         registerHighlightChangeHandler,
         registerSelectionChangeHandler,
         registerItem,
-        totalSubitemCount
+        totalSubItemCount
     } = value;
 
     const listContextValue: ListContextValue<string | number> = React.useMemo(
@@ -43,9 +43,9 @@ export default function TabsListProvider(props: TabsListProviderProps) {
         () => ({
             getItemIndex,
             registerItem,
-            totalSubitemCount
+            totalSubItemCount
         }),
-        [registerItem, getItemIndex, totalSubitemCount]
+        [registerItem, getItemIndex, totalSubItemCount]
     );
 
     return (

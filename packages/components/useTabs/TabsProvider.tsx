@@ -29,7 +29,7 @@ export function TabsProvider(props: TabsProviderProps) {
         registerItem,
         registerTabIdLookup,
         selectionFollowsFocus,
-        totalSubitemCount,
+        totalSubItemCount,
         value,
         getTabId,
         getTabPanelId
@@ -40,9 +40,9 @@ export function TabsProvider(props: TabsProviderProps) {
             () => ({
                 getItemIndex,
                 registerItem,
-                totalSubitemCount
+                totalSubItemCount
             }),
-            [registerItem, getItemIndex, totalSubitemCount]
+            [registerItem, getItemIndex, totalSubItemCount]
         );
 
     const tabsContextValue: TabsContextValue = React.useMemo(

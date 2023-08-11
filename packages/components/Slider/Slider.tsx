@@ -244,12 +244,20 @@ export const Slider = React.forwardRef(function Slider<RootComponentType extends
                         markActive =
                             (track === 'normal' &&
                                 (range
-                                    ? mark.value >= values[0] && mark.value <= values[values.length - 1]
-                                    : mark.value <= values[0])) ||
+                                    ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                      // @ts-ignore
+                                      mark.value >= values[0] && mark.value <= values[values.length - 1]
+                                    : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                      // @ts-ignore
+                                      mark.value <= values[0])) ||
                             (track === 'inverted' &&
                                 (range
-                                    ? mark.value <= values[0] || mark.value >= values[values.length - 1]
-                                    : mark.value >= values[0]));
+                                    ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                      // @ts-ignore
+                                      mark.value <= values[0] || mark.value >= values[values.length - 1]
+                                    : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                      // @ts-ignore
+                                      mark.value >= values[0]));
                     }
 
                     return (

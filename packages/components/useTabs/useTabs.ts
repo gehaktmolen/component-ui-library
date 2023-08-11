@@ -35,7 +35,7 @@ export function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
         [onChange, setValue]
     );
 
-    const { subitems: tabPanels, contextValue: compoundComponentContextValue } = useCompoundParent<
+    const { subItems: tabPanels, contextValue: compoundComponentContextValue } = useCompoundParent<
         string | number,
         TabPanelMetadata
     >();

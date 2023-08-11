@@ -31,16 +31,16 @@ export interface UseCompoundItemReturnValue<Key> {
  *
  * @ignore - internal hook.
  */
-export function useCompoundItem<Key, Subitem>(
+export function useCompoundItem<Key, SubItem>(
     id: Key | KeyGenerator<Key>,
-    itemMetadata: Subitem
+    itemMetadata: SubItem
 ): UseCompoundItemReturnValue<Key>;
-export function useCompoundItem<Key, Subitem>(id: Key, itemMetadata: Subitem): UseCompoundItemReturnValue<Key>;
-export function useCompoundItem<Key, Subitem>(
+export function useCompoundItem<Key, SubItem>(id: Key, itemMetadata: SubItem): UseCompoundItemReturnValue<Key>;
+export function useCompoundItem<Key, SubItem>(
     id: Key | KeyGenerator<Key>,
-    itemMetadata: Subitem
+    itemMetadata: SubItem
 ): UseCompoundItemReturnValue<Key> {
-    const context = React.useContext(CompoundComponentContext) as CompoundComponentContextValue<Key, Subitem>;
+    const context = React.useContext(CompoundComponentContext) as CompoundComponentContextValue<Key, SubItem>;
 
     if (context === null) {
         throw new Error('useCompoundItem must be used within a useCompoundParent');
@@ -58,6 +58,6 @@ export function useCompoundItem<Key, Subitem>(
     return {
         id: registeredId,
         index: registeredId !== undefined ? context.getItemIndex(registeredId) : -1,
-        totalItemCount: context.totalSubitemCount
+        totalItemCount: context.totalSubItemCount
     };
 }

@@ -245,7 +245,12 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
                     const focusNext = tabbable[0];
                     const focusPrevious = tabbable[tabbable.length - 1];
 
-                    if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
+                    if (
+                        typeof focusNext !== 'string' &&
+                        focusNext !== undefined &&
+                        typeof focusPrevious !== 'string' &&
+                        focusPrevious !== undefined
+                    ) {
                         if (isShiftTab) {
                             focusPrevious.focus();
                         } else {

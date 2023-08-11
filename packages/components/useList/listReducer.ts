@@ -40,7 +40,9 @@ function findValidItemToHighlight<ItemValue>(
             return -1;
         }
 
-        const nextFocusDisabled = includeDisabledItems ? false : isItemDisabled(items[nextFocus], nextFocus);
+        const nextFocusDisabled = includeDisabledItems
+            ? false
+            : isItemDisabled(items[nextFocus] as ItemValue, nextFocus);
         if (nextFocusDisabled) {
             nextFocus += lookupDirection === 'next' ? 1 : -1;
             if (wrapAround) {
@@ -175,7 +177,7 @@ export function toggleSelection<ItemValue>(
 
     if (selectionMode === 'single') {
         // if the item to select has already been selected, return the original array
-        if (itemComparer(selectedValues[0], item)) {
+        if (itemComparer(selectedValues[0] as ItemValue, item)) {
             return selectedValues;
         }
 
@@ -412,7 +414,7 @@ function handleResetHighlight<ItemValue, State extends ListState<ItemValue>>(
     };
 }
 
-export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
+export function listReducer<ItemValue, State extends ListState<ItemValue>>(
     state: State,
     action: ListReducerAction<ItemValue> & { context: ListActionContext<ItemValue> }
 ): State {

@@ -164,7 +164,7 @@ export interface UseListParameters<
      */
     onItemsChange?: (items: ItemValue[]) => void;
     /**
-     * Callback fired when the any of the state items change.
+     * Callback fired when any of the state items change.
      * Note that in case of `selectedValues` and `highlightedValue` the strongly typed
      * `onChange` and `onHighlightChange` callbacks are also fired.
      */

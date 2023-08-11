@@ -9,7 +9,7 @@ import { FadeProps } from './Fade.types.ts';
 
 const transitions = createTransitions({});
 
-const styles = {
+const styles: { [key: string]: object } = {
     entering: {
         opacity: 1
     },
@@ -27,7 +27,7 @@ const styles = {
  * - [Fade API](#api)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export const Fade = React.forwardRef(function Fade(props: FadeProps, ref: React.ForwardedRef<HTMLElement>) {
+export const Fade = React.forwardRef(function Fade(props: FadeProps, forwardedRef: React.ForwardedRef<HTMLElement>) {
     const defaultTimeout = {
         enter: 200,
         exit: 150
@@ -57,19 +57,21 @@ export const Fade = React.forwardRef(function Fade(props: FadeProps, ref: React.
     const nodeRef = React.useRef<HTMLElement | null>(null);
     // @ts-expect-error TODO upstream fix
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const handleRef = useForkRef(nodeRef, children.ref, ref);
+    const handleRef = useForkRef(nodeRef, children.ref, forwardedRef);
 
     const normalizedTransitionCallback =
-        (callback: ((node: HTMLElement | null, isAppearing: boolean) => void) | undefined) =>
+        (callback: ((node: HTMLElement, isAppearing: boolean) => void) | undefined) =>
         (maybeIsAppearing?: boolean): void => {
             if (callback) {
-                const node = nodeRef.current;
+                const node: HTMLElement | null = nodeRef.current;
 
                 // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-                if (maybeIsAppearing === undefined) {
-                    callback(node, false);
-                } else {
-                    callback(node, maybeIsAppearing);
+                if (node) {
+                    if (maybeIsAppearing === undefined) {
+                        callback(node, false);
+                    } else {
+                        callback(node, maybeIsAppearing);
+                    }
                 }
             }
         };
@@ -119,7 +121,7 @@ export const Fade = React.forwardRef(function Fade(props: FadeProps, ref: React.
     const handleExited = normalizedTransitionCallback(onExited);
 
     const handleAddEndListener = (next: () => void): void => {
-        if (addEndListener) {
+        if (addEndListener && nodeRef.current) {
             // Old call signature before `react-transition-group` implemented `nodeRef`
             addEndListener(nodeRef.current, next);
         }
@@ -155,7 +157,7 @@ export const Fade = React.forwardRef(function Fade(props: FadeProps, ref: React.
             }}
         </TransitionComponent>
     );
-});
+}) as React.ForwardRefExoticComponent<FadeProps & React.RefAttributes<HTMLElement>>;
 
 Fade.propTypes = {
     /**
@@ -173,11 +175,15 @@ Fade.propTypes = {
     /**
      * A single child content element.
      */
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     children: elementAcceptingRef.isRequired,
     /**
      * The transition timing function.
-     * You may specify a single easing or a object containing enter and exit values.
+     * You may specify a single easing or object containing enter and exit values.
      */
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     easing: PropTypes.oneOfType([
         PropTypes.shape({
             enter: PropTypes.string,
@@ -225,6 +231,8 @@ Fade.propTypes = {
      *   exit: 100,
      * }
      */
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     timeout: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.shape({

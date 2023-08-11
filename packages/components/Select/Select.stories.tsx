@@ -65,7 +65,7 @@ const characters = [
     { name: 'Gimli', race: 'Dwarf' }
 ];
 export const UsingObjectValues = () => {
-    const [character, setCharacter] = React.useState<{ name: string; race: string } | null>(characters[0]);
+    const [character, setCharacter] = React.useState<{ name: string; race: string } | undefined | null>(characters[0]);
 
     return (
         <div className="mx-auto max-w-xs w-80">

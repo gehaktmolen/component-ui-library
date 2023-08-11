@@ -6,7 +6,7 @@ import { EventHandlers } from './types';
  * (such as useSelect that depends on useList and useButton for its root slot).
  *
  * The resulting function will return the combined props.
- * They are merged from left to right, similarly to how Object.assign works.
+ * They are merged from left to right, similarly to how Object.assign() works.
  *
  * The getSecondProps function will receive the result of the getFirstProps function as its argument,
  * so its event handlers can call the previous handlers and act depending on its result.

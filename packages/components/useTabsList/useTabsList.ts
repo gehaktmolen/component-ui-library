@@ -11,7 +11,7 @@ import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs';
 import { useList, ListState, UseListParameters } from '../useList';
-import tabsListReducer from './tabsListReducer';
+import { tabsListReducer } from './tabsListReducer';
 
 /**
  * API:
@@ -30,18 +30,18 @@ export function useTabsList(parameters: UseTabsListParameters): UseTabsListRetur
         selectionFollowsFocus
     } = useTabsContext();
 
-    const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<string | number, TabMetadata>();
+    const { subItems, contextValue: compoundComponentContextValue } = useCompoundParent<string | number, TabMetadata>();
 
     const tabIdLookup = React.useCallback(
         (tabValue: string | number) => {
-            return subitems.get(tabValue)?.id;
+            return subItems.get(tabValue)?.id;
         },
-        [subitems]
+        [subItems]
     );
 
     registerTabIdLookup(tabIdLookup);
 
-    const subitemKeys = React.useMemo(() => Array.from(subitems.keys()), [subitems]);
+    const subItemKeys = React.useMemo(() => Array.from(subItems.keys()), [subItems]);
 
     const getTabElement = React.useCallback(
         (tabValue: string | number) => {
@@ -49,9 +49,9 @@ export function useTabsList(parameters: UseTabsListParameters): UseTabsListRetur
                 return null;
             }
 
-            return subitems.get(tabValue)?.ref.current ?? null;
+            return subItems.get(tabValue)?.ref.current ?? null;
         },
-        [subitems]
+        [subItems]
     );
 
     const isRtl = direction === 'rtl';
@@ -86,8 +86,8 @@ export function useTabsList(parameters: UseTabsListParameters): UseTabsListRetur
     }, [value]);
 
     const isItemDisabled = React.useCallback(
-        (item: string | number) => subitems.get(item)?.disabled ?? false,
-        [subitems]
+        (item: string | number) => subItems.get(item)?.disabled ?? false,
+        [subItems]
     );
 
     const {
@@ -102,7 +102,7 @@ export function useTabsList(parameters: UseTabsListParameters): UseTabsListRetur
         focusManagement: 'DOM',
         getItemDomElement: getTabElement,
         isItemDisabled,
-        items: subitemKeys,
+        items: subItemKeys,
         rootRef: externalRef,
         onChange: handleChange,
         orientation: listOrientation,
@@ -111,6 +111,10 @@ export function useTabsList(parameters: UseTabsListParameters): UseTabsListRetur
             [selectionFollowsFocus]
         ),
         selectionMode: 'single',
+
+        // Todo: Resolve tabsListReducer incompatibility with stateReducer type error.
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         stateReducer: tabsListReducer
     });
 

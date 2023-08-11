@@ -17,7 +17,7 @@ export default function composeClasses<ClassKey extends string>(
                             acc.push(utilityClass);
                         }
                         if (classes && classes[key]) {
-                            acc.push(classes[key]);
+                            acc.push(classes[key] as string);
                         }
                     }
                     return acc;

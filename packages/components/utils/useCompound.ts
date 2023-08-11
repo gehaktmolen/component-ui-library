@@ -14,7 +14,7 @@ interface RegisterItemReturnValue<Key> {
 
 export type KeyGenerator<Key> = (existingKeys: Set<Key>) => Key;
 
-export type CompoundComponentContextValue<Key, Subitem> = {
+export type CompoundComponentContextValue<Key, SubItem> = {
     /**
      * Registers an item with the parent.
      * This should be called during the effect phase of the child component.
@@ -25,7 +25,7 @@ export type CompoundComponentContextValue<Key, Subitem> = {
      *   Return `existingKeys.size` if you want to use the index of the new item as the id..
      * @param itemMetadata Arbitrary metadata to pass to the parent component.
      */
-    registerItem: (id: Key | KeyGenerator<Key>, item: Subitem) => RegisterItemReturnValue<Key>;
+    registerItem: (id: Key | KeyGenerator<Key>, item: SubItem) => RegisterItemReturnValue<Key>;
     /**
      * Returns the 0-based index of the item in the parent component's list of registered items.
      *
@@ -35,38 +35,38 @@ export type CompoundComponentContextValue<Key, Subitem> = {
     /**
      * The total number of items registered with the parent.
      */
-    totalSubitemCount: number;
+    totalSubItemCount: number;
 };
 
 export const CompoundComponentContext = React.createContext<CompoundComponentContextValue<any, any> | null>(null);
 
 CompoundComponentContext.displayName = 'CompoundComponentContext';
 
-export interface UseCompoundParentReturnValue<Key, Subitem extends { ref: React.RefObject<Node> }> {
+export interface UseCompoundParentReturnValue<Key, SubItem extends { ref: React.RefObject<Node> }> {
     /**
      * The value for the CompoundComponentContext provider.
      */
-    contextValue: CompoundComponentContextValue<Key, Subitem>;
+    contextValue: CompoundComponentContextValue<Key, SubItem>;
     /**
-     * The subitems registered with the parent.
-     * The key is the id of the subitem, and the value is the metadata passed to the `useCompoundItem` hook.
+     * The subItems registered with the parent.
+     * The key is the id of the subItems, and the value is the metadata passed to the `useCompoundItem` hook.
      * The order of the items is the same as the order in which they were registered.
      */
-    subitems: Map<Key, Subitem>;
+    subItems: Map<Key, SubItem>;
 }
 
 /**
- * Sorts the subitems by their position in the DOM.
+ * Sorts the subItems by their position in the DOM.
  */
-function sortSubitems<Key, Subitem extends { ref: React.RefObject<Node> }>(subitems: Map<Key, Subitem>) {
-    const subitemsArray = Array.from(subitems.keys()).map((key) => {
-        const subitem = subitems.get(key)!;
-        return { key, subitem };
+function sortSubItems<Key, SubItem extends { ref: React.RefObject<Node> }>(subItems: Map<Key, SubItem>) {
+    const subItemsArray = Array.from(subItems.keys()).map((key) => {
+        const subItem = subItems.get(key)!;
+        return { key, subItem };
     });
 
-    subitemsArray.sort((a, b) => {
-        const aNode = a.subitem.ref.current;
-        const bNode = b.subitem.ref.current;
+    subItemsArray.sort((a, b) => {
+        const aNode = a.subItem.ref.current;
+        const bNode = b.subItem.ref.current;
 
         if (aNode === null || bNode === null || aNode === bNode) {
             return 0;
@@ -76,7 +76,7 @@ function sortSubitems<Key, Subitem extends { ref: React.RefObject<Node> }>(subit
         return aNode.compareDocumentPosition(bNode) & Node.DOCUMENT_POSITION_PRECEDING ? 1 : -1;
     });
 
-    return new Map(subitemsArray.map((item) => [item.key, item.subitem]));
+    return new Map(subItemsArray.map((item) => [item.key, item.subItem]));
 }
 
 /**
@@ -91,16 +91,16 @@ function sortSubitems<Key, Subitem extends { ref: React.RefObject<Node> }>(subit
  *
  * @ignore - internal hook.
  */
-export function useCompoundParent<Key, Subitem extends { ref: React.RefObject<Node> }>(): UseCompoundParentReturnValue<
+export function useCompoundParent<Key, SubItem extends { ref: React.RefObject<Node> }>(): UseCompoundParentReturnValue<
     Key,
-    Subitem
+    SubItem
 > {
-    const [subitems, setSubitems] = React.useState(new Map<Key, Subitem>());
-    const subitemKeys = React.useRef(new Set<Key>());
+    const [subItems, setSubItems] = React.useState(new Map<Key, SubItem>());
+    const subItemKeys = React.useRef(new Set<Key>());
 
     const deregisterItem = React.useCallback(function deregisterItem(id: Key) {
-        subitemKeys.current.delete(id);
-        setSubitems((previousState) => {
+        subItemKeys.current.delete(id);
+        setSubItems((previousState) => {
             const newState = new Map(previousState);
             newState.delete(id);
             return newState;
@@ -108,17 +108,17 @@ export function useCompoundParent<Key, Subitem extends { ref: React.RefObject<No
     }, []);
 
     const registerItem = React.useCallback(
-        function registerItem(id: Key | KeyGenerator<Key>, item: Subitem) {
+        function registerItem(id: Key | KeyGenerator<Key>, item: SubItem) {
             let providedOrGeneratedId: Key;
 
             if (typeof id === 'function') {
-                providedOrGeneratedId = (id as KeyGenerator<Key>)(subitemKeys.current);
+                providedOrGeneratedId = (id as KeyGenerator<Key>)(subItemKeys.current);
             } else {
                 providedOrGeneratedId = id;
             }
 
-            subitemKeys.current.add(providedOrGeneratedId);
-            setSubitems((previousState) => {
+            subItemKeys.current.add(providedOrGeneratedId);
+            setSubItems((previousState) => {
                 const newState = new Map(previousState);
                 newState.set(providedOrGeneratedId, item);
                 return newState;
@@ -132,26 +132,26 @@ export function useCompoundParent<Key, Subitem extends { ref: React.RefObject<No
         [deregisterItem]
     );
 
-    const sortedSubitems = React.useMemo(() => sortSubitems(subitems), [subitems]);
+    const sortedSubItems = React.useMemo(() => sortSubItems(subItems), [subItems]);
 
     const getItemIndex = React.useCallback(
         function getItemIndex(id: Key) {
-            return Array.from(sortedSubitems.keys()).indexOf(id);
+            return Array.from(sortedSubItems.keys()).indexOf(id);
         },
-        [sortedSubitems]
+        [sortedSubItems]
     );
 
     const contextValue = React.useMemo(
         () => ({
             getItemIndex,
             registerItem,
-            totalSubitemCount: subitems.size
+            totalSubItemCount: subItems.size
         }),
-        [getItemIndex, registerItem, subitems.size]
+        [getItemIndex, registerItem, subItems.size]
     );
 
     return {
         contextValue,
-        subitems: sortedSubitems
+        subItems: sortedSubItems
     };
 }

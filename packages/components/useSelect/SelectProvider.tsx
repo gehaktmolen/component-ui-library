@@ -26,7 +26,7 @@ export default function SelectProvider<Value>(props: SelectProviderProps<Value>)
         registerHighlightChangeHandler,
         registerSelectionChangeHandler,
         registerItem,
-        totalSubitemCount
+        totalSubItemCount
     } = value;
 
     const listContextValue: ListContextValue<Value> = React.useMemo(
@@ -44,9 +44,9 @@ export default function SelectProvider<Value>(props: SelectProviderProps<Value>)
         () => ({
             getItemIndex,
             registerItem,
-            totalSubitemCount
+            totalSubItemCount
         }),
-        [registerItem, getItemIndex, totalSubitemCount]
+        [registerItem, getItemIndex, totalSubItemCount]
     );
 
     return (

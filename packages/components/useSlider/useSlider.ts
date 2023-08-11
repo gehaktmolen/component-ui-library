@@ -48,12 +48,15 @@ function findClosest(values: number[], currentValue: number) {
     return closestIndex;
 }
 
-function trackFinger(event: TouchEvent | MouseEvent | React.MouseEvent, touchId: React.RefObject<any>) {
+function trackFinger(
+    event: TouchEvent | MouseEvent | React.MouseEvent,
+    touchId: React.RefObject<any>
+): false | { x: number; y: number } {
     // The event is TouchEvent
     if (touchId.current !== undefined && (event as TouchEvent).changedTouches) {
-        const touchEvent = event as TouchEvent;
+        const touchEvent: TouchEvent = event as TouchEvent;
         for (let i = 0; i < touchEvent.changedTouches.length; i += 1) {
-            const touch = touchEvent.changedTouches[i];
+            const touch: Touch = touchEvent.changedTouches[i] as Touch;
             if (touch.identifier === touchId.current) {
                 return {
                     x: touch.clientX,
@@ -82,11 +85,11 @@ function percentToValue(percent: number, min: number, max: number) {
 
 function getDecimalPrecision(num: number) {
     // This handles the case when num is very small (0.00000001), js will turn this into 1e-8.
-    // When num is bigger than 1 or less than -1 it won't get converted to this notation so it's fine.
+    // When num is bigger than 1 or less than -1 it won't get converted to this notation, so it's fine.
     if (Math.abs(num) < 1) {
         const parts = num.toExponential().split('e-');
-        const matissaDecimalPart = parts[0].split('.')[1];
-        return (matissaDecimalPart ? matissaDecimalPart.length : 0) + parseInt(parts[1], 10);
+        const decimalPart = parts[0]?.split('.')[1];
+        return (decimalPart ? decimalPart.length : 0) + parseInt(parts[1] as string, 10);
     }
 
     const decimalPart = num.toString().split('.')[1];
@@ -203,7 +206,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     const touchId = React.useRef<number>();
     // We can't use the :active browser pseudo-classes.
     // - The active state isn't triggered when clicking on the rail.
-    // - The active state isn't transferred when inversing a range slider.
+    // - The active state isn't transferred when inverting a range slider.
     const [active, setActive] = React.useState(-1);
     const [open, setOpen] = React.useState(-1);
     const [dragging, setDragging] = React.useState(false);
@@ -244,7 +247,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
               }))
             : marksProp || [];
 
-    const marksValues = (marks as Mark[]).map((mark: Mark) => mark.value);
+    const marksValues: number[] = (marks as Mark[]).map((mark: Mark) => mark.value);
 
     const {
         isFocusVisibleRef,
@@ -300,18 +303,18 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
             otherHandlers.onChange?.(event);
 
             const index = Number(event.currentTarget.getAttribute('data-index'));
-            const value = values[index];
-            const marksIndex = marksValues.indexOf(value);
+            const value: number = values[index] || 0;
+            const marksIndex: number = marksValues.indexOf(value);
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            let newValue: number | number[] = event.target.valueAsNumber;
+            let newValue: number | number[] | undefined = event.target.valueAsNumber;
 
             if (marks && step == null) {
-                const maxMarksValue = marksValues[marksValues.length - 1];
+                const maxMarksValue: number = marksValues[marksValues.length - 1] || 0;
                 if ((newValue as number) > maxMarksValue) {
                     newValue = maxMarksValue;
-                } else if (<number>newValue < marksValues[0]) {
+                } else if (<number>newValue < (marksValues[0] || 0)) {
                     newValue = marksValues[0];
                 } else {
                     newValue = <number>newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
@@ -385,7 +388,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
             newValue = marksValues[closestIndex!];
         }
 
-        newValue = clamp(newValue, min, max);
+        newValue = clamp(newValue as number, min, max);
         let activeIndex = 0;
 
         if (range) {
@@ -576,8 +579,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
             doc.addEventListener('mouseup', handleTouchEnd);
         };
 
-    const trackOffset = valueToPercent(range ? values[0] : min, min, max);
-    const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
+    const trackOffset = valueToPercent(range ? (values[0] as number) : min, min, max);
+    const trackLeap = valueToPercent(values[values.length - 1] as number, min, max) - trackOffset;
 
     const getRootProps = <TOther extends EventHandlers = NonNullable<unknown>>(
         otherHandlers: TOther = {} as TOther
