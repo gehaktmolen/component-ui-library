@@ -1,6 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Portal } from './Portal';
-import * as SelectDefaultStories from './Portal.stories';
+import * as PortalDefaultStories from './Portal.stories';
 
 <Meta title="Utils/Portal" />
 
@@ -38,7 +38,7 @@ The Portal component accepts a `container` prop that passes a `ref` to the DOM n
 
 The following demo shows how a `<span>` nested within a Portal can be appended to a node outside the Portal's DOM hierarchy—click Mount children to see how it behaves:
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.Basics} />
+<Canvas sourceState="hidden" of={PortalDefaultStories.Basics} />
 
 ### Server-side
 

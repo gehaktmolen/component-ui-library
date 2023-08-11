@@ -31,6 +31,14 @@ export const Primary: Story = {
     )
 };
 
+export const Basics: Story = {
+    render: () => (
+        <div className="mx-auto max-w-xs w-80">
+            <Input placeholder="Type in here…" />
+        </div>
+    )
+};
+
 // export const Variants: Story = {
 //     render: () => (
 //         <div className="py-2 flex flex-col items-center flex-wrap gap-2">

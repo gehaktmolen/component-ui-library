@@ -1,6 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Input } from './Input';
-import * as SelectDefaultStories from './Input.stories';
+import * as InputDefaultStories from './Input.stories';
 
 <Meta title="Inputs/Input" />
 
@@ -14,7 +14,7 @@ The Input component provides users with a field to enter and edit text.
 
 An input is a UI element that accepts text data from the user. The Input component replaces the native HTML `<input>` tag, and offers expanded customization and accessibility features. It can also be transformed into a `<textarea>` as needed.
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.Primary} />
+<Canvas sourceState="hidden" of={InputDefaultStories.Primary} />
 
 ## Component
 
@@ -34,7 +34,7 @@ Input behaves similarly to the native HTML `<input>`, except that it's nested in
 
 The following demo shows how to create and style an input component, including placeholder text:
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.Primary} />
+<Canvas sourceState="hidden" of={InputDefaultStories.Basics} />
 
 ### Anatomy
 
@@ -129,13 +129,13 @@ You can use the `startAdornment` and `endAdornment` props to add a prefix, suffi
 
 The following demo shows examples of both of these use cases:
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.Primary} />
+<Canvas sourceState="hidden" of={InputDefaultStories.Primary} />
 
 ### Multiline
 
 The multiline prop transforms the `<input>` field into a `<textarea>` element, as shown below:
 
-<Canvas sourceState="shown" of={SelectDefaultStories.Primary} />
+<Canvas sourceState="shown" of={InputDefaultStories.Primary} />
 
 If you want the `<textarea>` to grow with the content, you can use the Textarea Autosize component within the input.
 
@@ -143,7 +143,7 @@ When using Textarea Autosize, the height of the `<textarea>` element dynamically
 
 The following demo shows how to insert a Textarea Autosize component into an Input so that its height grows with the length of the content:
 
-<Canvas sourceState="shown" of={SelectDefaultStories.Primary} />
+<Canvas sourceState="shown" of={InputDefaultStories.Primary} />
 
 ## API
 

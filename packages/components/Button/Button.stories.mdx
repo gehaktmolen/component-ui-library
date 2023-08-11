@@ -1,6 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Button } from './Button';
-import * as SelectDefaultStories from './Button.stories';
+import * as ButtonDefaultStories from './Button.stories';
 
 <Meta title="Inputs/Button" />
 
@@ -14,7 +14,7 @@ Buttons let users take actions and make choices with a single tap.
 
 The Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.Basics} />
+<Canvas sourceState="hidden" of={ButtonDefaultStories.Basics} />
 
 ## Component
 
@@ -34,7 +34,7 @@ The Button behaves similar to the native HTML `<button>`, so it wraps around the
 
 The following demo shows how to create and style two basic buttons. Notice that the second button cannot be clicked due to the disabled prop:
 
-<Canvas sourceState="shown" of={SelectDefaultStories.Basics} />
+<Canvas sourceState="shown" of={ButtonDefaultStories.Basics} />
 
 ### Anatomy
 
@@ -60,7 +60,7 @@ If you provide a non-interactive element such as a `<span>`, the Button componen
 
 Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
 
-<Canvas sourceState="shown" of={SelectDefaultStories.Span} />
+<Canvas sourceState="shown" of={ButtonDefaultStories.Span} />
 
 If a Button is customized with a non-button element (for instance, `<Button slots={{ root: "span" }} />`), it will not submit the form it's in when clicked. Similarly, `<Button slots={{ root: "span" }} type="reset">` will not reset its parent form.
 
@@ -206,11 +206,11 @@ Azrn UI uses this prop internally in [Select](?path=/docs/inputs-select--docs) i
 
 The following demo shows how the `focusableWhenDisabled` prop works—use the `Tab`-key to navigate within this document to see that only the second button accepts the focus:
 
-<Canvas sourceState="shown" of={SelectDefaultStories.DisabledFocus} />
+<Canvas sourceState="shown" of={ButtonDefaultStories.DisabledFocus} />
 
 The `focusableWhenDisabled` prop works the same when the root slot is customized, except that the `aria-disabled` attribute is used no regardless of the prop's state. The ability to receive focus is controlled internally by the `tabindex` attribute.
 
-<Canvas sourceState="shown" of={SelectDefaultStories.DisabledFocusCustom} />
+<Canvas sourceState="shown" of={ButtonDefaultStories.DisabledFocusCustom} />
 
 ## API
 

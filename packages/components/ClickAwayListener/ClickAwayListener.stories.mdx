@@ -1,6 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { ClickAwayListener } from './ClickAwayListener';
-import * as SelectDefaultStories from './ClickAwayListener.stories';
+import * as ClickAwayListenerDefaultStories from './ClickAwayListener.stories';
 
 <Meta title="Utils/ClickAwayListener" />
 
@@ -34,13 +34,13 @@ export default function MyApp() {
 
 The following demo shows how to hide a menu dropdown when users click anywhere else on the page:
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.Basics} />
+<Canvas sourceState="hidden" of={ClickAwayListenerDefaultStories.Basics} />
 
 ### Usage with Portal
 
 The following demo uses the [Portal](?path=/docs/utils-portal--docs) component to render the dropdown into a new subtree outside of the current DOM hierarchy:
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.UsageWithPortal} />
+<Canvas sourceState="hidden" of={ClickAwayListenerDefaultStories.UsageWithPortal} />
 
 ## Customization
 
@@ -50,7 +50,7 @@ By default, the Click-Away Listener component responds to trailing events—the 
 
 You can set the component to listen for leading events (the start of a click or touch) using the `mouseEvent` and `touchEvent` props, as shown in the following demo:
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.LeadingEvents} />
+<Canvas sourceState="hidden" of={ClickAwayListenerDefaultStories.LeadingEvents} />
 
 When the component is set to listen for leading events, interactions with the scrollbar are ignored.
 

@@ -241,7 +241,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     let values: number[] = range ? valueDerived.slice().sort(asc) : [valueDerived];
     values = values.map((value) => clamp(value, min, max));
     const marks =
-        marksProp && step !== null
+        // Do not simplify marksProp === true !!!
+        marksProp === true && step !== null
             ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
                   value: min + step * index
               }))

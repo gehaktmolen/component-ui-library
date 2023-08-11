@@ -40,6 +40,29 @@ export const Primary: Story = {
     )
 };
 
+export const Basics: Story = {
+    render: () => (
+        <div className="mx-auto max-w-xs w-80">
+            <Select
+                defaultValue={10}
+                slotProps={{
+                    root: {
+                        className:
+                            'bg-primary-500 dark:bg-primary-200 ring-primary-600 dark:ring-primary-400 focus:ring-primary-500 text-white dark:text-gray-900'
+                    },
+                    listbox: {
+                        className: 'py-0 mt-4'
+                    }
+                }}
+            >
+                <Option value={10}>Documentation</Option>
+                <Option value={20}>Components</Option>
+                <Option value={30}>Features</Option>
+            </Select>
+        </div>
+    )
+};
+
 export const Controlled = () => {
     const [value, setValue] = React.useState<number | null>(10);
 
@@ -170,30 +193,6 @@ export const Grouping: Story = {
                     <Option value="Galadriel">Galadriel</Option>
                     <Option value="Legolas">Legolas</Option>
                 </OptionGroup>
-            </Select>
-        </div>
-    )
-};
-
-export const Custom: Story = {
-    render: (args) => (
-        <div className="mx-auto max-w-xs w-80">
-            <Select
-                defaultValue={10}
-                slotProps={{
-                    root: {
-                        className:
-                            'bg-primary-500 dark:bg-primary-200 ring-primary-600 dark:ring-primary-400 focus:ring-primary-500 text-white dark:text-gray-900'
-                    },
-                    listbox: {
-                        className: 'py-0 mt-4'
-                    }
-                }}
-                {...args}
-            >
-                <Option value={10}>Documentation</Option>
-                <Option value={20}>Components</Option>
-                <Option value={30}>Features</Option>
             </Select>
         </div>
     )

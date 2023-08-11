@@ -47,7 +47,26 @@ export default function MyApp() {
 
 The following demo shows how to create and style a Select component.
 
-<Canvas sourceState="hidden" of={SelectDefaultStories.Custom} />
+<Canvas sourceState="hidden" of={SelectDefaultStories.Basics} />
+
+```jsx
+<Select
+    defaultValue={10}
+    slotProps={{
+        root: {
+            className:
+                'bg-primary-500 dark:bg-primary-200 ring-primary-600 dark:ring-primary-400 focus:ring-primary-500 text-white dark:text-gray-900'
+        },
+        listbox: {
+            className: 'py-0 mt-4'
+        }
+    }}
+>
+    <Option value={10}>Documentation</Option>
+    <Option value={20}>Components</Option>
+    <Option value={30}>Features</Option>
+</Select>
+```
 
 #### Form submission
 
