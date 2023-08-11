@@ -63,9 +63,8 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  * ⚠️ Only one `Input` can be used within a FormControl because it creates visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  *
- * API:
- *
- * - [FormControl API](https://#form-control)
+ * ## API
+ * - [FormControl API](#api)
  */
 export const FormControl = React.forwardRef(function FormControl<RootComponentType extends React.ElementType>(
     props: FormControlProps<RootComponentType>,

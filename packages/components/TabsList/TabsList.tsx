@@ -26,9 +26,9 @@ const useUtilityClasses = (ownerState: TabsListOwnerState) => {
 };
 
 /**
- * API:
  *
- * - [TabsList API](https://#tabs-list)
+ * ## TabsList API
+ * - [TabsList API](?path=/docs/navigation-tabs--docs#tabslist-api)
  */
 export const TabsList = React.forwardRef(function TabsList<RootComponentType extends React.ElementType>(
     props: TabsListProps<RootComponentType>,

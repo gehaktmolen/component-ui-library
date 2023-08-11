@@ -53,9 +53,8 @@ export interface ClickAwayListenerProps {
  * Listen for click events that occur somewhere in the document, outside the element itself.
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  *
- * API:
- *
- * - [ClickAwayListener API](https://#click-away-listener)
+ * ## API
+ * - [ClickAwayListener API](?path=/docs/utils-clickawaylistener--docs#api)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
     const {

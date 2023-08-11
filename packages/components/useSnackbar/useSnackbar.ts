@@ -6,9 +6,8 @@ import { extractEventHandlers } from '../utils';
 /**
  * The basic building block for creating custom snackbar.
  *
- * API:
- *
- * - [useSnackbar API](https://#use-snackbar)
+ * ## useSnackbar API
+ * - [useSnackbar API](?path=/docs/feedback-snackbar--docs#usesnackbar-api-hook)
  */
 export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarReturnValue {
     const {

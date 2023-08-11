@@ -18,9 +18,8 @@ function getContainer(container: PortalProps['container']) {
  * Portals provide a first-class way to render children into a DOM node
  * that exists outside the DOM hierarchy of the parent component.
  *
- * API:
- *
- * - [Portal API](https://#portal)
+ * ## API
+ * - [Portal API](?path=/docs/utils-portal--docs#api)
  */
 export const Portal = React.forwardRef(function Portal(props: PortalProps, forwardedRef: React.ForwardedRef<Element>) {
     const { children, container, disablePortal = false } = props;

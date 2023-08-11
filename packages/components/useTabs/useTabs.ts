@@ -13,9 +13,9 @@ export interface TabMetadata {
 type IdLookupFunction = (id: string | number) => string | undefined;
 
 /**
- * API:
  *
- * - [useTabs API](https://#use-tabs)
+ * ## useTabs API
+ * - [useTabs API](?path=/docs/navigation-tabs--docs#usetabs-api-hook)
  */
 export function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
     const { value: valueProp, defaultValue, onChange, orientation, direction, selectionFollowsFocus } = parameters;

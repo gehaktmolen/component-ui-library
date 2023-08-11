@@ -36,9 +36,9 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
     );
 };
 /**
- * API:
  *
- * - [Tab API](https://#tab)
+ * ## Tab API
+ * - [Tab API](?path=/docs/navigation-tabs--docs#tab-api)
  */
 export const Tab = React.forwardRef(function Tab<RootComponentType extends React.ElementType>(
     props: TabProps<RootComponentType>,

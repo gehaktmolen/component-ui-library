@@ -9,9 +9,9 @@ function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
 }
 
 /**
- * API:
  *
- * - [useTabPanel API](https://#use-tab-panel)
+ * ## useTabPanel API
+ * - [useTabPanel API](?path=/docs/navigation-tabs--docs#usetabpanel-api-hook)
  */
 export function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue {
     const { value: valueParam, id: idParam, rootRef: externalRef } = parameters;

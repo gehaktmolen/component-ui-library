@@ -29,9 +29,8 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
 };
 
 /**
- * API:
- *
- * - [Modal API](https://#modal)
+ * ## API
+ * - [Modal API](?path=/docs/utils-modal--docs#api)
  */
 const Modal = React.forwardRef(function Modal<RootComponentType extends React.ElementType>(
     props: ModalProps<RootComponentType>,

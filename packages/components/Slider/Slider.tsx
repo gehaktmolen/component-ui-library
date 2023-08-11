@@ -72,9 +72,10 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
 };
 
 /**
- * API:
+ * A slider is a UI element that lets users select a single value or a range of values along a bar.
  *
- * - [Slider API](https://#slider)
+ * ## API
+ * - [Slider API](?path=/docs/inputs-slider--docs#api)
  */
 export const Slider = React.forwardRef(function Slider<RootComponentType extends React.ElementType>(
     props: SliderProps<RootComponentType>,

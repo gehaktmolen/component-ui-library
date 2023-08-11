@@ -3,11 +3,11 @@ import { unstable_useForkRef as useForkRef } from '../../utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import extractEventHandlers from '../utils/extractEventHandlers';
 import { UseInputSlotProps, UseInputParameters, UseInputRootSlotProps, UseInputReturnValue } from './useInput.types';
+
 /**
  *
- * API:
- *
- * - [useInput API](https://#use-input)
+ * ## useInput API
+ * - [useInput API](?path=/docs/inputs-input--docs#useinput-api-hook)
  */
 export function useInput(parameters: UseInputParameters): UseInputReturnValue {
     const {

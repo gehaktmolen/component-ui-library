@@ -4,9 +4,8 @@ import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
 
 /**
  *
- * API:
- *
- * - [useBadge API](https://#use-badge)
+ * ## useBadge API
+ * - [useBadge API](?path=/docs/data-display-badge--docs#usebadge-api-hook)
  */
 export function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
     const {

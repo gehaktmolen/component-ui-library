@@ -230,9 +230,8 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<RootComponentType 
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  *
- * API:
- *
- * - [Popper API](#api)
+ * ## API:
+ * - [Popper API](?path=/docs/utils-popper--docs#api)
  */
 export const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
     props: PopperProps<RootComponentType>,

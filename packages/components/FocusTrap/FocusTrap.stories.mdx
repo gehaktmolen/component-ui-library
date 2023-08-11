@@ -1,0 +1,53 @@
+import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
+import { FocusTrap } from './FocusTrap';
+import * as FocusTrapDefaultStories from './FocusTrap.stories';
+
+<Meta title="Utils/FocusTrap" />
+
+# FocusTrap
+
+---
+
+The Focus Trap component prevents the user's focus from escaping its children components.
+
+## Introduction
+
+Focus Trap is a utility component that's useful when implementing an overlay such as a [modal](?path=/docs/utils-modal--docs) dialog, which should block all interactions outside of it while open.
+
+## Component
+
+### Usage
+
+```jsx
+import { FocusTrap } from '../Modal';
+
+export default function MyApp() {
+    return <FocusTrap>{/* children where the focus will be trapped */}</FocusTrap>;
+}
+```
+
+### Basics
+
+Focus Trap wraps around the UI elements that should hold the user's focus. For instance, if the focus needs to stay inside a [Menu](?path=/docs/navigation-menu--docs), then the component will be structured like this:
+
+<Canvas sourceState="hidden" of={FocusTrapDefaultStories.Primary} />
+
+## Customization
+
+### ...
+
+...
+
+## API
+
+### Import
+
+```jsx
+import { FocusTrap } from '../FocusTrap';
+```
+
+### Parameters
+
+Props of the native component are also available.
+
+<ArgTypes of={FocusTrap} />

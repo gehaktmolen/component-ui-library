@@ -91,9 +91,8 @@ const useUtilityClasses = <OptionValue extends NonNullable<unknown>, Multiple ex
 /**
  * The foundation for building custom-styled select components.
  *
- * API:
- *
- * - [Select API](/docs/inputs-select--docs)
+ * ## API:
+ * - [Select API](?path=/docs/inputs-select--docs#api)
  */
 export const Select = React.forwardRef(function Select<
     OptionValue extends NonNullable<unknown>,

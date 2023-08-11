@@ -29,9 +29,8 @@ function useUtilityClasses(disabled: boolean) {
 /**
  * An un-styled option group to be used within a Select.
  *
- * API:
- *
- * - [OptionGroup API](https://docs/inputs-select--docs#grouping-options)
+ * ## OptionGroup API
+ * - [OptionGroup API](https://docs/inputs-select--docs#option-group-api)
  */
 export const OptionGroup = React.forwardRef(function OptionGroup<RootComponentType extends React.ElementType>(
     props: OptionGroupProps<RootComponentType>,

@@ -4,9 +4,8 @@ import FormControlContext from './FormControlContext';
 
 /**
  *
- * API:
- *
- * - [useFormControlContext API](https://#use-form-control-context)
+ * ## API
+ * - [useFormControlContext API](?path=/docs/utils-formcontrol--docs#useformcontrolcontext-api)
  */
 export default function useFormControlContext(): UseFormControlContextReturnValue | undefined {
     return React.useContext(FormControlContext);

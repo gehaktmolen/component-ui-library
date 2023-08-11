@@ -13,9 +13,9 @@ function tabValueGenerator(otherTabValues: Set<string | number>) {
 }
 
 /**
- * API:
  *
- * - [useTab API](https://#use-tab)
+ * ## useTab API
+ * - [useTab API](?path=/docs/navigation-tabs--docs#usetab-api-hook)
  */
 export function useTab(parameters: UseTabParameters): UseTabReturnValue {
     const { value: valueParam, rootRef: externalRef, disabled = false, id: idParam } = parameters;

@@ -66,9 +66,8 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
 
 /**
  *
- * API:
- *
- * - [Input API](https://#input)
+ * ## API
+ * - [Input API](?path=/docs/inputs-input--docs)
  */
 export const Input = React.forwardRef(function Input<RootComponentType extends React.ElementType>(
     props: InputProps<RootComponentType>,

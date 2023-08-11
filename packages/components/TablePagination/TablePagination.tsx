@@ -53,9 +53,8 @@ const useUtilityClasses = () => {
 /**
  * A pagination for tables.
  *
- * API:
- *
- * - [TablePagination API](https://#table-pagination)
+ * ## API:
+ * - [TablePagination API](?path=/docs/navigation-tablepagination--docs#api)
  */
 const TablePagination = React.forwardRef(function TablePagination<RootComponentType extends React.ElementType>(
     props: TablePaginationProps<RootComponentType>,

@@ -1,5 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Badge } from './Badge';
+import { useBadge } from '../useBadge';
 import * as BadgeDefaultStories from './Badge.stories';
 
 <Meta title="Data Display/Badge" />
@@ -155,3 +156,15 @@ To learn how to customize the slot, check out the [Overriding component structur
 | `badge` | `<span>` | The component that renders the badge. |
 
 ...
+
+## useBadge API (Hook)
+
+### Import
+
+```jsx
+import { useBadge } from '../useBadge';
+```
+
+### Parameters
+
+<ArgTypes of={useBadge} />

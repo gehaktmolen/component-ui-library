@@ -6,9 +6,9 @@ import { useListItem } from '../useList';
 import { useCompoundItem } from '../utils/useCompoundItem';
 
 /**
- * API:
  *
- * - [useOption API](https://#use-option)
+ * ## useOption API
+ * - [useOption API](?path=/docs/inputs-select--docs#useoption-api-hook)
  */
 export function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
     const { value, label, disabled, rootRef: optionRefParam, id: idParam } = params;

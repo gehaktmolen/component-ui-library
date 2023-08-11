@@ -1,5 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Input } from './Input';
+import { useInput } from '../useInput';
 import * as InputDefaultStories from './Input.stories';
 
 <Meta title="Inputs/Input" />
@@ -170,3 +171,15 @@ To learn how to customize the slot, check out the [Overriding component structur
 | `textarea` | `<textarea>` | The component that renders the textarea. |
 
 ...
+
+## useInput API (Hook)
+
+### Import
+
+```jsx
+import { useInput } from '../useInput';
+```
+
+### Parameters
+
+<ArgTypes of={useInput} />

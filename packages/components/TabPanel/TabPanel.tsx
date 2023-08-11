@@ -20,9 +20,9 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
     );
 };
 /**
- * API:
  *
- * - [TabPanel API](https://#tab-panel)
+ * TabPanel API:
+ * - [TabPanel API](?path=/docs/navigation-tabs--docs#tabpanel-api)
  */
 export const TabPanel = React.forwardRef(function TabPanel<RootComponentType extends React.ElementType>(
     props: TabPanelProps<RootComponentType>,

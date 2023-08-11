@@ -1,0 +1,359 @@
+import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
+import { Tabs } from './Tabs';
+import { Tab } from '../Tab';
+import { TabPanel } from '../TabPanel';
+import { TabsList } from '../TabsList';
+import { useTabs } from '../useTabs';
+import { useTab } from '../useTab';
+import { useTabPanel } from '../useTabPanel';
+import { useTabsList } from '../useTabsList';
+import * as TabsDefaultStories from './Tabs.stories';
+
+<Meta title="Navigation/Tabs" />
+
+# Tabs
+
+---
+
+Tabs are UI elements for organizing and navigating between groups of related content.
+
+## Introduction
+
+Tabs are implemented using a collection of related components:
+
+-   `<Tab />` - the tab element itself. Clicking on a tab displays its corresponding panel.
+-   `<TabsList />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
+-   `<TabPanel />` - the card that hosts the content associated with a tab.
+-   `<Tabs />` - the top-level component that wraps the Tabs List and Tab Panel components so that tabs and their panels can communicate with one another.
+
+<Canvas sourceState="hidden" of={TabsDefaultStories.Basics} />
+
+## Components
+
+### Usage
+
+```jsx
+import { Tab } from '../Tab';
+import { TabsList } from '../TabsList';
+import { TabPanel } from '../TabPanel';
+import { Tabs } from '../Tabs';
+
+export default function MyApp() {
+    return (
+        <Tabs>
+            <TabsList>
+                <Tab>{/* tab one */}</Tab>
+                <Tab>{/* tab two */}</Tab>
+            </TabsList>
+            <TabPanel>{/* panel one */}</TabPanel>
+            <TabPanel>{/* panel two */}</TabPanel>
+        </Tabs>
+    );
+}
+```
+
+### Basics
+
+By default, Tab components and their corresponding panels are `zero-indexed` (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.). Clicking on a given Tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.
+
+Though not required, you can add the `value` prop to the Tab and Tab Panel to take control over how these components are associated with one another.
+
+### Anatomy
+
+The Tab components are each composed of a root slot with no interior slots:
+
+```jsx
+<div class="tabs">
+    <div class="tabsList">
+        <button class="tab">First tab</button>
+        <button class="tab">Second tab</button>
+        <button class="tab">Third tab</button>
+    </div>
+    <div class="tabPanel">First panel</div>
+    <div class="tabPanel">Second panel</div>
+    <div class="tabPanel">Third panel</div>
+</div>
+```
+
+### Custom structure
+
+Use the `slots` prop to override the root or any other interior slot:
+
+```jsx
+<Tab slots={{ root: 'span' }} />
+```
+
+If you provide a non-interactive element such as a `<span>`, the Tab components will automatically add the necessary accessibility attributes.
+
+The `slots` prop is available on all non-utility Base components. See [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) for full details.
+
+## Customization
+
+### Vertical
+
+Tab components can be arranged vertically as well as horizontally.
+
+When vertical, you must set `orientation="vertical"` on the `<Tabs />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal tabs).
+
+```jsx
+<Tabs defaultValue={0} orientation="vertical">
+    <TabsList>
+        <Tab>One</Tab>
+        <Tab>Two</Tab>
+        <Tab>Three</Tab>
+    </TabsList>
+    <TabPanel value={0}>First page</TabPanel>
+    <TabPanel value={1}>Second page</TabPanel>
+    <TabPanel value={2}>Third page</TabPanel>
+</Tabs>
+```
+
+### Usage with Typescript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the un-styled component. This way, you can safely provide the custom root's props directly on the component:
+
+```jsx
+<Tab<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```jsx
+<Tab<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
+
+### Third-party routing library
+
+A common use case for tabs is to implement client-side navigation that doesn't require an HTTP round-trip to the server.
+
+The Tab component provides the `slots` prop to handle this, as shown below:
+
+```jsx
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { Tabs } from '../Tabs';
+import { Tab } from '../Tab';
+import { TabsList } from '../TabsList';
+import { MemoryRouter, Route, Routes, Link, matchPath, useLocation } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
+
+function Router(props) {
+    const { children } = props;
+    if (typeof window === 'undefined') {
+        return <StaticRouter location="/drafts">{children}</StaticRouter>;
+    }
+
+    return (
+        <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+            {children}
+        </MemoryRouter>
+    );
+}
+
+Router.propTypes = {
+    children: PropTypes.node
+};
+
+const RouterLink = React.forwardRef(function RouterLink(props, ref) {
+    const { ownerState, ...other } = props;
+    return <Link {...other} ref={ref} />;
+});
+
+RouterLink.propTypes = {
+    ownerState: PropTypes.object.isRequired
+};
+
+function useRouteMatch(patterns) {
+    const { pathname } = useLocation();
+
+    for (let i = 0; i < patterns.length; i += 1) {
+        const pattern = patterns[i];
+        const possibleMatch = matchPath(pattern, pathname);
+        if (possibleMatch !== null) {
+            return possibleMatch;
+        }
+    }
+
+    return null;
+}
+
+function MyTabs() {
+    // You need to provide the routes in descendant order.
+    // This means that if you have nested routes like:
+    // users, users/new, users/edit.
+    // Then the order should be ['users/add', 'users/edit', 'users'].
+    const routeMatch = useRouteMatch(['/inbox/:id', '/drafts', '/trash']);
+    const currentTab = routeMatch?.pattern?.path;
+
+    return (
+        <Tabs value={currentTab}>
+            <TabsList>
+                <Tab value="/inbox/:id" to="/inbox/1" slots={{ root: RouterLink }}>
+                    Inbox
+                </Tab>
+                <Tab value="/drafts" to="/drafts" slots={{ root: RouterLink }}>
+                    Drafts
+                </Tab>
+                <Tab value="/trash" to="/trash" slots={{ root: RouterLink }}>
+                    Trash
+                </Tab>
+            </TabsList>
+        </Tabs>
+    );
+}
+
+function CurrentRoute() {
+    const location = useLocation();
+    return <RouteDisplay>Current route: {location.pathname}</RouteDisplay>;
+}
+
+export default function TabsRouting() {
+    return (
+        <Router>
+            <div>
+                <Routes>
+                    <Route path="*" element={<CurrentRoute />} />
+                </Routes>
+                <MyTabs />
+            </div>
+        </Router>
+    );
+}
+```
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+
+The following steps are necessary to make the Tab component suite accessible to assistive technology:
+
+Label `<Tabs />` with `aria-label` or `aria-labelledby`.
+Connect each `<Tab />` to its corresponding `<TabPanel />` by setting the correct `id`, `aria-controls` and `aria-labelledby`.
+The demos below illustrate the proper use of ARIA labels.
+
+### Keyboard interaction
+
+By default, when using keyboard navigation, the Tab components open via `manual activation`—that is, the next panel is displayed only after the user activates the tab with either Space, Enter, or a mouse click.
+
+This is the preferable behavior for tabs in most cases, according to the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+
+Alternatively, you can set the panels to be displayed automatically when their corresponding tabs are in focus—this behavior of the selection following the focus is known as `automatic activation`.
+
+To enable automatic activation, pass the `selectionFollowsFocus` prop to the `<Tabs />` component:
+
+```jsx
+/* Tabs where selection follows focus */
+<Tabs selectionFollowsFocus />
+```
+
+The following demo pair illustrates the difference between manual and automatic activation. Move the focus to a tab in either demo and navigate with the arrow keys to observe the difference:
+
+<Canvas sourceState="hidden" of={TabsDefaultStories.KeyboardNavigation} />
+
+## API
+
+### Import
+
+```jsx
+import { Tabs } from '../Tabs';
+```
+
+### Parameters
+
+Props of the native component are also available.
+
+<ArgTypes of={Tabs} />
+
+### Slots
+
+To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) guide.
+
+| Name   | Element | Description                          |
+| ------ | ------- | ------------------------------------ |
+| `root` | `<div>` | The component that renders the root. |
+
+...
+
+## Tab API
+
+### Import
+
+```jsx
+import { Tab } from '../Tab';
+```
+
+### Parameters
+
+<ArgTypes of={Tab} />
+
+## TabPanel API
+
+### Import
+
+```jsx
+import { TabPanel } from '../TabPanel';
+```
+
+### Parameters
+
+<ArgTypes of={TabPanel} />
+
+## TabsList API
+
+### Import
+
+```jsx
+import { TabsList } from '../TabsList';
+```
+
+### Parameters
+
+<ArgTypes of={TabsList} />
+
+## useTabs API (Hook)
+
+### Import
+
+```jsx
+import { useTabs } from '../useTabs';
+```
+
+### Parameters
+
+<ArgTypes of={useTabs} />
+
+## useTab API (Hook)
+
+### Import
+
+```jsx
+import { useTab } from '../useTab';
+```
+
+### Parameters
+
+<ArgTypes of={useTab} />
+
+## useTabPanel API (Hook)
+
+### Import
+
+```jsx
+import { useTabPanel } from '../useTabPanel';
+```
+
+### Parameters
+
+<ArgTypes of={useTabPanel} />
+
+## useTabsList API (Hook)
+
+### Import
+
+```jsx
+import { useTabsList } from '../useTabsList';
+```
+
+### Parameters
+
+<ArgTypes of={useTabsList} />

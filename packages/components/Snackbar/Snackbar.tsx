@@ -26,9 +26,10 @@ const useUtilityClasses = () => {
     );
 };
 /**
- * API:
+ * The Snackbar component informs users that an action has been or will be performed by the app.
  *
- * - [Snackbar API](https://#snackbar)
+ * ## API
+ * - [Snackbar API](?path=/docs/feedback-snackbar--docs#api)
  */
 export const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends React.ElementType>(
     props: SnackbarProps<RootComponentType>,

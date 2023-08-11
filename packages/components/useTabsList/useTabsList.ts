@@ -14,9 +14,9 @@ import { useList, ListState, UseListParameters } from '../useList';
 import { tabsListReducer } from './tabsListReducer';
 
 /**
- * API:
  *
- * - [useTabsList API](https://#use-tabs-list)
+ * ## useTabsList API
+ * - [useTabsList API](?path=/docs/navigation-tabs--docs#usetabslist-api-hook)
  */
 export function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
     const { rootRef: externalRef } = parameters;

@@ -1,5 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Toggle } from './Toggle';
+import { useToggle } from '../useToggle';
 import * as ToggleDefaultStories from './Toggle.stories';
 
 <Meta title="Inputs/Toggle" />
@@ -127,3 +128,15 @@ To learn how to customize the slot, check out the [Overriding component structur
 | `track` | `<span>`  | The component that renders the track. |
 
 ...
+
+## useToggle API (Hook)
+
+### Import
+
+```jsx
+import { useToggle } from '../useToggle';
+```
+
+### Parameters
+
+<ArgTypes of={useToggle} />

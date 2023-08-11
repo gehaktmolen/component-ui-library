@@ -51,11 +51,10 @@ const useUtilityClasses = (ownerState: ToggleOwnerState) => {
 };
 
 /**
- * The foundation for building custom-styled togglees.
+ * The foundation for building custom-styled toggles.
  *
- * API:
- *
- * - [Toggle API](https://#toggle)
+ * ## API
+ * - [Toggle API](?path=/docs/inputs-toggle--docs#api)
  */
 export const Toggle = React.forwardRef(function Toggle<RootComponentType extends React.ElementType>(
     props: ToggleProps<RootComponentType>,

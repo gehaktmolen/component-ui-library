@@ -22,9 +22,8 @@ const styles: { [key: string]: object } = {
  * The Fade transition is used by the [Modal](?path=/docs/feedback-modal--docs) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
- * API:
- *
- * - [Fade API](#api)
+ * ## API
+ * - [Fade API](?path=/docs/transitions-fade--docs#api)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export const Fade = React.forwardRef(function Fade(props: FadeProps, forwardedRef: React.ForwardedRef<HTMLElement>) {

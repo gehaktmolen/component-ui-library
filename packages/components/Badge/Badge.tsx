@@ -68,7 +68,7 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
 };
 /**
  *
- * API:
+ * ## API
  *
  * - [Badge API](?path=/docs/data-display-badge--docs#api)
  */

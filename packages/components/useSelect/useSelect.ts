@@ -31,9 +31,9 @@ function preventDefault(event: React.SyntheticEvent) {
 }
 
 /**
- * API:
  *
- * - [useSelect API](https://#use-select)
+ * ## useSelect API
+ * - [useSelect API](?path=/docs/inputs-select--docs#useselect-api-hook)
  */
 export function useSelect<OptionValue, Multiple extends boolean = false>(
     props: UseSelectParameters<OptionValue, Multiple>

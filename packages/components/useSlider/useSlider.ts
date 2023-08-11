@@ -178,9 +178,9 @@ function doesSupportTouchActionNone() {
     return cachedSupportsTouchActionNone;
 }
 /**
- * API:
  *
- * - [useSlider API](https://#use-slider)
+ * ## useSlider API
+ * - [useSlider API](?path=/docs/inputs-slider--docs#useslider-api-hook)
  */
 export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
     const {

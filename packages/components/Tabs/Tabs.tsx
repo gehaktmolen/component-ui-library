@@ -21,9 +21,10 @@ const useUtilityClasses = (ownerState: TabsOwnerState) => {
 };
 
 /**
- * API:
+ * Tabs are UI elements for organizing and navigating between groups of related content.
  *
- * - [Tabs API](https://#tabs)
+ * ## API
+ * - [Tabs API](?path=/docs/navigation-tabs--docs#api)
  */
 export const Tabs = React.forwardRef(function Tabs<RootComponentType extends React.ElementType>(
     props: TabsProps<RootComponentType>,

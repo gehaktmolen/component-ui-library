@@ -9,9 +9,8 @@ import { UseToggleParameters, UseToggleReturnValue } from './useToggle.types';
 /**
  * The basic building block for creating custom switches.
  *
- * API:
- *
- * - [useToggle API](https://#use-switch)
+ * ## useToggle API
+ * - [useToggle API](?path=/docs/inputs-toggle--docs#usetoggle-api-hook)
  */
 export function useToggle(props: UseToggleParameters): UseToggleReturnValue {
     const {

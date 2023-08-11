@@ -59,8 +59,8 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
  * A staple for any application. It is used for everything from navigation to form submission;
  * and can be styled in a multitude of ways.
  *
- * API:
- * - [Button API](https://#button)
+ * ## API
+ * - [Button API](?path=/docs/inputs-button--docs#api)
  */
 export const Button = React.forwardRef(function Button<RootComponentType extends React.ElementType>(
     props: ButtonProps<RootComponentType>,

@@ -7,9 +7,8 @@ import CancellableEvent from '../utils/cancellableEvent';
 
 /**
  *
- * API:
- *
- * - [useButton API](https://#use-button)
+ * ## useButton API
+ * - [useButton API](?path=/docs/inputs-button--docs#usebutton-api-hook)
  */
 export function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
     const { disabled = false, focusableWhenDisabled, href, rootRef: externalRef, tabIndex, to, type } = parameters;

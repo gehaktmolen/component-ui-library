@@ -28,9 +28,9 @@ function getHasTransition(children: UseModalParameters['children']) {
 const defaultManager = new ModalManager();
 
 /**
- * API:
  *
- * - [useModal API](https://#use-modal)
+ * ## useModal API
+ * - [useModal API](?path=/docs/utils-modal--docs)
  */
 export function useModal(parameters: UseModalParameters): UseModalReturnValue {
     const {

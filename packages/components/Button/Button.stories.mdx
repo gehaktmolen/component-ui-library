@@ -1,5 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Button } from './Button';
+import { useButton } from '../useButton';
 import * as ButtonDefaultStories from './Button.stories';
 
 <Meta title="Inputs/Button" />
@@ -235,3 +236,15 @@ To learn how to customize the slot, check out the [Overriding component structur
 | `root` | props.href OR props.to ? `a` : `button` | The component that renders the root. |
 
 ...
+
+## useButton API (Hook)
+
+### Import
+
+```jsx
+import { useButton } from '../useButton';
+```
+
+### Parameters
+
+<ArgTypes of={useButton} />

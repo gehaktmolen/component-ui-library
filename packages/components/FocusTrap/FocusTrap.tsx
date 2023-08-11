@@ -112,9 +112,8 @@ function defaultIsEnabled(): boolean {
 /**
  * Utility component that locks focus inside the component.
  *
- * API:
- *
- * - [FocusTrap API](https://#focus-trap)
+ * ## API
+ * - [FocusTrap API](?path=/docs/utils-focustrap--docs)
  */
 function FocusTrap(props: FocusTrapProps): JSX.Element {
     const {

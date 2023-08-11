@@ -21,7 +21,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Horizontal: Story = {
+export const Basics: Story = {
     render: () => (
         <Tabs className="mx-auto max-w-xs w-80" defaultValue={1}>
             <TabsList className="mb-4">
@@ -104,5 +104,28 @@ export const Vertical: Story = {
                 </svg>
             </div>
         </Tabs>
+    )
+};
+
+export const KeyboardNavigation: Story = {
+    render: () => (
+        <div>
+            <p>Selection following focus:</p>
+            <Tabs defaultValue={1} aria-label="Tabs where selection follows focus" selectionFollowsFocus>
+                <TabsList>
+                    <Tab value={1}>One</Tab>
+                    <Tab value={2}>Two</Tab>
+                    <Tab value={3}>Three</Tab>
+                </TabsList>
+            </Tabs>
+            <p>Selection independent of focus (default behavior):</p>
+            <Tabs defaultValue={1} aria-label="Tabs where selection does not follow focus">
+                <TabsList>
+                    <Tab value={1}>One</Tab>
+                    <Tab value={2}>Two</Tab>
+                    <Tab value={3}>Three</Tab>
+                </TabsList>
+            </Tabs>
+        </div>
     )
 };

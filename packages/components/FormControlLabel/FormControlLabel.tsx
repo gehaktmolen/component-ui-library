@@ -57,9 +57,8 @@ function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
  * </FormGroup>
  * ```
  *
- * API:
- *
- * - [FormControlLabel API](https:///#form-control-label)
+ * ## API
+ * - [FormControlLabel API](?path=/docs/utils-formcontrollabel--docs#api)
  */
 export const FormControlLabel = React.forwardRef(function FormControlLabel<RootComponentType extends React.ElementType>(
     props: FormControlLabelProps<RootComponentType>,

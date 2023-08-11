@@ -50,9 +50,8 @@ function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
  * </FormControl>
  * ```
  *
- * API:
- *
- * - [FormHelperText API](https:///#form-helper-text)
+ * ## API
+ * - [FormHelperText API](?path=/docs/utils-formhelpertext--docs#api)
  */
 export const FormHelperText = React.forwardRef(function FormHelperText<RootComponentType extends React.ElementType>(
     props: FormHelperTextProps<RootComponentType>,

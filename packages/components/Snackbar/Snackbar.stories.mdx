@@ -1,5 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Snackbar } from './Snackbar';
+import { useSnackbar } from '../useSnackbar';
 import * as SnackbarDefaultStories from './Snackbar.stories';
 
 <Meta title="Feedback/Snackbar" />
@@ -233,3 +234,15 @@ To learn how to customize the slot, check out the [Overriding component structur
 | `root` | `<div>` | The component that renders the root. |
 
 ...
+
+## useSnackbar API (Hook)
+
+### Import
+
+```jsx
+import { useSnackbar } from '../useSnackbar';
+```
+
+### Parameters
+
+<ArgTypes of={useSnackbar} />

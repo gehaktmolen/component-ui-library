@@ -22,9 +22,8 @@ function useUtilityClasses(ownerState: FormGroupOwnerState) {
 /**
  * FormGroup is a helpful wrapper used to group selection controls components that provides an easier API.
  *
- * API:
- *
- * - [FormGroup API](https:///#form-group)
+ * ## API
+ * - [FormGroup API](?path=/docs/utils-formgroup--docs#api)
  */
 export const FormGroup = React.forwardRef(function FormGroup<RootComponentType extends React.ElementType>(
     props: FormGroupProps<RootComponentType>,

@@ -1,5 +1,6 @@
 import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Slider } from './Slider';
+import { useSlider } from '../useSlider';
 import * as SliderDefaultStories from './Slider.stories';
 
 <Meta title="Inputs/Slider" />
@@ -242,3 +243,15 @@ To learn how to customize the slot, check out the [Overriding component structur
 | `input`      | `<input>` | The component that renders the input.       |
 
 ...
+
+## useSlider API (Hook)
+
+### Import
+
+```jsx
+import { useSlider } from '../useSlider';
+```
+
+### Parameters
+
+<ArgTypes of={useSlider} />

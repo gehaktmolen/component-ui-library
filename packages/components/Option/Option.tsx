@@ -29,9 +29,8 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
 /**
  * An un-styled option to be used within a Select.
  *
- * API:
- *
- * - [Option API](https://#option)
+ * ## Option API
+ * - [Option API](?path=/docs/inputs-select--docs#option-api)
  */
 export const Option = React.memo(
     React.forwardRef(function Option<OptionValue, RootComponentType extends React.ElementType>(
