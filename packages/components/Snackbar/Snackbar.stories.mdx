@@ -18,6 +18,198 @@ The Snackbar component is built to appear on-screen to inform users about an act
 
 <Canvas sourceState="hidden" of={SnackbarDefaultStories.Primary} />
 
+## Component
+
+### Usage
+
+```jsx
+import { Snackbar } from '../Snackbar';
+
+export default function MyApp() {
+    return <Snackbar>{/* snackbar text */}</Snackbar>;
+}
+```
+
+### Basics
+
+Snackbar doesn't impose any restrictions on its implementation—it's up to you to design it so that it doesn't interrupt the user experience, and disappears after a set amount of time without requiring the user to take action.
+
+Use the `autoHideDuration` prop to set the time (in milliseconds) that the snackbar remains on the screen.
+
+You may want to implement Snackbar with [Click-Away Listener](?path=/docs/utils-clickawaylistener--docs), so that the user can choose to dismiss the snackbar before its time is up by clicking anywhere outside of it. But this behavior is optional for a snackbar.
+
+### Anatomy
+
+The Snackbar component is composed of a single root `<div>` slot with no interior slots:
+
+```jsx
+<div role="presentation" className="root">
+    snackbar content
+</div>
+```
+
+### Custom structure
+
+```jsx
+<Snackbar slots={{ root: 'span' }} />
+```
+
+The `slots` prop is available on all non-utility Base components. See [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) for full details.
+
+### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the un-styled component. This way, you can safely provide the custom component's props directly on the component:
+
+```jsx
+<Snackbar<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```jsx
+<Snackbar<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
+
+## Hooks
+
+```jsx
+import { useSnackbar } from '../useSnackbar';
+```
+
+The `useSnackbar` hook lets you apply the functionality of a snackbar to a fully custom component.
+
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks do not support [slot props](?path=/docs/docs-intro--docs#the-slotprops-prop), but they do support [customization](#customization) props.
+
+If you use a [Click-Away Listener](?path=/docs/utils-clickawaylistener--docs) to let the user close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the Click-Away Listener.
+
+Pass the open state to the hook and use it to show and hide the snackbar.
+
+The script below shows how to build a fully custom component with the `useSnackbar` hook that also incorporates the Click-Away Listener component:
+
+```jsx
+import * as React from 'react';
+import { useSnackbar } from '../useSnackbar';
+import { ClickAwayListener } from '../ClickAwayListener';
+
+export default function UseSnackbar() {
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const { getRootProps, onClickAway } = useSnackbar({
+        onClose: handleClose,
+        open,
+        autoHideDuration: 5000
+    });
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    return (
+        <React.Fragment>
+            <button type="button" onClick={handleOpen}>
+                Open snackbar
+            </button>
+            {open ? (
+                <ClickAwayListener onClickAway={onClickAway}>
+                    <Snackbar {...getRootProps()}>Hello World</Snackbar>
+                </ClickAwayListener>
+            ) : null}
+        </React.Fragment>
+    );
+}
+```
+
+Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS/ Tailwind classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
+
+## Customization
+
+The following features can be used with both components and hooks. For the sake of simplicity, demos and code snippets primarily feature components.
+
+### Transitions
+
+You can animate the open and close states of the snackbar with a render prop child and a transition component, as long as the component meets these conditions:
+
+-   Is a direct child descendant of the snackbar
+-   Has an `in` prop—this corresponds to the open state
+-   Passes the `exited` prop to Snackbar
+-   Calls the `onEnter` callback prop when the enter transition starts—sets `exited` to false
+-   Calls the `onExited` callback prop when the exit transition is completed—sets `exited` to true
+
+These two callbacks allow the snackbar to unmount the child content when closed and keep it fully transitioned. This is only applicable if you are using transition components using [react-transition-group](https://github.com/reactjs/react-transition-group) library internally.
+
+The demo below shows how to create a snackbar with custom transitions:
+
+```jsx
+import * as React from 'react';
+import { Transition } from 'react-transition-group';
+import { Snackbar } from '../Snackbar';
+
+export default function TransitionComponentSnackbar() {
+    const [open, setOpen] = React.useState(false);
+    const [exited, setExited] = React.useState(true);
+    const nodeRef = React.useRef(null);
+
+    const handleClose = (_, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleOnEnter = () => {
+        setExited(false);
+    };
+
+    const handleOnExited = () => {
+        setExited(true);
+    };
+
+    return (
+        <React.Fragment>
+            <button type="button" onClick={handleClick}>
+                Open snackbar
+            </button>
+            <Snackbar autoHideDuration={5000} open={open} onClose={handleClose} exited={exited}>
+                <Transition
+                    timeout={{ enter: 400, exit: 400 }}
+                    in={open}
+                    appear
+                    unmountOnExit
+                    onEnter={handleOnEnter}
+                    onExited={handleOnExited}
+                    nodeRef={nodeRef}
+                >
+                    {(status) => (
+                        <div
+                            style={{
+                                transform: positioningStyles[status],
+                                transition: 'transform 300ms ease'
+                            }}
+                            ref={nodeRef}
+                        >
+                            Hello World
+                        </div>
+                    )}
+                </Transition>
+            </Snackbar>
+        </React.Fragment>
+    );
+}
+```
+
 ## API
 
 ### Import
@@ -36,8 +228,8 @@ Props of the native component are also available.
 
 To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) guide.
 
-| Name   | Element | Description                                                                          |
-| ------ | ------- | ------------------------------------------------------------------------------------ |
-| `root` | `<div>` | Global notification live region, render this permanently at the end of the document. |
+| Name   | Element | Description                          |
+| ------ | ------- | ------------------------------------ |
+| `root` | `<div>` | The component that renders the root. |
 
 ...
