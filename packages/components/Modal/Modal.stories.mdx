@@ -2,7 +2,7 @@ import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
 import { Modal } from './Modal';
 import * as ModalDefaultStories from './Modal.stories';
 
-<Meta title="Feedback/Modal" />
+<Meta title="Utils/Modal" />
 
 # Modal
 
@@ -26,6 +26,12 @@ The term "modal" is sometimes used interchangeably with "dialog," but this is in
 
 A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action. As such, it should be used sparingly—only when the app requires user input before it can continue.
 
+Modal is a lower-level construct that is used in the following Material UI components:
+
+-   [Dialog](?path=/docs/feedback-dialog--docs)
+-   [Menu](?path=/docs/navigation-menu--docs)
+-   [Drawer](?path=/docs/surfaces-drawer--docs)
+
 ## Component
 
 ### Usage
@@ -42,7 +48,19 @@ export default function MyApp() {
 
 The following demo shows how to create and style a basic modal. Click Open modal to see how it behaves:
 
-<Canvas sourceState="hidden" of={ModalDefaultStories.Primary} />
+<Canvas sourceState="hidden" of={ModalDefaultStories.Basics} />
+
+## Customization
+
+### Nested modal
+
+Though it is possible to create nested Modals—for example, a select modal within a dialog—stacking more than two at a time is discouraged.
+
+This is because each successive Modal blocks interaction with all elements behind it, making prior states inaccessible and overly complicated for the user to navigate through.
+
+The following demo shows how to nest one Modal within another:
+
+<Canvas sourceState="hidden" of={ModalDefaultStories.Nested} />
 
 ## API
 
@@ -62,8 +80,9 @@ Props of the native component are also available.
 
 To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) guide.
 
-| Name   | Element | Description |
-| ------ | ------- | ----------- |
-| `root` | `<div>` | ...         |
+| Name       | Element | Description                              |
+| ---------- | ------- | ---------------------------------------- |
+| `root`     | `<div>` | The component that renders the root.     |
+| `backdrop` |         | The component that renders the backdrop. |
 
 ...
