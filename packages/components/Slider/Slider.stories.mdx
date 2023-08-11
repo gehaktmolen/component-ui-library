@@ -44,44 +44,33 @@ The following demo shows how to create and style two basic sliders. Notice that 
 ### Anatomy
 
 The Slider component is composed of a root `<span>` that houses several interior `<span>` elements:
-* rail: the full length of the slider
-* track: the section of the slider that's active
-* thumb: the button that the user moves across the slider
-* mark: optional pre-defined stops along the track
-* markLabel: optional label to display the mark's value
-* valueLabel: optional label to display the values on a range slider
+
+-   rail: the full length of the slider
+-   track: the section of the slider that's active
+-   thumb: the button that the user moves across the slider
+-   mark: optional pre-defined stops along the track
+-   markLabel: optional label to display the mark's value
+-   valueLabel: optional label to display the values on a range slider
 
 ```jsx
 <span class="root">
-  <span class="rail"></span>
-  <span class="track"></span>
-  <span
-    data-index="0"
-    class="mark"
-  ></span>
-  <span
-    aria-hidden="true"
-    data-index="0"
-    class="markLabel"
-    >0</span
-  >
-  <span data-index="1" class="mark"></span>
-  <span
-    aria-hidden="true"
-    data-index="1"
-    class="markLabel"
-    >50</span
-  >
-  <span data-index="2" class="mark"></span>
-  <span
-    aria-hidden="true"
-    data-index="2"
-    class="markLabel"
-    >100</span
-  >
-  <span class="thumb">
-    <input />
-  </span>
+    <span class="rail"></span>
+    <span class="track"></span>
+    <span data-index="0" class="mark"></span>
+    <span aria-hidden="true" data-index="0" class="markLabel">
+        0
+    </span>
+    <span data-index="1" class="mark"></span>
+    <span aria-hidden="true" data-index="1" class="markLabel">
+        50
+    </span>
+    <span data-index="2" class="mark"></span>
+    <span aria-hidden="true" data-index="2" class="markLabel">
+        100
+    </span>
+    <span class="thumb">
+        <input />
+    </span>
 </span>
 ```
 
@@ -157,14 +146,14 @@ To generate a mark for each stop, use `marks={true}`:
 
 ```jsx
 <Slider
-  aria-label="Temperature"
-  defaultValue={30}
-  getAriaValueText={valueText}
-  step={10}
-  marks
-  min={10}
-  max={110}
-  slots={{ valueLabel: SliderValueLabel }}
+    aria-label="Temperature"
+    defaultValue={30}
+    getAriaValueText={valueText}
+    step={10}
+    marks
+    min={10}
+    max={110}
+    slots={{ valueLabel: SliderValueLabel }}
 />
 ```
 
@@ -175,12 +164,7 @@ You can create custom marks by providing a rich array to the `marks` prop:
 <Canvas sourceState="hidden" of={SliderDefaultStories.CustomMarks} />
 
 ```jsx
-<Slider
-  aria-label="Temperature"
-  defaultValue={37}
-  getAriaValueText={valueText}
-  marks={marks}
-/>
+<Slider aria-label="Temperature" defaultValue={37} getAriaValueText={valueText} marks={marks} />
 ```
 
 ### Restricted values
@@ -190,13 +174,7 @@ If the user should only be able to select from the values provided with the `mar
 <Canvas sourceState="hidden" of={SliderDefaultStories.CustomMarksRestricted} />
 
 ```jsx
-<Slider
-  aria-label="Temperature"
-  defaultValue={37}
-  getAriaValueText={valueText}
-  step={null}
-  marks={marks}
-/>
+<Slider aria-label="Temperature" defaultValue={37} getAriaValueText={valueText} step={null} marks={marks} />
 ```
 
 ### Range slider
@@ -208,9 +186,10 @@ To let users set the start and end of a range on a slider, provide an array of v
 ### Value label
 
 A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. These are the typical use cases for showing the value label:
-* always
-* only when hovering over the thumb (using CSS)
-* while interacting with the thumb (hovering or dragging)
+
+-   always
+-   only when hovering over the thumb (using CSS)
+-   while interacting with the thumb (hovering or dragging)
 
 The following demo shows how to render the value label when the mouse is hovering over the thumb:
 
@@ -221,7 +200,7 @@ function SliderValueLabel({ children, className }) {
     return <span className={className}>{children}</span>;
 }
 
-<Slider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+<Slider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />;
 ```
 
 ## Accessibility
@@ -251,15 +230,15 @@ Props of the native component are also available.
 
 To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) guide.
 
-| Name   | Element                                 | Description                          |
-| ------ | --------------------------------------- | ------------------------------------ |
-| `root` | `<span>` | The component that renders the root. |
-| `track` | `<span>` | The component that renders the track. |
-| `rail` | `<span>` | The component that renders the rail. |
-| `thumb` | `<span>` | The component that renders the thumb. |
-| `mark` | `<span>` | The component that renders the mark. |
-| `markLabel` | `<span>` | The component that renders the mark label. |
-| `valueLabel` |  | The component that renders the value label. |
-| `input` | `<input>` | The component that renders the input. |
+| Name         | Element   | Description                                 |
+| ------------ | --------- | ------------------------------------------- |
+| `root`       | `<span>`  | The component that renders the root.        |
+| `track`      | `<span>`  | The component that renders the track.       |
+| `rail`       | `<span>`  | The component that renders the rail.        |
+| `thumb`      | `<span>`  | The component that renders the thumb.       |
+| `mark`       | `<span>`  | The component that renders the mark.        |
+| `markLabel`  | `<span>`  | The component that renders the mark label.  |
+| `valueLabel` |           | The component that renders the value label. |
+| `input`      | `<input>` | The component that renders the input.       |
 
 ...

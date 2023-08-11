@@ -102,7 +102,7 @@ export const CustomMarks: Story = {
         marks,
         'aria-label': 'Temperature',
         getAriaValueText: valueText,
-        defaultValue: 37,
+        defaultValue: 37
     },
     render: (args) => (
         <div className="flex max-w-xs w-80">
@@ -114,7 +114,7 @@ export const CustomMarks: Story = {
 export const CustomMarksRestricted: Story = {
     args: {
         ...CustomMarks.args,
-        step: null,
+        step: null
     },
     render: (args) => (
         <div className="flex max-w-xs w-80">
@@ -151,4 +151,4 @@ export const RangeSlider = () => {
             />
         </div>
     );
-}
+};

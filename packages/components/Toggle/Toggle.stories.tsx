@@ -24,3 +24,14 @@ export const Primary: Story = {
     },
     render: (args) => <Toggle {...args} />
 };
+
+export const Basics: Story = {
+    render: () => (
+        <div className="flex flex-row gap-2">
+            <Toggle defaultChecked />
+            <Toggle />
+            <Toggle defaultChecked disabled />
+            <Toggle disabled />
+        </div>
+    )
+};

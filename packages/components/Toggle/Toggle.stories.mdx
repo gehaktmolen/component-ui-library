@@ -1,0 +1,129 @@
+import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
+import { Toggle } from './Toggle';
+import * as ToggleDefaultStories from './Toggle.stories';
+
+<Meta title="Inputs/Toggle" />
+
+# Toggle
+
+---
+
+Toggles are UI elements that let users choose between two states—most commonly on/off.
+
+## Introduction
+
+The Toggle component provides users with a "switch" for toggling between two mutually exclusive states.
+
+<Canvas sourceState="hidden" of={ToggleDefaultStories.Primary} />
+
+## Component
+
+### Usage
+
+```jsx
+import { Toggle } from '../Toggle';
+
+export default function MyApp() {
+    return <Toggle />;
+}
+```
+
+### Basics
+
+The following demo shows how to assign styles and props to the Toggle component:
+
+<Canvas sourceState="hidden" of={ToggleDefaultStories.Basics} />
+
+```jsx
+<Toggle defaultChecked />
+<Toggle />
+<Toggle defaultChecked disabled/>
+<Toggle disabled />
+```
+
+### Anatomy
+
+The Toggle component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
+
+```jsx
+<span class="root">
+    <span class="track"></span>
+    <span class="thumb"></span>
+    <input type="checkbox" class="input" />
+</span>
+```
+
+### Custom structure
+
+Use the `slots` prop to override the root or any other interior slot:
+
+```jsx
+<Toggle slots={{ root: 'div', track: 'div' }} />
+```
+
+The slots prop is available on all non-utility components. See [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) for full details.
+
+Use the `slotProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called my-thumb to the thumb slot:
+
+```jsx
+<Toggle slotProps={{ thumb: { className: 'my-thumb' } }} />
+```
+
+### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the un-styled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Toggle<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Toggle<'input'> slots={{ root: 'input' }} autoFocus={true} />
+```
+
+## Hooks
+
+```jsx
+import { useToggle } from '../useToggle';
+```
+
+The `useToggle` hook lets you apply the functionality of the toggle to a fully custom component. It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks do not support [slot props](?path=/docs/docs-intro--docs#the-slotprops-prop), but they do support [customization](#customization) props.
+
+Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS/ Tailwind classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
+
+## Accessibility
+
+To make the toggle component accessible, you should ensure that the corresponding labels reflect the current state of the toggle.
+
+## API
+
+### Import
+
+```jsx
+import { Toggle } from '../Toggle';
+```
+
+### Parameters
+
+Props of the native component are also available.
+
+<ArgTypes of={Toggle} />
+
+### Slots
+
+To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) guide.
+
+| Name    | Element   | Description                           |
+| ------- | --------- | ------------------------------------- |
+| `root`  | `<span>`  | The component that renders the root.  |
+| `input` | `<input>` | The component that renders the input. |
+| `thumb` | `<span>`  | The component that renders the thumb. |
+| `track` | `<span>`  | The component that renders the track. |
+
+...

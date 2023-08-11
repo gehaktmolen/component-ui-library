@@ -161,7 +161,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     }
 
     return () => {
-        restoreStyle.forEach(({value, el, property}) => {
+        restoreStyle.forEach(({ value, el, property }) => {
             if (value) {
                 el.style.setProperty(property, value);
             } else {
