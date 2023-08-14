@@ -58,7 +58,7 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
         thumb: [
             'absolute w-4 h-4 -ml-1.5 -mt-1.5 box-border rounded-full outline-0 shadow-md',
             'bg-gray-100 ring-gray-200 ring-1 ring-inset focus:ring-2 focus:ring-inset',
-            disabled && 'ring-gray-300 dark:ring-gray-600 focus:ring-primary-500'
+            disabled && 'ring-gray-300 dark:ring-gray-600 focus:ring-primary-600'
         ],
         active: [''],
         disabled: [''],

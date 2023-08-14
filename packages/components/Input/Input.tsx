@@ -39,10 +39,10 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
             'bg-white dark:bg-gray-900',
             !error &&
                 !disabled &&
-                'text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:ring-primary-500',
+                'text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:ring-primary-600',
             error && 'text-danger-900 ring-danger-300 placeholder:text-danger-300 focus:ring-danger-500',
             disabled &&
-                'text-gray-900 ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
+                'text-gray-900 ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-primary-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500 disabled:ring-gray-200',
             Boolean(startDecorator) && 'pl-10',
             Boolean(endDecorator) && 'pr-10',
             Boolean(startAddOn) && 'min-w-0 flex-1 rounded-none rounded-r-md',

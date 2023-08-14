@@ -10,13 +10,17 @@ const meta = {
     component: Button,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
-        layout: 'centered'
+        layout: 'centered',
         // backgrounds: {
         //     default: 'dark'
         // }
         // theming: {
         //     themeOverride: 'dark',
         // },
+        design: {
+            type: 'figma',
+            url: 'https://www.figma.com/file/ImR08MzS6FEIsz3WTH6G4S/Chromatic-Test?type=design&node-id=1%3A130&mode=dev'
+        }
     },
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
     tags: ['autodocs'],
@@ -163,9 +167,9 @@ export const Custom: Story = {
         <Button
             slotProps={{
                 root: (state: ButtonOwnerState) => ({
-                    className: `text-white bg-gradient-to-r from-primary-500 via-neutral-500 ${
-                        state.focusVisible ? 'to-primary-500' : 'to-neutral-500'
-                    } border border-2 ${state.active ? 'border-primary-500' : 'border-neutral-500'}`
+                    className: `text-white bg-gradient-to-r from-primary-600 via-neutral-600 ${
+                        state.focusVisible ? 'to-primary-600' : 'to-neutral-600'
+                    } border border-2 ${state.active ? 'border-primary-600' : 'border-neutral-600'}`
                 })
             }}
             {...args}

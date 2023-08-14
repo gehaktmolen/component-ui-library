@@ -125,7 +125,7 @@ export const Primary = () => {
                                         <button
                                             type="button"
                                             onClick={handleClose}
-                                            className="inline-flex rounded-md bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-400 hover:text-gray-500 dark:hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-500 focus:ring-offset-2"
+                                            className="inline-flex rounded-md bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-400 hover:text-gray-500 dark:hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-primary-500 focus:ring-offset-2"
                                         >
                                             <span className="sr-only">Close</span>
                                             <svg

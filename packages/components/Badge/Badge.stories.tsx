@@ -112,7 +112,7 @@ export const BadgeContent: Story = {
                 },
                 badge: {
                     className:
-                        'z-auto absolute top-0 right-0 min-w-badge min-h-badge p-0 text-white font-semibold font-xs rounded-xl bg-primary-500 leading-5.5 whitespace-nowrap text-center translate-x-1/2 -translate-y-1/2 drop-shadow-lg origin-right'
+                        'z-auto absolute top-0 right-0 min-w-badge min-h-badge p-0 text-white font-semibold font-xs rounded-xl bg-primary-600 leading-5.5 whitespace-nowrap text-center translate-x-1/2 -translate-y-1/2 drop-shadow-lg origin-right'
                 }
             }}
             badgeContent={5}

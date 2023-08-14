@@ -48,7 +48,7 @@ export const Basics: Story = {
                 slotProps={{
                     root: {
                         className:
-                            'bg-primary-500 dark:bg-primary-200 ring-primary-600 dark:ring-primary-400 focus:ring-primary-500 text-white dark:text-gray-900'
+                            'bg-primary-600 dark:bg-primary-200 ring-primary-600 dark:ring-primary-400 focus:ring-primary-600 text-white dark:text-gray-900'
                     },
                     listbox: {
                         className: 'py-0 mt-4'
@@ -271,7 +271,7 @@ export const Hooks = () => {
                     className,
                     'relative cursor-default select-none py-2 pl-3 pr-9',
                     'text-gray-900 dark:text-gray-100',
-                    value === 'primary' && 'text-primary-500',
+                    value === 'primary' && 'text-primary-600',
                     value === 'danger' && 'text-danger-500',
                     highlighted && 'bg-gray-200 dark:bg-gray-800'
                 )}
@@ -311,8 +311,8 @@ export const Hooks = () => {
                 <button
                     {...getButtonProps()}
                     className={twMerge(
-                        'block max-w-xs w-full h-8 cursor-default rounded-md px-2.5 py-1.5 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 focus:ring-primary-500 text-ellipsis overflow-hidden whitespace-nowrap',
-                        value === 'primary' && 'bg-primary-500 dark:bg-primary-600 text-gray-100',
+                        'block max-w-xs w-full h-8 cursor-default rounded-md px-2.5 py-1.5 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 focus:ring-primary-600 text-ellipsis overflow-hidden whitespace-nowrap',
+                        value === 'primary' && 'bg-primary-600 dark:bg-primary-600 text-gray-100',
                         value === 'danger' && 'bg-danger-500 dark:bg-danger-600 text-gray-100'
                     )}
                 >
