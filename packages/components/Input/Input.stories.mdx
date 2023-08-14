@@ -55,7 +55,7 @@ Use the `slots.root` prop to override the root slot with a custom element:
 <Input slots={{ root: 'aside', input: CustomInput }} />
 ```
 
-The slots prop is available on all non-utility components. See [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) for full details.
+The slots prop is available on all non-utility components. See [Overriding component structure](?path=/docs/docs-structure--docs#overriding-component-structure) for full details.
 
 Use the `slotProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-input` to the input slot:
 
@@ -85,7 +85,7 @@ import { useInput } from '../useInput';
 
 The `useInput` hook lets you apply the functionality of an input to a fully custom component. It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Hooks do not support [slot props](?path=/docs/docs-intro--docs#the-slotprops-prop), but they do support [customization](#customization) props.
+Hooks do not support [slot props](?path=/docs/docs-structure--docs#the-slotprops-prop), but they do support [customization](#customization) props.
 
 Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS/ Tailwind classes you need.
 
@@ -162,7 +162,7 @@ Props of the native component are also available.
 
 ### Slots
 
-To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-intro--docs#overriding-component-structure) guide.
+To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-structure--docs#overriding-component-structure) guide.
 
 | Name       | Element      | Description                              |
 | ---------- | ------------ | ---------------------------------------- |

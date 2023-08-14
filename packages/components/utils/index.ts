@@ -6,6 +6,7 @@ export { default as isHostComponent } from './isHostComponent';
 export { default as resolveComponentProps } from './resolveComponentProps';
 export { default as useSlotProps } from './useSlotProps';
 export { default as mergeSlotProps } from './mergeSlotProps';
+export { prepareForSlot } from './prepareForSlot';
 export * from './ColorInversion';
 export * from './PolymorphicComponent';
 export * from './types';

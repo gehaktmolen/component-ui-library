@@ -22,11 +22,8 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
     args: {
-        open: false
+        open: false,
+        children: <div>Hello</div>
     },
-    render: (args) => (
-        <FocusTrap {...args}>
-            <div>Hello</div>
-        </FocusTrap>
-    )
+    render: (args) => <FocusTrap {...args} />
 };
