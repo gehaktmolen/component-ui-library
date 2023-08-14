@@ -36,7 +36,7 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
         ],
         input: [
             'relative block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
-            'bg-white dark:bg-gray-900',
+            'bg-gray-100 dark:bg-gray-900',
             !error &&
                 !disabled &&
                 'text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:ring-primary-600',

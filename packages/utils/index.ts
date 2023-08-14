@@ -11,7 +11,7 @@ export { default as HTMLElementType } from './HTMLElementType';
 export { default as refType } from './refType';
 // export { default as unstable_capitalize } from './capitalize';
 export { default as unstable_createChainedFunction } from './createChainedFunction';
-// export { default as unstable_debounce } from './debounce';
+export { default as unstable_debounce } from './debounce';
 // export { default as unstable_deprecatedPropType } from './deprecatedPropType';
 // export { default as unstable_isElement } from './isElement';
 export { default as unstable_ownerDocument } from './ownerDocument';
