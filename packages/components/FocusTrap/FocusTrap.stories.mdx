@@ -30,13 +30,54 @@ export default function MyApp() {
 
 Focus Trap wraps around the UI elements that should hold the user's focus. For instance, if the focus needs to stay inside a [Menu](?path=/docs/navigation-menu--docs), then the component will be structured like this:
 
-<Canvas sourceState="hidden" of={FocusTrapDefaultStories.Primary} />
+```jsx
+<FocusTrap>
+    <Menu>
+        <MenuItem>{/* item one */}</MenuItem>
+        <MenuItem>{/* item two */}</MenuItem>
+    </Menu>
+</FocusTrap>
+```
+
+The following demo shows a `<button>` that opens a container nested inside a FocusTrap. As long as the Box is open, the user's keyboard cannot interact with the rest of the app. Press the Open button and then use the Tab key to move the focus—notice that it will not leave the Box:
+
+<Canvas sourceState="hidden" of={FocusTrapDefaultStories.Basics} />
+
+Because the FocusTrap component blocks interaction with the rest of the app by default, the demo above also behaves this way. If you leave the container open in the demo, you won't be able to click on other buttons in this document. Click Close in the demo to resolve this.
+
+The next section explains how to change this default behavior.
 
 ## Customization
 
-### ...
+### Disable enforced focus
 
-...
+By default, clicks outside the FocusTrap component are blocked.
+
+You can disable this behavior with the `disableEnforceFocus` prop.
+
+Compare the following demo with the demo from the [Basics](#basics) section—notice how that demo prevents you from clicking outside of it, while this one allows it:
+
+<Canvas sourceState="hidden" of={FocusTrapDefaultStories.DisableEnforcedFocus} />
+
+### Lazy activation
+
+By default, the Focus Trap component automatically moves the focus to the first of its children when the open prop is present.
+
+You can disable this behavior and make it lazy with the `disableAutoFocus` prop. When autofocus is disabled—as in the demo below—the component only traps the focus once the user moves it there:
+
+<Canvas sourceState="hidden" of={FocusTrapDefaultStories.LazyActivation} />
+
+### Escape the focus loop
+
+The following demo uses the [Portal](?path=/docs/utils-portal--docs) component to render a subset of the FocusTrap children into a new "subtree" outside the current DOM hierarchy, so they are no longer part of the focus loop:
+
+<Canvas sourceState="hidden" of={FocusTrapDefaultStories.PortalFocusTrap} />
+
+### Using a toggle inside the trap
+
+The most common use case for the Focus Trap component is to maintain focus within a [Modal](?path=/docs/utils-modal--docs) component that is entirely separate from the element that opens the modal. But you can also create a toggle button for the open prop of the FocusTrap component that is stored inside the component itself, as shown in the following demo:
+
+<Canvas sourceState="hidden" of={FocusTrapDefaultStories.ContainedToggleTrappedFocus} />
 
 ## API
 
@@ -48,6 +89,6 @@ import { FocusTrap } from '../FocusTrap';
 
 ### Parameters
 
-Props of the native component are also available.
+The component cannot hold a ref.
 
 <ArgTypes of={FocusTrap} />

@@ -20,6 +20,8 @@ const styles: { [key: string]: object } = {
 
 /**
  * The Fade transition is used by the [Modal](?path=/docs/feedback-modal--docs) component.
+ * This transitions can be used to introduce some basic motion to your applications.
+ *
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * ## API
