@@ -34,7 +34,7 @@ export default meta;
 //     render: (args) => <ClickAwayListener {...args}></ClickAwayListener>
 // };
 
-export function Basics() {
+export function Primary() {
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {

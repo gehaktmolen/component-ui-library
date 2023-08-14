@@ -120,7 +120,7 @@ PlacementForm.propTypes = {
     setPlacement: PropTypes.func.isRequired
 };
 
-export function PlacementPopper() {
+export function Primary() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLSpanElement | null>(null);
     const [placement, setPlacement] = React.useState(undefined);
     return (

@@ -30,7 +30,7 @@ export default meta;
 //     render: (args) => <Portal {...args} />
 // };
 
-export function Basics() {
+export function Primary() {
     const [show, setShow] = React.useState(false);
     const container = React.useRef(null);
 
