@@ -17,7 +17,7 @@ import generateUtilityClass from '../generateUtilityClass';
 const useUtilityClasses = () => {
     const slots = {
         root: ['pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6'],
-        content: ['flex w-full flex-col items-center space-y-4 sm:items-end']
+        content: ['flex w-full min-w-snackbar max-w-snackbar flex-col items-center space-y-4 sm:items-end']
     };
 
     return composeClasses(
