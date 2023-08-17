@@ -33,7 +33,7 @@ const useUtilityClasses = (ownerState: ToggleOwnerState) => {
             checked ? 'translate-x-5' : 'translate-x-0'
         ],
         input: [
-            'cursor-[inherit] absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0',
+            'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0',
             disabled || readOnly ? 'cursor-not-allowed' : 'cursor-pointer'
         ],
         track: [

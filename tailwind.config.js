@@ -20,6 +20,26 @@ export default {
             // fontFamily: {
             //     sans: ['Inter var', ...defaultTheme.fontFamily.sans],
             // },
+            cursor: {
+                inherit: 'inherit',
+            },
+            fontSize: {
+                badge: '10px',
+            },
+            borderRadius: {
+                badge: '20px',
+            },
+            height: {
+                badge: '20px',
+            },
+            maxWidth: {
+                snackbar: '560px',
+            },
+            minWidth: {
+                badge: '20px',
+                listbox: '200px',
+                snackbar: '300px',
+            },
         }
     },
     plugins: [require('@tailwindcss/forms')]

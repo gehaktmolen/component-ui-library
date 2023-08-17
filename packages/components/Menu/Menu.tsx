@@ -18,7 +18,7 @@ function useUtilityClasses(ownerState: MenuOwnerState) {
     const slots = {
         root: ['z-10', open && ''],
         listbox: [
-            'relative block max-w-xs w-full mt-1 max-h-60 overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm',
+            'relative block min-w-listbox mt-1 max-h-60 overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm',
             'bg-gray-100 dark:bg-gray-900 ring-gray-300 dark:ring-gray-600',
             open && ''
         ]

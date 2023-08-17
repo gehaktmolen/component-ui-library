@@ -50,12 +50,12 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
     const slots = {
         root: ['relative inline-flex align-middle shrink-0'],
         badge: [
-            'flex flex-row flex-wrap justify-center content-center items-center absolute box-border z-1 rounded-[20px] transition-transform origin-center',
+            'flex flex-row flex-wrap justify-center content-center items-center absolute box-border z-1 rounded-badge transition-transform origin-center',
             'text-gray-100',
             color === 'primary' && 'bg-primary-600 dark:bg-primary-500',
             color === 'danger' && 'bg-danger-600 dark:bg-danger-500',
             color === 'neutral' && 'bg-gray-600 dark:bg-gray-500 text-gray-100',
-            variant === 'dot' ? 'h-2 w-2' : 'text-[10px] leading-none h-[20px] min-w-[20px] px-1.5',
+            variant === 'dot' ? 'h-2 w-2' : 'text-badge leading-none h-badge min-w-badge px-1.5',
             invisible ? 'scale-0' : 'scale-100',
             classes
         ]
