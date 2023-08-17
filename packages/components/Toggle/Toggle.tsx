@@ -29,7 +29,7 @@ const useUtilityClasses = (ownerState: ToggleOwnerState) => {
             color === 'danger' && checked && 'bg-danger-600 dark:bg-danger-500'
         ],
         thumb: [
-            'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+            'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-gray-100 shadow ring-0 transition duration-200 ease-in-out',
             checked ? 'translate-x-5' : 'translate-x-0'
         ],
         input: [

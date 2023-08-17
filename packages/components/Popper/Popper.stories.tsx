@@ -135,7 +135,7 @@ export function Primary() {
                     Anchor
                 </span>
                 <Popper id="placement-popper" open={Boolean(anchorEl)} anchorEl={anchorEl} placement={placement}>
-                    <div className="rounded-md border-0 py-1.5 px-2.5 m-2 shadow-lg ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+                    <div className="rounded-md border-0 py-1.5 px-2.5 m-2 shadow-lg ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
                         The content of the Popper.
                     </div>
                 </Popper>

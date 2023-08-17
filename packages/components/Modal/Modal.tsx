@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
         root: ['relative z-10', !open && exited && 'hidden'],
         container: ['fixed inset-0 z-10 overflow-y-auto'],
         containerInner: ['flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'],
-        backdrop: ['fixed inset-0 backdrop-blur-xl bg-white/30 dark:bg-gray-900/30 transition-opacity']
+        backdrop: ['fixed inset-0 backdrop-blur-xl bg-gray-100/30 dark:bg-gray-900/30 transition-opacity']
     };
 
     return composeClasses(

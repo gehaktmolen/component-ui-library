@@ -15,7 +15,7 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
         root: [
             'relative cursor-default select-none py-2 pl-3 pr-9',
             disabled && '',
-            highlighted ? 'bg-primary-600 dark:bg-primary-400 text-white' : 'text-gray-900 dark:text-gray-100',
+            highlighted ? 'bg-primary-600 dark:bg-primary-400 text-gray-100' : 'text-gray-900 dark:text-gray-100',
             selected ? 'font-semibold' : 'font-normal'
         ]
     };

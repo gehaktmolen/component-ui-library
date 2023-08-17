@@ -43,7 +43,7 @@ export function Primary() {
             <Button color="neutral" onClick={handleClick}>
                 {show ? 'Unmount children' : 'Mount children'}
             </Button>
-            <div className="px-4 py-2 bg-primary-600 text-white text-sm rounded-md">
+            <div className="px-4 py-2 bg-primary-600 text-gray-100 text-sm rounded-md">
                 It looks like I will render here.
                 {show ? (
                     <Portal container={container.current}>

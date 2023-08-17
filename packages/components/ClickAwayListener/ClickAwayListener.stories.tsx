@@ -52,7 +52,7 @@ export function Primary() {
                     Open menu dropdown
                 </Button>
                 {open ? (
-                    <div className="absolute z-10 border-2 px-4 py-2 bg-primary-600 text-white text-sm rounded-md shadow">
+                    <div className="absolute z-10 border-2 px-4 py-2 bg-primary-600 text-gray-100 text-sm rounded-md shadow">
                         Click me, I will stay visible until you click outside.
                     </div>
                 ) : null}
@@ -80,7 +80,7 @@ export function UsageWithPortal() {
                 </Button>
                 {open ? (
                     <Portal>
-                        <div className="absolute z-10 border-2 px-4 py-2 bg-primary-600 text-white text-sm rounded-md shadow">
+                        <div className="absolute z-10 border-2 px-4 py-2 bg-primary-600 text-gray-100 text-sm rounded-md shadow">
                             Click me, I will stay visible until you click outside.
                         </div>
                     </Portal>
@@ -108,7 +108,7 @@ export function LeadingEvents() {
                     Open menu dropdown
                 </Button>
                 {open ? (
-                    <div className="absolute z-10 px-4 py-2 bg-primary-600 text-white text-sm rounded-md shadow">
+                    <div className="absolute z-10 px-4 py-2 bg-primary-600 text-gray-100 text-sm rounded-md shadow">
                         Click me, I will stay visible until you click outside.
                     </div>
                 ) : null}

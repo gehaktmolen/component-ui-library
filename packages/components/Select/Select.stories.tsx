@@ -48,7 +48,7 @@ export const Basics: Story = {
                 slotProps={{
                     root: {
                         className:
-                            'bg-primary-600 dark:bg-primary-200 ring-primary-600 dark:ring-primary-400 focus:ring-primary-600 text-white dark:text-gray-900'
+                            'bg-primary-600 dark:bg-primary-200 ring-primary-600 dark:ring-primary-400 focus:ring-primary-600 text-gray-100 dark:text-gray-900'
                     },
                     listbox: {
                         className: 'py-0 mt-4'
@@ -311,7 +311,7 @@ export const Hooks = () => {
                 <button
                     {...getButtonProps()}
                     className={twMerge(
-                        'block max-w-xs w-full h-8 cursor-default rounded-md px-2.5 py-1.5 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 focus:ring-primary-600 text-ellipsis overflow-hidden whitespace-nowrap',
+                        'block max-w-xs w-full h-8 cursor-default rounded-md px-2.5 py-1.5 text-sm text-left shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 ring-gray-300 dark:ring-gray-600 focus:ring-primary-600 text-ellipsis overflow-hidden whitespace-nowrap',
                         value === 'primary' && 'bg-primary-600 dark:bg-primary-600 text-gray-100',
                         value === 'danger' && 'bg-danger-500 dark:bg-danger-600 text-gray-100'
                     )}
@@ -325,7 +325,7 @@ export const Hooks = () => {
                     aria-hidden={!listboxVisible}
                     className={twJoin(
                         listboxVisible ? '' : 'hidden',
-                        'absolute block max-w-xs w-full mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm bg-white dark:bg-gray-900 ring-gray-300 dark:ring-gray-600'
+                        'absolute block max-w-xs w-full mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm bg-gray-100 dark:bg-gray-900 ring-gray-300 dark:ring-gray-600'
                     )}
                 >
                     <SelectProvider value={contextValue}>

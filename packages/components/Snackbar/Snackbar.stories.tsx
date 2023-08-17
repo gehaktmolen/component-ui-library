@@ -17,7 +17,7 @@ const meta = {
     component: Snackbar,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
-        layout: 'centered',
+        layout: 'fullscreen',
         docs: {
             story: {
                 inline: false,
@@ -74,7 +74,7 @@ export const Primary = () => {
     };
 
     return (
-        <React.Fragment>
+        <div className="flex items-center justify-center h-full">
             <Button onClick={handleClick}>Open snackbar</Button>
             <Snackbar autoHideDuration={null} open={open} onClose={handleClose} exited={exited}>
                 <Transition
@@ -144,6 +144,6 @@ export const Primary = () => {
                     )}
                 </Transition>
             </Snackbar>
-        </React.Fragment>
+        </div>
     );
 };

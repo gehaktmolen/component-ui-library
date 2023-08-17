@@ -167,7 +167,7 @@ export const Custom: Story = {
         <Button
             slotProps={{
                 root: (state: ButtonOwnerState) => ({
-                    className: `text-white bg-gradient-to-r from-primary-600 via-neutral-600 ${
+                    className: `text-gray-100 bg-gradient-to-r from-primary-600 via-neutral-600 ${
                         state.focusVisible ? 'to-primary-600' : 'to-neutral-600'
                     } border border-2 ${state.active ? 'border-primary-600' : 'border-neutral-600'}`
                 })

@@ -7,6 +7,10 @@
     rel="stylesheet"
 />
 <style>
+    html,
+    body {
+        height: 100%;
+    }
     body {
         font-family: 'Quicksand', sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -27,6 +31,9 @@
         --chart-handle-drag-fill: transparent;
         --chart-handle-dots: #67c2e4;
         --chart-handle-line: #67c2e4;
+    }
+    .sb-main-fullscreen #storybook-root {
+        height: 100%;
     }
     .docblock-source {
         background: #1b1a1a !important;

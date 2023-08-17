@@ -9,7 +9,7 @@ import { Button } from '../Button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Navigation/TablePagination (WIP)',
+    title: 'Navigation/WIP/TablePagination',
     component: TablePagination,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
@@ -48,7 +48,7 @@ export function TableCustomized() {
     };
 
     return (
-        <div className="py-10 overflow-hidden shadow sm:rounded-lg bg-white dark:bg-gray-900 ">
+        <div className="py-10 overflow-hidden shadow sm:rounded-lg bg-gray-100 dark:bg-gray-900 ">
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">

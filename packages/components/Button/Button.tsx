@@ -22,20 +22,20 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
                 'shadow-sm bg-primary-600 dark:bg-primary-500 text-gray-100 hover:bg-primary-500 dark:hover:bg-primary-400 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-500',
             variant === 'solid' &&
                 color === 'neutral' &&
-                'shadow-sm bg-white dark:bg-white/10 text-gray-900 dark:text-gray-100 ring-gray-300 hover:bg-gray-50 dark:hover:bg-white/20 focus-visible:outline-gray-600 dark:focus-visible:outline-gray-500',
+                'shadow-sm bg-gray-100 dark:bg-gray-100/10 text-gray-900 dark:text-gray-100 ring-gray-300 hover:bg-gray-50 dark:hover:bg-gray-100/20 focus-visible:outline-gray-600 dark:focus-visible:outline-gray-500',
             variant === 'solid' &&
                 color === 'danger' &&
                 'shadow-sm bg-danger-600 dark:bg-danger-500 text-gray-100 hover:bg-danger-500 dark:hover:bg-danger-400 focus-visible:outline-danger-600 dark:focus-visible:outline-danger-500',
             variant === 'soft' && 'rounded-md font-semibold shadow-sm',
             variant === 'soft' &&
                 color === 'primary' &&
-                'bg-primary-50 dark:bg-white/10 text-primary-600 dark:text-primary-500 hover:bg-primary-100 dark:hover:bg-white/20',
+                'bg-primary-50 dark:bg-gray-100/10 text-primary-600 dark:text-primary-500 hover:bg-primary-100 dark:hover:bg-gray-100/20',
             variant === 'soft' &&
                 color === 'neutral' &&
                 'bg-gray-500 dark:bg-gray/10 text-gray-900 dark:text-gray-500 hover:bg-gray-400 dark:hover:bg-gray/20',
             variant === 'soft' &&
                 color === 'danger' &&
-                'bg-danger-50 dark:bg-white/10 text-danger-600 dark:text-danger-500 hover:bg-danger-100 dark:hover:bg-white/20',
+                'bg-danger-50 dark:bg-gray-100/10 text-danger-600 dark:text-danger-500 hover:bg-danger-100 dark:hover:bg-gray-100/20',
             flat && 'drop-shadow-none hover:drop-shadow-none active:drop-shadow-none',
             block && 'w-full',
             disabled &&

@@ -14,7 +14,7 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
     const slots = {
         root: [
             'group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-center text-sm font-medium focus:z-10',
-            'bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800',
+            'bg-gray-100 dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800',
             selected
                 ? 'text-gray-900 dark:text-gray-100'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-100',
