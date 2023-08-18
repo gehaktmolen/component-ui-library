@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef, unstable_useEnhancedEffect as useEnhancedEffect } from '../../utils';
-import { EventHandlers } from '../utils';
-import useForcedRerendering from '../utils/useForcedRerendering';
-import { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
+import { useForcedRerendering, useForkRef, useEnhancedEffect } from '../../utils';
 import { ListActionTypes } from './listActions.types';
 import { ListContext } from './ListContext';
+import type { EventHandlers } from '../../types';
+import type { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
 
 /**
  * Contains the logic for an item of a list-like component (e.g. Select, Menu, etc.).

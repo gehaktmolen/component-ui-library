@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Simplify } from '../../types';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import type { Simplify } from '../../types';
+import type { PolymorphicProps, SlotComponentProps } from '../../utils';
 
 export interface MenuItemRootSlotPropsOverrides {}
 

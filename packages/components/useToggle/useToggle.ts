@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-    unstable_useControlled as useControlled,
-    unstable_useForkRef as useForkRef,
-    unstable_useIsFocusVisible as useIsFocusVisible
-} from '../../utils';
-import { UseToggleParameters, UseToggleReturnValue } from './useToggle.types';
+import { useControlled, useForkRef, useIsFocusVisible } from '../../utils';
+import type { UseToggleParameters, UseToggleReturnValue } from './useToggle.types';
 
 /**
  * The basic building block for creating custom switches.

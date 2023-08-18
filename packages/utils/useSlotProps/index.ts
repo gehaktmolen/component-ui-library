@@ -1,0 +1,1 @@
+export { useSlotProps } from './useSlotProps';

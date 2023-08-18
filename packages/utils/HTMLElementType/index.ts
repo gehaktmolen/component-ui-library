@@ -1,1 +1,1 @@
-export { default } from './HTMLElementType';
+export { HTMLElementType } from './HTMLElementType';

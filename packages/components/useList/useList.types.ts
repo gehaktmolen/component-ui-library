@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { Simplify } from '../../types';
-import { ListAction } from './listActions.types';
-import {
+import type { Simplify, EventHandlers } from '../../types';
+import type { ListAction } from './listActions.types';
+import type {
+    CancellableEventHandler,
     ActionWithContext,
     ControllableReducerAction,
     StateChangeCallback
-} from '../utils/useControllableReducer.types';
-import { EventHandlers } from '../utils';
+} from '../../utils';
 import type { ListContextValue } from './ListContext';
-import { CancellableEventHandler } from '../utils/cancellableEvent';
 
 type ListActionContextRequiredKeys =
     | 'disabledItemsFocusable'

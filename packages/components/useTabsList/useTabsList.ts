@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { useTabsContext } from '../Tabs';
-import {
-    TabsListActionTypes,
+import { useCompoundParent } from '../../utils';
+import { tabsListReducer } from './tabsListReducer';
+import { useList, ListState, UseListParameters } from '../useList';
+import { TabsListActionTypes } from './useTabsList.types';
+import type {
     UseTabsListParameters,
     UseTabsListReturnValue,
     UseTabsListRootSlotProps,
     ValueChangeAction
 } from './useTabsList.types';
-import { EventHandlers } from '../utils';
-import { useCompoundParent } from '../utils/useCompound';
-import { TabMetadata } from '../useTabs';
-import { useList, ListState, UseListParameters } from '../useList';
-import { tabsListReducer } from './tabsListReducer';
+import type { EventHandlers } from '../../types';
+import type { TabMetadata } from '../useTabs';
 
 /**
  *

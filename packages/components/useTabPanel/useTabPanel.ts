@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '../../utils';
+import { useCompoundItem, useId, useForkRef } from '../../utils';
 import { useTabsContext } from '../Tabs';
-import { useCompoundItem } from '../utils/useCompoundItem';
-import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
+import type { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
 
 function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
     return otherTabPanelValues.size;

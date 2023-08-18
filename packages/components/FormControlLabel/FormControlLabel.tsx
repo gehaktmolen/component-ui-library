@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import {
+import { generateUtilityClass, composeClasses, useSlotProps, useClassNamesOverride } from '../../utils';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type {
     FormControlLabelProps,
     FormControlLabelTypeMap,
     FormControlLabelRootSlotProps,
@@ -10,9 +11,6 @@ import {
     FormControlLabelAsteriskSlotProps,
     FormControlLabelLabelSlotProps
 } from './FormControlLabel.types';
-import composeClasses from '../composeClasses';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
 
 function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
     const { disabled, filled, focused, labelPlacement, error, required } = ownerState;

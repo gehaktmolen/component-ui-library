@@ -1,12 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent } from '../utils';
-import { MenuItemOwnerState, MenuItemProps, MenuItemTypeMap } from './MenuItem.types';
+import type { PolymorphicComponent } from '../../utils';
+import type { MenuItemOwnerState, MenuItemProps, MenuItemTypeMap } from './MenuItem.types';
 import { useMenuItem } from '../useMenuItem';
-import composeClasses from '../composeClasses';
-import useSlotProps from '../utils/useSlotProps';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import { generateUtilityClass, composeClasses, useClassNamesOverride, useSlotProps } from '../../utils';
 
 function useUtilityClasses(ownerState: MenuItemOwnerState) {
     const { disabled, focusVisible } = ownerState;

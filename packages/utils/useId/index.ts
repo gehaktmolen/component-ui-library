@@ -1,1 +1,1 @@
-export { default } from './useId';
+export { useId } from './useId';

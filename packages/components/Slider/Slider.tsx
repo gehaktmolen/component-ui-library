@@ -1,13 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { twJoin } from 'tailwind-merge';
-import isHostComponent from '../utils/isHostComponent';
-import { unstable_composeClasses as composeClasses, chainPropTypes } from '../../utils';
+import {
+    generateUtilityClass,
+    resolveComponentProps,
+    useClassNamesOverride,
+    type PolymorphicComponent,
+    useSlotProps,
+    composeClasses,
+    chainPropTypes,
+    isHostComponent
+} from '../../utils';
 import { useSlider, valueToPercent } from '../useSlider';
-import { useSlotProps, resolveComponentProps, PolymorphicComponent } from '../utils';
-import { SliderOwnerState, SliderProps, SliderTypeMap } from './Slider.types';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import type { SliderOwnerState, SliderProps, SliderTypeMap } from './Slider.types';
 
 function Identity(x: number) {
     return x;

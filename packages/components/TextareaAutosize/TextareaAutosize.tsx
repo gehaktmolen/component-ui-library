@@ -1,13 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
-import {
-    unstable_debounce as debounce,
-    unstable_useForkRef as useForkRef,
-    unstable_useEnhancedEffect as useEnhancedEffect,
-    unstable_ownerWindow as ownerWindow
-} from '../../utils';
-import { TextareaAutosizeProps } from './TextareaAutosize.types';
+import { debounce, useForkRef, useEnhancedEffect, ownerWindow } from '../../utils';
+import type { TextareaAutosizeProps } from './TextareaAutosize.types';
 
 type State = {
     outerHeightStyle: number;

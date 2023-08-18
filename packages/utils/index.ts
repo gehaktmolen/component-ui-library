@@ -1,39 +1,49 @@
-export { default as chainPropTypes } from './chainPropTypes';
-// export { default as deepmerge } from './deepmerge';
-// export { isPlainObject } from './deepmerge';
-export { default as elementAcceptingRef } from './elementAcceptingRef';
-// export { default as elementTypeAcceptingRef } from './elementTypeAcceptingRef';
-export { default as exactProp } from './exactProp';
-// export { default as formatErrorMessage } from './formatErrorMessage';
-// export { default as getDisplayName } from './getDisplayName';
-export { default as HTMLElementType } from './HTMLElementType';
-// export { default as ponyfillGlobal } from './ponyfillGlobal';
-export { default as refType } from './refType';
-// export { default as unstable_capitalize } from './capitalize';
-export { default as unstable_createChainedFunction } from './createChainedFunction';
-export { default as unstable_debounce } from './debounce';
-// export { default as unstable_deprecatedPropType } from './deprecatedPropType';
-// export { default as unstable_isElement } from './isElement';
-export { default as unstable_ownerDocument } from './ownerDocument';
-export { default as unstable_ownerWindow } from './ownerWindow';
-// export { default as unstable_requirePropFactory } from './requirePropFactory';
-export { default as unstable_setRef } from './setRef';
-export { default as unstable_useEnhancedEffect } from './useEnhancedEffect';
-export { default as unstable_useId } from './useId';
-// export { default as unstable_unsupportedProp } from './unsupportedProp';
-export { default as unstable_useControlled } from './useControlled';
-export { default as unstable_useEventCallback } from './useEventCallback';
-export { default as unstable_useForkRef } from './useForkRef';
-export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
-export { default as unstable_getScrollbarSize } from './getScrollbarSize';
-// export {
-//   detectScrollType as unstable_detectScrollType,
-//   getNormalizedScrollLeft as unstable_getNormalizedScrollLeft,
-// } from './scrollLeft';
-export { default as usePreviousProps } from './usePreviousProps';
-export { default as visuallyHidden } from './visuallyHidden';
-export { default as integerPropType } from './integerPropType';
-// export { default as internal_resolveProps } from './resolveProps';
-export { default as unstable_composeClasses } from './composeClasses';
-export { default as unstable_generateUtilityClass } from './generateUtilityClass';
+export * from './chainPropTypes';
+export * from './elementAcceptingRef';
+export * from './exactProp';
+export * from './HTMLElementType';
+export * from './refType';
+export * from './createChainedFunction';
+export * from './debounce';
+export * from './ownerDocument';
+export * from './ownerWindow';
+export * from './setRef';
+export * from './useEnhancedEffect';
+export * from './useId';
+export * from './useControlled';
+export * from './useEventCallback';
+export * from './useForkRef';
+export * from './useIsFocusVisible';
+export * from './getScrollbarSize';
+export * from './usePreviousProps';
+export * from './visuallyHidden';
+export * from './isHostComponent';
+export * from './useSlotProps';
+export * from './areArraysEqual';
+export * from './cancellableEvent';
+
+export * from './combineHooksSlotProps';
+export * from './extractEventHandlers';
+export * from './mergeSlotProps';
+export * from './composeClasses';
 export * from './generateUtilityClass';
+export * from './prepareForSlot';
+export * from './resolveComponentProps';
+export * from './useCompound';
+export * from './useCompoundItem';
+export * from './useControllableReducer';
+export * from './useForcedRerendering';
+export * from './useLatest';
+export * from './useMessageBus';
+export * from './useTextNavigation';
+export * from './useTransition';
+export * from './createTransitions';
+export * from './appendOwnerState';
+export { default as integerPropType } from './integerPropType';
+
+//
+
+export * from './ClassNameConfigurator';
+export * from './ColorInversion';
+export * from './PolymorphicComponent';
+export * from './SlotComponent';

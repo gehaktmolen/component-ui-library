@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Simplify, OverridableStringUnion } from '../../types';
-import { PolymorphicProps, SlotComponentProps, ColorPaletteProp } from '../utils';
+import type { Simplify, OverridableStringUnion } from '../../types';
+import type { PolymorphicProps, ColorPaletteProp, SlotComponentProps } from '../../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 

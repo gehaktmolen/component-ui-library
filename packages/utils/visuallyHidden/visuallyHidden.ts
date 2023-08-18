@@ -1,4 +1,4 @@
-const visuallyHidden: import('react').CSSProperties = {
+export const visuallyHidden: import('react').CSSProperties = {
     border: 0,
     clip: 'rect(0 0 0 0)',
     height: '1px',
@@ -9,5 +9,3 @@ const visuallyHidden: import('react').CSSProperties = {
     whiteSpace: 'nowrap',
     width: '1px'
 };
-
-export default visuallyHidden;

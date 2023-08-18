@@ -1,17 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType } from '../../utils';
-import { PolymorphicComponent } from '../utils';
-import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 import { useMenu } from '../useMenu';
 import { MenuProvider } from '../useMenu';
-import composeClasses from '../composeClasses';
 import { Popper } from '../Popper';
-import { useSlotProps } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { WithOptionalOwnerState } from '../utils';
+import { generateUtilityClass, composeClasses, useSlotProps, refType, useClassNamesOverride } from '../../utils';
 import { ListActionTypes } from '../useList';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 
 function useUtilityClasses(ownerState: MenuOwnerState) {
     const { open } = ownerState;

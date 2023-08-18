@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OverrideProps, OverridableTypeMap, OverridableComponent, Simplify } from '../../types';
-import { SlotComponentProps } from '../utils';
+import type { OverrideProps, OverridableTypeMap, OverridableComponent, Simplify } from '../../types';
+import type { SlotComponentProps } from '../../utils';
 
 export interface FormLabelRootSlotPropsOverrides {}
 export interface FormLabelAsteriskSlotPropsOverrides {}

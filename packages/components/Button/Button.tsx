@@ -1,11 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
-import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
+import {
+    generateUtilityClass,
+    composeClasses,
+    useSlotProps,
+    useColorInversion,
+    useClassNamesOverride
+} from '../../utils';
 import { useButton } from '../useButton';
-import { PolymorphicComponent, WithOptionalOwnerState, useSlotProps, useColorInversion } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
     const { active, disabled, endDecorator, focusVisible, variant, color, startDecorator, size, flat, block } =

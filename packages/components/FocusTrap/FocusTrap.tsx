@@ -1,12 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-    exactProp,
-    elementAcceptingRef,
-    unstable_useForkRef as useForkRef,
-    unstable_ownerDocument as ownerDocument
-} from '../../utils';
-import { FocusTrapProps } from './FocusTrap.types';
+import { exactProp, elementAcceptingRef, useForkRef, ownerDocument } from '../../utils';
+import type { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
 const candidatesSelector = [

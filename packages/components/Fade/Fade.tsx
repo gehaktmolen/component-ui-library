@@ -1,10 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementAcceptingRef } from '../../utils';
-import { reflow, getTransitionProps } from '../../utils/useTransition';
-import { unstable_useForkRef as useForkRef } from '../../utils';
-import { createTransitions } from '../../utils/createTransitions';
+import { useForkRef, createTransitions, reflow, getTransitionProps, elementAcceptingRef } from '../../utils';
 import { FadeProps } from './Fade.types.ts';
 
 const transitions = createTransitions({});

@@ -1,11 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import composeClasses from '../composeClasses';
+import { generateUtilityClass, composeClasses, useSlotProps, useClassNamesOverride } from '../../utils';
 import { useTabPanel } from '../useTabPanel';
-import { TabPanelOwnerState, TabPanelProps, TabPanelRootSlotProps, TabPanelTypeMap } from './TabPanel.types';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { TabPanelOwnerState, TabPanelProps, TabPanelRootSlotProps, TabPanelTypeMap } from './TabPanel.types';
 
 const useUtilityClasses = (ownerState: { hidden: boolean }) => {
     const { hidden } = ownerState;

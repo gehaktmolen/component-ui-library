@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ListContext, ListContextValue } from '../useList';
-import { MenuItemMetadata } from '../useMenuItem';
-import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
+import { ListContext, type ListContextValue } from '../useList';
+import type { MenuItemMetadata } from '../useMenuItem';
+import { CompoundComponentContext, type CompoundComponentContextValue } from '../../utils';
 
 export type MenuProviderValue = CompoundComponentContextValue<string, MenuItemMetadata> & ListContextValue<string>;
 

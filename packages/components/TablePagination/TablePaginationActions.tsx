@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import {
+import { useSlotProps } from '../../utils';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type {
     TablePaginationActionsButtonSlotProps,
     TablePaginationActionsProps,
     TablePaginationActionsRootSlotProps,
     TablePaginationActionsTypeMap
 } from './TablePaginationActions.types';
-import { ItemAriaLabelType } from './common.types';
+import type { ItemAriaLabelType } from './common.types';
 
 function LastPageIconDefault() {
     return (

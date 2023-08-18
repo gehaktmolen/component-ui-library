@@ -1,1 +1,1 @@
-export { default } from './useEnhancedEffect';
+export { useEnhancedEffect } from './useEnhancedEffect';

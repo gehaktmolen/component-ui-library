@@ -1,12 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import { TabsListOwnerState, TabsListProps, TabsListRootSlotProps, TabsListTypeMap } from './TabsList.types';
+import { generateUtilityClass, composeClasses, useSlotProps, useClassNamesOverride } from '../../utils';
 import { useTabsList } from '../useTabsList';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import TabsListProvider from '../useTabsList/TabsListProvider';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { TabsListOwnerState, TabsListProps, TabsListRootSlotProps, TabsListTypeMap } from './TabsList.types';
 
 const useUtilityClasses = (ownerState: TabsListOwnerState) => {
     const { orientation } = ownerState;

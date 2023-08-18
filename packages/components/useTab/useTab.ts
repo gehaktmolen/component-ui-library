@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '../../utils';
+import { useCompoundItem, useId, useForkRef } from '../../utils';
 import { useTabsContext } from '../Tabs';
-import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
-import { EventHandlers } from '../utils';
-import { useCompoundItem } from '../utils/useCompoundItem';
 import { useListItem } from '../useList';
 import { useButton } from '../useButton';
-import { TabMetadata } from '../useTabs';
+import type { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
+import type { EventHandlers } from '../../types';
+import type { TabMetadata } from '../useTabs';
 
 function tabValueGenerator(otherTabValues: Set<string | number>) {
     return otherTabValues.size;

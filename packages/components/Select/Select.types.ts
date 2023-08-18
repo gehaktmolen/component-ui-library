@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Simplify } from '../../types';
-import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
-import { SelectOption } from '../useOption';
 import { Popper, PopperProps } from '../Popper';
-import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
+import type { Simplify } from '../../types';
+import type { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
+import type { SelectOption } from '../useOption';
+import type { PolymorphicProps, WithOptionalOwnerState, SlotComponentProps } from '../../utils';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}

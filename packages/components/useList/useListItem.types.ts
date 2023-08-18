@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EventHandlers } from '../utils';
+import type { EventHandlers } from '../../types';
 
 export interface UseListItemParameters<ItemValue> {
     /**

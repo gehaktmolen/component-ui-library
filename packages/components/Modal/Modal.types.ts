@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableTypeMap, Simplify } from '../../types';
-import { PortalProps } from '../Portal';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import type { OverridableComponent, OverridableTypeMap, Simplify } from '../../types';
+import type { PortalProps } from '../Portal';
+import type { PolymorphicProps, SlotComponentProps } from '../../utils';
 
 export interface ModalRootSlotPropsOverrides {}
 export interface ModalBackdropSlotPropsOverrides {}

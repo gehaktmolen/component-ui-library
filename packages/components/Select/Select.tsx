@@ -1,7 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '../../utils';
-import {
+import { generateUtilityClass, composeClasses, useForkRef, useSlotProps, useClassNamesOverride } from '../../utils';
+import { useSelect, type SelectValue } from '../useSelect';
+import { Popper } from '../Popper';
+import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
+import SelectProvider from '../useSelect/SelectProvider';
+import type {
     SelectListboxSlotProps,
     SelectOwnerState,
     SelectPopperSlotProps,
@@ -9,15 +13,8 @@ import {
     SelectRootSlotProps,
     SelectType
 } from './Select.types';
-import { useSelect, SelectValue } from '../useSelect';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { Popper } from '../Popper';
-import composeClasses from '../composeClasses';
-import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { SelectOption } from '../useOption';
-import SelectProvider from '../useSelect/SelectProvider';
-import generateUtilityClass from '../generateUtilityClass';
+import { WithOptionalOwnerState } from '../../utils';
+import type { SelectOption } from '../useOption';
 
 function defaultRenderValue<OptionValue>(
     selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null

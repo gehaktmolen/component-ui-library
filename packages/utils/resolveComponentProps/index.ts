@@ -1,0 +1,1 @@
+export { resolveComponentProps } from './resolveComponentProps';

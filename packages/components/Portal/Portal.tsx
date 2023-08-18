@@ -1,13 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {
-    exactProp,
-    HTMLElementType,
-    unstable_useEnhancedEffect as useEnhancedEffect,
-    unstable_useForkRef as useForkRef,
-    unstable_setRef as setRef
-} from '../../utils';
+import { exactProp, HTMLElementType, useEnhancedEffect, useForkRef, setRef } from '../../utils';
 import { PortalProps } from './Portal.types';
 
 function getContainer(container: PortalProps['container']) {

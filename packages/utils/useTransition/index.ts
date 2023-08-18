@@ -1,2 +1,2 @@
-export * from './useTransition';
-export * from './useTransition.types';
+export { reflow, getTransitionProps } from './useTransition';
+export { type TransitionProps } from './useTransition.types';

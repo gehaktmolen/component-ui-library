@@ -1,8 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useControlled as useControlled, unstable_useId as useId } from '../../utils';
-import FormControlContext from './FormControlContext';
 import {
+    generateUtilityClass,
+    composeClasses,
+    useClassNamesOverride,
+    useControlled,
+    useSlotProps,
+    useId
+} from '../../utils';
+import FormControlContext from './FormControlContext';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type {
     FormControlProps,
     NativeFormControlElement,
     FormControlTypeMap,
@@ -10,10 +18,6 @@ import {
     FormControlRootSlotProps,
     FormControlState
 } from './FormControl.types';
-import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
-import composeClasses from '../composeClasses';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
 
 function hasValue(value: unknown) {
     return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';

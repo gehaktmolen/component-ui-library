@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { EventHandlers } from '../utils';
-import { UseButtonRootSlotProps } from '../useButton';
-import { CancellableEventHandler } from '../utils/cancellableEvent';
+import type { EventHandlers } from '../../types';
+import type { UseButtonRootSlotProps } from '../useButton';
+import type { CancellableEventHandler } from '../../utils';
 
 interface UseMenuItemRootSlotOwnProps {
     role: 'menuitem';

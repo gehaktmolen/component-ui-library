@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableTypeMap, Simplify } from '../../types';
-import { PolymorphicProps, SlotComponentProps, SlotComponentPropsWithSlotState } from '../utils';
-import {
+import type { OverridableComponent, OverridableTypeMap, Simplify } from '../../types';
+import type { PolymorphicProps, SlotComponentProps, SlotComponentPropsWithSlotState } from '../../utils';
+import type {
     UseSliderHiddenInputProps,
     UseSliderParameters,
     UseSliderRootSlotProps,

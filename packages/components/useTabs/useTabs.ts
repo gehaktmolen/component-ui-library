@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { unstable_useControlled as useControlled } from '../../utils';
-import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
-import { useCompoundParent } from '../utils/useCompound';
-import { TabPanelMetadata } from './TabsProvider';
+import { useCompoundParent, useControlled } from '../../utils';
+import type { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
+import type { TabPanelMetadata } from './TabsProvider';
 
 export interface TabMetadata {
     disabled: boolean;

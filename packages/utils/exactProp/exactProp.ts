@@ -5,7 +5,7 @@ import { ValidationMap } from 'prop-types';
 
 const specialProperty = 'exact-prop: \u200b';
 
-export default function exactProp<T>(propTypes: ValidationMap<T>): ValidationMap<T> {
+export function exactProp<T>(propTypes: ValidationMap<T>): ValidationMap<T> {
     if (process.env.NODE_ENV === 'production') {
         return propTypes;
     }

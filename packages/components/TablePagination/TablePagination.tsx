@@ -1,11 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useId as useId, chainPropTypes, integerPropType } from '../../utils';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import { unstable_composeClasses as composeClasses } from '../../utils';
-import isHostComponent from '../utils/isHostComponent';
-import { TablePaginationActions } from './TablePaginationActions';
 import {
+    useId,
+    chainPropTypes,
+    integerPropType,
+    isHostComponent,
+    useSlotProps,
+    generateUtilityClass,
+    composeClasses,
+    useClassNamesOverride
+} from '../../utils';
+import { TablePaginationActions } from './TablePaginationActions';
+import type {
     TablePaginationProps,
     LabelDisplayedRowsArgs,
     TablePaginationTypeMap,
@@ -18,9 +24,8 @@ import {
     TablePaginationToolbarSlotProps,
     TablePaginationSpacerSlotProps
 } from './TablePagination.types';
-import { ItemAriaLabelType } from './common.types';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { ItemAriaLabelType } from './common.types';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
     return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;

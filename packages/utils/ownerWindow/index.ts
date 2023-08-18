@@ -1,1 +1,1 @@
-export { default } from './ownerWindow';
+export { ownerWindow } from './ownerWindow';

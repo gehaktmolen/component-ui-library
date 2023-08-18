@@ -141,3 +141,5 @@ export interface OverridableTypeMap {
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type Simplify<T> = T extends Function ? T : { [K in keyof T]: T[K] };
+
+export type EventHandlers = Record<string, React.EventHandler<any>>;

@@ -1,1 +1,1 @@
-export { default } from './useEventCallback';
+export { useEventCallback } from './useEventCallback';

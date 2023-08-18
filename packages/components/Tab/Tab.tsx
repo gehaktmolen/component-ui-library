@@ -1,12 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '../../utils';
-import composeClasses from '../composeClasses';
-import { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
+import { generateUtilityClass, composeClasses, useClassNamesOverride, useForkRef, useSlotProps } from '../../utils';
 import { useTab } from '../useTab';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
     const { selected, disabled, orientation } = ownerState;

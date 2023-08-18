@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Simplify } from '../../types';
-import { UseTabsListRootSlotProps } from '../useTabsList';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import type { Simplify } from '../../types';
+import type { UseTabsListRootSlotProps } from '../useTabsList';
+import type { PolymorphicProps, SlotComponentProps } from '../../utils';
 
 export interface TabsListRootSlotPropsOverrides {}
 

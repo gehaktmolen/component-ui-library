@@ -1,4 +1,4 @@
-export default function HTMLElementType(
+export function HTMLElementType(
     props: { [key: string]: unknown },
     propName: string,
     componentName: string,

@@ -1,4 +1,4 @@
-export default function composeClasses<ClassKey extends string>(
+export function composeClasses<ClassKey extends string>(
     slots: Record<ClassKey, ReadonlyArray<string | false | undefined | null>>,
     getUtilityClass: (slot: string) => string,
     classes: Record<string, string> | undefined = undefined

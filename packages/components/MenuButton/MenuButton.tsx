@@ -1,11 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
-import { useSlotProps } from '../utils';
+import type { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
+import { generateUtilityClass, composeClasses, useSlotProps, useClassNamesOverride } from '../../utils';
 import { useMenuButton } from '../useMenuButton';
-import composeClasses from '../composeClasses';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
 
 const useUtilityClasses = (ownerState: MenuButtonOwnerState) => {
     const { active, disabled, endDecorator, open } = ownerState;

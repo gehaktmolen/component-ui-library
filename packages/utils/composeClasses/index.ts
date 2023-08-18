@@ -1,1 +1,1 @@
-export { default } from './composeClasses';
+export { composeClasses } from './composeClasses';

@@ -1,17 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import {
+import { generateUtilityClass, composeClasses, useSlotProps, useClassNamesOverride } from '../../utils';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type {
     FormLabelProps,
     FormLabelTypeMap,
     FormLabelRootSlotProps,
     FormLabelOwnerState,
     FormLabelAsteriskSlotProps
 } from './FormLabel.types';
-import composeClasses from '../composeClasses';
-import generateUtilityClass from '../generateUtilityClass';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { FormControlState, useFormControlContext } from '../FormControl';
+import { type FormControlState, useFormControlContext } from '../FormControl';
 
 function useUtilityClasses(ownerState: FormLabelOwnerState) {
     const { disabled, error, focused, required } = ownerState;

@@ -1,10 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import { FormGroupProps, FormGroupTypeMap, FormGroupRootSlotProps, FormGroupOwnerState } from './FormGroup.types';
-import composeClasses from '../composeClasses';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import { generateUtilityClass, composeClasses, useSlotProps, useClassNamesOverride } from '../../utils';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { FormGroupProps, FormGroupTypeMap, FormGroupRootSlotProps, FormGroupOwnerState } from './FormGroup.types';
 
 function useUtilityClasses(ownerState: FormGroupOwnerState) {
     const { row, error } = ownerState;

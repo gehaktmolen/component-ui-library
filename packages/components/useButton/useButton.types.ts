@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { EventHandlers } from '../utils';
-import { CancellableEventHandler } from '../utils/cancellableEvent';
+import type { EventHandlers } from '../../types';
+import type { CancellableEventHandler } from '../../utils';
 
 export interface UseButtonRootSlotOwnProps {
     'aria-disabled'?: React.AriaAttributes['aria-disabled'];

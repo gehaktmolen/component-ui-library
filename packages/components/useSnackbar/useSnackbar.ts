@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { unstable_useEventCallback as useEventCallback } from '../../utils';
+import { extractEventHandlers, useEventCallback } from '../../utils';
 import { UseSnackbarParameters, SnackbarCloseReason, UseSnackbarReturnValue } from './useSnackbar.types';
-import { extractEventHandlers } from '../utils';
 
 /**
  * The basic building block for creating custom snackbar.

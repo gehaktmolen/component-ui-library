@@ -1,7 +1,7 @@
 import React from 'react';
-import { Simplify, OverridableStringUnion } from '../../types';
-import { PolymorphicProps, SlotComponentProps, ColorPaletteProp } from '../utils';
-import { UseToggleInputSlotProps, UseToggleParameters } from '../useToggle';
+import type { Simplify, OverridableStringUnion } from '../../types';
+import type { PolymorphicProps, ColorPaletteProp, SlotComponentProps } from '../../utils';
+import type { UseToggleInputSlotProps, UseToggleParameters } from '../useToggle';
 
 export interface ToggleRootSlotPropsOverrides {}
 export interface ToggleThumbSlotPropsOverrides {}

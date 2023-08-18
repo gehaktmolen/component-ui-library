@@ -1,1 +1,1 @@
-export { default } from './chainPropTypes';
+export { chainPropTypes } from './chainPropTypes';

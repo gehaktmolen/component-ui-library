@@ -1,0 +1,1 @@
+export { isHostComponent } from './isHostComponent';

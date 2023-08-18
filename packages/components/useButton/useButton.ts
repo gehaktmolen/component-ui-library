@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef, unstable_useIsFocusVisible as useIsFocusVisible } from '../../utils';
-import { UseButtonParameters, UseButtonReturnValue, UseButtonRootSlotProps } from './useButton.types';
-import extractEventHandlers from '../utils/extractEventHandlers';
-import { EventHandlers } from '../utils';
-import CancellableEvent from '../utils/cancellableEvent';
+import { extractEventHandlers, useForkRef, useIsFocusVisible } from '../../utils';
+import type { EventHandlers } from '../../types';
+import type { CancellableEvent } from '../../utils';
+import type { UseButtonParameters, UseButtonReturnValue, UseButtonRootSlotProps } from './useButton.types';
 
 /**
  *

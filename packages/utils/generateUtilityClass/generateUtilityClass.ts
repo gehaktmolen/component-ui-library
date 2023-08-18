@@ -25,7 +25,7 @@ const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
     selected: 'selected'
 };
 
-export default function generateUtilityClass(slot: string): string {
+export function generateUtilityClass(slot: string): string {
     const globalStateClass = globalStateClassesMapping[slot as GlobalStateSlot];
     return globalStateClass ? globalStateClass : slot;
 }

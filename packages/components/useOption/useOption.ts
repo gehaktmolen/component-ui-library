@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '../../utils';
-import { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOption.types';
-import { EventHandlers } from '../utils';
+import { useCompoundItem, useForkRef, useId } from '../../utils';
 import { useListItem } from '../useList';
-import { useCompoundItem } from '../utils/useCompoundItem';
+import type { SelectOption, UseOptionParameters, UseOptionReturnValue } from './useOption.types';
+import type { EventHandlers } from '../../types';
 
 /**
  *

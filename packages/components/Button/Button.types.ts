@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Simplify, OverridableStringUnion } from '../../types';
-import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
-import { SlotComponentProps, PolymorphicProps, VariantProp, ColorPaletteProp } from '../utils';
+import type { Simplify, OverridableStringUnion } from '../../types';
+import type { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
+import type { PolymorphicProps, VariantProp, ColorPaletteProp, SlotComponentProps } from '../../utils';
 
 export interface ButtonPropsVariantOverrides {}
 

@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '../../utils';
+import { useCompoundItem, combineHooksSlotProps, useId, useForkRef } from '../../utils';
 import { useButton } from '../useButton';
-import {
+import { useListItem } from '../useList';
+import { DropdownActionTypes } from '../useDropdown';
+import { DropdownContext, type DropdownContextValue } from '../useDropdown';
+import type {
     MenuItemMetadata,
     UseMenuItemParameters,
     UseMenuItemReturnValue,
     UseMenuItemRootSlotProps
 } from './useMenuItem.types';
-import { useListItem } from '../useList';
-import { DropdownActionTypes } from '../useDropdown';
-import { DropdownContext, DropdownContextValue } from '../useDropdown';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
-import { useCompoundItem } from '../utils/useCompoundItem';
-import CancellableEvent from '../utils/cancellableEvent';
-import { EventHandlers } from '../utils';
+import type { EventHandlers } from '../../types';
+import type { CancellableEvent } from '../../utils';
 
 function idGenerator(existingKeys: Set<string>) {
     return `menu-item-${existingKeys.size}`;

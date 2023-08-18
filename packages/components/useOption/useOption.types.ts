@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { UseListItemRootSlotProps } from '../useList';
-import { EventHandlers } from '../utils';
+import type { UseListItemRootSlotProps } from '../useList';
+import type { EventHandlers } from '../../types';
 
 export interface SelectOption<Value> {
     value: Value;

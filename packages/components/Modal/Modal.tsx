@@ -1,16 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementAcceptingRef, HTMLElementType } from '../../utils';
-import { EventHandlers, useSlotProps } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { PolymorphicComponent } from '../utils';
-import { ModalOwnerState, ModalProps, ModalTypeMap } from './Modal.types';
-import { unstable_composeClasses as composeClasses } from '../../utils';
+import {
+    generateUtilityClass,
+    useClassNamesOverride,
+    composeClasses,
+    elementAcceptingRef,
+    HTMLElementType,
+    useSlotProps
+} from '../../utils';
 import { Portal } from '../Portal';
 import { useModal } from '../useModal';
 import { FocusTrap } from '../FocusTrap';
 import { Fade } from '../Fade';
-import generateUtilityClass from '../generateUtilityClass';
+import type { EventHandlers } from '../../types';
+import type { PolymorphicComponent } from '../../utils';
+import type { ModalOwnerState, ModalProps, ModalTypeMap } from './Modal.types';
 
 const useUtilityClasses = (ownerState: ModalOwnerState) => {
     const { open, exited } = ownerState;

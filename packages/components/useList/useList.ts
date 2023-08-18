@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef } from '../../utils';
-import {
+import { useTextNavigation, useLatest, areArraysEqual, useControllableReducer, useForkRef } from '../../utils';
+import { ListActionTypes, type ListAction } from './listActions.types';
+import { listReducer as defaultReducer } from './listReducer';
+import useListChangeNotifiers from './useListChangeNotifiers';
+import type { ListContextValue } from './ListContext';
+import type {
     UseListParameters,
     ListItemState,
     UseListRootSlotProps,
@@ -8,17 +12,8 @@ import {
     ListActionContext,
     UseListReturnValue
 } from './useList.types';
-import { ListActionTypes, ListAction } from './listActions.types';
-import { ListContextValue } from './ListContext';
-import { listReducer as defaultReducer } from './listReducer';
-import useListChangeNotifiers from './useListChangeNotifiers';
-import useControllableReducer from '../utils/useControllableReducer';
-import { ControllableReducerAction, StateChangeCallback, StateComparers } from '../utils/useControllableReducer.types';
-import areArraysEqual from '../utils/areArraysEqual';
-import { EventHandlers } from '../utils';
-import useLatest from '../utils/useLatest';
-import useTextNavigation from '../utils/useTextNavigation';
-import CancellableEvent from '../utils/cancellableEvent';
+import type { CancellableEvent, ControllableReducerAction, StateChangeCallback, StateComparers } from '../../utils';
+import type { EventHandlers } from '../../types';
 
 const EMPTY_OBJECT = {};
 // eslint-disable-next-line @typescript-eslint/no-empty-function

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ListContextValue, ListContext } from '../useList';
-import { TabMetadata } from '../useTabs';
-import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
+import { type ListContextValue, ListContext } from '../useList';
+import type { TabMetadata } from '../useTabs';
+import { CompoundComponentContext, type CompoundComponentContextValue } from '../../utils';
 
 export type TabsListProviderValue = CompoundComponentContextValue<string | number, TabMetadata> &
     ListContextValue<string | number>;

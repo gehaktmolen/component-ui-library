@@ -1,19 +1,13 @@
 import * as React from 'react';
-import {
-    unstable_useForkRef as useForkRef,
-    unstable_useId as useId,
-    unstable_useEnhancedEffect as useEnhancedEffect
-} from '../../utils';
-import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
+import { useForkRef, useId, useEnhancedEffect, useCompoundParent, combineHooksSlotProps } from '../../utils';
 import { menuReducer } from './menuReducer';
-import { DropdownContext, DropdownContextValue } from '../useDropdown';
 import { useList } from '../useList';
-import { MenuItemMetadata } from '../useMenuItem';
+import { DropdownContext, type DropdownContextValue } from '../useDropdown';
 import { DropdownActionTypes } from '../useDropdown';
-import { EventHandlers } from '../utils';
-import { useCompoundParent } from '../utils/useCompound';
-import CancellableEvent from '../utils/cancellableEvent';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+import type { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
+import type { MenuItemMetadata } from '../useMenuItem';
+import type { EventHandlers } from '../../types';
+import type { CancellableEvent } from '../../utils';
 
 const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
     dispatch: () => {},

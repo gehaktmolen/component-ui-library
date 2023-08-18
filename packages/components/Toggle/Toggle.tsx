@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
 import { useToggle } from '../useToggle';
-import {
+import { generateUtilityClass, composeClasses, useSlotProps, useClassNamesOverride } from '../../utils';
+import type {
     ToggleProps,
     ToggleOwnerState,
     ToggleInputSlotProps,
@@ -11,9 +11,7 @@ import {
     ToggleTrackSlotProps,
     ToggleTypeMap
 } from './Toggle.types';
-import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
 
 const useUtilityClasses = (ownerState: ToggleOwnerState) => {
     const { checked, disabled, focusVisible, readOnly, color } = ownerState;

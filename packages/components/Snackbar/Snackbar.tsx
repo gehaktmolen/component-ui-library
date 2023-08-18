@@ -1,18 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ClickAwayListener } from '../ClickAwayListener';
-import {
+import { generateUtilityClass, useClassNamesOverride, composeClasses, useSlotProps } from '../../utils';
+import { useSnackbar } from '../useSnackbar';
+import type {
     SnackbarOwnerState,
     SnackbarProps,
     SnackbarRootSlotProps,
     SnackbarTypeMap,
     SnackbarClickAwayListenerSlotProps
 } from './Snackbar.types';
-import { unstable_composeClasses as composeClasses } from '../../utils';
-import { useSnackbar } from '../useSnackbar';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
 
 const useUtilityClasses = () => {
     const slots = {

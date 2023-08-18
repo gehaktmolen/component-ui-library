@@ -1,8 +1,4 @@
-import {
-    unstable_getScrollbarSize as getScrollbarSize,
-    unstable_ownerDocument as ownerDocument,
-    unstable_ownerWindow as ownerWindow
-} from '../../utils';
+import { getScrollbarSize, ownerDocument, ownerWindow } from '../../utils';
 
 export interface ManagedModalProps {
     disableScrollLock?: boolean;

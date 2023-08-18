@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {
-    unstable_ownerDocument as ownerDocument,
-    unstable_useControlled as useControlled,
-    unstable_useEnhancedEffect as useEnhancedEffect,
-    unstable_useEventCallback as useEventCallback,
-    unstable_useForkRef as useForkRef,
-    unstable_useIsFocusVisible as useIsFocusVisible,
-    visuallyHidden
+    ownerDocument,
+    useControlled,
+    useEnhancedEffect,
+    useEventCallback,
+    useForkRef,
+    useIsFocusVisible,
+    visuallyHidden,
+    areArraysEqual
 } from '../../utils';
-import {
+import type {
     Mark,
     UseSliderHiddenInputProps,
     UseSliderParameters,
@@ -16,7 +17,7 @@ import {
     UseSliderRootSlotProps,
     UseSliderThumbSlotProps
 } from './useSlider.types';
-import { areArraysEqual, EventHandlers } from '../utils';
+import type { EventHandlers } from '../../types';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 

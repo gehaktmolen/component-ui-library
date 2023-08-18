@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TransitionProps } from '../../utils/useTransition';
+import { TransitionProps } from '../../utils';
 
 export interface FadeProps extends Omit<TransitionProps, 'children'> {
     /**

@@ -1,13 +1,8 @@
 import * as React from 'react';
-import {
-    unstable_ownerDocument as ownerDocument,
-    unstable_useForkRef as useForkRef,
-    unstable_useEventCallback as useEventCallback,
-    unstable_createChainedFunction as createChainedFunction
-} from '../../utils';
-import { EventHandlers, extractEventHandlers } from '../utils';
+import { ownerDocument, useForkRef, useEventCallback, createChainedFunction, extractEventHandlers } from '../../utils';
 import { ModalManager, ariaHidden } from './ModalManager';
-import {
+import type { EventHandlers } from '../../types';
+import type {
     UseModalParameters,
     UseModalReturnValue,
     UseModalRootSlotProps,

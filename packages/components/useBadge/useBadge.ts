@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { usePreviousProps } from '../../utils';
-import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
+import type { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
 
 /**
  *

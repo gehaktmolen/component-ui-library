@@ -124,7 +124,7 @@ But if you don't need the `ownerState` and just want to resolve the error, you c
 ```jsx
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { prepareForSlot } from '../utils';
+import { prepareForSlot } from '../../utils';
 import { Button } from '../Button';
 
 const LinkSlot = prepareForSlot(Link);
@@ -253,7 +253,7 @@ export default function StylingHooks() {
 
 If you don't need the built-in classes on components, you may disable them.
 This will clean up the DOM and can be useful especially if you apply your own classes or style components using a CSS-in-JS solution.
-To do this, wrap your components in a `ClassNameConfigurator` component, which is imported from `../utils`:
+To do this, wrap your components in a `ClassNameConfigurator` component, which is imported from `../../utils`:
 
 ```tsx
 <ClassNameConfigurator disableDefaultClasses>

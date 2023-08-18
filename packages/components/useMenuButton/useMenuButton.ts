@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef } from '../../utils';
-import { UseMenuButtonParameters, UseMenuButtonReturnValue } from './useMenuButton.types';
+import { useForkRef, combineHooksSlotProps } from '../../utils';
+import { useButton } from '../useButton';
 import { DropdownContext } from '../useDropdown';
 import { DropdownActionTypes } from '../useDropdown';
-import { useButton } from '../useButton';
-import { EventHandlers } from '../utils';
-import CancellableEvent from '../utils/cancellableEvent';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+import type { UseMenuButtonParameters, UseMenuButtonReturnValue } from './useMenuButton.types';
+import type { EventHandlers } from '../../types';
+import type { CancellableEvent } from '../../utils';
 
 /**
  *

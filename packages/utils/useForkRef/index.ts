@@ -1,1 +1,1 @@
-export { default } from './useForkRef';
+export { useForkRef } from './useForkRef';

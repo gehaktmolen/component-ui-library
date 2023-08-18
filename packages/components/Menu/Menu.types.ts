@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Simplify } from '../../types';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from '../useMenu';
-import { ListAction } from '../useList';
+import type { Simplify } from '../../types';
+import type { PolymorphicProps, SlotComponentProps } from '../../utils';
+import type { UseMenuListboxSlotProps } from '../useMenu';
+import type { ListAction } from '../useList';
 import { Popper } from '../Popper';
 
 export interface MenuRootSlotPropsOverrides {}

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { ListAction, ListState, UseListRootSlotProps } from '../useList';
-import { SelectOption } from '../useOption';
-import { EventHandlers } from '../utils';
-import { SelectProviderValue } from './SelectProvider';
-import { CancellableEventHandler } from '../utils/cancellableEvent';
+import type { ListAction, ListState, UseListRootSlotProps } from '../useList';
+import type { SelectOption } from '../useOption';
+import type { EventHandlers } from '../../types';
+import type { CancellableEventHandler } from '../../utils';
+import type { SelectProviderValue } from './SelectProvider';
 
 export type SelectChangeEventType =
     | React.MouseEvent<Element, MouseEvent>

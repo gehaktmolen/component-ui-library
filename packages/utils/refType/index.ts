@@ -1,1 +1,1 @@
-export { default } from './refType';
+export { refType } from './refType';

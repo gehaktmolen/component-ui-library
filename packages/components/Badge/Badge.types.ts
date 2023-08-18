@@ -1,7 +1,12 @@
 import * as React from 'react';
-import { OverrideProps, OverridableTypeMap, OverridableComponent, Simplify } from '../../types';
-import { SlotComponentProps, ColorPaletteProp } from '../utils';
-import { OverridableStringUnion } from '../../types';
+import type {
+    OverrideProps,
+    OverridableStringUnion,
+    OverridableTypeMap,
+    OverridableComponent,
+    Simplify
+} from '../../types';
+import type { ColorPaletteProp, SlotComponentProps } from '../../utils';
 
 export interface BadgePropsVariantOverrides {}
 export interface BadgePropsColorOverrides {}

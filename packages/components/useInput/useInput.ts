@@ -1,8 +1,12 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef } from '../../utils';
-import { FormControlState, useFormControlContext } from '../FormControl';
-import extractEventHandlers from '../utils/extractEventHandlers';
-import { UseInputSlotProps, UseInputParameters, UseInputRootSlotProps, UseInputReturnValue } from './useInput.types';
+import { extractEventHandlers, useForkRef } from '../../utils';
+import { type FormControlState, useFormControlContext } from '../FormControl';
+import type {
+    UseInputSlotProps,
+    UseInputParameters,
+    UseInputRootSlotProps,
+    UseInputReturnValue
+} from './useInput.types';
 
 /**
  *

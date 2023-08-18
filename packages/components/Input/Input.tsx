@@ -1,12 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent, isHostComponent } from '../utils';
-import { InputSlotProps, InputOwnerState, InputProps, InputRootSlotProps, InputTypeMap } from './Input.types';
+import {
+    generateUtilityClass,
+    composeClasses,
+    useSlotProps,
+    isHostComponent,
+    useColorInversion,
+    useClassNamesOverride
+} from '../../utils';
+import type { EventHandlers } from '../../types';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { InputSlotProps, InputOwnerState, InputProps, InputRootSlotProps, InputTypeMap } from './Input.types';
 import { useInput } from '../useInput';
-import { EventHandlers, useSlotProps, useColorInversion, WithOptionalOwnerState } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import composeClasses from '../composeClasses';
-import generateUtilityClass from '../generateUtilityClass';
 
 const useUtilityClasses = (ownerState: InputOwnerState) => {
     const {

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import setRef from '../setRef';
+import { setRef } from '../';
 
-export default function useForkRef<Instance>(
+export function useForkRef<Instance>(
     ...refs: Array<React.Ref<Instance> | undefined>
 ): React.RefCallback<Instance> | null {
     /**

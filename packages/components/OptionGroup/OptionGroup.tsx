@@ -1,17 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent } from '../utils';
-import composeClasses from '../composeClasses';
-import {
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type {
     OptionGroupLabelSlotProps,
     OptionGroupListSlotProps,
     OptionGroupProps,
     OptionGroupRootSlotProps,
     OptionGroupTypeMap
 } from './OptionGroup.types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import { generateUtilityClass, composeClasses, useClassNamesOverride, useSlotProps } from '../../utils';
 
 function useUtilityClasses(disabled: boolean) {
     const slots = {

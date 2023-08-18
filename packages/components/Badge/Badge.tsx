@@ -1,12 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent } from '../utils';
-import composeClasses from '../composeClasses';
+import { generateUtilityClass, composeClasses, useSlotProps, useClassNamesOverride } from '../../utils';
 import { useBadge } from '../useBadge';
-import { BadgeProps, BadgeOwnerState, BadgeTypeMap, BadgeRootSlotProps, BadgeBadgeSlotProps } from './Badge.types';
-import { WithOptionalOwnerState, useSlotProps } from '../utils';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type { BadgeProps, BadgeOwnerState, BadgeTypeMap, BadgeRootSlotProps, BadgeBadgeSlotProps } from './Badge.types';
 
 const useUtilityClasses = (ownerState: BadgeOwnerState) => {
     const { invisible, color, variant, anchorOrigin, overlap } = ownerState;

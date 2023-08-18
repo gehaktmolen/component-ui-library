@@ -1,1 +1,1 @@
-export { default } from './exactProp';
+export { exactProp } from './exactProp';

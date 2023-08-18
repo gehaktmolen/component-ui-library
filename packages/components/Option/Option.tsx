@@ -1,12 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '../../utils';
-import composeClasses from '../composeClasses';
-import { OptionProps, OptionOwnerState, OptionType } from './Option.types';
-import { useSlotProps } from '../utils';
+import { generateUtilityClass, composeClasses, useClassNamesOverride, useForkRef, useSlotProps } from '../../utils';
+import type { OptionProps, OptionOwnerState, OptionType } from './Option.types';
 import { useOption } from '../useOption';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
 
 function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue>) {
     const { disabled, highlighted, selected } = ownerState;

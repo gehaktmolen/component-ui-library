@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ListAction, ListState, UseListRootSlotProps } from '../useList';
-import { MenuItemMetadata } from '../useMenuItem';
-import { EventHandlers } from '../utils';
-import { MenuProviderValue } from './MenuProvider';
+import type { ListAction, ListState, UseListRootSlotProps } from '../useList';
+import type { MenuItemMetadata } from '../useMenuItem';
+import type { EventHandlers } from '../../types';
+import type { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
     /**

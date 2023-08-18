@@ -1,18 +1,28 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
     chainPropTypes,
     HTMLElementType,
     refType,
-    unstable_ownerDocument as ownerDocument,
-    unstable_useEnhancedEffect as useEnhancedEffect,
-    unstable_useForkRef as useForkRef
+    ownerDocument,
+    useEnhancedEffect,
+    useForkRef,
+    useSlotProps,
+    useClassNamesOverride,
+    composeClasses,
+    generateUtilityClass
 } from '../../utils';
-import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
-import PropTypes from 'prop-types';
-import composeClasses from '../composeClasses';
 import { Portal } from '../Portal';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
+    createPopper,
+    type Instance,
+    type Modifier,
+    type Placement,
+    type State,
+    type VirtualElement
+} from '@popperjs/core';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../../utils';
+import type {
     PopperPlacementType,
     PopperTooltipProps,
     PopperTooltipTypeMap,
@@ -22,8 +32,6 @@ import {
     PopperTransitionProps,
     PopperTypeMap
 } from './Popper.types';
-import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import generateUtilityClass from '../generateUtilityClass';
 
 function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl') {
     if (direction === 'ltr') {

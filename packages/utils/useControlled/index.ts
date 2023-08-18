@@ -1,2 +1,1 @@
-export { default } from './useControlled';
-export * from './useControlled';
+export { useControlled } from './useControlled';

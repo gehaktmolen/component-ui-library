@@ -24,7 +24,7 @@ export interface UseControlledProps<T = unknown> {
 //     props: UseControlledProps<T>,
 // ): [T, (newValue: T | ((prevValue: T) => T)) => void];
 
-export default function useControlled(
+export function useControlled(
     props: UseControlledProps
 ): [unknown, (newValue: unknown | ((prevValue: unknown) => unknown)) => void] {
     const { controlled, default: defaultProp, name = '', state = 'value' } = props;

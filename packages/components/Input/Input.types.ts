@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Simplify, OverridableStringUnion } from '../../types';
-import { FormControlState } from '../FormControl';
-import { UseInputParameters, UseInputRootSlotProps } from '../useInput';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
-import { ColorPaletteProp, VariantProp } from '../utils';
+import type { Simplify, OverridableStringUnion } from '../../types';
+import type { FormControlState } from '../FormControl';
+import type { UseInputParameters, UseInputRootSlotProps } from '../useInput';
+import type { PolymorphicProps, ColorPaletteProp, VariantProp, SlotComponentProps } from '../../utils';
 
 export interface InputRootSlotPropsOverrides {}
 export interface InputSlotPropsOverrides {}

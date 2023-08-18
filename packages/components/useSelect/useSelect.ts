@@ -1,14 +1,9 @@
 import * as React from 'react';
-import {
-    unstable_useForkRef as useForkRef,
-    unstable_useId as useId,
-    unstable_useEnhancedEffect as useEnhancedEffect
-} from '../../utils';
+import { useForkRef, useId, useEnhancedEffect, useCompoundParent, combineHooksSlotProps } from '../../utils';
 import { useButton } from '../useButton';
-import {
+import type {
     ButtonClickAction,
     SelectAction,
-    SelectActionTypes,
     SelectInternalState,
     SelectValue,
     UseSelectButtonSlotProps,
@@ -16,15 +11,14 @@ import {
     UseSelectParameters,
     UseSelectReturnValue
 } from './useSelect.types';
-import { useList, UseListParameters } from '../useList';
-import { EventHandlers } from '../utils';
 import defaultOptionStringifier from './defaultOptionStringifier';
-import { SelectProviderValue } from './SelectProvider';
-import { useCompoundParent } from '../utils/useCompound';
-import { SelectOption } from '../useOption';
 import { selectReducer } from './selectReducer';
-import combineHooksSlotProps from '../utils/combineHooksSlotProps';
-import CancellableEvent from '../utils/cancellableEvent';
+import { useList, type UseListParameters } from '../useList';
+import { SelectActionTypes } from './useSelect.types';
+import type { SelectProviderValue } from './SelectProvider';
+import type { SelectOption } from '../useOption';
+import type { EventHandlers } from '../../types';
+import type { CancellableEvent } from '../../utils';
 
 function preventDefault(event: React.SyntheticEvent) {
     event.preventDefault();
