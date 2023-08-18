@@ -1,9 +1,9 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 export function SlideOver() {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(true);
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -46,13 +46,28 @@ export function SlideOver() {
                                             {/* Your content */}
                                             <div className="absolute inset-0 px-4 sm:px-6">
                                                 <div className="relative h-full overflow-hidden rounded-xl border border-dashed border-gray-400 opacity-75">
-                                                    <svg className="absolute inset-0 h-full w-full stroke-gray-900/10" fill="none">
+                                                    <svg
+                                                        className="absolute inset-0 h-full w-full stroke-gray-900/10"
+                                                        fill="none"
+                                                    >
                                                         <defs>
-                                                            <pattern id="pattern-431c35a6-d6ff-4ec0-a97f-8a526737d5ad" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                                                            <pattern
+                                                                id="pattern-431c35a6-d6ff-4ec0-a97f-8a526737d5ad"
+                                                                x="0"
+                                                                y="0"
+                                                                width="10"
+                                                                height="10"
+                                                                patternUnits="userSpaceOnUse"
+                                                            >
                                                                 <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
                                                             </pattern>
                                                         </defs>
-                                                        <rect stroke="none" fill="url(#pattern-431c35a6-d6ff-4ec0-a97f-8a526737d5ad)" width="100%" height="100%"></rect>
+                                                        <rect
+                                                            stroke="none"
+                                                            fill="url(#pattern-431c35a6-d6ff-4ec0-a97f-8a526737d5ad)"
+                                                            width="100%"
+                                                            height="100%"
+                                                        ></rect>
                                                     </svg>
                                                 </div>
                                             </div>
@@ -65,5 +80,5 @@ export function SlideOver() {
                 </div>
             </Dialog>
         </Transition.Root>
-    )
+    );
 }
