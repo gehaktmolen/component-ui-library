@@ -106,13 +106,16 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     const slots = {
         root: [
             'cell',
-            `cell--text${align}`,
+            'flex items-center py-0 px-4 box-border border border-l-0 border-t-0 border-r-0 whitespace-nowrap overflow-hidden',
+            'border-primary-500',
+            align === 'left' && 'justify-start',
+            align === 'center' && 'justify-center',
+            align === 'right' && 'justify-end',
             isEditable && 'cell--editable',
             isSelected && 'selected',
-            showRightBorder && 'cell--withRightBorder',
-            'withBorderColor'
+            showRightBorder && 'cell--withRightBorder'
         ],
-        content: ['cellContent']
+        content: ['cellContent', 'text-ellipsis whitespace-nowrap overflow-hidden']
     };
 
     return composeClasses(

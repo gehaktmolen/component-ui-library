@@ -17,7 +17,7 @@ type GridRowCountProps = React.HTMLAttributes<HTMLDivElement> & RowCountProps;
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['flex items-center my-0 mx-2']
+        root: ['selectedRowCount', 'flex items-center my-0 mx-4 visible w-auto h-auto']
     };
 
     return composeClasses(

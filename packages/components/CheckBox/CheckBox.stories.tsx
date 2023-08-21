@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CheckBox } from './CheckBox.tsx';
+import { CheckBox, CheckBoxBasics } from './CheckBox.tsx';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -23,4 +23,11 @@ export const Primary: Story = {
         defaultChecked: true
     },
     render: (args) => <CheckBox {...args} />
+};
+
+export const Basics: Story = {
+    args: {
+        defaultChecked: true
+    },
+    render: (args) => <CheckBoxBasics {...args} />
 };

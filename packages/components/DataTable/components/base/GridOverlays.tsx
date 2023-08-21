@@ -12,8 +12,8 @@ import { getMinimalContentHeight } from '../../hooks/features/rows/gridRowsUtils
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['sticky z-40 w-0 h-0 top-0 left-0'],
-        inner: ['']
+        root: ['overlays', 'sticky z-40 w-0 h-0 top-0 left-0'],
+        inner: ['GridOverlaysInner']
     };
 
     return composeClasses(

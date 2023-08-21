@@ -14,7 +14,9 @@ const useUtilityClasses = (ownerState: OwnerState) => {
 
     const slots = {
         root: [
+            'columnHeadersInner',
             'flex items-center flex-col',
+            isDragging && 'cursor-move',
             isDragging && 'columnHeaderDropZone',
             hasScrollX && 'columnHeadersInner--scrollable'
         ]

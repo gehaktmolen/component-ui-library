@@ -45,20 +45,25 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     const slots = {
         root: [
             'columnHeader',
-            colDef.headerAlign === 'left' && 'columnHeader--alignLeft',
+            'relative flex items-center box-border border border-l-0 border-t-0 border-r-0',
+            showRightBorder && 'border-primary-500',
+            colDef.sortable && 'cursor-pointer',
+            colDef.headerAlign === 'left' && 'columnHeader--alignLeft sm:pl-0',
             colDef.headerAlign === 'center' && 'columnHeader--alignCenter',
-            colDef.headerAlign === 'right' && 'columnHeader--alignRight',
+            colDef.headerAlign === 'right' && 'columnHeader--alignRight sm:pr-0',
             colDef.sortable && 'columnHeader--sortable',
             isDragging && 'columnHeader--moving',
             isColumnSorted && 'columnHeader--sorted',
             isColumnFiltered && 'columnHeader--filtered',
             isColumnNumeric && 'columnHeader--numeric',
-            'withBorderColor',
             showRightBorder && 'columnHeader--withRightBorder'
         ],
-        draggableContainer: ['columnHeaderDraggableContainer'],
-        titleContainer: ['columnHeaderTitleContainer'],
-        titleContainerContent: ['columnHeaderTitleContainerContent']
+        draggableContainer: ['columnHeaderDraggableContainer', 'flex w-full h-full', isDragging && 'cursor-move'],
+        titleContainer: [
+            'columnHeaderTitleContainer',
+            'relative flex items-center flex-grow flex-shrink-0 min-w-0 whitespace-nowrap overflow-hidden'
+        ],
+        titleContainerContent: ['columnHeaderTitleContainerContent', 'overflow-hidden flex items-center']
     };
 
     return composeClasses(

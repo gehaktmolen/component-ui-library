@@ -75,7 +75,8 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     const slots = {
         root: [
             'row',
-            selected && 'selected',
+            'flex width-fit break-inside-avoid',
+            selected && 'bg-primary-600',
             editable && 'row--editable',
             editing && 'row--editing',
             isLastVisible && 'row--lastVisible',

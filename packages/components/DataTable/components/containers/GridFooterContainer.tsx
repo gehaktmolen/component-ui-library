@@ -10,7 +10,11 @@ export type GridFooterContainerProps = React.HTMLAttributes<HTMLDivElement>;
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['flex space-between items-center min-h-[52px] border-t-1']
+        root: [
+            'footerContainer',
+            'flex space-between items-center min-h-[52px] box-border border border-l-0 border-b-0 border-r-0',
+            'border-primary-700'
+        ]
     };
 
     return composeClasses(

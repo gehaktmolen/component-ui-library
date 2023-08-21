@@ -22,6 +22,10 @@
         "noUncheckedIndexedAccess": true
     },
     "include": ["./src", "./packages"],
-    "exclude": ["./packages/components/DataTable"],
+    "exclude": [
+        "./packages/components/DataTable",
+        "./packages/components/DataTablePro",
+        "./packages/components/DataTablePremium"
+    ],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

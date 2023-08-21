@@ -11,7 +11,7 @@ export type GridToolbarContainerProps = React.HTMLAttributes<HTMLDivElement>;
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['flex items-center flex-wrap gap-1 p-0.5']
+        root: ['GridToolbarContainer', 'flex items-center flex-wrap gap-1 p-0.5']
     };
 
     return composeClasses(

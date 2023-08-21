@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { DataGrid, GridColDef, GridValueGetterParams } from './DataTable';
+import { DataGridPro } from '../DataTablePro';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -8,7 +9,7 @@ const meta = {
     component: DataGrid,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
-        layout: 'fullscreen'
+        layout: 'centered'
     },
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
     tags: ['autodocs']
@@ -66,20 +67,45 @@ const rows = [
 export const Primary: Story = {
     args: {},
     render: (args) => (
-        <DataGrid
-            {...args}
-            rows={rows}
-            columns={columns}
-            initialState={{
-                pagination: {
-                    paginationModel: {
-                        pageSize: 200
+        <div className="w-full h-[400px]">
+            <DataGrid
+                {...args}
+                rows={rows}
+                columns={columns}
+                initialState={{
+                    pagination: {
+                        paginationModel: {
+                            pageSize: 5
+                        }
                     }
-                }
-            }}
-            pageSizeOptions={[5]}
-            checkboxSelection
-            disableRowSelectionOnClick
-        />
+                }}
+                pageSizeOptions={[5]}
+                checkboxSelection
+                disableRowSelectionOnClick
+            />
+        </div>
+    )
+};
+
+export const Pro: Story = {
+    args: {},
+    render: (args) => (
+        <div className="w-full h-[400px]">
+            <DataGridPro
+                {...args}
+                rows={rows}
+                columns={columns}
+                initialState={{
+                    pagination: {
+                        paginationModel: {
+                            pageSize: 200
+                        }
+                    }
+                }}
+                pageSizeOptions={[5]}
+                checkboxSelection
+                disableRowSelectionOnClick
+            />
+        </div>
     )
 };

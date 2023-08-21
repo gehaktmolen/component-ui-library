@@ -5,7 +5,7 @@ import { useGridRootProps } from '../../hooks/utils/useGridRootProps';
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['absolute flex flex-col']
+        root: ['virtualScrollerRenderZone', 'absolute flex flex-col']
     };
 
     return composeClasses(

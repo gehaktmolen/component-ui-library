@@ -9,7 +9,7 @@ import { generateUtilityClass, useClassNamesOverride } from '../../../../utils';
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['overflow-auto h-full relative']
+        root: ['virtualScroller', 'overflow-auto h-full relative']
     };
 
     return composeClasses(

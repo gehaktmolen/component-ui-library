@@ -1,5 +1,17 @@
 export function CheckBox() {
     return (
+        <input
+            id="comments"
+            aria-describedby="comments-description"
+            name="comments"
+            type="checkbox"
+            className="h-4 w-4 rounded border-gray-300 primary focus:ring-primary-600"
+        />
+    );
+}
+
+export function CheckBoxBasics() {
+    return (
         <fieldset>
             <legend className="sr-only">Notifications</legend>
             <div className="space-y-5">

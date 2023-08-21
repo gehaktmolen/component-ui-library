@@ -1,3 +1,3 @@
-export { DataGrid } from './DataTable.tsx';
+export * from './DataTable';
 
 // export * from './DataTable.types';

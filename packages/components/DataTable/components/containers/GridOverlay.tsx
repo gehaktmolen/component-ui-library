@@ -11,7 +11,10 @@ export type GridOverlayProps = React.HTMLAttributes<HTMLDivElement>;
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['w-full h-full flex self-center items-center justify-center bg-gray-100 dark:bg-gray-800']
+        root: [
+            'GridOverlayContainer',
+            'w-full h-full flex self-center items-center justify-center bg-gray-100 dark:bg-gray-800'
+        ]
     };
 
     return composeClasses(

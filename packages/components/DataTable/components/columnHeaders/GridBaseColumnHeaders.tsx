@@ -6,7 +6,9 @@ import { useGridRootProps } from '../../hooks/utils/useGridRootProps';
 const useUtilityClasses = () => {
     const slots = {
         root: [
-            'relative overflow-hidden flex items-center box-border border-b border-solid border-gray-200 rounded-tl rounded-tr'
+            'baseColumnHeaders',
+            'relative overflow-hidden flex items-center box-border border border-l-0 border-t-0 border-r-0 rounded-tl-lg rounded-tr-lg',
+            'border-primary-500'
         ]
     };
 

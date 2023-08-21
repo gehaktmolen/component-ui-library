@@ -8,7 +8,7 @@ import { useGridAriaAttributes } from '../../hooks/utils/useGridAriaAttributes';
 
 const useUtilityClasses = () => {
     const slots = {
-        root: ['relative flex-grow-1 flex flex-col overflow-hidden']
+        root: ['mainContainer', 'relative flex-grow flex flex-col overflow-hidden']
     };
 
     return composeClasses(

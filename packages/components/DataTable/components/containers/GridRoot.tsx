@@ -27,10 +27,11 @@ const useUtilityClasses = (ownerState: OwnerState) => {
 
     const slots = {
         root: [
-            'root', // TODO: Convert GridRootStyles.ts to tailwind.
-            autoHeight && 'autoHeight',
-            `root--density${density}`,
-            'withBorderColor'
+            'GridRootContainer',
+            'box-border relative border border-solid rounded-sm h-full flex min-w-0 min-h-0 flex-col text-sm font-medium',
+            'bg-gray-900 border-gray-700 text-gray-100',
+            autoHeight && '',
+            density && ''
         ]
     };
 
