@@ -11,6 +11,15 @@ export type SelectChangeEventType =
     | React.FocusEvent<Element, Element>
     | null;
 
+/**
+ * The change can be caused by different kind of events.
+ * The type of event depends on what caused the change.
+ * For example, when the browser auto-fills the `Select` you'll receive a `React.ChangeEvent`.
+ */
+export type SelectChangeEvent<Value = string> =
+    | (Event & { target: { value: Value; name: string } })
+    | React.ChangeEvent<HTMLInputElement>;
+
 export type SelectValue<Value, Multiple> = Multiple extends true ? Value[] : Value | null;
 
 export interface SelectOptionDefinition<Value> {

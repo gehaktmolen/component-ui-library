@@ -1,3 +1,3 @@
 export { Chip } from './Chip.tsx';
 
-// export * from './Chip.types';
+export * from './Chip.types';

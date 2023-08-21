@@ -45,13 +45,13 @@ function useUtilityClasses(ownerState: FormControlLabelOwnerState) {
 }
 
 /**
- * Drop-in replacement of the Radio, Switch and Checkbox component. Use this component if you want to display an extra label.
+ * Drop-in replacement of the Radio, Toggle and CheckBox component. Use this component if you want to display an extra label.
  *
  * ```jsx
  * <FormGroup>
- *   <FormControlLabel control={<Switch defaultChecked />} label="Label" />
- *   <FormControlLabel required control={<Switch />} label="Required" />
- *   <FormControlLabel disabled control={<Switch />} label="Disabled" />
+ *   <FormControlLabel control={<Toggle defaultChecked />} label="Label" />
+ *   <FormControlLabel required control={<Toggle />} label="Required" />
+ *   <FormControlLabel disabled control={<Toggle />} label="Disabled" />
  * </FormGroup>
  * ```
  *
@@ -156,7 +156,7 @@ FormControlLabel.propTypes = {
      */
     children: PropTypes.node,
     /**
-     * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
+     * A control element. For instance, it can be a `Radio`, a `Toggle` or a `CheckBox`.
      */
     control: PropTypes.element.isRequired,
     /**

@@ -31,11 +31,11 @@ function useUtilityClasses(ownerState: FormHelperTextOwnerState) {
 }
 
 /**
- * To use an interactive element together with a Checkbox, you can wrap it with a FormControl and FormHelperText.
+ * To use an interactive element together with a CheckBox, you can wrap it with a FormControl and FormHelperText.
  *
  * ```jsx
  * <FormControl size="sm">
- *   <Checkbox
+ *   <CheckBox
  *     label={
  *       <React.Fragment>
  *         I have read and agree to the terms and conditions.

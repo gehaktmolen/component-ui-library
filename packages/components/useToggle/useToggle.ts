@@ -24,7 +24,7 @@ export function useToggle(props: UseToggleParameters): UseToggleReturnValue {
     const [checked, setCheckedState] = useControlled({
         controlled: checkedProp,
         default: Boolean(defaultChecked),
-        name: 'Switch',
+        name: 'Toggle',
         state: 'checked'
     });
 

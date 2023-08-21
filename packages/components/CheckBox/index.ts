@@ -1,3 +1,3 @@
 export { CheckBox } from './CheckBox';
 
-// export * from './CheckBox.types';
+export * from './CheckBox.types';

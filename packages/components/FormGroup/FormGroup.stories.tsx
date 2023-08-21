@@ -26,9 +26,9 @@ export const Column: Story = {
     },
     render: (args) => (
         <FormGroup {...args}>
-            <FormControlLabel control={<Toggle defaultChecked color="primary" />} label="Switch A" />
-            <FormControlLabel required control={<Toggle color="primary" />} label="Switch B" />
-            <FormControlLabel disabled control={<Toggle color="primary" />} label="Switch C" />
+            <FormControlLabel control={<Toggle defaultChecked color="primary" />} label="Toggle A" />
+            <FormControlLabel required control={<Toggle color="primary" />} label="Toggle B" />
+            <FormControlLabel disabled control={<Toggle color="primary" />} label="Toggle C" />
         </FormGroup>
     )
 };
@@ -39,9 +39,9 @@ export const Row: Story = {
     },
     render: (args) => (
         <FormGroup {...args}>
-            <FormControlLabel control={<Toggle defaultChecked color="primary" />} label="Switch A" />
-            <FormControlLabel required control={<Toggle color="primary" />} label="Switch B" />
-            <FormControlLabel disabled control={<Toggle color="primary" />} label="Switch C" />
+            <FormControlLabel control={<Toggle defaultChecked color="primary" />} label="Toggle A" />
+            <FormControlLabel required control={<Toggle color="primary" />} label="Toggle B" />
+            <FormControlLabel disabled control={<Toggle color="primary" />} label="Toggle C" />
         </FormGroup>
     )
 };

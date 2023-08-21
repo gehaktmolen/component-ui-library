@@ -58,7 +58,7 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  *
  * ```jsx
  * <FormControl>
- *   <FormLabel htmlFor="my-input">Email address</InputLabel>
+ *   <FormLabel htmlFor="my-input">Email address</FormLabel>
  *   <Input id="my-input" aria-describedby="my-helper-text" />
  *   <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
  * </FormControl>

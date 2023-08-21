@@ -164,7 +164,7 @@ function Toggle(props: ToggleProps) {
 }
 ```
 
-The `toggle:thumb` and `toggle:class` are added unconditionally—they will always be present on the Switch component.
+The `toggle:thumb` and `toggle:class` are added unconditionally—they will always be present on the Toggle component.
 
 You may need to apply a class only when a component is in a particular state.
 A good example is adding `on` and `off` classes to a Toggle based on its checked state, as shown in the demo below:
@@ -213,7 +213,7 @@ It returns the following object:
     disabled: Readonly<boolean>;
     readOnly: Readonly<boolean>;
     focusVisible: Readonly<boolean>;
-    getInputProps: (otherProps?: object) => SwitchInputProps;
+    getInputProps: (otherProps?: object) => ToggleInputProps;
 }
 ```
 

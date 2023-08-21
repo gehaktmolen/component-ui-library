@@ -22,5 +22,6 @@
         "noUncheckedIndexedAccess": true
     },
     "include": ["./src", "./packages"],
+    "exclude": ["./packages/components/DataTable"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -26,7 +26,7 @@ export interface FormControlLabelOwnProps {
      */
     children?: React.ReactNode;
     /**
-     * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
+     * A control element. For instance, it can be a `Radio`, a `Toggle` or a `CheckBox`.
      */
     control: React.ReactElement<any, any>;
     /**
