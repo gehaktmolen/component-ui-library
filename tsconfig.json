@@ -21,11 +21,16 @@
         "noFallthroughCasesInSwitch": true,
         "noUncheckedIndexedAccess": true
     },
-    "include": ["./src", "./packages"],
+    "include": [
+        "./src",
+        "./packages/components",
+        "./packages/types",
+        "./packages/utils",
+    ],
     "exclude": [
         "./packages/components/DataTable",
         "./packages/components/DataTablePro",
-        "./packages/components/DataTablePremium"
+        "./packages/components/DataTablePremium",
     ],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
