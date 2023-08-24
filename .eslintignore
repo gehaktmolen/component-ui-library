@@ -5,3 +5,8 @@ dist/
 tailwind.config.js
 postcss.config.js
 env.d.ts
+
+packages/generator
+packages/components/DataTable
+packages/components/DataTablePro
+packages/components/DataTablePremium

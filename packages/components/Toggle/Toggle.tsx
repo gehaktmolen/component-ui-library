@@ -205,7 +205,7 @@ Toggle.propTypes = {
      * Either a string to use a HTML element or a component.
      * @default {}
      */
-    slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    slots: PropTypes.shape({
         input: PropTypes.elementType,
         root: PropTypes.elementType,
         thumb: PropTypes.elementType,
