@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DataGrid, GridColDef, GridValueGetterParams } from './DataTable';
 import { DataGridPro } from '../DataTablePro';
 import { DataGridPremium } from '../DataTablePremium';
-import { useDemoData } from '../DataTableGenerator';
+import { useDemoData } from '../../generator';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -139,7 +139,7 @@ export const DemoData = () => {
     const { data } = useDemoData({
         dataSet: 'Commodity',
         rowLength: 200,
-        maxColumns: 20,
+        maxColumns: 20
     });
 
     return (

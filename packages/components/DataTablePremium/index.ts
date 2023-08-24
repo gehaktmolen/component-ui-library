@@ -20,16 +20,9 @@ export * from './components';
 
 export { GridColumnHeaders } from '../DataTablePro';
 
-export type {
-  DataGridPremiumProps,
-  GridExperimentalPremiumFeatures,
-} from './models/dataGridPremiumProps';
+export type { DataGridPremiumProps, GridExperimentalPremiumFeatures } from './models/dataGridPremiumProps';
 
 export { useGridApiContext, useGridApiRef, useGridRootProps } from './typeOverloads/reexports';
 export type { GridApi, GridInitialState, GridState } from './typeOverloads/reexports';
 
-export {
-  GridColumnMenu,
-  GRID_COLUMN_MENU_SLOTS,
-  GRID_COLUMN_MENU_SLOT_PROPS,
-} from './components/reexports';
+export { GridColumnMenu, GRID_COLUMN_MENU_SLOTS, GRID_COLUMN_MENU_SLOT_PROPS } from './components/reexports';

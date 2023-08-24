@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
-  GridGenericColumnMenu,
-  GridColumnMenuProps,
-  GRID_COLUMN_MENU_SLOTS,
-  GRID_COLUMN_MENU_SLOT_PROPS,
-  GridColumnMenuItemProps,
+    GridGenericColumnMenu,
+    GridColumnMenuProps,
+    GRID_COLUMN_MENU_SLOTS,
+    GRID_COLUMN_MENU_SLOT_PROPS,
+    GridColumnMenuItemProps
 } from '../../DataTablePro';
 import { GridColumnMenuAggregationItem } from './GridColumnMenuAggregationItem';
 import { isGroupingColumn } from '../hooks/features/rowGrouping';
@@ -13,45 +13,45 @@ import { GridColumnMenuRowGroupItem } from './GridColumnMenuRowGroupItem';
 import { GridColumnMenuRowUngroupItem } from './GridColumnMenuRowUngroupItem';
 
 export function GridColumnMenuGroupingItem(props: GridColumnMenuItemProps) {
-  const { colDef } = props;
-  if (isGroupingColumn(colDef.field)) {
-    return <GridColumnMenuRowGroupItem {...props} />;
-  }
-  if (colDef.groupable) {
-    return <GridColumnMenuRowUngroupItem {...props} />;
-  }
-  return null;
+    const { colDef } = props;
+    if (isGroupingColumn(colDef.field)) {
+        return <GridColumnMenuRowGroupItem {...props} />;
+    }
+    if (colDef.groupable) {
+        return <GridColumnMenuRowUngroupItem {...props} />;
+    }
+    return null;
 }
 
 export const GRID_COLUMN_MENU_SLOTS_PREMIUM = {
-  ...GRID_COLUMN_MENU_SLOTS,
-  columnMenuAggregationItem: GridColumnMenuAggregationItem,
-  columnMenuGroupingItem: GridColumnMenuGroupingItem,
+    ...GRID_COLUMN_MENU_SLOTS,
+    columnMenuAggregationItem: GridColumnMenuAggregationItem,
+    columnMenuGroupingItem: GridColumnMenuGroupingItem
 };
 
 export const GRID_COLUMN_MENU_SLOT_PROPS_PREMIUM = {
-  ...GRID_COLUMN_MENU_SLOT_PROPS,
-  columnMenuAggregationItem: { displayOrder: 23 },
-  columnMenuGroupingItem: { displayOrder: 27 },
+    ...GRID_COLUMN_MENU_SLOT_PROPS,
+    columnMenuAggregationItem: { displayOrder: 23 },
+    columnMenuGroupingItem: { displayOrder: 27 }
 };
 
 const GridPremiumColumnMenu = React.forwardRef<HTMLUListElement, GridColumnMenuProps>(
-  function GridPremiumColumnMenuSimple(props, ref) {
-    return (
-      <GridGenericColumnMenu
-        ref={ref}
-        {...props}
-        defaultSlots={GRID_COLUMN_MENU_SLOTS_PREMIUM}
-        defaultSlotProps={GRID_COLUMN_MENU_SLOT_PROPS_PREMIUM}
-      />
-    );
-  },
+    function GridPremiumColumnMenuSimple(props, ref) {
+        return (
+            <GridGenericColumnMenu
+                ref={ref}
+                {...props}
+                defaultSlots={GRID_COLUMN_MENU_SLOTS_PREMIUM}
+                defaultSlotProps={GRID_COLUMN_MENU_SLOT_PROPS_PREMIUM}
+            />
+        );
+    }
 );
 
 GridPremiumColumnMenu.propTypes = {
-  colDef: PropTypes.object.isRequired,
-  hideMenu: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+    colDef: PropTypes.object.isRequired,
+    hideMenu: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired
 } as any;
 
 export { GridPremiumColumnMenu };

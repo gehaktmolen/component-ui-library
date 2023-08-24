@@ -1,37 +1,32 @@
-import {
-  GridValueFormatterParams,
-  GridRowId,
-  GridRowModel,
-  GridColDef,
-} from '../../../../DataTablePro';
+import { GridValueFormatterParams, GridRowId, GridRowModel, GridColDef } from '../../../../DataTablePro';
 
 export interface GridAggregationState {
-  model: GridAggregationModel;
-  lookup: GridAggregationLookup;
+    model: GridAggregationModel;
+    lookup: GridAggregationLookup;
 }
 
 export interface GridAggregationInitialState {
-  model?: GridAggregationModel;
+    model?: GridAggregationModel;
 }
 
 export interface GridAggregationInternalCache {
-  rulesOnLastColumnHydration: GridAggregationRules;
-  rulesOnLastRowHydration: GridAggregationRules;
+    rulesOnLastColumnHydration: GridAggregationRules;
+    rulesOnLastRowHydration: GridAggregationRules;
 }
 
 export interface GridAggregationApi {
-  /**
-   * Sets the aggregation model to the one given by `model`.
-   * @param {GridAggregationModel} model The aggregation model.
-   */
-  setAggregationModel: (model: GridAggregationModel) => void;
+    /**
+     * Sets the aggregation model to the one given by `model`.
+     * @param {GridAggregationModel} model The aggregation model.
+     */
+    setAggregationModel: (model: GridAggregationModel) => void;
 }
 
 export interface GridAggregationGetCellValueParams {
-  /**
-   * The row model of the row that the current cell belongs to.
-   */
-  row: GridRowModel;
+    /**
+     * The row model of the row that the current cell belongs to.
+     */
+    row: GridRowModel;
 }
 
 /**
@@ -40,89 +35,89 @@ export interface GridAggregationGetCellValueParams {
  *   - [Aggregation functions](/x/react-data-grid/aggregation/#aggregation-functions)
  */
 export interface GridAggregationFunction<V = any, AV = V, FAV = AV> {
-  /**
-   * Function that takes the current cell values and generates the aggregated value.
-   * @template V, AV
-   * @param {GridAggregationParams<V>} params The params of the current aggregated cell.
-   * @returns {AV} The aggregated value.
-   */
-  apply: (params: GridAggregationParams<V>) => AV | null | undefined;
-  /**
-   * Label of the aggregation function.
-   * Will be used to add a label on the footer of the grouping column when this aggregation function is the only one being used.
-   * @default `apiRef.current.getLocaleText('aggregationFunctionLabel{capitalize(name)})`
-   */
-  label?: string;
-  /**
-   * Column types supported by this aggregation function.
-   * If not defined, all types are supported (in most cases this property should be defined).
-   */
-  columnTypes?: string[];
-  /**
-   * Function that allows to apply a formatter to the aggregated value.
-   * If not defined, the grid will use the formatter of the column.
-   * @template AV, F
-   * @param {GridValueFormatterParams<AV>} params Object containing parameters for the formatter.
-   * @returns {F} The formatted value.
-   */
-  valueFormatter?: (params: GridValueFormatterParams<AV>) => FAV;
-  /**
-   * Indicates if the aggregated value have the same unit as the cells used to generate it.
-   * It can be used to apply a custom cell renderer only if the aggregated value has the same unit.
-   * @default `true`
-   */
-  hasCellUnit?: boolean;
-  /**
-   * Function that allows to transform the value of the cell passed to the aggregation function applier.
-   * Useful for aggregating data from multiple row fields.
-   * @param {GridAggregationGetCellValueParams} params The params of the current cell
-   * @returns {V} The value of the cell that will be passed to the aggregation `apply` function
-   */
-  getCellValue?: (params: GridAggregationGetCellValueParams) => V;
+    /**
+     * Function that takes the current cell values and generates the aggregated value.
+     * @template V, AV
+     * @param {GridAggregationParams<V>} params The params of the current aggregated cell.
+     * @returns {AV} The aggregated value.
+     */
+    apply: (params: GridAggregationParams<V>) => AV | null | undefined;
+    /**
+     * Label of the aggregation function.
+     * Will be used to add a label on the footer of the grouping column when this aggregation function is the only one being used.
+     * @default `apiRef.current.getLocaleText('aggregationFunctionLabel{capitalize(name)})`
+     */
+    label?: string;
+    /**
+     * Column types supported by this aggregation function.
+     * If not defined, all types are supported (in most cases this property should be defined).
+     */
+    columnTypes?: string[];
+    /**
+     * Function that allows to apply a formatter to the aggregated value.
+     * If not defined, the grid will use the formatter of the column.
+     * @template AV, F
+     * @param {GridValueFormatterParams<AV>} params Object containing parameters for the formatter.
+     * @returns {F} The formatted value.
+     */
+    valueFormatter?: (params: GridValueFormatterParams<AV>) => FAV;
+    /**
+     * Indicates if the aggregated value have the same unit as the cells used to generate it.
+     * It can be used to apply a custom cell renderer only if the aggregated value has the same unit.
+     * @default `true`
+     */
+    hasCellUnit?: boolean;
+    /**
+     * Function that allows to transform the value of the cell passed to the aggregation function applier.
+     * Useful for aggregating data from multiple row fields.
+     * @param {GridAggregationGetCellValueParams} params The params of the current cell
+     * @returns {V} The value of the cell that will be passed to the aggregation `apply` function
+     */
+    getCellValue?: (params: GridAggregationGetCellValueParams) => V;
 }
 
 interface GridAggregationParams<V = any> {
-  values: (V | undefined)[];
-  groupId: GridRowId;
-  field: GridColDef['field'];
+    values: (V | undefined)[];
+    groupId: GridRowId;
+    field: GridColDef['field'];
 }
 
 export type GridAggregationModel = {
-  [field: string]: string;
+    [field: string]: string;
 };
 
 export type GridAggregationLookup = {
-  [rowId: GridRowId]: {
-    [field: string]: {
-      position: GridAggregationPosition;
-      value: any;
+    [rowId: GridRowId]: {
+        [field: string]: {
+            position: GridAggregationPosition;
+            value: any;
+        };
     };
-  };
 };
 
 export type GridAggregationPosition = 'inline' | 'footer';
 
 export interface GridAggregationCellMeta {
-  /**
-   * If `true`, the current aggregated value has the same unit as the value of the other cells of this row.
-   * For instance, "min" / "max" aggregation have the same unit as the other cells.
-   * If `false`, the current aggregated value has another unit or not unit.
-   * For instance, "size" aggregation has no unit.
-   */
-  hasCellUnit: boolean;
-  /**
-   * Name of the aggregation function currently applied on this cell.
-   */
-  aggregationFunctionName: string;
+    /**
+     * If `true`, the current aggregated value has the same unit as the value of the other cells of this row.
+     * For instance, "min" / "max" aggregation have the same unit as the other cells.
+     * If `false`, the current aggregated value has another unit or not unit.
+     * For instance, "size" aggregation has no unit.
+     */
+    hasCellUnit: boolean;
+    /**
+     * Name of the aggregation function currently applied on this cell.
+     */
+    aggregationFunctionName: string;
 }
 
 export interface GridAggregationHeaderMeta {
-  aggregationRule: GridAggregationRule;
+    aggregationRule: GridAggregationRule;
 }
 
 export interface GridAggregationRule {
-  aggregationFunctionName: string;
-  aggregationFunction: GridAggregationFunction;
+    aggregationFunctionName: string;
+    aggregationFunction: GridAggregationFunction;
 }
 
 /**

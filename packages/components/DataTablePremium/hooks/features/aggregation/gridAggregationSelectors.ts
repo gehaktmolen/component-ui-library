@@ -9,8 +9,8 @@ export const gridAggregationStateSelector = (state: GridStatePremium) => state.a
  * @category Aggregation
  */
 export const gridAggregationModelSelector = createSelector(
-  gridAggregationStateSelector,
-  (aggregationState) => aggregationState.model,
+    gridAggregationStateSelector,
+    (aggregationState) => aggregationState.model
 );
 
 /**
@@ -18,6 +18,6 @@ export const gridAggregationModelSelector = createSelector(
  * @category Aggregation
  */
 export const gridAggregationLookupSelector = createSelector(
-  gridAggregationStateSelector,
-  (aggregationState) => aggregationState.lookup,
+    gridAggregationStateSelector,
+    (aggregationState) => aggregationState.lookup
 );
