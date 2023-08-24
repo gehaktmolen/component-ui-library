@@ -1,3 +1,3 @@
 export { ComboBox } from './ComboBox.tsx';
 
-// export * from './ComboBox.types';
+export * from './ComboBox.types';

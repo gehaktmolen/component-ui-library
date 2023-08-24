@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { DataGrid, GridColDef, GridValueGetterParams } from './DataTable';
 import { DataGridPro } from '../DataTablePro';
+import { DataGridPremium } from '../DataTablePremium';
+import { useDemoData } from '../DataTableGenerator';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -67,7 +69,7 @@ const rows = [
 export const Primary: Story = {
     args: {},
     render: (args) => (
-        <div className="w-full h-[400px]">
+        <div style={{ height: 400, width: '100%' }}>
             <DataGrid
                 {...args}
                 rows={rows}
@@ -80,8 +82,8 @@ export const Primary: Story = {
                     }
                 }}
                 pageSizeOptions={[5]}
-                checkboxSelection
-                disableRowSelectionOnClick
+                // checkboxSelection
+                // disableRowSelectionOnClick
             />
         </div>
     )
@@ -90,7 +92,7 @@ export const Primary: Story = {
 export const Pro: Story = {
     args: {},
     render: (args) => (
-        <div className="w-full h-[400px]">
+        <div style={{ height: 400, width: '100%' }}>
             <DataGridPro
                 {...args}
                 rows={rows}
@@ -102,10 +104,47 @@ export const Pro: Story = {
                         }
                     }
                 }}
-                pageSizeOptions={[5]}
-                checkboxSelection
-                disableRowSelectionOnClick
+                // pageSizeOptions={[5]}
+                // checkboxSelection
+                // disableRowSelectionOnClick
             />
         </div>
     )
+};
+
+export const Premium: Story = {
+    args: {},
+    render: (args) => (
+        <div style={{ height: 400, width: '100%' }}>
+            <DataGridPremium
+                {...args}
+                rows={rows}
+                columns={columns}
+                initialState={{
+                    pagination: {
+                        paginationModel: {
+                            pageSize: 200
+                        }
+                    }
+                }}
+                // pageSizeOptions={[5]}
+                // checkboxSelection
+                // disableRowSelectionOnClick
+            />
+        </div>
+    )
+};
+
+export const DemoData = () => {
+    const { data } = useDemoData({
+        dataSet: 'Commodity',
+        rowLength: 200,
+        maxColumns: 20,
+    });
+
+    return (
+        <div style={{ height: 400, width: '100%' }}>
+            <DataGridPro {...data} />
+        </div>
+    );
 };

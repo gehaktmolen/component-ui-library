@@ -1,7 +1,5 @@
 import './typeOverloads';
 
-// export { LicenseInfo } from '@mui/x-license-pro';
-
 export * from '../DataTable/components';
 export * from '../DataTable/constants';
 export * from '../DataTable/hooks';

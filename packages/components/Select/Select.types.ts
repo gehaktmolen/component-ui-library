@@ -107,7 +107,7 @@ export interface SelectOwnProps<OptionValue extends NonNullable<unknown>, Multip
     };
     /**
      * The components used for each slot inside the Select.
-     * Either a string to use a HTML element or a component.
+     * Either a string to use an HTML element or a component.
      * @default {}
      */
     slots?: SelectSlots<OptionValue, Multiple>;
