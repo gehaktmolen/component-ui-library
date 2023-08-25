@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem } from '../../MenuItem';
-// Todo: Create ListItemIcon and ListItemText?
-// import ListItemIcon from '../../ListItemIcon';
-// import ListItemText from '../../ListItemText';
+import { ListItemIcon } from '../../ListItemIcon';
+import { ListItemText } from '../../ListItemText';
 import { GridColumnMenuItemProps } from '../../DataTable';
 import { GridPinnedPosition } from '../hooks/features/columnPinning';
 import { useGridApiContext } from '../hooks/utils/useGridApiContext';
@@ -28,19 +27,19 @@ function GridColumnMenuPinningItem(props: GridColumnMenuItemProps) {
     };
     const pinToLeftMenuItem = (
         <MenuItem onClick={pinColumn(GridPinnedPosition.left)}>
-            <i>
+            <ListItemIcon>
                 <rootProps.slots.columnMenuPinLeftIcon fontSize="small" />
-            </i>
-            <span>{apiRef.current.getLocaleText('pinToLeft')}</span>
+            </ListItemIcon>
+            <ListItemText>{apiRef.current.getLocaleText('pinToLeft')}</ListItemText>
         </MenuItem>
     );
 
     const pinToRightMenuItem = (
         <MenuItem onClick={pinColumn(GridPinnedPosition.right)}>
-            <i>
+            <ListItemIcon>
                 <rootProps.slots.columnMenuPinRightIcon fontSize="small" />
-            </i>
-            <span>{apiRef.current.getLocaleText('pinToRight')}</span>
+            </ListItemIcon>
+            <ListItemText>{apiRef.current.getLocaleText('pinToRight')}</ListItemText>
         </MenuItem>
     );
 
@@ -60,14 +59,14 @@ function GridColumnMenuPinningItem(props: GridColumnMenuItemProps) {
         return (
             <React.Fragment>
                 <MenuItem onClick={pinColumn(otherSide)}>
-                    <i>
+                    <ListItemIcon>
                         <Icon fontSize="small" />
-                    </i>
-                    <span>{apiRef.current.getLocaleText(label)}</span>
+                    </ListItemIcon>
+                    <ListItemText>{apiRef.current.getLocaleText(label)}</ListItemText>
                 </MenuItem>
                 <MenuItem onClick={unpinColumn}>
-                    <i />
-                    <span>{apiRef.current.getLocaleText('unpin')}</span>
+                    <ListItemIcon />
+                    <ListItemText>{apiRef.current.getLocaleText('unpin')}</ListItemText>
                 </MenuItem>
             </React.Fragment>
         );

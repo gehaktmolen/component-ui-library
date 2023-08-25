@@ -1,0 +1,73 @@
+import { Meta, ArgTypes, Canvas } from '@storybook/blocks';
+import { List } from './List';
+import { useList } from '../useList';
+import * as ListDefaultStories from './List.stories';
+
+<Meta title="Data Display/WIP/List" />
+
+# List
+
+---
+
+A list is a continuous, vertical indexes of text or images.
+
+## Introduction
+
+<Canvas sourceState="hidden" of={ListDefaultStories.Primary} />
+
+## Component
+
+### Usage
+
+### Basics
+
+<Canvas sourceState="hidden" of={ListDefaultStories.Basics} />
+<Canvas sourceState="hidden" of={ListDefaultStories.Sizes} />
+
+### Anatomy
+
+### Custom structure
+
+### Usage with TypeScript
+
+## Hooks
+
+## Customization
+
+### Custom elements
+
+## API
+
+### Import
+
+```jsx
+import { List } from '../List';
+```
+
+### Parameters
+
+Props of the native component are also available.
+
+<ArgTypes of={List} />
+
+### Slots
+
+To learn how to customize the slot, check out the [Overriding component structure](?path=/docs/docs-structure--docs#overriding-component-structure) guide.
+
+| Name   | Element | Description                          |
+| ------ | ------- | ------------------------------------ |
+| `root` |         | The component that renders the root. |
+
+...
+
+## useList API (Hook)
+
+### Import
+
+```jsx
+import { useList } from '../useList';
+```
+
+### Parameters
+
+<ArgTypes of={useList} />

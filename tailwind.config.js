@@ -1,5 +1,6 @@
 // const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
+const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -42,5 +43,44 @@ export default {
             }
         }
     },
-    plugins: [require('@tailwindcss/forms')]
+    plugins: [
+        require('@tailwindcss/forms'),
+        plugin(function ({ matchUtilities, theme }) {
+            matchUtilities(
+                {
+                    'min-i-s': (value) => ({
+                        'min-inline-size': value
+                    }),
+                    mbs: (value) => ({
+                        'margin-block-start': value
+                    }),
+                    mbe: (value) => ({
+                        'margin-block-end': value
+                    }),
+                    'm-inline': (value) => ({
+                        'margin-inline': value
+                    }),
+                    'm-block': (value) => ({
+                        'margin-block': value
+                    }),
+                    'p-inline': (value) => ({
+                        'padding-inline': value
+                    }),
+                    'p-block': (value) => ({
+                        'padding-block': value
+                    }),
+                    pbs: (value) => ({
+                        'padding-block-start': value
+                    }),
+                    pbe: (value) => ({
+                        'padding-block-end': value
+                    }),
+                    'min-b-s': (value) => ({
+                        'min-block-size': value
+                    })
+                },
+                { values: theme('spacing') }
+            );
+        })
+    ]
 };

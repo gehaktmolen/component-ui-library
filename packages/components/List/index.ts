@@ -1,3 +1,3 @@
-export { List } from './List.tsx';
+export { List } from './List';
 
-// export * from './List.types';
+export * from './List.types';

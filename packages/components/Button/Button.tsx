@@ -234,8 +234,5 @@ Button.propTypes = {
      * The variant to use.
      * @default 'solid'
      */
-    variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-        PropTypes.oneOf(['soft', 'solid']),
-        PropTypes.string
-    ])
+    variant: PropTypes.oneOfType([PropTypes.oneOf(['soft', 'solid']), PropTypes.string])
 } as any;

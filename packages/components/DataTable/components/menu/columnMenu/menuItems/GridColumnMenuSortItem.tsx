@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem } from '../../../../../MenuItem';
-// Todo: Create ListItemIcon and ListItemText?
-// import ListItemIcon from '../../../../../ListItemIcon';
-// import ListItemText from '../../../../../ListItemText';
+import { ListItemIcon } from '../../../../../ListItemIcon';
+import { ListItemText } from '../../../../../ListItemText';
 import { useGridSelector } from '../../../../hooks/utils/useGridSelector';
 import { gridSortModelSelector } from '../../../../hooks/features/sorting/gridSortingSelector';
 import { GridSortDirection } from '../../../../models/gridSortModel';
@@ -44,24 +43,24 @@ function GridColumnMenuSortItem(props: GridColumnMenuItemProps) {
         <React.Fragment>
             {sortingOrder.includes('asc') && sortDirection !== 'asc' ? (
                 <MenuItem onClick={onSortMenuItemClick} data-value="asc">
-                    <i>
+                    <ListItemIcon>
                         <rootProps.slots.columnMenuSortAscendingIcon fontSize="small" />
-                    </i>
-                    <span>{apiRef.current.getLocaleText('columnMenuSortAsc')}</span>
+                    </ListItemIcon>
+                    <ListItemText>{apiRef.current.getLocaleText('columnMenuSortAsc')}</ListItemText>
                 </MenuItem>
             ) : null}
             {sortingOrder.includes('desc') && sortDirection !== 'desc' ? (
                 <MenuItem onClick={onSortMenuItemClick} data-value="desc">
-                    <i>
+                    <ListItemIcon>
                         <rootProps.slots.columnMenuSortDescendingIcon fontSize="small" />
-                    </i>
-                    <span>{apiRef.current.getLocaleText('columnMenuSortDesc')}</span>
+                    </ListItemIcon>
+                    <ListItemText>{apiRef.current.getLocaleText('columnMenuSortDesc')}</ListItemText>
                 </MenuItem>
             ) : null}
             {sortingOrder.includes(null) && sortDirection != null ? (
                 <MenuItem onClick={onSortMenuItemClick}>
-                    <i />
-                    <span>{apiRef.current.getLocaleText('columnMenuUnsort')}</span>
+                    <ListItemIcon />
+                    <ListItemText>{apiRef.current.getLocaleText('columnMenuUnsort')}</ListItemText>
                 </MenuItem>
             ) : null}
         </React.Fragment>
@@ -69,10 +68,6 @@ function GridColumnMenuSortItem(props: GridColumnMenuItemProps) {
 }
 
 GridColumnMenuSortItem.propTypes = {
-    // ----------------------------- Warning --------------------------------
-    // | These PropTypes are generated from the TypeScript type definitions |
-    // | To update them edit the TypeScript types and run "yarn proptypes"  |
-    // ----------------------------------------------------------------------
     colDef: PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired
 } as any;

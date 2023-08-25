@@ -3,7 +3,7 @@ import { useId, useForkRef } from '../../../../utils';
 import { Menu } from '../../../Menu';
 import { ButtonProps } from '../../../Button';
 import { MenuItem } from '../../../MenuItem';
-// import { ListItemIcon } from '../../../ListItemIcon';
+import { ListItemIcon } from '../../../ListItemIcon';
 import { gridDensityValueSelector } from '../../hooks/features/density/densitySelector';
 import { GridDensity } from '../../models/gridDensity';
 import { isHideMenuKey, isTabKey } from '../../utils/keyboardUtils';
@@ -94,7 +94,7 @@ export const GridToolbarDensitySelector = React.forwardRef<HTMLButtonElement, Bu
                 onClick={() => handleDensityUpdate(option.value)}
                 selected={option.value === densityValue}
             >
-                <i>{option.icon}</i>
+                <ListItemIcon>{option.icon}</ListItemIcon>
                 {option.label}
             </MenuItem>
         ));

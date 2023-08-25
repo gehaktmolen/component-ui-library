@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem } from '../../../../../MenuItem';
-// Todo: Create ListItemIcon and ListItemText?
-// import ListItemIcon from '../../../../../ListItemIcon';
-// import ListItemText from '../../../../../ListItemText';
+import { ListItemIcon } from '../../../../../ListItemIcon';
+import { ListItemText } from '../../../../../ListItemText';
 import { GridPreferencePanelsValue } from '../../../../hooks/features/preferencesPanel/gridPreferencePanelsValue';
 import { useGridApiContext } from '../../../../hooks/utils/useGridApiContext';
 import { GridColumnMenuItemProps } from '../GridColumnMenuItemProps';
@@ -28,10 +27,10 @@ function GridColumnMenuManageItem(props: GridColumnMenuItemProps) {
 
     return (
         <MenuItem onClick={showColumns}>
-            <i>
+            <ListItemIcon>
                 <rootProps.slots.columnMenuManageColumnsIcon fontSize="small" />
-            </i>
-            <span>{apiRef.current.getLocaleText('columnMenuManageColumns')}</span>
+            </ListItemIcon>
+            <ListItemText>{apiRef.current.getLocaleText('columnMenuManageColumns')}</ListItemText>
         </MenuItem>
     );
 }

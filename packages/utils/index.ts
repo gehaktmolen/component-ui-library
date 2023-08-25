@@ -22,6 +22,7 @@ export * from './useSlotProps';
 export * from './areArraysEqual';
 export * from './cancellableEvent';
 export * from './createSvgIcon';
+export * from './isElement';
 
 export * from './combineHooksSlotProps';
 export * from './extractEventHandlers';

@@ -26,12 +26,12 @@ export const useColorInversion = (childVariant: VariantProp | undefined) => {
         getColor: (
             instanceColorProp: ColorPaletteProp | 'inherit' | undefined,
             defaultColorProp: ColorPaletteProp | 'inherit' | undefined
-        ): ColorPaletteProp | 'context' | undefined => {
+        ): ColorPaletteProp | undefined => {
             if (overridableVariants && childVariant) {
                 if (overridableVariants.includes(childVariant)) {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore internal logic
-                    return instanceColorProp || 'context';
+                    return instanceColorProp;
                 }
             }
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment

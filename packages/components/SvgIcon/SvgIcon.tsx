@@ -1,32 +1,28 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type {
-    SvgIconProps,
-    SvgIconOwnerState,
-    SvgIconRootSlotProps,
-} from './SvgIcon.types';
+import type { SvgIconProps, SvgIconOwnerState, SvgIconRootSlotProps } from './SvgIcon.types';
 import {
     generateUtilityClass,
     useClassNamesOverride,
     composeClasses,
     WithOptionalOwnerState,
     useSlotProps
-} from "../../utils";
+} from '../../utils';
 
 const useUtilityClasses = (ownerState: SvgIconOwnerState) => {
     const { color, fontSize, hasSvgAsChild } = ownerState;
 
     const slots = {
         root: [
-            'select-none w-4 h-4 inline-block shrink-0 transition-colors duration-200 ease-in-out',
+            'select-none w-4 h-4 inline-block shrink-0 transition-colors duration-200 ease-in-out fill-current',
             hasSvgAsChild && 'fill-current',
             fontSize === 'inherit' && 'text-inherit',
             fontSize === 'small' && 'text-sm',
             fontSize === 'medium' && 'text-base',
             fontSize === 'large' && 'text-lg',
             color === 'inherit' && 'text-inherit',
-            color === 'primary' && 'text-primary-600',
-        ],
+            color === 'primary' && 'text-primary-600'
+        ]
     };
 
     return composeClasses(
@@ -63,7 +59,7 @@ const SvgIcon = React.forwardRef(function SvgIcon<RootComponentType extends Reac
         instanceFontSize: props.fontSize,
         inheritViewBox,
         viewBox,
-        hasSvgAsChild,
+        hasSvgAsChild
     };
 
     const classes = useUtilityClasses(ownerState);
@@ -80,7 +76,7 @@ const SvgIcon = React.forwardRef(function SvgIcon<RootComponentType extends Reac
             ...(titleAccess && { role: 'img' }),
             ...(!titleAccess && { 'aria-hidden': true }),
             ...(!inheritViewBox && { viewBox }),
-            ...(hasSvgAsChild && (children.props as Omit<React.SVGProps<SVGSVGElement>, 'ref'>)),
+            ...(hasSvgAsChild && (children.props as Omit<React.SVGProps<SVGSVGElement>, 'ref'>))
         },
         ownerState,
         className: classes.root
@@ -108,10 +104,7 @@ SvgIcon.propTypes = {
      * The fontSize applied to the icon. Defaults to 24px, but can be configured to inherit font size.
      * @default 'medium'
      */
-    fontSize: PropTypes.oneOfType([
-        PropTypes.oneOf(['inherit', 'large', 'medium', 'small']),
-        PropTypes.string,
-    ]),
+    fontSize: PropTypes.oneOfType([PropTypes.oneOf(['inherit', 'large', 'medium', 'small']), PropTypes.string]),
     /**
      * Applies a color attribute to the SVG element.
      */
@@ -149,7 +142,7 @@ SvgIcon.propTypes = {
      * @default {}
      */
     slotProps: PropTypes.shape({
-        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     }),
     /**
      * The components used for each slot inside the SvgIcon.
@@ -157,7 +150,7 @@ SvgIcon.propTypes = {
      * @default {}
      */
     slots: PropTypes.shape({
-        root: PropTypes.elementType,
+        root: PropTypes.elementType
     })
 };
 

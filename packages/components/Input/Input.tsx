@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { twMerge } from 'tailwind-merge';
 import {
     generateUtilityClass,
     composeClasses,
@@ -183,7 +184,7 @@ export const Input = React.forwardRef(function Input<RootComponentType extends R
             ref: forwardedRef
         },
         ownerState,
-        className: [classes.root, className]
+        className: twMerge(classes.root, className)
     });
     const InputComponent = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
     const inputProps: WithOptionalOwnerState<InputSlotProps> = useSlotProps({
@@ -436,7 +437,7 @@ Input.propTypes = {
      * The variant to use.
      * @default 'solid'
      */
-    // variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    // variant: PropTypes.oneOfType([
     //     PropTypes.oneOf(['soft', 'solid']),
     //     PropTypes.string
     // ])

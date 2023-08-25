@@ -10,8 +10,8 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
 
     const slots = {
         root: [
-            'block px-4 py-2 text-sm',
-            'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
+            'relative block box-border flex justify-start center-items px-4 py-2 text-sm cursor-pointer select-none whitespace-nowrap',
+            'text-gray-700 hover:bg-gray-200 hover:text-gray-900',
             disabled && 'disabled',
             focusVisible && 'focusVisible'
         ]

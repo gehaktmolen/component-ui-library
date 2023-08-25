@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Divider } from '../../../../Divider';
+import { ListDivider } from '../../../../ListDivider';
 import { GridColumnMenuRootProps } from './columnMenuInterfaces';
 import { GridColDef } from '../../../models/colDef/gridColDef';
 import { useGridPrivateApiContext } from '../../utils/useGridPrivateApiContext';
@@ -54,7 +54,7 @@ const useGridColumnMenuSlots = (props: UseGridColumnMenuSlotsProps) => {
                 itemProps = { ...itemProps, ...customProps };
             }
             return addDividers && index !== sorted.length - 1
-                ? [...acc, [processedComponents[key]!, itemProps], [Divider, {}]]
+                ? [...acc, [processedComponents[key]!, itemProps], [ListDivider, {}]]
                 : [...acc, [processedComponents[key]!, itemProps]];
         }, []);
     }, [addDividers, colDef, defaultItems, hideMenu, processedComponents, processedSlotProps, userItems]);

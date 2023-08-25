@@ -1,3 +1,3 @@
 export { SvgIcon } from './SvgIcon.tsx';
 
-// export * from './SvgIcon.types';
+export * from './SvgIcon.types';

@@ -1,7 +1,6 @@
-import React from "react";
-import { ColorPaletteProp, PolymorphicProps, SlotComponentProps } from "../../utils";
-import { OverridableStringUnion, Simplify } from "../../types";
-import { ToggleOwnerState } from "../Toggle";
+import React from 'react';
+import { ColorPaletteProp, PolymorphicProps, SlotComponentProps } from '../../utils';
+import { OverridableStringUnion, Simplify } from '../../types';
 
 export interface SvgIconRootSlotPropsOverrides {}
 export interface SvgIconPropsColorOverrides {}
@@ -70,16 +69,16 @@ export interface SvgIconSlots {
 
 export type SvgIconOwnerState = Simplify<
     SvgIconOwnProps & {
-    /**
-     * @internal
-     * The `children` has a `svg` element as a child.
-     */
-    hasSvgAsChild: boolean;
-}
+        /**
+         * @internal
+         * The `children` has a `svg` element as a child.
+         */
+        hasSvgAsChild: boolean;
+    }
 >;
 
 export type SvgIconRootSlotProps = {
-    ownerState: ToggleOwnerState;
+    ownerState: SvgIconOwnerState;
     className?: string;
     children?: React.ReactNode;
 };

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { GridColumnMenuItemProps, useGridSelector } from '../../DataTablePro';
+import { GridColumnMenuItemProps, useGridSelector } from '../../DataTable';
 import { MenuItem } from '../../MenuItem';
-// Todo: Create ListItemIcon and ListItemText?
-// import ListItemIcon from '../../../../../ListItemIcon';
-// import ListItemText from '../../../../../ListItemText';
+import { ListItemIcon } from '../../ListItemIcon';
+import { ListItemText } from '../../ListItemText';
 import { FormControl } from '../../FormControl';
 import { FormLabel } from '../../FormLabel';
 import { useId } from '../../../utils';
@@ -72,11 +71,11 @@ function GridColumnMenuAggregationItem(props: GridColumnMenuItemProps) {
 
     return (
         <MenuItem>
-            <i>
+            <ListItemIcon>
                 <rootProps.slots.columnMenuAggregationIcon fontSize="small" />
-            </i>
-            <span>
-                <FormControl size="small" fullWidth sx={{ minWidth: 150 }}>
+            </ListItemIcon>
+            <ListItemText>
+                <FormControl size="sm" className="min-w-[150px]">
                     <FormLabel id={`${id}-label`}>{label}</FormLabel>
                     <Select
                         labelId={`${id}-label`}
@@ -102,7 +101,7 @@ function GridColumnMenuAggregationItem(props: GridColumnMenuItemProps) {
                         ))}
                     </Select>
                 </FormControl>
-            </span>
+            </ListItemText>
         </MenuItem>
     );
 }

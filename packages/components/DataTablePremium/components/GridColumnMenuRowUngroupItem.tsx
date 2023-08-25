@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem } from '../../MenuItem';
-// Todo: Create ListItemIcon and ListItemText?
-// import ListItemIcon from '../../../../../ListItemIcon';
-// import ListItemText from '../../../../../ListItemText';
+import { ListItemIcon } from '../../ListItemIcon';
+import { ListItemText } from '../../ListItemText';
 import { gridColumnLookupSelector, useGridSelector, GridColumnMenuItemProps } from '../../DataTablePro';
 import { useGridApiContext } from '../hooks/utils/useGridApiContext';
 import { gridRowGroupingSanitizedModelSelector } from '../hooks/features/rowGrouping/gridRowGroupingSelector';
@@ -35,20 +34,20 @@ function GridColumnMenuRowUngroupItem(props: GridColumnMenuItemProps) {
     if (rowGroupingModel.includes(colDef.field)) {
         return (
             <MenuItem onClick={ungroupColumn}>
-                <i>
+                <ListItemIcon>
                     <rootProps.slots.columnMenuUngroupIcon fontSize="small" />
-                </i>
-                <span>{apiRef.current.getLocaleText('unGroupColumn')(name)}</span>
+                </ListItemIcon>
+                <ListItemText>{apiRef.current.getLocaleText('unGroupColumn')(name)}</ListItemText>
             </MenuItem>
         );
     }
 
     return (
         <MenuItem onClick={groupColumn}>
-            <i>
+            <ListItemIcon>
                 <rootProps.slots.columnMenuGroupIcon fontSize="small" />
-            </i>
-            <span>{apiRef.current.getLocaleText('groupColumn')(name)}</span>
+            </ListItemIcon>
+            <ListItemText>{apiRef.current.getLocaleText('groupColumn')(name)}</ListItemText>
         </MenuItem>
     );
 }

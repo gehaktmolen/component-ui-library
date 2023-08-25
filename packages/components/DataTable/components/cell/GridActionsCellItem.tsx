@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonProps } from '../../../Button';
 import { MenuItem, MenuItemProps } from '../../../MenuItem';
-// import ListItemIcon from '../../../ListItemIcon';
+import { ListItemIcon } from '../../../ListItemIcon';
 import { useGridRootProps } from '../../hooks/utils/useGridRootProps';
 
 export type GridActionsCellItemProps = {
@@ -39,10 +39,7 @@ const GridActionsCellItem = React.forwardRef<HTMLButtonElement, GridActionsCellI
 
     return (
         <MenuItem ref={ref} {...(other as any)} onClick={onClick}>
-            {
-                icon
-                // && <ListItemIcon>{icon}</ListItemIcon>
-            }
+            {icon && <ListItemIcon>{icon}</ListItemIcon>}
             {label}
         </MenuItem>
     );

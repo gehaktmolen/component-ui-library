@@ -1,3 +1,3 @@
 export { Divider } from './Divider.tsx';
 
-// export * from './Divider.types';
+export * from './Divider.types';

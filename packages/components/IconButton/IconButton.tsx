@@ -1,3 +1,2 @@
-export function IconButton() {
-    return <i></i>;
-}
+import { Button } from '../Button';
+export { Button as IconButton };

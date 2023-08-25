@@ -1,60 +1,114 @@
-export function Divider() {
-    return (
-        <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">
-                <div className="relative h-[150px] overflow-hidden rounded-xl border border-dashed border-gray-400 opacity-75">
-                    <svg className="absolute inset-0 h-full w-full stroke-gray-900/10" fill="none">
-                        <defs>
-                            <pattern
-                                id="pattern-1526ac66-f54a-4681-8fb8-0859d412f251"
-                                x="0"
-                                y="0"
-                                width="10"
-                                height="10"
-                                patternUnits="userSpaceOnUse"
-                            >
-                                <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
-                            </pattern>
-                        </defs>
-                        <rect
-                            stroke="none"
-                            fill="url(#pattern-1526ac66-f54a-4681-8fb8-0859d412f251)"
-                            width="100%"
-                            height="100%"
-                        ></rect>
-                    </svg>
-                </div>
-                <div className="relative">
-                    <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                        <div className="w-full border-t border-gray-300" />
-                    </div>
-                    <div className="relative flex justify-center">
-                        <span className="bg-gray-100 px-2 text-sm text-gray-500">Continue</span>
-                    </div>
-                </div>
-                <div className="relative h-[150px] overflow-hidden rounded-xl border border-dashed border-gray-400 opacity-75">
-                    <svg className="absolute inset-0 h-full w-full stroke-gray-900/10" fill="none">
-                        <defs>
-                            <pattern
-                                id="pattern-1526ac66-f54a-4681-8fb8-0859d412f251"
-                                x="0"
-                                y="0"
-                                width="10"
-                                height="10"
-                                patternUnits="userSpaceOnUse"
-                            >
-                                <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
-                            </pattern>
-                        </defs>
-                        <rect
-                            stroke="none"
-                            fill="url(#pattern-1526ac66-f54a-4681-8fb8-0859d412f251)"
-                            width="100%"
-                            height="100%"
-                        ></rect>
-                    </svg>
-                </div>
-            </div>
-        </main>
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import type { DividerProps, DividerOwnerState, DividerRootSlotProps } from './Divider.types';
+import {
+    generateUtilityClass,
+    useClassNamesOverride,
+    composeClasses,
+    WithOptionalOwnerState,
+    useSlotProps
+} from '../../utils';
+
+const useUtilityClasses = (ownerState: DividerOwnerState) => {
+    const { orientation } = ownerState;
+
+    const slots = {
+        root: [
+            'relative py-2',
+            // Todo: Handle divider orientation styling.
+            orientation === 'vertical' ? '' : ''
+        ],
+        borderContainer: ['absolute inset-0 flex items-center'],
+        border: ['w-full border-t border-gray-300'],
+        childContainer: ['relative flex justify-center'],
+        child: ['bg-gray-100 px-2 text-sm text-gray-500']
+    };
+
+    return composeClasses(
+        slots,
+        useClassNamesOverride((slot: string) => generateUtilityClass(slot))
     );
-}
+};
+
+const Divider = React.forwardRef(function Divider<RootComponentType extends React.ElementType>(
+    props: DividerProps<RootComponentType>,
+    forwardedRef: React.ForwardedRef<Element>
+) {
+    const { children, orientation = 'horizontal', role = 'separator', slotProps = {}, slots = {}, ...other } = props;
+
+    const ownerState: DividerOwnerState = {
+        ...props,
+        orientation,
+        role
+    };
+
+    const classes = useUtilityClasses(ownerState);
+
+    const Root: React.ElementType = slots.root ?? 'div';
+    const rootProps: WithOptionalOwnerState<DividerRootSlotProps> = useSlotProps({
+        elementType: Root,
+        externalSlotProps: slotProps.root,
+        externalForwardedProps: other,
+        additionalProps: {
+            ref: forwardedRef,
+            role,
+            ...(role === 'separator' &&
+                orientation === 'vertical' && {
+                    // The implicit aria-orientation of separator is 'horizontal'
+                    // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
+                    'aria-orientation': 'vertical'
+                })
+        },
+        ownerState,
+        className: classes.root
+    });
+
+    return (
+        <Root {...rootProps}>
+            <div className={classes.borderContainer} aria-hidden="true">
+                <div className={classes.border} />
+            </div>
+            {children && (
+                <div className={classes.childContainer}>
+                    <span className={classes.child}>{children}</span>
+                </div>
+            )}
+        </Root>
+    );
+});
+
+Divider.propTypes = {
+    /**
+     * The content of the component.
+     */
+    children: PropTypes.node,
+    /**
+     * @ignore
+     */
+    className: PropTypes.string,
+    /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component: PropTypes.elementType,
+    /**
+     * @ignore
+     */
+    role: PropTypes.string,
+    /**
+     * The props used for each slot inside.
+     * @default {}
+     */
+    slotProps: PropTypes.shape({
+        root: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+    }),
+    /**
+     * The components used for each slot inside.
+     * @default {}
+     */
+    slots: PropTypes.shape({
+        root: PropTypes.elementType
+    })
+};
+
+export { Divider };

@@ -65,7 +65,7 @@ export interface GridBaseSlots {
     BaseSelectOption: React.JSXElementConstructor<any>;
 }
 
-// TODO v7: camelCase GridSlotsComponent, the `componenets` prop is going away.
+// TODO v7: camelCase GridSlotsComponent, the `components` prop is going away.
 
 /**
  * Grid components React prop interface containing all the overridable components.

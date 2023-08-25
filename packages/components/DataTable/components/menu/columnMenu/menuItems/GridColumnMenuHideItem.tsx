@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem } from '../../../../../MenuItem';
-// Todo: Create ListItemIcon and ListItemText?
-// import ListItemIcon from '../../../../../ListItemIcon';
-// import ListItemText from '../../../../../ListItemText';
+import { ListItemIcon } from '../../../../../ListItemIcon';
+import { ListItemText } from '../../../../../ListItemText';
 import { GridColumnMenuItemProps } from '../GridColumnMenuItemProps';
 import { useGridApiContext } from '../../../../hooks/utils/useGridApiContext';
 import { useGridRootProps } from '../../../../hooks/utils/useGridRootProps';
@@ -45,10 +44,10 @@ function GridColumnMenuHideItem(props: GridColumnMenuItemProps) {
 
     return (
         <MenuItem onClick={toggleColumn} disabled={disabled}>
-            <i>
+            <ListItemIcon>
                 <rootProps.slots.columnMenuHideIcon fontSize="small" />
-            </i>
-            <span>{apiRef.current.getLocaleText('columnMenuHideColumn')}</span>
+            </ListItemIcon>
+            <ListItemText>{apiRef.current.getLocaleText('columnMenuHideColumn')}</ListItemText>
         </MenuItem>
     );
 }
