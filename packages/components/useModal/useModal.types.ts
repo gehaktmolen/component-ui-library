@@ -23,7 +23,7 @@ export type UseModalParameters = {
     /**
      * A single child content element.
      */
-    children: React.ReactElement;
+    children: React.ReactElement | undefined | null;
     /**
      * When set to true the Modal waits until a nested Transition is completed before closing.
      * @default false
@@ -79,13 +79,13 @@ export interface UseModalReturnValue {
      * @param externalProps props for the root slot
      * @returns props that should be spread on the root slot
      */
-    getRootProps: <TOther extends EventHandlers = {}>(externalProps?: TOther) => UseModalRootSlotProps<TOther>;
+    getRootProps: <TOther extends EventHandlers = NonNullable<unknown>>(externalProps?: TOther) => UseModalRootSlotProps<TOther>;
     /**
      * Resolver for the backdrop slot's props.
      * @param externalProps props for the backdrop slot
      * @returns props that should be spread on the backdrop slot
      */
-    getBackdropProps: <TOther extends EventHandlers = {}>(externalProps?: TOther) => UseModalBackdropSlotProps<TOther>;
+    getBackdropProps: <TOther extends EventHandlers = NonNullable<unknown>>(externalProps?: TOther) => UseModalBackdropSlotProps<TOther>;
     /**
      * Resolver for the transition related props.
      * @param externalProps props for the transition element

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import type { EventHandlers } from '../../types';
 
 export interface UseListItemParameters<ItemValue> {
     /**
@@ -28,18 +27,18 @@ interface UseListItemRootSlotOwnProps {
     tabIndex?: number;
 }
 
-export type UseListItemRootSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseListItemRootSlotOwnProps> &
+export type UseListItemRootSlotProps<ExternalProps = NonNullable<unknown>> = ExternalProps &
     UseListItemRootSlotOwnProps;
 
 export interface UseListItemReturnValue {
     /**
      * Resolver for the root slot's props.
-     * @param otherHandlers event handlers for the root slot
+     * @param externalProps additional props to be forwarded to the root slot
      * @returns props that should be spread on the root slot
      */
-    getRootProps: <TOther extends EventHandlers = NonNullable<unknown>>(
-        otherHandlers?: TOther
-    ) => UseListItemRootSlotProps<TOther>;
+    getRootProps: <ExternalProps extends Record<string, unknown> = NonNullable<unknown>>(
+        externalProps?: ExternalProps
+    ) => UseListItemRootSlotProps<ExternalProps>;
     /**
      * If `true`, the current item is highlighted.
      */

@@ -40,7 +40,8 @@ export interface UseSnackbarParameters {
     resumeHideDuration?: number;
 }
 
-export type UseSnackbarRootSlotProps<TOther = NonNullable<unknown>> = TOther & UseSnackbarRootSlotOwnProps;
+export type UseSnackbarRootSlotProps<ExternalProps = NonNullable<unknown>> = ExternalProps &
+    UseSnackbarRootSlotOwnProps;
 
 export interface UseSnackbarRootSlotOwnProps {
     onBlur: React.FocusEventHandler;
@@ -57,9 +58,9 @@ export interface UseSnackbarReturnValue {
      * @param externalProps props for the root slot
      * @returns props that should be spread on the root slot
      */
-    getRootProps: <TOther extends Record<string, ((event: any) => void) | undefined> = NonNullable<unknown>>(
-        externalProps?: TOther
-    ) => UseSnackbarRootSlotProps<TOther>;
+    getRootProps: <ExternalProps extends Record<string, unknown> = NonNullable<unknown>>(
+        externalProps?: ExternalProps
+    ) => UseSnackbarRootSlotProps<ExternalProps>;
     /**
      * Callback fired when a "click away" event is detected.
      */

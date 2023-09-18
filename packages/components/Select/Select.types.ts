@@ -93,6 +93,10 @@ export interface SelectOwnProps<OptionValue extends NonNullable<unknown>, Multip
      */
     renderValue?: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode;
     /**
+     * Text to show when there is no selected value.
+     */
+    placeholder?: React.ReactNode;
+    /**
      * The props used for each slot inside the Input.
      * @default {}
      */

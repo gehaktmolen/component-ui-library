@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { extractEventHandlers, useEventCallback } from '../../utils';
 import { UseSnackbarParameters, SnackbarCloseReason, UseSnackbarReturnValue } from './useSnackbar.types';
+import type { EventHandlers } from '../../types';
 
 /**
  * The basic building block for creating custom snackbar.
@@ -8,7 +9,7 @@ import { UseSnackbarParameters, SnackbarCloseReason, UseSnackbarReturnValue } fr
  * ## useSnackbar API
  * - [useSnackbar API](?path=/docs/feedback-snackbar--docs#usesnackbar-api-hook)
  */
-export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarReturnValue {
+export function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
     const {
         autoHideDuration = null,
         disableWindowBlurListener = false,
@@ -87,33 +88,27 @@ export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarRetur
         }
     }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
-    const createHandleBlur =
-        (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-        (event: React.FocusEvent<HTMLDivElement, Element>) => {
-            const onBlurCallback = otherHandlers.onBlur;
-            onBlurCallback?.(event);
-            handleResume();
-        };
+    const createHandleBlur = (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
+        const onBlurCallback = otherHandlers.onBlur;
+        onBlurCallback?.(event);
+        handleResume();
+    };
 
-    const createHandleFocus =
-        (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-        (event: React.FocusEvent<HTMLDivElement, Element>) => {
-            const onFocusCallback = otherHandlers.onFocus;
-            onFocusCallback?.(event);
-            handlePause();
-        };
+    const createHandleFocus = (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLDivElement, Element>) => {
+        const onFocusCallback = otherHandlers.onFocus;
+        onFocusCallback?.(event);
+        handlePause();
+    };
 
     const createMouseEnter =
-        (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-        (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             const onMouseEnterCallback = otherHandlers.onMouseEnter;
             onMouseEnterCallback?.(event);
             handlePause();
         };
 
     const createMouseLeave =
-        (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
-        (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        (otherHandlers: EventHandlers) => (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             const onMouseLeaveCallback = otherHandlers.onMouseLeave;
             onMouseLeaveCallback?.(event);
             handleResume();
@@ -134,20 +129,18 @@ export function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarRetur
         return undefined;
     }, [disableWindowBlurListener, handleResume, open]);
 
-    const getRootProps: UseSnackbarReturnValue['getRootProps'] = <
-        TOther extends Parameters<UseSnackbarReturnValue['getRootProps']>[0]
-    >(
-        otherHandlers: TOther = {} as TOther
+    const getRootProps = <ExternalProps extends Record<string, unknown> = NonNullable<unknown>>(
+        externalProps: ExternalProps = {} as ExternalProps
     ) => {
-        const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseSnackbarParameters>;
         const externalEventHandlers = {
-            ...propsEventHandlers,
-            ...otherHandlers
+            ...extractEventHandlers(parameters),
+            ...extractEventHandlers(externalProps)
         };
 
         return {
             // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
             role: 'presentation',
+            ...externalProps,
             ...externalEventHandlers,
             onBlur: createHandleBlur(externalEventHandlers),
             onFocus: createHandleFocus(externalEventHandlers),

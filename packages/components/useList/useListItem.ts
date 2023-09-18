@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useForcedRerendering, useForkRef, useEnhancedEffect } from '../../utils';
+import { useForcedRerendering, useForkRef, useEnhancedEffect, extractEventHandlers } from '../../utils';
 import { ListActionTypes } from './listActions.types';
 import { ListContext } from './ListContext';
 import type { EventHandlers } from '../../types';
@@ -57,8 +57,8 @@ export function useListItem<ItemValue>(parameters: UseListItemParameters<ItemVal
     }, [registerSelectionChangeHandler, rerender, selected, item]);
 
     const createHandleClick = React.useCallback(
-        (other: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
-            other.onClick?.(event);
+        (externalHandlers: EventHandlers) => (event: React.MouseEvent) => {
+            externalHandlers.onClick?.(event);
             if (event.defaultPrevented) {
                 return;
             }
@@ -73,8 +73,8 @@ export function useListItem<ItemValue>(parameters: UseListItemParameters<ItemVal
     );
 
     const createHandlePointerOver = React.useCallback(
-        (other: Record<string, React.EventHandler<any>>) => (event: React.PointerEvent) => {
-            other.onMouseOver?.(event);
+        (externalHandlers: EventHandlers) => (event: React.PointerEvent) => {
+            externalHandlers.onMouseOver?.(event);
             if (event.defaultPrevented) {
                 return;
             }
@@ -93,15 +93,18 @@ export function useListItem<ItemValue>(parameters: UseListItemParameters<ItemVal
         tabIndex = highlighted ? 0 : -1;
     }
 
-    const getRootProps = <TOther extends EventHandlers = NonNullable<unknown>>(
-        otherHandlers: TOther = {} as TOther
-    ) => ({
-        ...otherHandlers,
-        onClick: createHandleClick(otherHandlers),
-        onPointerOver: handlePointerOverEvents ? createHandlePointerOver(otherHandlers) : undefined,
-        ref: handleRef,
-        tabIndex
-    });
+    const getRootProps = <ExternalProps extends Record<string, any>>(
+        externalProps: ExternalProps = {} as ExternalProps
+    ) => {
+        const externalEventHandlers = extractEventHandlers(externalProps);
+        return {
+            ...externalProps,
+            onClick: createHandleClick(externalEventHandlers),
+            onPointerOver: handlePointerOverEvents ? createHandlePointerOver(externalEventHandlers) : undefined,
+            ref: handleRef,
+            tabIndex
+        };
+    };
 
     return {
         getRootProps,

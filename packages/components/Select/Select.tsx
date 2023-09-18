@@ -23,7 +23,7 @@ function defaultRenderValue<OptionValue>(
         return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
     }
 
-    return selectedOptions?.label ?? '';
+    return selectedOptions?.label ?? null;
 }
 
 function defaultFormValueProvider<OptionValue>(
@@ -112,6 +112,7 @@ export const Select = React.forwardRef(function Select<
         onListboxOpenChange,
         getOptionAsString = defaultOptionStringifier,
         renderValue: renderValueProp,
+        placeholder,
         slotProps = {},
         slots = {},
         value: valueProp,
@@ -228,7 +229,13 @@ export const Select = React.forwardRef(function Select<
 
     return (
         <React.Fragment>
-            <Button {...buttonProps}>{renderValue(selectedOptionsMetadata)}</Button>
+            <Button {...buttonProps}>
+                {renderValue(selectedOptionsMetadata) ?? placeholder ?? (
+                    // fall back to a zero-width space to prevent layout shift
+                    // from https://github.com/mui/material-ui/pull/24563
+                    <span className="notranslate">&#8203;</span>
+                )}
+            </Button>
             {buttonDefined && (
                 <PopperComponent {...popperProps}>
                     <ListboxRoot {...listboxProps}>
@@ -318,6 +325,10 @@ Select.propTypes = {
      * Use in controlled mode (see listboxOpen).
      */
     onListboxOpenChange: PropTypes.func,
+    /**
+     * Text to show when there is no selected value.
+     */
+    placeholder: PropTypes.node,
     /**
      * Function that customizes the rendering of the selected value.
      */

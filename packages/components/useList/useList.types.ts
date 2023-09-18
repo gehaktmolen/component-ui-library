@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Simplify, EventHandlers } from '../../types';
+import type { Simplify } from '../../types';
 import type { ListAction } from './listActions.types';
 import type {
     CancellableEventHandler,
@@ -105,6 +105,7 @@ export interface UseListParameters<
     /**
      * The focus management strategy used by the list.
      * Controls the attributes used to set focus on the list items.
+     * @default 'activeDescendant'
      */
     focusManagement?: FocusManagementType;
     /**
@@ -247,7 +248,7 @@ interface UseListRootSlotOwnProps {
     ref: React.RefCallback<Element> | null;
 }
 
-export type UseListRootSlotProps<TOther = NonNullable<unknown>> = TOther & UseListRootSlotOwnProps;
+export type UseListRootSlotProps<ExternalProps = NonNullable<unknown>> = ExternalProps & UseListRootSlotOwnProps;
 
 export interface UseListReturnValue<
     ItemValue,
@@ -256,9 +257,14 @@ export interface UseListReturnValue<
 > {
     contextValue: ListContextValue<ItemValue>;
     dispatch: (action: CustomAction | ListAction<ItemValue>) => void;
-    getRootProps: <TOther extends EventHandlers = NonNullable<unknown>>(
-        otherHandlers?: TOther
-    ) => UseListRootSlotProps<TOther>;
+    /**
+     * Resolver for the root slot's props.
+     * @param externalProps additional props for the root slot
+     * @returns props that should be spread on the root slot
+     */
+    getRootProps: <ExternalProps extends Record<string, unknown> = NonNullable<unknown>>(
+        externalProps?: ExternalProps
+    ) => UseListRootSlotProps<ExternalProps>;
     rootRef: React.RefCallback<Element> | null;
     state: State;
 }

@@ -33,8 +33,8 @@ export interface UseInputRootSlotOwnProps {
     onClick: React.MouseEventHandler | undefined;
 }
 
-export type UseInputRootSlotProps<TOther = NonNullable<unknown>> = Omit<
-    TOther,
+export type UseInputRootSlotProps<ExternalProps = NonNullable<unknown>> = Omit<
+    ExternalProps,
     keyof UseInputRootSlotOwnProps | 'onBlur' | 'onChange' | 'onFocus'
 > &
     UseInputRootSlotOwnProps;
@@ -51,7 +51,7 @@ export interface UseInputSlotOwnProps {
     disabled: boolean;
 }
 
-export type UseInputSlotProps<TOther = NonNullable<unknown>> = Omit<TOther, keyof UseInputSlotOwnProps> &
+export type UseInputSlotProps<ExternalProps = NonNullable<unknown>> = Omit<ExternalProps, keyof UseInputSlotOwnProps> &
     UseInputSlotOwnProps;
 
 export interface UseInputReturnValue {
@@ -76,17 +76,17 @@ export interface UseInputReturnValue {
      * @param externalProps props for the input slot
      * @returns props that should be spread on the input slot
      */
-    getInputProps: <TOther extends Record<string, any> = NonNullable<unknown>>(
-        externalProps?: TOther
-    ) => UseInputSlotProps<TOther>;
+    getInputProps: <ExternalProps extends Record<string, any> = NonNullable<unknown>>(
+        externalProps?: ExternalProps
+    ) => UseInputSlotProps<ExternalProps>;
     /**
      * Resolver for the root slot's props.
      * @param externalProps props for the root slot
      * @returns props that should be spread on the root slot
      */
-    getRootProps: <TOther extends Record<string, any> = NonNullable<unknown>>(
-        externalProps?: TOther
-    ) => UseInputRootSlotProps<TOther>;
+    getRootProps: <ExternalProps extends Record<string, any> = NonNullable<unknown>>(
+        externalProps?: ExternalProps
+    ) => UseInputRootSlotProps<ExternalProps>;
     inputRef: React.RefCallback<HTMLInputElement> | null;
     /**
      * If `true`, the `input` will indicate that it's required.

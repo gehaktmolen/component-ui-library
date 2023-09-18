@@ -212,9 +212,9 @@ export function useModal(parameters: UseModalParameters): UseModalReturnValue {
 
         return {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            onEnter: createChainedFunction(handleEnter, children.props.onEnter),
+            onEnter: createChainedFunction(handleEnter, children?.props.onEnter),
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            onExited: createChainedFunction(handleExited, children.props.onExited)
+            onExited: createChainedFunction(handleExited, children?.props.onExited)
         };
     };
 

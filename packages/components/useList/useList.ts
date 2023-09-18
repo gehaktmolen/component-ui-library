@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { useTextNavigation, useLatest, areArraysEqual, useControllableReducer, useForkRef } from '../../utils';
+import {
+    useTextNavigation,
+    useLatest,
+    areArraysEqual,
+    useControllableReducer,
+    useForkRef,
+    extractEventHandlers
+} from '../../utils';
 import { ListActionTypes, type ListAction } from './listActions.types';
 import { listReducer as defaultReducer } from './listReducer';
 import useListChangeNotifiers from './useListChangeNotifiers';
@@ -259,9 +266,8 @@ export function useList<
     }, [highlightedValue, notifyHighlightChanged]);
 
     const createHandleKeyDown =
-        (other: Record<string, React.EventHandler<any>>) =>
-        (event: React.KeyboardEvent<HTMLElement> & CancellableEvent) => {
-            other.onKeyDown?.(event);
+        (externalHandlers: EventHandlers) => (event: React.KeyboardEvent<HTMLElement> & CancellableEvent) => {
+            externalHandlers.onKeyDown?.(event);
 
             if (event.defaultPrevented) {
                 return;
@@ -297,9 +303,8 @@ export function useList<
         };
 
     const createHandleBlur =
-        (other: Record<string, React.EventHandler<any>>) =>
-        (event: React.FocusEvent<HTMLElement> & CancellableEvent) => {
-            other.onBlur?.(event);
+        (externalHandlers: EventHandlers) => (event: React.FocusEvent<HTMLElement> & CancellableEvent) => {
+            externalHandlers.onBlur?.(event);
 
             if (event.defaultPrevented) {
                 return;
@@ -316,19 +321,21 @@ export function useList<
             });
         };
 
-    const getRootProps = <TOther extends EventHandlers = NonNullable<unknown>>(
-        otherHandlers: TOther = {} as TOther
-    ): UseListRootSlotProps<TOther> => {
+    const getRootProps = <ExternalProps extends Record<string, any> = NonNullable<unknown>>(
+        externalProps: ExternalProps = {} as ExternalProps
+    ): UseListRootSlotProps<ExternalProps> => {
+        const externalEventHandlers = extractEventHandlers(externalProps);
         return {
-            ...otherHandlers,
+            ...externalProps,
             'aria-activedescendant':
                 focusManagement === 'activeDescendant' && highlightedValue != null
                     ? getItemId!(highlightedValue)
                     : undefined,
-            onBlur: createHandleBlur(otherHandlers),
-            onKeyDown: createHandleKeyDown(otherHandlers),
             tabIndex: focusManagement === 'DOM' ? -1 : 0,
-            ref: handleRef
+            ref: handleRef,
+            ...externalEventHandlers,
+            onBlur: createHandleBlur(externalEventHandlers),
+            onKeyDown: createHandleKeyDown(externalEventHandlers)
         };
     };
 
